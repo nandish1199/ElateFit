@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <title>Calories Calculator, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <h1 class="p-2 bg-info text-light"><b>Custom Diet Plan Creator</b></h1>
+    <h1 class="p-2 bg-danger text-light"><b>Under Development</b></h1>
+    <div class="m-4">
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><b>Choose your BodyType</b></label>
+            <br />
+            <select id="test">
+                <option value="1">Kapha</option>
+                <option value="2">Vata</option>
+                <option value="3">Pitta</option>
+                <option value="4">Kapha+Pitta</option>
+                <option value="5">Kapha+Vata</option>
+                <option value="6">Vata+Pitta</option>
+              </select>
+        </div>
+
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"><b>Choose your Diet Plan</b></label>
+            <br />
+            <input type="radio" name="gender" value="male" /> Weight Loss
+            <input type="radio" name="gender" value="female" /> Weight Gain
+        </div>
+
+        
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><b>Choose Intensity</b></label>
+                <br />
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><b>Choose Vegetables</b></label>
+            <br />
+            <select id="test">
+                <option value="1">Carrot</option>
+                <option value="2">Beans</option>
+                <option value="3">Cucumber</option>
+                <option value="4">Tomato</option>
+                <option value="5">Spinach</option>
+                <option value="6">Mint</option>
+                <option value="7">Coriander</option>
+                <option value="8">Cabbage</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"><b>Choose Grains or Millets</b></label>
+            <br />
+            <select id="test">
+                <option value="1">Sorghum</option>
+                <option value="2">Pearl Millet</option>
+                <option value="3">Wheat</option>
+                <option value="4">Rice</option>
+                <option value="5">Spinach</option>
+                <option value="6">Mint</option>
+                <option value="7">Coriander</option>
+                <option value="8">Cabbage</option>
+            </select>
+        </div>
+
+    </div>
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="calcJS/calories.js"></script>
+
+
+</body>
+
+</html>

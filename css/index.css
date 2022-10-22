@@ -1,0 +1,43 @@
+#front-index-img {
+    width: 150px;
+    height: 150px;
+}
+
+.indexfrontHeadRight img {
+    width: 150px;
+    height: 150px;
+}
+
+.indexfrontText {
+    font-size: 10vh;
+    font-weight: 700;
+    color: rgb(0, 185, 0);
+}
+
+.indexfrontText span {
+    font-size: 11vh;
+    color: rgb(0, 0, 255);
+}
+
+.indexcard {
+    background: #fff;
+    width: 350px;
+    height: fit-content;
+    border-radius: 40px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 160px;
+    height: 150px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+    #front-index-img {
+        display: none;
+    }
+}

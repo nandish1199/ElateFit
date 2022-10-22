@@ -1,0 +1,68 @@
+.containerItems {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    border-radius: 0px;
+    width: 350px;
+    height: 262px;
+    border: 1px solid gray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.imgdev {
+    width: 160px;
+    height: 180px;
+}
+
+.imgdev img {
+    width: 160px;
+    height: 260px;
+    border-radius: 0px;
+}
+
+.catcontent {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 3px;
+    justify-content: space-between;
+    margin: 2px;
+}
+
+.catcontent p {
+    font-size: 13px;
+}
+
+.search-item {
+    width: 300px;
+}
+
+.fa-feather-pointed {
+    color: #39CCCC;
+}
+
+.ottImgs {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+
+/*_______________________________________________*/
+
+.catbottom {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px;
+}
+
+.gameStars {
+    color: gold;
+}

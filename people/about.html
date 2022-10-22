@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <title>Yoga</title>
+    <style>
+      #aboutWave{
+        top: 55px;
+        position: absolute;
+        z-index: -2;
+
+      }
+      #aboutContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5vw;
+      }
+      #logImg{
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        margin: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      #aboutContainer h2, #aboutContainer h1{
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px double gray;
+        
+      }
+      #aboutContainer h5, #aboutContainer h4{
+        color: rgb(0, 107, 107);
+        text-align: center;
+      }
+      .preferredBooks{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      .singleBook{
+        height: 300px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin: 5px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      .singleBook img{
+        height: 270px;
+        width: 200px;
+      }
+      .singleBook a{
+        text-align: center;
+        background: #39CCCC;
+        width: 200px;
+        padding: 5px 0;
+        text-decoration: none;
+        color: azure;
+      }
+
+      .SingleGuy{
+        height: 400px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin: 5px;
+        border-radius: 20px;
+        border: 2px double rgb(175, 175, 175);
+      }
+      .SingleGuy img{
+        height: 130px;
+        width: 130px;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      .SingleGuy p{
+        color: rgb(0, 152, 152);
+      }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <svg id="aboutWave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099FF" fill-opacity="1" d="M0,320L26.7,288C53.3,256,107,192,160,176C213.3,160,267,192,320,224C373.3,256,427,288,480,288C533.3,288,587,256,640,208C693.3,160,747,96,800,106.7C853.3,117,907,203,960,208C1013.3,213,1067,139,1120,122.7C1173.3,107,1227,149,1280,186.7C1333.3,224,1387,256,1413,272L1440,288L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
+    <div id="aboutContainer">
+      <img id="logImg" src="images/nandishProfileTransperant.jpg" loading="lazy"> 
+      <h1> <b>ABOUT ELATEFIT</b> </h1>
+      <h4>ElateFit is a learning platform, 
+          which provides the free content on Yoga, Health Calculators, Fitness, Best Products, Science, Coding, Passive Income, 
+          and many more.</h4>
+      <br>
+      <h2> <b>INTENT</b> </h2>
+      <h5>Our intention is to provide best authentic knowledge on the 
+        essential things like fitness and yoga to the people, so that they
+        can live happy and peaceful life. We have the internal rules set by ourselves to not to give 
+        any information that is there in our mind, we just share the knowledge 
+        given by the greatest yogis, because our mind is not as mature and intelligent as of 
+       the greatest individuals like Krishna, Buddha, Jagadguru Basavanna, Sarvajna,
+       Mahaveer, Jesus, and Patanjali, hence we just share knowledge given by them.
+       We prefer great books like Hathayoga Pradipika, Gheranda Saamhita, Shushruta Samhita, Charaka Samhita,
+      Bhagvadgeeta, Sarvajna Vachana, Allamaprabhu Vachana, and Basavanna Vachana.</h5>
+
+      <br>
+      <h2> <b>PREFERRED BOOKS</b> </h2>
+      <h5>We are intended to give easy understandable knowledge that is there in the authentic books as follows:</h5>
+      <div class="preferredBooks">
+        <div class="singleBook">
+          <img src="images/hathayoga.jpg" loading="lazy">
+          <a href="https://www.amazon.in/Hatha-Yoga-Pradipika-Muktibodhananda-Swami/dp/8185787387/ref=sr_1_3?crid=3A4ABJ4L981BD&keywords=hathayoga+pradipika&qid=1664883686&qu=eyJxc2MiOiIyLjY3IiwicXNhIjoiMS41NCIsInFzcCI6IjAuNjgifQ%3D%3D&s=books&sprefix=hathayoga+pradipik%2Cstripbooks%2C308&sr=1-3" >Hathayoga Predipika <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+        <div class="singleBook">
+          <img src="images/gherandaSamhita.jpg" loading="lazy">
+          <a href="https://www.amazon.in/Gheranda-Samhita-Commentary-Teachings-Maharshi/dp/9381620199/ref=sr_1_1?crid=3KIIK3SLM4DWO&keywords=gheranda+samhita&qid=1664883721&qu=eyJxc2MiOiIyLjcyIiwicXNhIjoiMS43NSIsInFzcCI6IjEuMzYifQ%3D%3D&s=books&sprefix=gheranda+samhit%2Cstripbooks%2C270&sr=1-1" >Gheranda Samhita <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+        <div class="singleBook">
+          <img src="images/bhagavadgeeta.jpg" loading="lazy">
+          <a href="https://www.amazon.in/God-Talks-Arjuna-Bhagavad-Volumes/dp/8189535013/ref=sr_1_14?keywords=bhagavad+gita&qid=1664883481&qu=eyJxc2MiOiI0LjgzIiwicXNhIjoiMy45NiIsInFzcCI6IjMuNzMifQ%3D%3D&sr=8-14" >Bhagadvadgeeta <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+        <div class="singleBook">
+          <img src="images/susrutaSamhita.jpg" loading="lazy">
+          <a href="https://www.amazon.in/ILLUSTRATED-SUSRUTA-SAMHITA-VOL-1-SRIKANTHA/dp/B07436L2BY/ref=sr_1_3?crid=7IQCMVYKHM10&keywords=susruta+samhita&qid=1664883251&qu=eyJxc2MiOiIzLjg1IiwicXNhIjoiMy43NiIsInFzcCI6IjEuMDAifQ%3D%3D&s=books&sprefix=susruta+%2Cstripbooks%2C247&sr=1-3" >Susruta Samhita <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+        <div class="singleBook">
+          <img src="images/charakaSamhita.jpg" loading="lazy">
+          <a href="https://www.amazon.in/Caraka-Samhita-Translation-Exposition-Cakrapani/dp/8170800129/ref=sr_1_5?crid=2WMR0VGR0RFUX&keywords=charaka+samhita&qid=1664885380&qu=eyJxc2MiOiI0LjQ5IiwicXNhIjoiNC4yNCIsInFzcCI6IjMuMDMifQ%3D%3D&s=books&sprefix=charaka%2Cstripbooks%2C314&sr=1-5" >Charaka Samhita <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+        <div class="singleBook">
+          <img src="images/sarvajnaVachana.jpg" loading="lazy">
+          <a href="https://www.amazon.in/Sarvajna-Vachanagalu-Venkata-Subbaiha/dp/B0B7JV9V9X/ref=sr_1_4?crid=19AQNMGMMTZYC&keywords=sarvajna&qid=1664883573&s=books&sprefix=sarvajna%2Cstripbooks%2C271&sr=1-4" >Sarvajna Vachana <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+        <div class="singleBook">
+          <img src="images/basavannaVachana.webp" loading="lazy">
+          <a href="https://www.amazon.in/Basavannanavara-Vachanagalu-K-Naarayana-Rao/dp/B0925PPSK4/ref=sr_1_3?crid=2T68KI3MXMBVE&keywords=basavanna+vachana&qid=1664883631&qu=eyJxc2MiOiIxLjQ1IiwicXNhIjoiMC4wMCIsInFzcCI6IjAuMDAifQ%3D%3D&s=books&sprefix=basavanna+vachan%2Cstripbooks%2C261&sr=1-3" > Basavanna Vachana <i class="fa-solid fa-circle-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <br>
+      <h2><b>PROMISE</b></h2>
+      <h5  class="mb-3">We will only give the authentic knowledge given by the great yogis, we will not give
+        any knowledge in intent to gain more views or to take traffic to our website.
+      </h5>
+
+      <br>
+      <h2><b>ASSOCIATED PEOPLE</b></h2>
+      <div class="preferredBooks">
+        <div class="SingleGuy">
+          <img src="images/nandishProfileMedium.png" loading="lazy">
+          <h5><b>NANDISH</b></h5>
+          <p class="text-center">Software Developer, Yoga Teacher, Information Developer, Cinematographer</p>
+          <div class="text-center">
+            <b>EDUCATION</b>
+            <p>B.Sc. (Physics, Maths, Computer Science)</p>
+            <p>MBA (Finance, HR)</p>
+          </div>
+          <a class="btn btn-primary" href="nandish.html">See More</a>
+        </div>
+        <div class="SingleGuy">
+          <img src="images/pavan.png" loading="lazy">
+          <h5><b>PAVAN</b></h5>
+          <p class="text-center">VFX Artist, Cinematographer, Animator, Videographer </p>
+          <div class="text-center">
+            <b>EDUCATION</b>
+            <p>B.Sc. (Physics, Maths, Computer Science)</p>
+            <a class="btn btn-primary" href="pavan.html">See More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/allcommon.js"></script>
+  </body>
+</html>

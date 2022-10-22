@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/allcommon.css">
+    <title>Yoga</title>
+    <style>
+        body{
+            background: #e7f5ff;
+        }
+        .navlinks {
+            text-decoration: none;
+            font-size: 10px;
+            color: black;
+            font-size: medium;
+        }
+        
+        .navlinks:hover {
+            background: rgb(228, 228, 228);
+            color: black;
+        }
+        
+        .insideNavLink {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .insideNavLink span {
+            width: 140px;
+        }
+        
+        #calcdropdownContent {
+            display: none;
+        }
+        
+        #calcdropdownContent a {
+            text-decoration: none;
+            padding: 0 5px 5px 20px;
+            color: black;
+        }
+        
+        #calcdropdownContent a:hover {
+            background: rgb(228, 228, 228);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex flex-column justify-content-around border">
+        <a class="navlinks" href="searchPage.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-magnifying-glass text-success"></i> <span>Search</span> </div>
+        </a>
+        <a class="navlinks" href="index.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-house text-secondary"></i> <span>Home</span> </div>
+        </a>
+        <a class="navlinks" href="products/pcategories.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-bag-shopping text-secondary"></i> <span>Best Products</span></div>
+        </a>
+        <a class="navlinks" target="_top" id="calcdropdown">
+            <div class="insideNavLink"><i class="fa-solid fa-laptop-medical text-secondary"></i> <span>Health Calculator <i class="fa-solid fa-caret-down"></i></span></div>
+        </a>
+        <div id="calcdropdownContent">
+            <a class="navlinks" href="calculators/healthcalculator.html" target="_top">Tridosh Calculator </a> </br>
+            <a class="navlinks" href="calculators/caloriesCalculator.html" target="_top">Calories Calculator </a> </br>
+            <a class="navlinks" href="calculators/bmiCalculator.html" target="_top">BMI Calculator </a> </br>
+            <a class="navlinks" href="calculators/hwcalculator.html" target="_top">H & W Ratio Calculator </a> </br>
+            <a class="navlinks" href="calculators/bpCalculator.html" target="_top">BP Calculator </a> </br>
+            <a class="navlinks" href="nutrition/nutcategories.html" target="_top">Nutrition Values </a>
+        </div>
+        <a class="navlinks" href="blogs/blogCategories.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-blog text-secondary"></i> <span>Blogs</span></div>
+        </a>
+        <a class="navlinks" href="games/gameCategories.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-gamepad text-secondary"></i> <span>Best Games</span></div>
+        </a>
+        <a class="navlinks" href="movies/movieCategories.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-clapperboard text-secondary"></i> <span>Best Movies</span></div>
+        </a>
+        <a class="navlinks" href="contact.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-phone text-secondary"></i> <span>Contact Us</span></div>
+        </a>
+        <a class="navlinks" href="people/about.html" target="_top">
+            <div class="insideNavLink"><i class="fa-solid fa-address-card text-secondary"></i> <span>About Us</span></div>
+        </a>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="js/allcommon.js"></script>
+    <script>
+        $("#calcdropdown").click(function() {
+            $("#calcdropdownContent").toggle();
+        });
+    </script>
+</body>
+
+</html>

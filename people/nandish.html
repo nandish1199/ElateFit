@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <title>Yoga</title>
+    <style>
+      #aboutWave{
+        top: 55px;
+        position: absolute;
+        z-index: -2;
+
+      }
+      #aboutContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5vw;
+      }
+      #logImg{
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      #aboutContainer h2, #aboutContainer h1{
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px double gray;
+        
+      }
+      #aboutContainer h5, #aboutContainer h4{
+        color: rgb(0, 107, 107);
+        text-align: center;
+      }
+      .skillsDiv{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+      }
+      .skillsDiv b{
+          padding: 7px 10px;
+          border-radius: 5px;
+          background: #39CCCC;
+          margin: 5PX;
+      }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <svg id="aboutWave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#DDDDDD" fill-opacity="1" d="M0,320L26.7,288C53.3,256,107,192,160,176C213.3,160,267,192,320,224C373.3,256,427,288,480,288C533.3,288,587,256,640,208C693.3,160,747,96,800,106.7C853.3,117,907,203,960,208C1013.3,213,1067,139,1120,122.7C1173.3,107,1227,149,1280,186.7C1333.3,224,1387,256,1413,272L1440,288L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
+    <div id="aboutContainer">  
+      <img id="logImg" src="images/nandishProfileMedium.png"> <br>
+      
+      <h1> <b>NANDISH HIREMATH</b> </h1>
+      <br>
+      <audio controls autoplay>
+        <source src="audio/nandishIntro.mp3" type="audio/mpeg" loading="lazy" >
+      Your browser does not support the audio element.
+      </audio>
+      <br>
+      <h4>Hey dear it's nice to see you here.</h4>
+      
+      <br>
+      <h2> <b>BRIEF INTRO</b> </h2>
+      <h5>I am a Fitness trainer and a Software Developer. I have built this website to give you the 
+          knowledge that I have gained since ten years. I have been practicing yoga from childhood. 
+          I have gained the knowledge on yoga from my grandfather, he taught me all the essential
+          knowledge of yoga. I have also read Hathayoga Pradipika, Gheranda Samhita, Rajayoga, Shiva Swarodhyaya,
+          Sarvajna Vachana, Basavanna Vachana and many more. While I was pursuing my degree I read Quantum Physics
+          that helped me a lot to understand about universe better. 
+      </h5>
+
+      <br>
+      <h2> <b>TECHNICAL SKILLS</b> </h2>
+      <div class="skillsDiv">
+          <b>HTML</b>
+          <b>CSS</b>
+          <b>BOOTSTRAP</b>
+          <b>JAVASCRIPT</b>
+          <b>JQUERY</b>
+          <b>JAVA</b>
+          <b>SPRING BOOT</b>
+          <b>MICRO SERVICES</b>
+          <b>JWT</b>
+          <b>MYSQL</b>
+          <b>GIT</b>
+          <b>GITHUB</b>
+          <b>POSTMAN</b>
+          <b>SELENIUM</b>
+          <b>DAVINCI RESOLVE</b>
+          <b>PYTHON</b>
+      </div>
+
+      <br>
+      <h2><b>EDUCATION</b></h2>
+      <h5  class="mb-3">I was not good at academics, but somehow I have completed my masters, I was more interested in exploring the things
+          like Yoga, Fitness, and Quantum Physics. Hence, my academics grades were not good.
+      </h5>
+      <table class="table table-striped text-center" style="width:340px;">
+          <tr>
+              <th>B.Sc.</th>
+              <th>Physics, Maths, Computer Science</th>
+          </tr>
+          <tr>
+            <th>MBA</th>
+            <th>Finance, Human Resource</th>
+        </tr>
+      </table>
+
+      <br>
+      <h2><b>NOTE</b></h2>
+      <h5 class="text-center">I am neither a God Man nor a Superhuman. I am just a simple person as you are,
+        and trying to take control over my mind every day. Day by day I am taking control over my mind
+        through yoga. My Anger, Arrogance, and Greed had lowered down, My mind is becoming equanimous and calm
+        day by day due to the practice of yoga every day. 
+      </h5> 
+
+    </div>
+
+    
+<iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/allcommon.js"></script>
+  </body>
+</html>

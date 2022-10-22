@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="images/static/logo.png" />
+    <link rel="stylesheet" href="css/allcommon.css" />
+    <title>Ayurveda, ElateFit</title>
+    <style>
+        .item{
+            text-decoration: none;
+            padding: 10px 15px;
+            background: #DDDDDD;
+            font-weight: bold;
+            margin: 5px;
+            border-radius: 5px;
+            color: rgb(41, 40, 40);
+        }
+        #searchMainDiv{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="fragsearchbar.html" name="iframe_a" title="Iframe Example"></iframe>
+    </div>
+    <iframe id="navframe" src="fragnav.html" name="iframe_a" title="Iframe Example"></iframe>
+
+    <br>
+    <!--used to search the Categories-->
+    <div class="form-search d-flex m-2">
+        <input id="myInputSearch" type="text" class="search-item form-control" placeholder="Search..." />
+        <a href="searchPage.html" class="btn btn-secondary mx-2">Clear</a>
+    </div>
+    <br>
+
+    <div class="containerItems" id="searchMainDiv">
+        <!--__________________________Categories(MainPages)____________________-->
+        <a class="item" href="ayurveda/ayurvedaCategories.html"> Ayurveda </a>
+        <a class="item" href="bestYoutubers/youTubeCategories.html"> Youtubers </a>
+        <a class="item" href="blogs/blogCategories.html"> Blogs </a>
+        <a class="item" href="calculators/calcCategories.html"> Health Calculators </a>
+        <a class="item" href="coding/codingCategories.html"> Coding </a>
+        <a class="item" href="dietPlans/wlDietPlansCat.html"> Diet Plans Weight Loss </a>
+        <a class="item" href="dietPlans/wgDietPlansCat.html"> Diet Plans Weight Gain </a>
+        <a class="item" href="nutrition/nutcategories.html"> Nutrition </a>
+        <a class="item" href="people/nandish.html"> Nandish </a>
+        <a class="item" href="products/pcategories.html"> Best Products </a>
+        <a class="item" href="respect/respectCategories.html"> Respect </a>
+        <a class="item" href="vastu/vastuCategories.html"> Vastu </a>
+
+        <!--_____Calculators______-->
+        <a class="item" href="calculators/bmiCalculator.html"> BMI Calculator </a>
+        <a class="item" href="calculators/bpCalculator.html"> BP Calculator </a>
+        <a class="item" href="calculators/caloriesCalculator.html"> Calorie Calculator </a>
+        <a class="item" href="calculators/healthcalculator.html"> Health Calculator </a>
+        <a class="item" href="calculators/hwcalculator.html"> Height to Weight Ratio Calculator </a>
+
+        <!--_____Ayurveda______-->
+        <a class="item" href="ayurveda/kapha.html"> Kapha Dosha </a>
+        <a class="item" href="ayurveda/pitta.html"> Pitta Dosha </a>
+        <a class="item" href="ayurveda/vata.html"> Vata Dosha </a>
+        <a class="item" href="ayurveda/kaphaVata.html"> Kapha + Vata Dosha </a>
+        <a class="item" href="ayurveda/pittaKapha.html"> Kapha + Pitta Dosha </a>
+        <a class="item" href="ayurveda/vataPitta.html"> Vata + Pitta Dosha </a>
+
+        <!--_____Best Youtubers______-->
+        <a class="item" href="bestYoutubers/akAyurveda.html"> AK Ayurveda </a>
+        <a class="item" href="bestYoutubers/durgesh.html"> Learn Code With Durgesh </a>
+        <a class="item" href="bestYoutubers/harry.html"> Code With Harry </a>
+        <a class="item" href="bestYoutubers/javatechie.html"> Java Techie </a>
+        <a class="item" href="bestYoutubers/naresh.html"> Awaken with Naresh </a>
+        <a class="item" href="bestYoutubers/ojayurveda.html"> OJ Ayurveda </a>
+        <a class="item" href="bestYoutubers/thapa.html"> Thapa Technical </a>
+        <a class="item" href="bestYoutubers/trimurtiHunasekatte.html"> Trimurthi Hunasekatte </a>
+        <a class="item" href="bestYoutubers/vidyasagar.html"> Vidyasagar Ayurveda </a>
+
+        <!--_____Weight Gain Diet Plans______-->
+        <a class="item" href="dietPlans/wgDietPlans/wgPitta1.html"> Weight Gain Diet Plan for Pitta Prakriti (1) </a>
+        <a class="item" href="dietPlans/wgDietPlans/wgPitta2.html"> Weight Gain Diet Plan for Pitta Prakriti (2) </a>
+        <a class="item" href="dietPlans/wgDietPlans/wgPitta3.html"> Weight Gain Diet Plan for Pitta Prakriti (3) </a>
+        <a class="item" href="dietPlans/wgDietPlans/wgVata1.html"> Weight Gain Diet Plan for Vata Prakriti (1) </a>
+        <a class="item" href="dietPlans/wgDietPlans/wgVata2.html"> Weight Gain Diet Plan for Vata Prakriti (2) </a>
+        <a class="item" href="dietPlans/wgDietPlans/wgVata3.html"> Weight Gain Diet Plan for Vata Prakriti (3) </a>
+        
+        <!--_____Weight Loss Diet Plans______-->
+        <a class="item" href="dietPlans/wlDietPlans/wlKapha1.html">Weight Loss Diet Plan for Kapha Prakriti (1)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKapha2.html">Weight Loss Diet Plan for Kapha Prakriti (2)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKapha3.html">Weight Loss Diet Plan for Kapha Prakriti (3)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaDiab1.html">Weight Loss Diet Plan for Kapha Prakriti (Diabetes) (1)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaDiab2.html">Weight Loss Diet Plan for Kapha Prakriti (Diabetes) (2)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaPitta1.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (1)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaPitta2.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (2)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaPitta3.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (3)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaPittaDiab1.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (Diabetes) (1)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaPittaDiab2.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (Diabetes) (2)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaVata1.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (1)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaVata2.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (2)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaVata3.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (3)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaVataDiab1.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (Diabetes) (1)</a>
+        <a class="item" href="dietPlans/wlDietPlans/wlKaphaVataDiab2.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (Diabetes) (2)</a>
+
+        <!--______________Vastu_____________-->
+        <a class="item" href="vastu/introduction.html">Introduction to Vastu</a>
+        <a class="item" href="vastu/vastuAnalysis.html">Vastu Analysis</a>
+        <a class="item" href="vastu/vastuGeography.html">Vastu and Geography</a>
+
+        <!--______________Coding_____________-->
+        <a class="item" href="coding/javaRoadMap.html">Java Roadmap</a>
+
+        <!--______________Best Services_____________-->
+        <a class="item" href="bestServices/bestServiceCategories.html">Best Services</a>
+
+        <!--______________Best Learning Platforms_____________-->
+        <a class="item" href="learningPlatforms/learningPlatformCategories.html">Best Learning Platforms</a>
+
+        <!--______________Best Movies_____________-->
+        <a class="item" href="movies/educationalMovies/educationMovieCategories.html">Educational Movies</a>
+        <a class="item" href="movies/scienceFiction/scienceFiction.html">SciFi Movies</a>
+
+        <!--______________Best Games_____________-->
+        <a class="item" href="games/mobileGames/mobileGameCategories.html">Mobile Games</a>
+        <a class="item" href="games/pcGames/pcGamesCategories.html">PC Games</a>
+
+        <!--______________Yoga_____________-->
+        <a class="item" href="yoga/yogaCategories.html">Yoga</a>
+        <a class="item" href="yoga/introduction.html">Introduction to yoga</a>
+
+        <!--______________Nutrition_____________-->
+        <a class="item" href="nutrition/millets/milletCategories.html">Millets</a>
+        <a class="item" href="nutrition/millets/barnyardMillet.html">Barnyard Millet (Sawa)</a>
+        <a class="item" href="nutrition/millets/fingerMillet.html">Finger Millet (Ragi)</a>
+        <a class="item" href="nutrition/millets/foxtailMillet.html">Foxtail Millet (Ragi)</a>
+        <a class="item" href="nutrition/millets/fingerMillet.html">Pearl Millet (kangani)</a>
+        <a class="item" href="nutrition/millets/sorghumMillet.html">Sorghum Millet (Jowar)</a>
+
+        <a class="item" href="nutrition/pulses/pulseCategories.html">Pulses</a>
+        <a class="item" href="nutrition/pulses/almomd.html">Almond (Badam)</a>
+        <a class="item" href="nutrition/pulses/blackGram.html">Black Gram (Urad)</a>
+        <a class="item" href="nutrition/pulses/chickpeas.html">Chikcpeas (Chana)</a>
+        <a class="item" href="nutrition/pulses/cowpea.html">Cowpeas (Chana)</a>
+        <a class="item" href="nutrition/pulses/greenPeas.html">Greenpeas (Chana)</a>
+        <a class="item" href="nutrition/pulses/horseGram.html">Horsegram (Chana)</a>
+        <a class="item" href="nutrition/pulses/mothGram.html">Mothgram (Chana)</a>
+        <a class="item" href="nutrition/pulses/mung.html">Greengram (Mung)</a>
+        <a class="item" href="nutrition/pulses/peanuts.html">Peanuts</a>
+        <a class="item" href="nutrition/pulses/pigeonpea.html">Pigeonpeas</a>
+
+        <a class="item" href="nutrition/fruits/fruitCategories.html">Fruits</a>
+        <a class="item" href="nutrition/fruits/apple.html">Apple</a>
+        <a class="item" href="nutrition/fruits/banana.html">Banana</a>
+        <a class="item" href="nutrition/fruits/custard.html">Custard Apple</a>
+        <a class="item" href="nutrition/fruits/grapes.html">Grapes</a>
+        <a class="item" href="nutrition/fruits/mango.html">Mango</a>
+        <a class="item" href="nutrition/fruits/orange.html">Orange</a>
+        <a class="item" href="nutrition/fruits/pineapple.html">Pineapple</a>
+        <a class="item" href="nutrition/fruits/pomegranate.html">Pomegranate</a>
+        <a class="item" href="nutrition/fruits/watermelon.html">watermelon</a>
+
+        <a class="item" href="nutrition/grains/grainCategories.html">Grains</a>
+        <a class="item" href="nutrition/grains/barley.html">Barley</a>
+        <a class="item" href="nutrition/grains/corn.html">Corn</a>
+        <a class="item" href="nutrition/grains/oats.html">Oats</a>
+        <a class="item" href="nutrition/grains/rice.html">Rice</a>
+        <a class="item" href="nutrition/grains/wheat.html">Wheat</a>
+
+        <a class="item" href="nutrition/others/otherCategories.html">Other Foods</a>
+        <a class="item" href="nutrition/others/cowMilk.html">Cow Milk</a>
+
+        <a class="item" href="nutrition/spices/spiceCategories.html">Spices</a>
+        <a class="item" href="nutrition/spices/cardamom.html">Cardamom</a>
+        <a class="item" href="nutrition/spices/cumin.html">Cumin</a>
+        <a class="item" href="nutrition/spices/curryleaves.html">Curry leaves</a>
+        <a class="item" href="nutrition/spices/garlic.html">Garlic</a>
+        <a class="item" href="nutrition/spices/ginger.html">Finger</a>
+        <a class="item" href="nutrition/spices/mustard.html">Mustard</a>
+        <a class="item" href="nutrition/spices/turmeric.html">Turmeric</a>
+
+        <a class="item" href="nutrition/vegetables/vegCategories.html">Vegetables</a>
+        <a class="item" href="nutrition/vegetables/brinjal.html">Brinjal</a>
+        <a class="item" href="nutrition/vegetables/carrot.html">Carrot</a>
+        <a class="item" href="nutrition/vegetables/coriander.html">Coriander</a>
+        <a class="item" href="nutrition/vegetables/cucumber.html">Cucumber</a>
+        <a class="item" href="nutrition/vegetables/drumstick.html">Drumstick</a>
+        <a class="item" href="nutrition/vegetables/fenugreek.html">Fenugreek</a>
+        <a class="item" href="nutrition/vegetables/okra.html">Okra</a>
+        <a class="item" href="nutrition/vegetables/onion.html">Onion</a>
+        <a class="item" href="nutrition/vegetables/pointedGourd.html">Pointed Fuard</a>
+        <a class="item" href="nutrition/vegetables/pumpkin.html">Pumpkin</a>
+        <a class="item" href="nutrition/vegetables/ridgeGourd.html">Ridge Guard</a>
+        <a class="item" href="nutrition/vegetables/spinach.html">Spinach</a>
+        <a class="item" href="nutrition/vegetables/tomato.html">Tomato</a>
+        
+        <!--______________Nutrition_____________-->
+        <a class="item" href="products/beauty/beautyCategories.html">Best Beauty Products</a>
+        <a class="item" href="products/bike/bikeCategories.html">Best Bikes</a>
+        <a class="item" href="products/camera/cameraCategories.html">Best Camera</a>
+        <a class="item" href="products/desktop/desktopCategories.html">Best Desktop Accessories</a>
+        <a class="item" href="products/food/foodCategories.html">Best Foods</a>
+        <a class="item" href="products/gadget/gadgetCategories.html">Best Gadgets</a>
+        <a class="item" href="products/laptop/laptopCategories.html">Best Laptops</a>
+        <a class="item" href="products/mobile/mobileCategories.html">Best Mobiles</a>
+        <a class="item" href="products/scooter/scooterCategories.html">Best Scooters</a>
+
+    </div>
+
+    <iframe id="footer" src="fragfooter.html" loading="lazy"></iframe>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="js/allcommon.js"></script>
+    <script src="js/searchAll.js"></script>
+</body>
+
+</html>

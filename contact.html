@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="images/static/logo.png" />
+    <link rel="stylesheet" href="css/allcommon.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Contact, Elatefit</title>
+    <style>
+      .gmap_iframe{
+        width: 340px;
+        height: 340px;
+        border: 1px solid rgb(181, 181, 181);
+        border-radius: 68% 32% 31% 69% / 67% 58% 42% 33%;
+      }
+      .contactInfo{
+        display: flex;
+        flex-direction: column;
+      }
+      .contactHead{
+        font-size: 70px;
+        font-weight: 800;
+        text-align: center;
+        color: rgb(133, 162, 255);
+        text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      #contactBox{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      #contactBox h3{
+        color: rgb(92, 92, 92);
+      }
+      a{
+        text-decoration: none;
+        font-size: 20px;
+      }
+      .fa-message{
+        color: rgb(207, 207, 207);
+        font-size: 30px;
+      }
+
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="fragsearchbar.html" name="iframe_a" title="Iframe Example"></iframe>
+    </div>
+    <iframe id="navframe" src="fragnav.html" name="iframe_a" title="Iframe Example"></iframe>
+ 
+    <div class="contactInfo">
+      <h1 class="contactHead">Let's Connect</h1>
+
+      <div id="contactBox">
+        <div>
+          <h3> FOR BUSINESS QUERY: </h3>
+          <div><i class="fa-solid fa-message"></i> <a href="mailto:contact@elatefit.com">contact@elatefit.com</a></div>
+          <br>
+          <h3> FOR OTHER QUERY: </h3>
+          <div><i class="fa-solid fa-message"></i> <a href="mailto:nandish1199@gmail.com">nandish1199@gmail.com</a></div>
+        </div>
+        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=hubli&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+      </div>
+    </div>
+    <br>
+
+    <iframe id="footer" src="fragfooter.html" loading="lazy"></iframe>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/allcommon.js"></script>
+  </body>
+</html>
