@@ -61,7 +61,7 @@ $(".bikeRecommendation").html("<b>NANDISH</b>");
 
 //________Nutrition________
 $(".nutriAuthor").html("NANDISH");
-$(".nutriDays").html("2 Months");
+$(".nutriDays").html("1 Month");
 $(".nutriSponsor").html("<b>NOT SPONSORED</b>");
 
 //_______Youtubers______
@@ -71,7 +71,7 @@ $(".tubeSponsor").html("<b>NOT SPONSORED</b>");
 
 //________DIET_Plans________
 $(".dietAuthor").html("NANDISH");
-$(".dietDays").html("2 Months");
+$(".dietDays").html("1 Month");
 $(".dietSponsor").html("<b>NOT SPONSORED</b>");
 
 //________vastu________
