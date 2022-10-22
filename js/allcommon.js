@@ -6,139 +6,139 @@ $("#toggleBtn").click(function() {
 
 // ______________dynamic content_____________
 //______Beauty_______
-$(".beautyAuthor").html("BeutAut");
-$(".beautyDays").html("6m ago");
-$(".beautySponsor").html("Beut Sponsored");
-$(".beautyRecommendation").html("BeutRec");
+$(".beautyAuthor").html("NANDISH");
+$(".beautyDays").html("1 month");
+$(".beautySponsor").html("<b>NOT SPONSORED</b>");
+$(".beautyRecommendation").html("<b>NANDISH</b>");
 
 //______Mobiles_______
-$(".mobileAuthor").html("MobAut");
-$(".mobileDays").html("7m ago");
-$(".mobileSponsor").html("Mob Sponsored");
-$(".mobileRecommendation").html("MobRec");
+$(".mobileAuthor").html("NANDISH");
+$(".mobileDays").html("1 Month");
+$(".mobileSponsor").html("<b>NOT SPONSORED</b>");
+$(".mobileRecommendation").html("<b>NANDISH</b>");
 
 //______Laptops_______
-$(".laptopAuthor").html("lapAut");
-$(".laptopDays").html("6m ago");
-$(".laptopSponsor").html("lap Sponsored");
-$(".laptopRecommendation").html("lapRec");
+$(".laptopAuthor").html("NANDISH");
+$(".laptopDays").html("1 Month");
+$(".laptopSponsor").html("<b>NOT SPONSORED</b>");
+$(".laptopRecommendation").html("<b>NANDISH</b>");
 
 //______Desktop_______
-$(".desktopAuthor").html("DeskAut");
-$(".desktopDays").html("6m ago");
-$(".desktopSponsor").html("Desk Sponsored");
-$(".desktopRecommendation").html("DeskRec");
+$(".desktopAuthor").html("NANDISH");
+$(".desktopDays").html("1 Month");
+$(".desktopSponsor").html("<b>NOT SPONSORED</b>");
+$(".desktopRecommendation").html("<b>NANDISH</b>");
 
 //______Food_______
-$(".foodAuthor").html("foodAut");
-$(".foodDays").html("8m ago");
-$(".foodSponsor").html("food Sponsored");
-$(".foodRecommendation").html("foodRec");
+$(".foodAuthor").html("NANDISH");
+$(".foodDays").html("1 month");
+$(".foodSponsor").html("<b>NOT SPONSORED</b>");
+$(".foodRecommendation").html("<b>NANDISH</b>");
 
 //______Gadgets_______
-$(".gadgetAuthor").html("gadgetAut");
-$(".gadgetDays").html("2m ago");
-$(".gadgetSponsor").html("gadget Sponsored");
-$(".gadgetRecommendation").html("gadgetRec");
+$(".gadgetAuthor").html("NANDISH");
+$(".gadgetDays").html("1 Month");
+$(".gadgetSponsor").html("<b>NOT SPONSORED</b>");
+$(".gadgetRecommendation").html("<b>NANDISH</b>");
 
 //______Camera_______
-$(".cameraAuthor").html("cameraAut");
-$(".cameraDays").html("5m ago");
-$(".cameraSponsor").html("camera Sponsored");
-$(".cameraRecommendation").html("cameraRec");
+$(".cameraAuthor").html("NANDISH");
+$(".cameraDays").html("1 Month");
+$(".cameraSponsor").html("<b>NOT SPONSORED</b>");
+$(".cameraRecommendation").html("<b>NANDISH</b>");
 
 //______scooter_______
-$(".scooterAuthor").html("scooterAut");
-$(".scooterDays").html("6m ago");
-$(".scooterSponsor").html("scooter Sponsored");
-$(".scooterRecommendation").html("scooterRec");
+$(".scooterAuthor").html("NANDISH");
+$(".scooterDays").html("1 Month");
+$(".scooterSponsor").html("<b>NOT SPONSORED</b>");
+$(".scooterRecommendation").html("<b>NANDISH</b>");
 
 //______bike_______
-$(".bikeAuthor").html("bikeAut");
-$(".bikeDays").html("6m ago");
-$(".bikeSponsor").html("bike Sponsored");
-$(".bikeRecommendation").html("bikeRec");
+$(".bikeAuthor").html("NANDISH");
+$(".bikeDays").html("1 Month");
+$(".bikeSponsor").html("<b>NOT SPONSORED</b>");
+$(".bikeRecommendation").html("<b>NANDISH</b>");
 
 //________Nutrition________
-$(".nutriAuthor").html("NNutri");
+$(".nutriAuthor").html("NANDISH");
 $(".nutriDays").html("2 Months");
-$(".nutriSponsor").html("<b>Not Sponsored Nutri</b>");
+$(".nutriSponsor").html("<b>NOT SPONSORED</b>");
 
 //_______Youtubers______
 $(".tubeAuthor").html("NANDISH");
-$(".tubeDays").html("2 MONTHS AGO");
+$(".tubeDays").html("1 Month");
 $(".tubeSponsor").html("<b>NOT SPONSORED</b>");
 
 //________DIET_Plans________
-$(".dietAuthor").html("NDiet");
+$(".dietAuthor").html("NANDISH");
 $(".dietDays").html("2 Months");
-$(".dietSponsor").html("<b>Not Sponsored Diet</b>");
+$(".dietSponsor").html("<b>NOT SPONSORED</b>");
 
 //________vastu________
-$(".vastuAuthor").html("Nvastu");
-$(".vastuDays").html("2 Months");
-$(".vastuSponsor").html("<b>Not Sponsored vastu</b>");
+$(".vastuAuthor").html("NANDISH");
+$(".vastuDays").html("1 Month");
+$(".vastuSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Ayurveda________
-$(".ayurAuthor").html("NAyur");
-$(".ayurDays").html("2 Months");
-$(".ayurSponsor").html("<b>Not Sponsored Ayur</b>");
+$(".ayurAuthor").html("NANDISH");
+$(".ayurDays").html("1 Month");
+$(".ayurSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Yoga________
-$(".yogaAuthor").html("Nyoga");
-$(".yogaDays").html("2 Months");
-$(".yogaSponsor").html("<b>Not Sponsored yoga</b>");
+$(".yogaAuthor").html("NANDISH");
+$(".yogaDays").html("1 Month");
+$(".yogaSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Coding________
-$(".codingAuthor").html("Ncoding");
-$(".codingDays").html("2 Months");
-$(".codingSponsor").html("<b>Not Sponsored coding</b>");
+$(".codingAuthor").html("NANDISH");
+$(".codingDays").html("1 Month");
+$(".codingSponsor").html("<b>NOT SPONSORED</b>");
 
 //________OurServices________
-$(".serviceAuthor").html("NService");
-$(".serviceDays").html("2 Months");
-$(".serviceSponsor").html("<b>Not Sponsored Service</b>");
+$(".serviceAuthor").html("NANDISH");
+$(".serviceDays").html("1 Month");
+$(".serviceSponsor").html("<b>NOT SPONSORED</b>");
 
 //________BestServices________
-$(".bestServiceAuthor").html("NService");
-$(".bestServiceDays").html("2 Months");
-$(".bestServiceSponsor").html("<b>Not Sponsored bestService</b>");
+$(".bestServiceAuthor").html("NANDISH");
+$(".bestServiceDays").html("1 Month");
+$(".bestServiceSponsor").html("<b>NOT SPONSORED</b>");
 
 //________LearningService________
-$(".learningPlatformAuthor").html("lPlat");
-$(".learningPlatformDays").html("2 Months");
-$(".learningPlatformSponsor").html("<b>Not Sponsored learningPlatform</b>");
+$(".learningPlatformAuthor").html("NANDISH");
+$(".learningPlatformDays").html("1 Month");
+$(".learningPlatformSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Best Movies________
-$(".movieAuthor").html("Movie");
-$(".movieDays").html("2 Months");
-$(".movieSponsor").html("<b>Not Sponsored game</b>");
+$(".movieAuthor").html("NANDISH");
+$(".movieDays").html("1 Month");
+$(".movieSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Best Games________
-$(".gameAuthor").html("Game");
+$(".gameAuthor").html("NANDISH");
 $(".gameDays").html("1 Month");
-$(".gameSponsor").html("<b>Not Sponsored game</b>");
+$(".gameSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Stocks________
-$(".stockAuthor").html("Stock");
+$(".stockAuthor").html("NANDISH");
 $(".stockDays").html("1 Month");
-$(".stockSponsor").html("<b>Not Sponsored Stock</b>");
+$(".stockSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Daily Updates________
-$(".updatesAuthor").html("Updates");
+$(".updatesAuthor").html("NANDISH");
 $(".updatesDays").html("1 Month");
-$(".updatesSponsor").html("<b>Not Sponsored Updates</b>");
+$(".updatesSponsor").html("<b>NOT SPONSORED</b>");
 
 //________Defence Updates________
-$(".defenceAuthor").html("Defence");
+$(".defenceAuthor").html("NANDISH");
 $(".defenceDays").html("1 Month");
-$(".defenceSponsor").html("<b>Not Sponsored Defence</b>");
+$(".defenceSponsor").html("<b>NOT SPONSORED</b>");
 
 //_________AD-Beauty____________
 $(".adBeauty").html('<a href="https://neevsoaps.com/products/neev-almond-rose-handmade-soap-pure-elixir-of-youth-from-nature" target="_blank" class="d-flex align-items-center border m-1 text-dark shadow" style="text-decoration: none;background:#FFF8DC;"> <img src="../../../products/beauty/soap/images/neevmain.jpg" loading="lazy" style="width: 100px;height:80px;" /> <div><h5 class="mx-2">Best Almond Rose Soap <i class="fa-solid fa-star text-warning"></i></h5> <p class="mx-2"><i class="fa-solid fa-store text-secondary"></i> Neev Store</p></div></a>');
 
 //_________AD-Nutri_________
-$(".adNutri").html('<a href="https://www.amazon.in/Quaker-Oats-Plus-Multigrain-Advantage/dp/B00SWLE4VK/ref=sr_1_7_f3_0g_fs?crid=CFF1MD936CG9&keywords=oats&qid=1665248075&qu=eyJxc2MiOiI0Ljc4IiwicXNhIjoiNC41OCIsInFzcCI6IjQuMzcifQ%3D%3D&refinements=p_36%3A-10000&rnid=1318502031&s=grocery&sprefix=oats%2Cgrocery%2C2657&sr=1-7" class="d-flex align-items-center border m-1 text-dark shadow" style="text-decoration: none;background:#FFF8DC;"> <img src="../../products/food/oats/images/quakermain.jpg" loading="lazy" style="width: 100px;height:80px;" /> <div><h5 class="mx-2">Best Oats <i class="fa-solid fa-star text-warning"></i></h5> <p class="mx-2"><i class="fa-solid fa-store text-secondary"></i> Quaker</p></div></a>');
+$(".adNutri").html('<a href="https://www.amazon.in/Quaker-Oats-Plus-Multigrain-Advantage/dp/B00SWLE4VK/ref=sr_1_7_f3_0g_fs?crid=CFF1MD936CG9&keywords=oats&qid=1665248075&qu=eyJxc2MiOiI0Ljc4IiwicXNhIjoiNC41OCIsInFzcCI6IjQuMzcifQ%3D%3D&refinements=p_36%3A-10000&rnid=1318502031&s=grocery&sprefix=oats%2Cgrocery%2C2657&sr=1-7" target="_blank" class="d-flex align-items-center border m-1 text-dark shadow" style="text-decoration: none;background:#FFF8DC;"> <img src="../../products/food/oats/images/quakermain.jpg" loading="lazy" style="width: 100px;height:80px;" /> <div><h5 class="mx-2">Best Oats <i class="fa-solid fa-star text-warning"></i></h5> <p class="mx-2"><i class="fa-solid fa-store text-secondary"></i> Quaker</p></div></a>');
 
 //_________AD-Ayurveda_________
 $(".adAyur").html('<a href="https://www.amazon.in/Quaker-Oats-Plus-Multigrain-Advantage/dp/B00SWLE4VK/ref=sr_1_7_f3_0g_fs?crid=CFF1MD936CG9&keywords=oats&qid=1665248075&qu=eyJxc2MiOiI0Ljc4IiwicXNhIjoiNC41OCIsInFzcCI6IjQuMzcifQ%3D%3D&refinements=p_36%3A-10000&rnid=1318502031&s=grocery&sprefix=oats%2Cgrocery%2C2657&sr=1-7" target="_blank" class="d-flex align-items-center border m-1 text-dark shadow" style="text-decoration: none;background:#FFF8DC;"> <img src="../products/food/oats/images/quakermain.jpg" loading="lazy" style="width: 100px;height:80px;" /> <div><h5 class="mx-2">Best Oats <i class="fa-solid fa-star text-warning"></i></h5> <p class="mx-2"><i class="fa-solid fa-store text-secondary"></i> Quaker</p></div></a>');
