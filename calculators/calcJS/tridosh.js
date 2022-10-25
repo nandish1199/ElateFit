@@ -260,6 +260,18 @@
                     $("#dpKaphaVata3").css("display", "block");
                 }
 
+                if (weightloss == "yes" && weightgain == "no" && kapha == pitta) {
+                    $("#dpKaphaPitta1").css("display", "block");
+                    $("#dpKaphaPitta2").css("display", "block");
+                    $("#dpKaphaPitta3").css("display", "block");
+                }
+
+                if (weightloss == "yes" && weightgain == "no" && kapha == vata) {
+                    $("#dpKaphaVata1").css("display", "block");
+                    $("#dpKaphaVata2").css("display", "block");
+                    $("#dpKaphaVata3").css("display", "block");
+                }
+
                 var diabetes = $('input:radio[name=diabetes]:checked').val();
                 if (weightloss == "yes" && weightgain == "no" && kapha > vata && kapha > pitta && vata == pitta && diabetes=="yes") {
                     $("#dpKaphaDiab1").css("display", "block");
