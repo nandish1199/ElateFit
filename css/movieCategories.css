@@ -40,6 +40,21 @@
     font-size: 13px;
 }
 
+.form-search {
+    display: flex;
+    justify-content: center;
+    margin: 78px 0 0 0;
+
+}
+
+.searchCancelBtn {
+    margin: 0px 10px;
+}
+
+#myInputSearch {
+    border: 1px solid rgb(92, 92, 92);
+}
+
 .search-item {
     width: 300px;
 }
