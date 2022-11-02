@@ -2,7 +2,8 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 15px;
+    justify-content: center;
 }
 
 .item {
@@ -35,7 +36,20 @@
 }
 
 .search-item {
-    width: 300px;
+    width: 330px;
+    margin-top: 70px;
+}
+
+.form-search {
+    display: flex;
+    margin: 7px;
+    display: flex;
+    justify-content: center;
+}
+
+.searchCancelBtn {
+    margin-top: 70px;
+    margin-left: 7px;
 }
 
 .fa-feather-pointed {
