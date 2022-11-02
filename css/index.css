@@ -1,3 +1,7 @@
+.indexfrontHead {
+    margin-top: 85px;
+}
+
 #front-index-img {
     width: 150px;
     height: 150px;
@@ -6,6 +10,7 @@
 .indexfrontHeadRight img {
     width: 150px;
     height: 150px;
+
 }
 
 .indexfrontText {

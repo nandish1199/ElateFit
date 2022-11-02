@@ -7,7 +7,11 @@ body {
 
 /*________NavBar shown after clicking menu icon____*/
 #navBarContainer {
+    position: fixed;
+    width: 100%;
+    top: 0;
     display: flex;
+    z-index: 20;
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     height: 70px;
