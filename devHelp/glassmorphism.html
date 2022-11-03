@@ -26,6 +26,94 @@
         .textShownAfterClick{
             display: none;
         }
+        .glassContainer{
+            height: 130vh;
+            background-image: url(images/glassBackground.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .glassCard{
+            margin: 90px 0 0 0;
+            width: 540px;
+            height: 300px;
+            background: orange;
+            border-radius: 50px;
+            background: rgba( 255, 255, 255, 0.15 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.2 );
+            backdrop-filter: blur( 6px );
+            -webkit-backdrop-filter: blur( 6px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .glassCard img{
+            width: 100px;
+        }
+        .glassCard h5{
+            color: rgb(73, 73, 73);
+        }
+        #inGlassCard{
+            display: flex;
+            justify-content: center;
+
+        }
+        #inGlassCard img{
+            width: 80px;
+            height: 70px;
+        }
+        #inGlassCard h1{
+            font-size: 60px;
+            margin-left: -18px;
+            margin-top: 2px;
+            color: rgb(189, 0, 0);
+            text-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #glassForm{
+            margin-top: 10px;
+            width: 540px;
+            height: 350px;
+        }
+
+        #glassForm input{
+            margin: 8px 0;
+        }
+        #cssCopy{
+            margin-bottom: 20px;
+            width: 540px;
+            height: 300px;
+            background: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-radius: 30px;
+
+        }
+
+        @media only screen and (max-width: 500px) {
+            .glassCard{
+                width: 350px;
+                height: 300px;
+            }
+
+            #glassForm{
+                width: 350px;
+                height: 350px;
+            }
+
+            #cssCopy{
+            width: 350px;
+            height: 300px;
+            }
+        }
     </style>
 </head>
 
@@ -38,8 +126,37 @@
     </div>
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
-    <div class="containerItems" id="searchMainDiv">
-        
+    <div class="glassContainer">
+        <div class="glassCard">
+            <img src="images/fruitsinGlassmorphism.png" alt="glassmprphism">
+            <div id="inGlassCard">
+                <img src="../images/static/logoBGRemoved.png" alt="glassmorphism">
+                <h1><b>LATEFIT</b></h1>
+            </div>
+            <h5 class="text-center">This is the glassmorphism example it looks great in the dark websites.</h5>
+        </div>
+
+        <div id="glassForm">
+            <b>Transparency</b>
+            <input class="form-control" type="range" id="transparency" name="points" min="0" max="10">
+            <b>Blur Value</b>
+            <input class="form-control" type="range" id="blur" min="0" max="20">
+            <b>Add Border</b>
+            <input class="form-control" type="range" id="border" min="0" max="5">
+            <b>Add Radius</b>
+            <input class="form-control" type="range" id="radius" min="0" max="100">
+            
+        </div>
+        <div id="cssCopy">
+            <h3><b>COPY CSS</b></h3>
+            <p>background: rgba( 255, 255, 255, 0 );
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, <span id="tranVal">0.3</span> );
+                backdrop-filter: blur( <span class="blrVal">5</span> );
+                -webkit-backdrop-filter: blur( <span class="blrVal">5</span> );
+                border-radius: <span id="glassradius">30</span>px;
+                border: <span id="glassborder">1</span>px solid black;
+            </p>
+        </div>
     </div>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
@@ -49,22 +166,33 @@
     <script src="../js/searchAll.js"></script>
 
     <script>
-        $('.copyToClipboard').click(function () {
-        let str = $(this).attr('address');
-        const el = document.createElement('textarea');
-        el.value = str;
-        el.setAttribute('readonly', '');
-        el.style.position = 'absolute';
-        el.style.left = '-9999px';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
 
-        let val = $(this).attr('value');
-        $(this).html("<b>COPIED</b>");
-        
+
+    $("#transparency").change(function(){
+        var transparencyVal = $(this).val()/10;
+        $(".glassCard").css("background", "rgba( 228, 158, 158, "+transparencyVal+" )");
+        $("#tranVal").html(transparencyVal);
     });
+
+    $("#blur").change(function(){
+        var blurVal = $(this).val();
+        $(".glassCard").css("backdrop-filter", "blur( "+blurVal+"px )");
+        $(".glassCard").css("-webkit-backdrop-filter", "blur( "+blurVal+"px )");
+        $(".blrVal").html(blurVal);
+    });
+
+    $("#border").change(function(){
+        var borderVal = $(this).val();
+        $(".glassCard").css("border", ""+borderVal+"px solid black");
+        $("#glassborder").html(borderVal);
+    });
+
+    $("#radius").change(function(){
+        var borderradVal = $(this).val();
+        $(".glassCard").css("border-radius", ""+borderradVal+"px");
+        $("#glassradius").html(borderradVal);
+    });
+
     </script> 
 </body>
 
