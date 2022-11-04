@@ -81,6 +81,10 @@
             height: 350px;
         }
 
+        .glassLabel{
+                color: rgb(219, 219, 219);
+            }
+
         #glassForm input{
             margin: 8px 0;
         }
@@ -137,14 +141,14 @@
         </div>
 
         <div id="glassForm">
-            <b>Transparency</b>
+            <b class="glassLabel">Transparency</b>
             <input class="form-control" type="range" id="transparency" name="points" min="0" max="10">
-            <b>Blur Value</b>
+            <b class="glassLabel">Blur Value</b>
             <input class="form-control" type="range" id="blur" min="0" max="20">
-            <b>Add Border</b>
+            <b class="glassLabel">Add Border</b>
             <input class="form-control" type="range" id="border" min="0" max="5">
-            <b>Add Radius</b>
-            <input class="form-control" type="range" id="radius" min="0" max="100">
+            <b class="glassLabel">Add Radius</b>
+            <input class="form-control" type="range" id="radius" min="0" max="200">
             
         </div>
         <div id="cssCopy">
