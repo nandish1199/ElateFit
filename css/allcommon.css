@@ -1,5 +1,7 @@
 body {
     background: rgb(255, 255, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 
 
@@ -62,10 +64,80 @@ body {
 #footer {
     width: 100%;
     height: 170px;
+    border: none;
 }
 
 
 audio {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 30px 30px 30px 30px;
+}
+
+/*__________Example-to-create-our-own-Class-likebootstrap____________*/
+
+*.btn-primary {
+    padding: 7px;
+    background: #0d6efd;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    color: antiquewhite;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+*.btn-primary:hover {
+    background: #0567fa;
+    color: antiquewhite;
+}
+
+*.btn-warning {
+    padding: 8px;
+    background: #ffc107;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+}
+
+*.btn-warning:hover {
+    background: #efb300;
+}
+
+*.btn-secondary {
+    padding: 8px;
+    background: #6c757d;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    color: antiquewhite;
+}
+
+*.btn-secondary:hover {
+    background: #696f74;
+    color: antiquewhite;
+}
+
+*.search-item {
+    height: 35px;
+    border: 2px solid rgb(207, 207, 207);
+    border-radius: 5px;
+}
+
+*.search-item::placeholder {
+    font-size: 15px;
+    padding: 0 0 0 10px;
+}
+
+
+*.d-flex {
+    display: flex;
+}
+
+iframe {
+    border: none;
+}
+
+*.fa-bars {
+    font-size: 20px;
 }

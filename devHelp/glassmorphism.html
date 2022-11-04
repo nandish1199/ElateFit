@@ -172,6 +172,7 @@
     <script>
 
 
+$(document).ready(function(){
     $("#transparency").change(function(){
         var transparencyVal = $(this).val()/10;
         $(".glassCard").css("background", "rgba( 228, 158, 158, "+transparencyVal+" )");
@@ -196,6 +197,8 @@
         $(".glassCard").css("border-radius", ""+borderradVal+"px");
         $("#glassradius").html(borderradVal);
     });
+});
+    
 
     </script> 
 </body>
