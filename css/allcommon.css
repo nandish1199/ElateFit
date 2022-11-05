@@ -121,6 +121,22 @@ audio {
     color: antiquewhite;
 }
 
+*.btn-danger {
+    padding: 8px;
+    background: #f12835;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    color: antiquewhite;
+    box-shadow: rgb(225, 6, 17) -3px -3px 6px 0px inset, rgb(224, 28, 28) -3px -3px 6px 1px inset;
+}
+
+*.btn-danger:hover {
+    background: #f12835;
+    color: antiquewhite;
+}
+
 *.search-item {
     height: 35px;
     border: 2px solid rgb(207, 207, 207);
