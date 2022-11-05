@@ -82,7 +82,7 @@ audio {
     text-align: center;
     text-decoration: none;
     color: antiquewhite;
-    box-shadow: rgb(72, 0, 206) -3px -3px 6px 0px inset, rgb(181, 121, 255) -3px -3px 6px 1px inset;
+    box-shadow: rgb(79, 0, 227) -3px -3px 6px 0px inset, rgb(181, 121, 255) -3px -3px 6px 1px inset;
 }
 
 *.btn-primary:hover {
@@ -98,7 +98,7 @@ audio {
     text-decoration: none;
     border: none;
     color: rgb(33, 33, 33);
-    box-shadow: rgb(56, 177, 0) -3px -3px 6px 0px inset, rgb(78, 203, 0) -3px -3px 6px 1px inset;
+    box-shadow: rgb(62, 194, 0) -3px -3px 6px 0px inset, rgb(78, 203, 0) -3px -3px 6px 1px inset;
 }
 
 *.btn-warning:hover {
