@@ -86,7 +86,7 @@ audio {
 }
 
 *.btn-primary:hover {
-    background: #0567fa;
+    background: #0063f8;
     color: antiquewhite;
 }
 
@@ -123,7 +123,7 @@ audio {
 
 *.btn-danger {
     padding: 8px;
-    background: #f12835;
+    background: #ff3946;
     border-radius: 6px;
     text-align: center;
     text-decoration: none;
@@ -133,7 +133,7 @@ audio {
 }
 
 *.btn-danger:hover {
-    background: #f12835;
+    background: #ff0c1c;
     color: antiquewhite;
 }
 
