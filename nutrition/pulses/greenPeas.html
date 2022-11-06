@@ -4,18 +4,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <link rel="icon" href="../../images/static/logo.png" />
     <link rel="stylesheet" href="../../css/allcommon.css" />
+    <link rel="stylesheet" href="../../css/myBootstrap.css" />
     <link rel="stylesheet" href="../../css/productdetails.css" />
     <title>Green Peas, Nutrition, Ayurveda, Benefits</title>
 </head>
 
 <body>
     <div id="navBarContainer">
-        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <button type="button" class="btn-warning" id="toggleBtn">
         <i class="fa-sharp fa-solid fa-bars"></i>
       </button>
         <iframe id="searchbar" src="../../fragsearchbar.html" loading="lazy"></iframe>
@@ -26,8 +26,7 @@
         <div class="indetailsContainer">
             <div class="inindetailsContainer">
                 <img src="images/greenpeas.png" loading="lazy" />
-                <div class="d-flex flex-column m-3">
-                    <h1></h1>
+                <div class="ininindetailscontainer">
                     <p><i class="fa-solid fa-sitemap"></i> Pulses</p>
                     <p>
                         <i class="fa-solid fa-feather-pointed"></i> Author:
@@ -42,10 +41,10 @@
                         <span class="nutriDays"></span>
                     </p>
                     <p><i class="fa-solid fa-note-sticky"></i> <b>Reduces Weight</b></p>
-                    <div>
-                        <a class="btn btn-primary" target="_blank" href="https://www.easyayurveda.com/2019/11/06/green-pea-matar/"><i class="fa-solid fa-circle-info"></i></a>
-                        <a class="btn btn-secondary" target="_blank" href="https://www.amazon.in/s?k=green+peas+amazon&adgrpid=61495910800&ext_vrnc=hi&gclid=CjwKCAjwp9qZBhBkEiwAsYFsbyIquLdWEE_Ng9aju03w3JKWuE0dBc0pn38WNLwG4pIVatq_apLsdBoCaRIQAvD_BwE&hvadid=380030510867&hvdev=c&hvlocphy=1007771&hvnetw=g&hvqmt=e&hvrand=7108758252613463131&hvtargid=kwd-936090582638&hydadcr=15673_1973939&tag=googinhydr1-21&ref=pd_sl_84x62goodn_e"><i class="fa-solid fa-circle-info"></i></a>
-                        <a class="btn btn-warning" target="_blank" href="https://www.flipkart.com/origo-fresh-green-peas-whole/p/itm2c61cd1b652e8?pid=PLSFQ9SRYKVYGRGZ&lid=LSTPLSFQ9SRYKVYGRGZLSEMBT&marketplace=GROCERY&q=green+peas&store=eat%2Flmt%2Fzhh&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=7c105b21-255d-4ea1-a6b6-e17bb6859c30.PLSFQ9SRYKVYGRGZ.SEARCH&ppt=sp&ppn=sp&ssid=fejhrp8ehc0000001664605128514&qH=afd83d5f3cbf0753"><i class="fa-solid fa-circle-info"></i></a>
+                    <div id="indetailsbtncontainer">
+                        <a class="btn-primary" target="_blank" href="https://www.easyayurveda.com/2019/11/06/green-pea-matar/"><i class="fa-solid fa-circle-info"></i></a>
+                        <a class="btn-secondary" target="_blank" href="https://www.amazon.in/s?k=green+peas+amazon&adgrpid=61495910800&ext_vrnc=hi&gclid=CjwKCAjwp9qZBhBkEiwAsYFsbyIquLdWEE_Ng9aju03w3JKWuE0dBc0pn38WNLwG4pIVatq_apLsdBoCaRIQAvD_BwE&hvadid=380030510867&hvdev=c&hvlocphy=1007771&hvnetw=g&hvqmt=e&hvrand=7108758252613463131&hvtargid=kwd-936090582638&hydadcr=15673_1973939&tag=googinhydr1-21&ref=pd_sl_84x62goodn_e"><i class="fa-solid fa-circle-info"></i></a>
+                        <a class="btn-warning" target="_blank" href="https://www.flipkart.com/origo-fresh-green-peas-whole/p/itm2c61cd1b652e8?pid=PLSFQ9SRYKVYGRGZ&lid=LSTPLSFQ9SRYKVYGRGZLSEMBT&marketplace=GROCERY&q=green+peas&store=eat%2Flmt%2Fzhh&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=7c105b21-255d-4ea1-a6b6-e17bb6859c30.PLSFQ9SRYKVYGRGZ.SEARCH&ppt=sp&ppn=sp&ssid=fejhrp8ehc0000001664605128514&qH=afd83d5f3cbf0753"><i class="fa-solid fa-circle-info"></i></a>
                     </div>
                     <br>
                     <audio controls>
@@ -57,13 +56,13 @@
 
             <div class="fdesc">
                 <h2 class="fdescHeading">DESCRIPTION</h2>
-                <table class="table table-striped">
+                <table class="table-striped">
                     <tr>
-                        <th colspan="2"><h3><b>Green Peas (Matar)</b></h3></th>
+                        <th colspan="2"><h2><b>GREEN PEAS (MATAR)</b></h2></th>
                     </tr>
                     <tr>
-                        <th>Nature</th>
-                        <th>Description</th>
+                        <td><b>Nature</b></td>
+						<td><b>Description</b></td>
                     </tr>
                     <tr>
                         <td>Laghu</td>
@@ -86,9 +85,9 @@
                     </tr>
                 </table>
 
-                <table class="table table-striped">
+                <table class="table-striped">
                     <tr>
-                        <th colspan="2"><h4><b>Benefits</b></h4></th>
+                        <th colspan="2"><h2><b>BENEFITS</b></h2></th>
                     </tr>
                     <tr>
                         <td>Decreases Weight.</td>
@@ -101,9 +100,9 @@
                     </tr>
                 </table>
 
-                <table class="table table-striped">
+                <table class="table-striped">
                     <tr>
-                        <th colspan="2"><h4><b>Cons</b></h4></th>
+                        <th colspan="2"><h2><b>CONS</b></h2></th>
                     </tr>
                     <tr>
                         <td>Not good for those who want to gain weight.</td>
@@ -114,8 +113,8 @@
         <div class="videoCont">
             <div class="devInsideVideoCont">
                 <h2 class="relatedVidHeading">RELATED VIDEOS</h2>
-                <iframe class="m-3" style="border-radius: 10px" width="350" height="210" src="https://www.youtube.com/embed/95WrMKu2qOo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                <iframe class="m-3" style="border-radius: 10px" width="350" height="210" src="https://www.youtube.com/embed/133mYdxv6ag" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.youtube.com/embed/95WrMKu2qOo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.youtube.com/embed/133mYdxv6ag" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -126,7 +125,6 @@
     <div class="adNutri"></div>
 
     <iframe id="footer" src="../../fragfooter.html" loading="lazy"></iframe>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
