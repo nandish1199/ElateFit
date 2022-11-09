@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/pcategories.css" />
+    <title>Best Box Shadows CSS, ElateFit</title>
+    <meta name="description" content="css box shadow in elatefit.com">
+    <meta name="keywords" content="Best Box Shadows CSS, box shadow, css, shadow, elatefit">
+    <meta name="author" content="elatefit">
+    <style>
+        .containerItems{
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #fancyBorderDiv{
+            width: 300px;
+            height: 300px;
+            border-radius:30% 70% 44% 56% / 50% 51% 49% 50%;
+            background: red;
+        }
+        #radiusDisplayContainer{
+            padding: 10px;
+            border: 1px solid rgb(59, 59, 59);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <div class="containerItems">
+        <div id="fancyBorderDiv"></div>
+        <br>
+        <button class="btn-primary generateBtn">Generate</button>
+        <br>
+        <div id="radiusDisplayContainer">
+            <span>border-radius : </span> <span id="displayRad"></span>
+        </div>
+    </div>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/searchAll.js"></script>
+
+    <script>
+        $('.copyToClipboard').click(function () {
+        let str = $(this).attr('address');
+        const el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        let val = $(this).attr('value');
+        $(this).html("<b>COPIED</b>");
+        });
+
+        
+
+        $('.generateBtn').click(function () {
+            var a = Math.random() * (80-20) + 20;
+            var aa = a.toFixed(0);
+            var b = Math.random() * (80-20) + 20;
+            var bb = b.toFixed(0);
+            var c = Math.random() * (80-20) + 20;
+            var cc = c.toFixed(0);
+            var d = Math.random() * (80-20) + 20;
+            var dd = d.toFixed(0);
+            var e = Math.random() * (80-20) + 20;
+            var ee = e.toFixed(0);
+            var f = Math.random() * (80-20) + 20;
+            var ff = f.toFixed(0);
+            var g = Math.random() * (80-20) + 20;
+            var gg = g.toFixed(0);
+            var h = Math.random() * (80-20) + 20;
+            var hh = h.toFixed(0);
+            $('#fancyBorderDiv').css("border-radius",`${aa}% ${bb}% ${cc}% ${dd}% / ${ee}% ${ff}% ${gg}% ${hh}% `);
+            $('#displayRad').html(`${aa}% ${bb}% ${cc}% ${dd}% / ${ee}% ${ff}% ${gg}% ${hh}% ;`);
+        });
+
+    </script> 
+</body>
+
+</html>
