@@ -60,24 +60,6 @@
     <script src="../js/searchAll.js"></script>
 
     <script>
-        $('.copyToClipboard').click(function () {
-        let str = $(this).attr('address');
-        const el = document.createElement('textarea');
-        el.value = str;
-        el.setAttribute('readonly', '');
-        el.style.position = 'absolute';
-        el.style.left = '-9999px';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-
-        let val = $(this).attr('value');
-        $(this).html("<b>COPIED</b>");
-        });
-
-        
-
         $('.generateBtn').click(function () {
             var a = Math.random() * (80-20) + 20;
             var aa = a.toFixed(0);
