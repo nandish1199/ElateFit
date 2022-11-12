@@ -189,6 +189,9 @@ $(document).ready(function(){
     function changeTransparency(){
         var transparencyVal = document.querySelector("#transparency").value/10;
         var myColor = sessionStorage.getItem("addedColor");
+        if(myColor==null){
+            myColor="orange";
+        }
         var colorAndTransparencyCombined = hex2rgb(myColor, transparencyVal);
         var elementt = document.querySelector(".glassCard");
         elementt.style.background = colorAndTransparencyCombined;
