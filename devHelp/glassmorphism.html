@@ -39,13 +39,9 @@
             margin: 90px 0 0 0;
             width: 540px;
             height: 300px;
-            background: orange;
-            border-radius: 50px;
-            background: rgba( 255, 255, 255, 0.15 );
             box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.2 );
             backdrop-filter: blur( 6px );
             -webkit-backdrop-filter: blur( 6px );
-            border-radius: 10px;
             border: 1px solid rgba( 255, 255, 255, 0.18 );
             display: flex;
             flex-direction: column;
@@ -146,19 +142,22 @@
             <b class="glassLabel">Blur Value</b>
             <input class="form-control" type="range" id="blur" min="0" max="20">
             <b class="glassLabel">Add Border</b>
-            <input class="form-control" type="range" id="border" min="0" max="10">
+            <input class="form-control" type="range" id="border" min="0" max="3">
             <b class="glassLabel">Add Radius</b>
             <input class="form-control" type="range" id="radius" min="0" max="200">
+            <b class="glassLabel">Add Color</b>
+            <input type="color" id="color">
             
         </div>
         <div id="cssCopy">
             <h3><b>COPY CSS</b></h3>
-            <p>background: rgba( 255, 255, 255, 0 );
-                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, <span id="tranVal">0.3</span> );
+            <p> background: rgba( 255, 255, 255, <span class="tranVal">0.3</span> );
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, <span class="tranVal">0.3</span> );
                 backdrop-filter: blur( <span class="blrVal">5</span> );
                 -webkit-backdrop-filter: blur( <span class="blrVal">5</span> );
                 border-radius: <span id="glassradius">30</span>px;
                 border: <span id="glassborder">1</span>px solid black;
+                background: rgba( <span class="tranValwithCol"></span>);
             </p>
         </div>
     </div>
@@ -173,30 +172,89 @@
 
 
 $(document).ready(function(){
+
+/*
     $("#transparency").change(function(){
         var transparencyVal = $(this).val()/10;
         $(".glassCard").css("background", "rgba( 228, 158, 158, "+transparencyVal+" )");
         $("#tranVal").html(transparencyVal);
     });
+*/
 
-    $("#blur").change(function(){
-        var blurVal = $(this).val();
-        $(".glassCard").css("backdrop-filter", "blur( "+blurVal+"px )");
-        $(".glassCard").css("-webkit-backdrop-filter", "blur( "+blurVal+"px )");
+    var transparencyInput = document.getElementById("transparency");
+    transparencyInput.addEventListener("change", changeTransparency);
+    function changeTransparency(){
+        var transparencyVal = document.querySelector("#transparency").value/10;
+        var elementt = document.querySelector(".glassCard");
+        elementt.style.background = "rgba( 228, 158, 158, "+transparencyVal+" )";
+        $(".tranVal").html(transparencyVal);
+        return transparencyVal;
+    }
+
+    var blurInput = document.getElementById("blur");
+    blurInput.addEventListener("change", changeBlur);
+    function changeBlur(){
+        var blurVal = document.querySelector("#blur").value;
+        var elementt = document.querySelector(".glassCard");
+        elementt.style.backdropFilter = "blur( "+blurVal+"px )";
         $(".blrVal").html(blurVal);
-    });
+        return blurVal;
+    }
 
-    $("#border").change(function(){
-        var borderVal = $(this).val();
-        $(".glassCard").css("border", ""+borderVal+"px solid black");
+    var borderInput = document.getElementById("border");
+    borderInput.addEventListener("change", changeBorder);
+    function changeBorder(){
+        var borderVal = document.querySelector("#border").value;
+        var elementt = document.querySelector(".glassCard");
+        elementt.style.border = borderVal+"px solid rgba( 255, 255, 255, 0.18 )";
         $("#glassborder").html(borderVal);
-    });
+        return borderVal;
+    }
 
-    $("#radius").change(function(){
-        var borderradVal = $(this).val();
-        $(".glassCard").css("border-radius", ""+borderradVal+"px");
-        $("#glassradius").html(borderradVal);
-    });
+    var radiusInput = document.getElementById("radius");
+    radiusInput.addEventListener("change", changeRadius);
+    function changeRadius(){
+        var radiusVal = document.querySelector("#radius").value;
+        var elementt = document.querySelector(".glassCard");
+        elementt.style.borderRadius = radiusVal+"px";
+        $("#glassradius").html(radiusVal);
+        return radiusVal;
+    }
+
+    var colorInput = document.getElementById("color");
+    colorInput.addEventListener("change", changeColor);
+    function changeColor(){
+        var colorVal = document.querySelector("#color").value;
+        var elementt = document.querySelector(".glassCard");
+        elementt.style.background = colorVal;
+        var transparencyVal = changeTransparency();
+        var convertedfromHEXToRGB = hex2rgb(colorVal, transparencyVal);
+        elementt.style.background = convertedfromHEXToRGB;
+        $(".tranValwithCol").html(convertedfromHEXToRGB);
+        return colorVal;
+    }
+
+    
+    
+
+
+    
+
+    //Used to convert Hex to RGBA color code
+    function hex2rgb(hex, opacity) {
+        var h=hex.replace('#', '');
+        h =  h.match(new RegExp('(.{'+h.length/3+'})', 'g'));
+
+        for(var i=0; i<h.length; i++)
+            h[i] = parseInt(h[i].length==1? h[i]+h[i]:h[i], 16);
+
+        if (typeof opacity != 'undefined')  h.push(opacity);
+
+        return 'rgba('+h.join(',')+')';
+    }
+
+
+
 });
     
 
