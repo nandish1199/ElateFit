@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/pcategories.css" />
+    <title>Best Box Shadows CSS, ElateFit</title>
+    <meta name="description" content="css box shadow in elatefit.com">
+    <meta name="keywords" content="Best Box Shadows CSS, box shadow, css, shadow, elatefit">
+    <meta name="author" content="elatefit">
+    <style>
+        .containerItems{
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <div class="containerItems">
+        <h3 id="hexaHeading" style="padding:10px;border:1px solid #7df084">HEX TO RGB CONVERTER</h3>
+        <input type="text" id="hexaText" placeholder="Enter HEX Code" class="search-item" style="margin-top:20px"> <br>
+        <button class="btn-warning" id="hexButton">CONVERT</button>
+        <h4 id="hexResult" style="padding:10px;border:1px solid #76a979; margin-top: 20px;"></h4>
+    </div>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/searchAll.js"></script>
+
+    <script>
+
+        var hexButton = document.getElementById("hexButton");
+        hexButton.addEventListener("click", hexaChange);
+        function hexaChange(){
+            var hexaVal = document.getElementById("hexaText").value;
+            var opacityVal = 1;
+            var rgbVal = hex2rgb(hexaVal, opacityVal);
+            $("#hexResult").html(rgbVal);
+        }
+
+
+    //Used to convert Hex to RGBA color code
+    function hex2rgb(hex, opacity) {
+        var h=hex.replace('#', '');
+        h =  h.match(new RegExp('(.{'+h.length/3+'})', 'g'));
+
+        for(var i=0; i<h.length; i++)
+            h[i] = parseInt(h[i].length==1? h[i]+h[i]:h[i], 16);
+
+        if (typeof opacity != 'undefined')  h.push(opacity);
+
+        return 'rgba('+h.join(',')+')';
+    }
+
+    </script> 
+</body>
+
+</html>
