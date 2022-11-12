@@ -151,13 +151,13 @@
         </div>
         <div id="cssCopy">
             <h3><b>COPY CSS</b></h3>
-            <p> <span id="hideIfColorAdded">background: rgba( 255, 255, 255, <span class="tranVal">0.3</span> ); </span> <br>
+            <p> 
                 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, <span class="tranVal">0.3</span> ); <br>
                 backdrop-filter: blur( <span class="blrVal">5</span> ); <br>
                 -webkit-backdrop-filter: blur( <span class="blrVal">5</span> ); <br>
                 border-radius: <span id="glassradius">30</span>px; <br>
                 border: <span id="glassborder">1</span>px solid black; <br>
-                background: rgba( <span class="tranValwithCol"></span>);
+                background: <span class="tranValwithCol"></span>;
             </p>
         </div>
     </div>
@@ -191,7 +191,7 @@ $(document).ready(function(){
         var colorAndTransparencyCombined = hex2rgb(myColor, transparencyVal);
         var elementt = document.querySelector(".glassCard");
         elementt.style.background = colorAndTransparencyCombined;
-        $(".tranVal").html(transparencyVal);
+        $(".tranValwithCol").html(colorAndTransparencyCombined);
         return transparencyVal;
     }
 
@@ -228,7 +228,6 @@ $(document).ready(function(){
     var colorInput = document.getElementById("color");
     colorInput.addEventListener("change", changeColor);
     function changeColor(){
-        document.getElementById("hideIfColorAdded").style.display="none";
         var colorVal = document.querySelector("#color").value;
         sessionStorage.setItem("addedColor", colorVal);
         var elementt = document.querySelector(".glassCard");
