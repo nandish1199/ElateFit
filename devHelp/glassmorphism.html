@@ -137,6 +137,8 @@
         </div>
 
         <div id="glassForm">
+            <b class="glassLabel">Add Color</b>
+            <input type="color" id="color"> <br> <br>
             <b class="glassLabel">Transparency</b>
             <input class="form-control" type="range" id="transparency" name="points" min="0" max="10">
             <b class="glassLabel">Blur Value</b>
@@ -145,8 +147,7 @@
             <input class="form-control" type="range" id="border" min="0" max="3">
             <b class="glassLabel">Add Radius</b>
             <input class="form-control" type="range" id="radius" min="0" max="200">
-            <b class="glassLabel">Add Color</b>
-            <input type="color" id="color">
+            
             
         </div>
         <div id="cssCopy">
@@ -184,7 +185,7 @@ $(document).ready(function(){
     var addedColor;
 
     var transparencyInput = document.getElementById("transparency");
-    transparencyInput.addEventListener("change", changeTransparency);
+    transparencyInput.addEventListener("input", changeTransparency);
     function changeTransparency(){
         var transparencyVal = document.querySelector("#transparency").value/10;
         var myColor = sessionStorage.getItem("addedColor");
@@ -196,7 +197,7 @@ $(document).ready(function(){
     }
 
     var blurInput = document.getElementById("blur");
-    blurInput.addEventListener("change", changeBlur);
+    blurInput.addEventListener("input", changeBlur);
     function changeBlur(){
         var blurVal = document.querySelector("#blur").value;
         var elementt = document.querySelector(".glassCard");
@@ -206,7 +207,7 @@ $(document).ready(function(){
     }
 
     var borderInput = document.getElementById("border");
-    borderInput.addEventListener("change", changeBorder);
+    borderInput.addEventListener("input", changeBorder);
     function changeBorder(){
         var borderVal = document.querySelector("#border").value;
         var elementt = document.querySelector(".glassCard");
@@ -216,7 +217,7 @@ $(document).ready(function(){
     }
 
     var radiusInput = document.getElementById("radius");
-    radiusInput.addEventListener("change", changeRadius);
+    radiusInput.addEventListener("input", changeRadius);
     function changeRadius(){
         var radiusVal = document.querySelector("#radius").value;
         var elementt = document.querySelector(".glassCard");
@@ -226,7 +227,7 @@ $(document).ready(function(){
     }
 
     var colorInput = document.getElementById("color");
-    colorInput.addEventListener("change", changeColor);
+    colorInput.addEventListener("input", changeColor);
     function changeColor(){
         var colorVal = document.querySelector("#color").value;
         sessionStorage.setItem("addedColor", colorVal);
