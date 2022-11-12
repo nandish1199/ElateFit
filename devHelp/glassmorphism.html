@@ -151,12 +151,12 @@
         </div>
         <div id="cssCopy">
             <h3><b>COPY CSS</b></h3>
-            <p> background: rgba( 255, 255, 255, <span class="tranVal">0.3</span> );
-                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, <span class="tranVal">0.3</span> );
-                backdrop-filter: blur( <span class="blrVal">5</span> );
-                -webkit-backdrop-filter: blur( <span class="blrVal">5</span> );
-                border-radius: <span id="glassradius">30</span>px;
-                border: <span id="glassborder">1</span>px solid black;
+            <p> <span id="hideIfColorAdded">background: rgba( 255, 255, 255, <span class="tranVal">0.3</span> ); </span> <br>
+                box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, <span class="tranVal">0.3</span> ); <br>
+                backdrop-filter: blur( <span class="blrVal">5</span> ); <br>
+                -webkit-backdrop-filter: blur( <span class="blrVal">5</span> ); <br>
+                border-radius: <span id="glassradius">30</span>px; <br>
+                border: <span id="glassborder">1</span>px solid black; <br>
                 background: rgba( <span class="tranValwithCol"></span>);
             </p>
         </div>
@@ -180,13 +180,17 @@ $(document).ready(function(){
         $("#tranVal").html(transparencyVal);
     });
 */
+    var myColor;
+    var addedColor;
 
     var transparencyInput = document.getElementById("transparency");
     transparencyInput.addEventListener("change", changeTransparency);
     function changeTransparency(){
         var transparencyVal = document.querySelector("#transparency").value/10;
+        var myColor = sessionStorage.getItem("addedColor");
+        var colorAndTransparencyCombined = hex2rgb(myColor, transparencyVal);
         var elementt = document.querySelector(".glassCard");
-        elementt.style.background = "rgba( 228, 158, 158, "+transparencyVal+" )";
+        elementt.style.background = colorAndTransparencyCombined;
         $(".tranVal").html(transparencyVal);
         return transparencyVal;
     }
@@ -224,7 +228,9 @@ $(document).ready(function(){
     var colorInput = document.getElementById("color");
     colorInput.addEventListener("change", changeColor);
     function changeColor(){
+        document.getElementById("hideIfColorAdded").style.display="none";
         var colorVal = document.querySelector("#color").value;
+        sessionStorage.setItem("addedColor", colorVal);
         var elementt = document.querySelector(".glassCard");
         elementt.style.background = colorVal;
         var transparencyVal = changeTransparency();
@@ -233,12 +239,6 @@ $(document).ready(function(){
         $(".tranValwithCol").html(convertedfromHEXToRGB);
         return colorVal;
     }
-
-    
-    
-
-
-    
 
     //Used to convert Hex to RGBA color code
     function hex2rgb(hex, opacity) {
@@ -252,8 +252,6 @@ $(document).ready(function(){
 
         return 'rgba('+h.join(',')+')';
     }
-
-
 
 });
     
