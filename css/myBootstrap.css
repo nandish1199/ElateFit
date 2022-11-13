@@ -6,6 +6,8 @@
     text-decoration: none;
     color: antiquewhite;
     box-shadow: rgb(79, 0, 227) -3px -3px 6px 0px inset, rgb(181, 121, 255) -3px -3px 6px 1px inset;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 *.btn-primary:hover {
@@ -22,6 +24,8 @@
     border: none;
     color: rgb(33, 33, 33);
     box-shadow: rgb(62, 194, 0) -3px -3px 6px 0px inset, rgb(78, 203, 0) -3px -3px 6px 1px inset;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 *.btn-warning:hover {
@@ -37,6 +41,8 @@
     border: none;
     color: antiquewhite;
     box-shadow: rgb(86, 86, 86) -3px -3px 6px 0px inset, rgb(75, 75, 75) -3px -3px 6px 1px inset;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 *.btn-secondary:hover {
@@ -53,10 +59,30 @@
     border: none;
     color: antiquewhite;
     box-shadow: rgb(225, 6, 17) -3px -3px 6px 0px inset, rgb(224, 28, 28) -3px -3px 6px 1px inset;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 *.btn-danger:hover {
     background: #f12835;
+    color: antiquewhite;
+}
+
+*.btn-info {
+    padding: 8px;
+    background: #5188ff;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    color: antiquewhite;
+    box-shadow: rgb(85, 117, 232) -3px -3px 6px 0px inset, rgb(23, 104, 255) -3px -3px 6px 1px inset;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+*.btn-info:hover {
+    background: #1c6bff;
     color: antiquewhite;
 }
 
