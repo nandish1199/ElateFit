@@ -1,5 +1,13 @@
 .indexfrontHead {
-    margin-top: 85px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.indexfrontHeadleft #indexFrontPara {
+    margin-top: -45px;
 }
 
 #front-index-img {
@@ -10,7 +18,6 @@
 .indexfrontHeadRight img {
     width: 150px;
     height: 150px;
-
 }
 
 .indexfrontText {
@@ -29,6 +36,13 @@
     color: red;
 }
 
+#index-front-card-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
 .indexcard {
     background: #fff;
     width: 350px;
@@ -36,18 +50,49 @@
     border-radius: 40px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
 }
 
 .card-img-top {
-    width: 160px;
-    height: 150px;
+    width: 140px;
+    height: 130px;
     margin: auto;
     padding: 10px;
     border-radius: 30%;
 }
 
+.indexcard .card-body {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 10px 20px;
+}
+
+.indexcard .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: -10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.indexcard .card-text {
+    margin-top: -25px;
+}
+
 @media only screen and (max-width: 600px) {
     #front-index-img {
         display: none;
+    }
+
+    #indexLinkContainer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .indexFrontBtn {
+        margin: 2px;
     }
 }

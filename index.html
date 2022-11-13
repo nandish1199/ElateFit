@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <link rel="icon" href="images/static/logo.png" />
     <link rel="stylesheet" href="css/allcommon.css" />
+    <link rel="stylesheet" href="css/myBootstrap.css" />
     <link rel="stylesheet" href="css/index.css" />
     <title>Home, Elatefit, Yoga, Ayurveda, Diet Plans</title>
 
@@ -27,36 +27,32 @@
     <iframe id="navframe" src="fragnav.html" loading="lazy"></iframe>
 
     <!--   ________________Front Above Content______________________  -->
-    <div class="indexfrontHead d-flex justify-content-center flex-wrap">
-        <div class="indexfrontHeadleft">
-            <h1 class="indexfrontText">Welcome to <span>Elate<span id="ininFront">Fit</span></span></h1>
-            <p style="width: 340px; padding: 7px;">
-                Here you will get the knowledge about the best products in the market, yoga, fitness, health calculators, diet plans, blogs and all other useful information.
-            </p>
-            <div id="index-link-container">
+    <div class="indexfrontHead">
+      <div class="indexfrontHeadleft">
+          <h1 class="indexfrontText">Welcome to <span>Elate<span id="ininFront">Fit</span></span></h1>
+          <p style="width: 340px; padding: 7px;" id="indexFrontPara">
+              Here you will get the knowledge about the best products in the market, yoga, fitness, health calculators, diet plans, blogs and all other useful information.
+          </p>
+        <div id="indexLinkContainer">
                 
-          <a href="products/pcategories.html" class="btn btn-outline-dark m-1 py-2"><i class="fa-solid fa-cart-shopping"></i> Best Products</a>
+          <a href="products/pcategories.html" 
+          class="btn-warning indexFrontBtn"><i class="fa-solid fa-cart-shopping">
+          </i> Best Products</a>
           
           <a href="blogs/blogCategories.html"
-            class="btn btn-outline-dark m-1 py-2"
+            class="btn-primary indexFrontBtn"
             ><i class="fa-solid fa-blog"></i> Blog</a>
 
           <a href="calculators/calcCategories.html"
-            class="btn btn-outline-dark m-1 py-2">
+            class="btn-secondary indexFrontBtn">
             <i class="fa-solid fa-calculator"></i> Health Calculator</a>
 
-            <!--
-          <a th:href="@{/fblogs/go/OurServices}"
-            class="btn btn-outline-dark m-1 py-2">
-            <i class="fa-solid fa-handshake-angle"></i> Our Services</a>
-            -->
-          
           <a href="nutrition/nutcategories.html"
-            class="btn btn-outline-dark m-1 py-2">
+            class="btn-danger indexFrontBtn">
             <i class="fa-solid fa-bowl-food"></i> Nutrition</a>
 
             <a href="respect/respectCategories.html"
-            class="btn btn-outline-dark m-1 py-2">
+            class="btn-info indexFrontBtn">
             <i class="fa-solid fa-person-praying"></i> Respect</a>
         </div>
       </div>
@@ -66,7 +62,6 @@
           id="front-index-img"
           class="card-img-top"
           alt="yoga"
-          style="width: 150px; height: 150px"
           loading="lazy"
         />
       </div>
@@ -75,12 +70,11 @@
     <!--  ____________________Card Container________________ -->
 
     <div
-      class="indexContainer d-flex justify-content-evenly flex-wrap mt-3"
       id="index-front-card-container">
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="images/static/bestProducts.png" class="card-img-top" alt="..." loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
             <h5 class="card-title">Best Products</h5>
             <p class="card-text">
                 Here you will get some of the best products available in the Indian market that worth your hard-earned money.
@@ -90,9 +84,9 @@
         </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="images/static/yoga.png" class="card-img-top" alt="..." loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
           <h5 class="card-title">Yoga</h5>
           <p class="card-text">
             Here you learn what actually yoga is and how to keep yourself
@@ -107,9 +101,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="images/static/healthCalculator.jpg" class="card-img-top" alt="..." loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
             <h5 class="card-title">Health Calculator</h5>
             <p class="card-text">
                 Here you get some of the best health calculators that can give you an analogy to improve your health.
@@ -119,9 +113,9 @@
         </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/dietWL.png" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Diet Plans (Weight Loss)</h5>
                 <p class="card-text">
                     Here you will get the best diet plans that can help you to lose your weight and to gain strength.
@@ -131,9 +125,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/gym.png" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Diet Plans (Muscle Gain)</h5>
                 <p class="card-text">
                   Here you will get the best diet plans that can help you to gain your weight and to gain strength.
@@ -143,9 +137,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="images/static/nutrition.png" class="card-img-top" alt="..." loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
             <h5 class="card-title">Nutrition</h5>
             <p class="card-text">
                 Nutritional values of daily used foods in Ayurvada perspective, with clear indication of weight loss and weight gain foods.
@@ -155,9 +149,9 @@
         </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/ayurveda.png" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Ayurved</h5>
                 <p class="card-text">
                     Here you get the knowledge on how to take care of your health and the way of living as mentioned in Sushruta Samhita.
@@ -167,9 +161,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/house.jpg" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Vastu & Interior Design</h5>
                 <p class="card-text">
                     Here you get the knowledge on how to manage your living space so that you can live comfortably.
@@ -193,9 +187,9 @@
       </div>
       -->
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/codingg.png" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Coding & Career Guidance</h5>
                 <p class="card-text">
                     Here you learn about the coding techniques, career guidance, and roadmap for the Web Development and AI.
@@ -205,9 +199,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/service.jpg" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Best Services</h5>
                 <p class="card-text">
                     Here you get some of the best services available for the organizations for the rapid growth.
@@ -217,9 +211,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
             <img src="images/static/learn.jpg" class="card-img-top" alt="..." loading="lazy" />
-            <div class="card-body d-flex flex-column">
+            <div class="card-body">
                 <h5 class="card-title">Best Learning Platforms</h5>
                 <p class="card-text">
                     Here you will get some of the best learning platforms available for ones individual growth.
@@ -229,9 +223,9 @@
             </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
           <img src="images/static/YoutubeIcon.png" class="card-img-top" alt="..." loading="lazy" />
-          <div class="card-body d-flex flex-column">
+          <div class="card-body">
               <h5 class="card-title">Best YouTubers</h5>
               <p class="card-text">
                   Here you will get some of the best learning channels available on Youtube. That you must Subscribe.
@@ -241,9 +235,9 @@
           </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="movies/educationalMovies/images/movie.png" class="card-img-top" alt="..." loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
             <h5 class="card-title">Best Movies</h5>
             <p class="card-text">
                 Here you will get some of the best Movies that can teach you the best along with entertainment.
@@ -253,9 +247,9 @@
         </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="games/pcGames/images/games.png" class="card-img-top" alt="..." loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
             <h5 class="card-title">Best Games</h5>
             <p class="card-text">
                 Here you will get some of the best Games that can improve your thinking skills along with the entertainment.
@@ -265,9 +259,9 @@
         </div>
       </div>
 
-      <div class="card indexcard m-3">
+      <div class="indexcard">
         <img src="images/static/developer.jfif" class="card-img-top" alt="Developer" loading="lazy" />
-        <div class="card-body d-flex flex-column">
+        <div class="card-body">
             <h5 class="card-title">Dev Help</h5>
             <p class="card-text">
                 Here you will get some of the best basic essentials to build a website, such as box-shadow, bg-color, and glassmorphism.
@@ -318,12 +312,6 @@
       id="footer"
       loading="lazy"
     ></iframe>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
     <script
       src="https://code.jquery.com/jquery-3.6.1.js"
       integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
