@@ -170,7 +170,7 @@
 
 @media only screen and (max-width: 600px) {
     .videoCont {
-        margin-top: 20px;
+        margin-top: -25px;
     }
 
     .relatedVidHeading {
