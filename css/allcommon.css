@@ -44,6 +44,11 @@ body {
     margin-top: -5px;
 }
 
+#toggleBtn {
+    background: #ffc107;
+    box-shadow: none;
+}
+
 
 
 /*______________Other______________*/
@@ -72,93 +77,3 @@ audio {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 30px 30px 30px 30px;
 }
-
-/*__________Example-to-create-our-own-Class-likebootstrap____________*/
-
-/*
-*.btn-primary {
-    padding: 7px;
-    background: #0d6efd;
-    border-radius: 6px;
-    text-align: center;
-    text-decoration: none;
-    color: antiquewhite;
-    box-shadow: rgb(79, 0, 227) -3px -3px 6px 0px inset, rgb(181, 121, 255) -3px -3px 6px 1px inset;
-}
-
-*.btn-primary:hover {
-    background: #0063f8;
-    color: antiquewhite;
-}
-
-*.btn-warning {
-    padding: 8px;
-    background: #ffc107;
-    border-radius: 6px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    color: rgb(33, 33, 33);
-    box-shadow: rgb(62, 194, 0) -3px -3px 6px 0px inset, rgb(78, 203, 0) -3px -3px 6px 1px inset;
-}
-
-*.btn-warning:hover {
-    background: #efb300;
-}
-
-*.btn-secondary {
-    padding: 8px;
-    background: #6c757d;
-    border-radius: 6px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    color: antiquewhite;
-    box-shadow: rgb(86, 86, 86) -3px -3px 6px 0px inset, rgb(75, 75, 75) -3px -3px 6px 1px inset;
-}
-
-*.btn-secondary:hover {
-    background: #696f74;
-    color: antiquewhite;
-}
-
-*.btn-danger {
-    padding: 8px;
-    background: #ff3946;
-    border-radius: 6px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    color: antiquewhite;
-    box-shadow: rgb(225, 6, 17) -3px -3px 6px 0px inset, rgb(224, 28, 28) -3px -3px 6px 1px inset;
-}
-
-*.btn-danger:hover {
-    background: #ff0c1c;
-    color: antiquewhite;
-}
-
-*.search-item {
-    height: 35px;
-    border: 2px solid rgb(207, 207, 207);
-    border-radius: 5px;
-}
-
-*.search-item::placeholder {
-    font-size: 15px;
-    padding: 0 0 0 10px;
-}
-
-
-*.d-flex {
-    display: flex;
-}
-
-iframe {
-    border: none;
-}
-
-*.fa-bars {
-    font-size: 20px;
-}
-*/
