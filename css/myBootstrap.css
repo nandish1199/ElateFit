@@ -109,3 +109,28 @@ iframe {
 *.fa-bars {
     font-size: 20px;
 }
+
+/*______________Colors______________*/
+*.bg-info {
+    background: #5188ff;
+}
+
+*.bg-primary {
+    background: #0d6efd;
+}
+
+*.bg-danger {
+    background: #f12835;
+}
+
+*.bg-warning {
+    background: #ffc107;
+}
+
+*.text-warning {
+    color: #ffc107;
+}
+
+*.text-secondary {
+    color: #6c757d;
+}
