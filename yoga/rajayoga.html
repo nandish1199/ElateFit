@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/myBootstrap.css" />
     <link rel="stylesheet" href="../css/productdetails.css" />
     <title>Introduction to Yoga, Ayurveda, Elatefit</title>
 
@@ -16,7 +16,7 @@
 <body>
 
     <div id="navBarContainer">
-        <button type="button" class="btn btn-warning" id="toggleBtn">
+        <button type="button" class="btn-warning" id="toggleBtn">
         <i class="fa-sharp fa-solid fa-bars"></i>
       </button>
         <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
@@ -27,8 +27,7 @@
         <div class="indetailsContainer">
             <div class="inindetailsContainer">
                 <img src="images/shivayoga.jfif" loading="lazy" />
-                <div class="d-flex flex-column m-3">
-                    <h1></h1>
+                <div class="ininindetailscontainer">
                     <p><i class="fa-solid fa-sitemap"></i> YOGA</p>
                     <p>
                         <i class="fa-solid fa-feather-pointed"></i> Author:
@@ -43,11 +42,11 @@
                         <span class="yogaDays"></span>
                     </p>
                     <p><i class="fa-solid fa-note-sticky"></i> <b>Introduction to Raja Yoga</b> </p>
-                    <div>
-                        <a class="btn btn-primary" target="_blank" href="https://www.amazon.in/Hatha-Yoga-Pradipika-Muktibodhananda-Swami/dp/8185787387/ref=sr_1_13?hvadid=72842721928767&hvbmt=bp&hvdev=c&hvqmt=p&keywords=hatha+yoga+pradipika+swatmarama&qid=1666414637&qu=eyJxc2MiOiIxLjU3IiwicXNhIjoiMS4wMCIsInFzcCI6IjAuMDAifQ%3D%3D&sr=8-13"><i class="fa-solid fa-circle-info"></i></a>
-                        <a class="btn btn-secondary" target="_blank" href="https://www.amazon.in/Gheranda-Samhita-Commentary-Teachings-Maharshi/dp/9381620199/ref=sr_1_1?crid=2SQ05MG7U2MJM&keywords=gheranda+samhita+english&qid=1666414676&qu=eyJxc2MiOiIxLjkxIiwicXNhIjoiMS4wNCIsInFzcCI6IjAuMTcifQ%3D%3D&sprefix=gheranda+s%2Caps%2C275&sr=8-1"><i class="fa-solid fa-circle-info"></i></a>
-                        <a class="btn btn-warning" target="_blank" href="https://www.amazon.in/Prana-Vidya-Swami-Satyananda-Saraswati/dp/9381620784/ref=pd_rhf_d_se_s_pd_crcd_sccl_1_5/259-1125786-1367242?pd_rd_w=qApIA&content-id=amzn1.sym.dcf9b861-ea71-4cd9-870f-f1d20747f687&pf_rd_p=dcf9b861-ea71-4cd9-870f-f1d20747f687&pf_rd_r=N7ZD2Z191X4SAJGHS6XT&pd_rd_wg=gwDW8&pd_rd_r=f733d146-9cbc-4a23-a23a-a28a01683155&pd_rd_i=9381620784&psc=1"><i class="fa-solid fa-circle-info"></i></a>
-                    </div>
+                    <div id="indetailsbtncontainer">
+                        <a class="btn-primary" target="_blank" href="https://www.amazon.in/Hatha-Yoga-Pradipika-Muktibodhananda-Swami/dp/8185787387/ref=sr_1_13?hvadid=72842721928767&hvbmt=bp&hvdev=c&hvqmt=p&keywords=hatha+yoga+pradipika+swatmarama&qid=1666414637&qu=eyJxc2MiOiIxLjU3IiwicXNhIjoiMS4wMCIsInFzcCI6IjAuMDAifQ%3D%3D&sr=8-13"><i class="fa-solid fa-circle-info"></i></a>
+                        <a class="btn-secondary" target="_blank" href="https://www.amazon.in/Gheranda-Samhita-Commentary-Teachings-Maharshi/dp/9381620199/ref=sr_1_1?crid=2SQ05MG7U2MJM&keywords=gheranda+samhita+english&qid=1666414676&qu=eyJxc2MiOiIxLjkxIiwicXNhIjoiMS4wNCIsInFzcCI6IjAuMTcifQ%3D%3D&sprefix=gheranda+s%2Caps%2C275&sr=8-1"><i class="fa-solid fa-circle-info"></i></a>
+                        <a class="btn-warning" target="_blank" href="https://www.amazon.in/Prana-Vidya-Swami-Satyananda-Saraswati/dp/9381620784/ref=pd_rhf_d_se_s_pd_crcd_sccl_1_5/259-1125786-1367242?pd_rd_w=qApIA&content-id=amzn1.sym.dcf9b861-ea71-4cd9-870f-f1d20747f687&pf_rd_p=dcf9b861-ea71-4cd9-870f-f1d20747f687&pf_rd_r=N7ZD2Z191X4SAJGHS6XT&pd_rd_wg=gwDW8&pd_rd_r=f733d146-9cbc-4a23-a23a-a28a01683155&pd_rd_i=9381620784&psc=1"><i class="fa-solid fa-circle-info"></i></a>
+                    </div> <br>
                     <audio controls>
                         <source src="audio/rajayoga.mp3" type="audio/mpeg" loading="lazy" >
                       Your browser does not support the audio element.
@@ -58,9 +57,9 @@
             <div class="fdesc">
                 <h2 class="fdescHeading">DESCRIPTION</h2>
 
-                <table class="table table-striped">
+                <table class="table-striped">
                     <tr>
-                        <th colspan="2"><h4><b>INTRODUCTION TO RAJAYOGA</b></h4></th>
+                        <th colspan="2"><h2><b>INTRODUCTION TO RAJAYOGA</b></h2></th>
                     </tr>
                     <tr>
                         <td>Raja yoga the name itself indicates it is the royal path to control over the mind.
@@ -90,10 +89,10 @@
             </div>
         </div>
         <div class="videoCont">
-            <div class="d-flex flex-column">
+            <div class="devInsideVideoCont">
                 <h2 class="relatedVidHeading">RELATED VIDEOS</h2>
-                <iframe class="m-3" style="border-radius: 10px" width="350" height="210" src="https://www.youtube.com/embed/92J-JPChaeI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                <iframe class="m-3" style="border-radius: 10px" width="350" height="210" src="https://www.youtube.com/embed/LQn59RMZY2k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.youtube.com/embed/92J-JPChaeI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.youtube.com/embed/LQn59RMZY2k" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -101,7 +100,6 @@
     <div class="adYoga"></div>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
