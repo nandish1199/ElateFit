@@ -36,48 +36,48 @@
                 var mediumCaloriesFemaleLooseWeight = lowCaloriesFemale + 100;
                 var intenseCaloriesFemaleLooseWeight = mediumCaloriesFemale + 100;
 
-                $("#idlWeightDisplay").html('<div><b>Your Ideal Weight Should be:</b> <h3 id="idlBPdisplay" style="background: #39CCCC;padding:20px;"> '+ idealWeight +' Kg </h3></div>');
+                $("#idlWeightDisplay").html('<div><h3 style="margin:15px;"><b>Your Ideal Weight Should be:</b></h3> <h2 id="idlBPdisplay" style="background: #39CCCC;padding:15px;"> '+ idealWeight +' Kg </h2></div>');
 
                 if(weight > fattyWeight ){
-                    $("#dietPlanDisplay").html('<a class="btn btn-info" href="../dietPlans/wlDietPlansCat.html" >Diet Plans For You </a>');
+                    $("#dietPlanDisplay").html('<a class="btn-info" style="margin:15px;" href="../dietPlans/wlDietPlansCat.html" >Diet Plans For You </a>');
                 }
                 if(weight < weakWeight ){
-                    $("#dietPlanDisplay").html('<a class="btn btn-info" href="../dietPlans/wgDietPlansCat.html" >Diet Plans For You </a>');
+                    $("#dietPlanDisplay").html('<a class="btn-info" style="margin:15px;" href="../dietPlans/wgDietPlansCat.html" >Diet Plans For You </a>');
                 }
 
                 if (gender == "male") {
                     if(exercise == "bmr"){
-                        $("#bmrCalDisplayMale").html('<h3 class="p-2"><b>BMR</b></h3><table class="table table-striped"> <tr> <td> BMR </td> <td> '+ bmrCaloriesMale +' Calories </td> </tr> </table>');
+                        $("#bmrCalDisplayMale").html('<h3 style="margin:15px;"><b>BMR</b></h3><table class="table table-striped"> <tr> <td> BMR </td> <td> '+ bmrCaloriesMale +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "sedentary"){
-                        $("#sedentaryCalDisplayMale").html('<h3 class="p-2"><b>Sedentary</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ sedentaryCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ sedentaryCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#sedentaryCalDisplayMale").html('<h3 style="margin:15px;"><b>SEDENTARY</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ sedentaryCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ sedentaryCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "low"){
-                        $("#lowCalDisplayMale").html('<h3 class="p-2"><b>Low Exercise</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ lowCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ lowCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#lowCalDisplayMale").html('<h3 style="margin:15px;"><b>LOW EXERCISE</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ lowCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ lowCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "medium"){
-                        $("#mediumCalDisplayMale").html('<h3 class="p-2"><b>Medium Exercise</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ mediumCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ mediumCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#mediumCalDisplayMale").html('<h3 style="margin:15px;"><b>MEDIUM EXERCISE</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ mediumCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ mediumCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "intense"){
-                        $("#intenseCalDisplayMale").html('<h3 class="p-2"><b>Intense Exercise</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ intenseCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ intenseCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#intenseCalDisplayMale").html('<h3 style="margin:15px;"><b>INTENSE EXERCISE</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ intenseCaloriesMale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ intenseCaloriesMaleLooseWeight +' Calories </td> </tr> </table>');
                     } 
                 }
 
                 if (gender == "female") {
                     if(exercise == "bmr"){
-                        $("#bmrCalDisplayMale").html('<h3 class="p-2"><b>BMR</b></h3><table class="table table-striped"> <tr> <td> BMR </td> <td> '+ bmrCaloriesFemale +' </td> </tr> </table>');
+                        $("#bmrCalDisplayMale").html('<h3 style="margin:15px;"><b>BMR</b></h3><table class="table table-striped"> <tr> <td> BMR </td> <td> '+ bmrCaloriesFemale +' </td> </tr> </table>');
                     }
                     if(exercise == "sedentary"){
-                        $("#sedentaryCalDisplayFemale").html('<h3 class="p-2"><b>Sedentary</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ sedentaryCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ sedentaryCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#sedentaryCalDisplayFemale").html('<h3 style="margin:15px;"><b>SEDENTARY</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ sedentaryCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ sedentaryCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "low"){
-                        $("#lowCalDisplayFemale").html('<h3 class="p-2"><b>Low Exercise</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ lowCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ lowCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#lowCalDisplayFemale").html('<h3 style="margin:15px;"><b>LOW EXERCISE</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ lowCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ lowCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "medium"){
-                        $("#mediumCalDisplayFemale").html('<h3 class="p-2"><b>Medium Exercise</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ mediumCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ mediumCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#mediumCalDisplayFemale").html('<h3 style="margin:15px;"><b>MEDIUM EXERCISE</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ mediumCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ mediumCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
                     }
                     if(exercise == "intense"){
-                        $("#intenseCalDisplayFemale").html('<h3 class="p-2"><b>Intense Exercise</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ intenseCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ intenseCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
+                        $("#intenseCalDisplayFemale").html('<h3 style="margin:15px;"><b>INTENSE EXERCISE</b></h3><table class="table table-striped"> <tr> <td> Maintain Weight </td> <td> '+ intenseCaloriesFemale +' Calories </td> </tr> <tr> <td> Loose Weight </td> <td> '+ intenseCaloriesFemaleLooseWeight +' Calories </td> </tr> </table>');
                     } 
                 }
             });

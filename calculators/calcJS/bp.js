@@ -39,6 +39,6 @@
                         idealBP = "min[121/83], normal[134/87], max[147/91]";
                     }
                 }
-                $("#idlBPdisplay").html('<b>Your Ideal Blood Pressure Should be:</b> <h3 style="background: #39CCCC;padding:20px;">'+idealBP+'</h3>');
+                $("#idlBPdisplay").html('<h3 style="margin:15px;"><b>Your Ideal Blood Pressure Should be:</b></h3> <h1 style="background: #39CCCC;padding:20px;">'+idealBP+'</h1>');
             });
         });
