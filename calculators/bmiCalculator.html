@@ -9,9 +9,12 @@
     />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
-    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/myBootstrap.css" />
     <title>BMI Calculator, Elatefit</title>
     <style>
+        .allInputContainer{
+            margin-bottom: 30px;
+        }
         .weightResult{
             display: none;
             margin: 15px;
@@ -20,6 +23,16 @@
         .bmiDietPlannDisplay, #disclaimer{
             display: none;
             margin: 15px;
+        }
+        .eachInputContainer{
+            margin: 17px;
+
+        }
+        .search-item{
+            width: 350px;
+        }
+        #calcsubmit{
+            margin: 5px 0 20px 15px;
         }
     </style>
 </head>
@@ -33,28 +46,28 @@
     </div>
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
-    <h1 class="p-2 bg-info text-light" style="margin-top: 70px;"><b>BODY MASS INDEX CALCULATOR FOR ADULTS</b></h1>
-    <div class="m-4">
+    <h1 class="bg-info text-light" style="margin-top: 70px;padding: 10px;"><b>BODY MASS INDEX CALCULATOR FOR ADULTS</b></h1>
+    <div class="allInputContainer">
         
-        <div class="mb-3">
+        <div class="eachInputContainer">
             <label for="exampleFormControlInput1" class="form-label"><b>Enter your Height in Centimeters</b></label>
             <input type="number" class="form-control" id="height" placeholder="Enter Your Height in Centimeters" />
         </div>
-        <div class="mb-3">
+        <div class="eachInputContainer">
             <label for="exampleFormControlInput1" class="form-label"><b>Enter your Weight in Kg</b></label>
             <input type="number" class="form-control" id="weight" placeholder="Enter Your Weight in Kg" />
         </div>
-        <div class="mb-3">
+        <div class="eachInputContainer">
             <label for="exampleFormControlInput1" class="form-label"><b>Enter your Age</b></label>
             <input type="number" class="form-control" id="age" placeholder="Enter Your Age" />
         </div>
-        <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"><b>Choose your Gender</b></label>
+        <div class="eachInputContainer">
+            <label for="exampleFormControlInput1" class="form-label"><b>Choose your Gender</b></label>
             <br />
             <input type="radio" name="gender" value="male" /> Male
             <input type="radio" name="gender" value="female" /> Female
         </div>
-        <input type="submit" class="btn btn-primary calcsubmit" id="calcsubmit" />
+        <a class="btn-primary" id="calcsubmit" /> SUBMIT</a>
     </div>
 
     <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing the following results.</p>

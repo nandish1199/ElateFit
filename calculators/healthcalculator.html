@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/myBootstrap.css" />
     <title>Tridosh Calculator, Elatefit</title>
     <style>
         .solDisplay{
@@ -20,11 +20,29 @@
         }
         .dpnBtn{
             display: none;
+            margin: 5px;
         }
-        #disclaimer, #tridoshSolutions{
+        #disclaimer{
             display: none;
             margin: 15px;
         }
+        #tridoshSolutions{
+            display: none;
+        }
+        .inputContainer{
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid rgb(225, 225, 225);
+            border-radius: 10px;       
+        }
+        .inputContainer input,.inputContainer p{
+            margin-left: 10px;      
+        }
+        .inputContainer p{
+            font-size: 20px;
+            color: rgb(91, 91, 91);
+        }
+
     </style>
 </head>
 
@@ -39,45 +57,45 @@
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
 
-    <h1 class="p-2 bg-info text-light" style="margin-top: 70px;"><b>Tridosh Calculator</b></h1>
-    <div class="border rounded p-3 m-2 shadow">
-        
+    <h1 class="bg-info text-light" style="padding:15px;margin-top:70px;font-size: 30px;"><b>TRIDOSH CALCULATOR</b></h1>
+    
+    <div class="inputContainer">
         <p> 1. <b>Rate your Anger</b> </p>
         <input type="radio" name="anger" value="high" required /> <span style="margin-right:10px;">High</span>
         <input type="radio" name="anger" value="medium" required /> <span style="margin-right:10px;">Medium</span>
         <input type="radio" name="anger" value="low" required /> <span style="margin-right:10px;">Low</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 2. <b>Rate your Sleep</b> </p>
         <input type="radio" name="sleep" value="high" required /> <span style="margin-right:10px;">Good</span>
         <input type="radio" name="sleep" value="medium" required /> <span style="margin-right:10px;">Medium</span>
         <input type="radio" name="sleep" value="low" required /> <span style="margin-right:10px;">Bad</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 3. <b>Do you have Joint Pain?</b> </p>
         <input type="radio" name="jointpain" value="high" required /> <span style="margin-right:10px;">Yes
             High</span>
         <input type="radio" name="jointpain" value="medium" required /> <span style="margin-right:10px;">Yes
             Medium</span>
         <input type="radio" name="jointpain" value="low" required /> <span style="margin-right:10px;">No</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 4. <b>Do you have acidity problem?</b> </p>
         <input type="radio" name="acidity" value="high" required /> <span style="margin-right:10px;">Yes
             High</span>
         <input type="radio" name="acidity" value="medium" required /> <span style="margin-right:10px;">Yes
             Medium</span>
         <input type="radio" name="acidity" value="low" required /> <span style="margin-right:10px;">No</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 5. <b>Do you face skin problems more often?</b> </p>
         <input type="radio" name="skinproblem" value="high" required /> <span style="margin-right:10px;">Yes High</span>
         <input type="radio" name="skinproblem" value="medium" required /> <span style="margin-right:10px;">Yes
@@ -85,188 +103,185 @@
         <input type="radio" name="skinproblem" value="low" required /> <span style="margin-right:10px;">No</span> </br>
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 6. <b>Do you sweat a lot?</b> </p>
         <input type="radio" name="sweat" value="high" required /> <span style="margin-right:10px;">Yes
             High</span>
         <input type="radio" name="sweat" value="medium" required /> <span style="margin-right:10px;">Yes
             Medium</span>
         <input type="radio" name="sweat" value="low" required /> <span style="margin-right:10px;">No</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 7. <b>Rate your sweat smell</b> </p>
         <input type="radio" name="sweatsmell" value="VeryBad" required /> <span style="margin-right:10px;">Very Bad</span>
         <input type="radio" name="sweatsmell" value="Bad" required /> <span style="margin-right:10px;">Bad</span>
         <input type="radio" name="sweatsmell" value="low" required /> <span style="margin-right:10px;">Low</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 8. <b>Do you get lots of thoughts?</b> </p>
         <input type="radio" name="thoughts" value="high" required /> <span style="margin-right:10px;">Yes
             High</span>
         <input type="radio" name="thoughts" value="medium" required /> <span style="margin-right:10px;">Yes
             Medium</span>
         <input type="radio" name="thoughts" value="low" required /> <span style="margin-right:10px;">No</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 9. <b>Your Skin type?</b> </p>
         <input type="radio" name="skinType" value="oily" required /> <span style="margin-right:10px;">Oily</span>
         <input type="radio" name="skinType" value="dry" required /> <span style="margin-right:10px;">Dry</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 10. <b>Rate your digestion power</b> </p>
         <input type="radio" name="digestion" value="high" required /> <span style="margin-right:10px;">Good</span>
         <input type="radio" name="digestion" value="medium" required /> <span style="margin-right:10px;">Medium</span>
         <input type="radio" name="digestion" value="low" required /> <span style="margin-right:10px;">Low</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 11. <b>Do you drink water more often?</b> </p>
         <input type="radio" name="water" value="high" required /> <span style="margin-right:10px;">High</span>
         <input type="radio" name="water" value="medium" required /> <span style="margin-right:10px;">Medium</span>
         <input type="radio" name="water" value="low" required /> <span style="margin-right:10px;">Low</span>
-        </br>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 12. <b>Do you get dipressed quickly?</b> </p>
         <input type="radio" name="depressed" value="high" required /> <span style="margin-right:10px;">Yes
             High</span>
         <input type="radio" name="depressed" value="medium" required /> <span style="margin-right:10px;">Yes
             Medium</span>
         <input type="radio" name="depressed" value="low" required /> <span style="margin-right:10px;">Low</span>
-        </br>
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 13. <b>Rate your body fat</b> </p>
         <input type="radio" name="fat" value="high" required /> <span style="margin-right:10px;">High</span>
         <input type="radio" name="fat" value="medium" required /> <span style="margin-right:10px;">Medium</span>
-        <input type="radio" name="fat" value="low" required /> <span style="margin-right:10px;">Low</span> </br>
-        </br>
+        <input type="radio" name="fat" value="low" required /> <span style="margin-right:10px;">Low</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 14. <b>Rate your urine smell</b> </p>
         <input type="radio" name="urine" value="bad" required /> <span style="margin-right:10px;">Bad
 				Smell</span>
         <input type="radio" name="urine" value="medium" required /> <span style="margin-right:10px;">Medium
 				smell</span>
         <input type="radio" name="urine" value="low" required /> <span style="margin-right:10px;">Low
-				smell</span> </br>
-        </br>
+				smell</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 15. <b>Rate your working nature</b> </p>
         <input type="radio" name="work" value="quick" required /> <span style="margin-right:10px;">Quick and
 				fast</span>
         <input type="radio" name="work" value="medium" required /> <span style="margin-right:10px;">Medium</span>
         <input type="radio" name="work" value="slow" required /> <span style="margin-right:10px;">Slow and
-				continuous</span> </br>
-        </br>
+				continuous</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 16. <b>Which season you like to live?</b> </p>
         <input type="radio" name="season" value="summer" required /> <span style="margin-right:10px;">Summer</span>
-        <input type="radio" name="season" value="winter" required /> <span style="margin-right:10px;">Winter</span> </br>
-        </br>
+        <input type="radio" name="season" value="winter" required /> <span style="margin-right:10px;">Winter</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 17. <b>Are you willing to loose weight?</b> </p>
         <input type="radio" name="weightloss" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="weightloss" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="weightloss" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 18. <b>Are you willing to gain weight?</b> </p>
         <input type="radio" name="weightgain" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="weightgain" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="weightgain" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 19. <b>Are suffering from Diabetes?</b> </p>
         <input type="radio" name="diabetes" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="diabetes" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="diabetes" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 20. <b>Are suffering from Heart Disease?</b> </p>
         <input type="radio" name="heart" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="heart" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="heart" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 21. <b>Are suffering from Kidney Disease?</b> </p>
         <input type="radio" name="kidney" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="kidney" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="kidney" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 22. <b>Are suffering from Lungs related problems?</b> </p>
         <input type="radio" name="lungs" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="lungs" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="lungs" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 23. <b>Are suffering from eyes related problems?</b> </p>
         <input type="radio" name="eye" value="yes" required /> <span style="margin-right:10px;">Yes</span>
-        <input type="radio" name="eye" value="no" required /> <span style="margin-right:10px;">No</span> </br>
-        </br>
+        <input type="radio" name="eye" value="no" required /> <span style="margin-right:10px;">No</span> 
+        
     </div>
 
-    <div class="border rounded p-3 m-2 shadow">
+    <div class="inputContainer">
         <p> 24. <b>Enter your Age.</b> </p>
-        <input id="age" type="number" name="age" required />
+        <input id="age" class="search-item" name="age" required placeholder="YOUR AGE" />
     </div>
-
-    
-    <a href="healthcalculator.html" class="btn-secondary btn-lg m-3"> Cancel </a>
-    <input class="btn-primary btn-lg m-2 calcsubmit" type="submit" />
+    <br>
+    <a href="healthcalculator.html" class="btn-secondary" style="padding:10px;margin:10px;"> CANCEL </a>
+    <a class="btn-primary calcsubmit" style="padding:10px;margin:10px;"> SUBMIT </a>
 
     <br>
     <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing the following results.</p>
-    <div class="d-flex flex-wrap justify-content-evenly">
-        <div class="d-flex m-3 justify-content-center align-items-center flex-column shadow" style="width:200px;height:200px;border-radius:100px;background: #2ECC40;">
-            <h1 class="fa-brands fa-pagelines"></h1>
-            <h2>Kapha</h2>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
+        <div style="display:flex;flex-direction:column;justify-content: center;align-items:center;margin:20px;width:200px;height:200px;border-radius:100px;background: #2ecc40;box-shadow: rgb(66, 231, 66) -5px -5px 10px 2px inset, rgb(63, 233, 74) -3px -3px 6px 1px inset;">
             <h1 class="kapha"></h1>
+            <h1>KAPHA</h1>
         </div>
 
-        <div class="d-flex m-3 justify-content-center align-items-center flex-column shadow" style="width:200px;height:200px;border-radius:100px;background: #FF851B;">
-            <h1 class="fa-solid fa-fire"></h1>
-            <h2>Pitta</h2>
+        <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;margin:20px;width:200px;height:200px;border-radius:100px;background: #FF851B;box-shadow: rgb(255, 173, 114) -5px -5px 10px 2px inset, rgb(255, 190, 133) -3px -3px 6px 1px inset;">
             <h1 class="pitta"></h1>
+            <h1>PITTA</h1>
+            
         </div>
 
-        <div class="d-flex m-3 justify-content-center align-items-center flex-column shadow" style="width:200px;height:200px;border-radius:100px; background: #7FDBFF;">
-            <h1 class="fa-solid fa-wind"></h1>
-            <h2>Vata</h2>
+        <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;margin:20px;width:200px;height:200px;border-radius:100px; background: #7FDBFF;box-shadow: rgb(187, 231, 255) -5px -5px 10px 2px inset, rgb(174, 223, 249) -3px -3px 6px 1px inset;">
             <h1 class="vata"></h1>
+            <h1>VATA</h1>
+            
         </div>
     </div>
     
     <!--<ul class="instantSol"></ul> -->
-    <table class="table table-striped">
+    <table class="table-striped">
         <tr>
-            <th colspan="2" id="tridoshSolutions"><h4><b>SOLUTIONS</b></h4></th>
+            <th colspan="2" id="tridoshSolutions"><h2><b>SOLUTIONS</b></h2></th>
         </tr>
         <tr><td class="solDisplay" id="depressionStrDisplay"><b>Depression: </b>Try to include ghee in your diet, drink warm water after eating 2 teaspoons of ghee every morning in the empty stomach. Use natural essential oils such as lavender oil, lemongrass oil as a perfume. Listen to music that you like.</td></tr>
         <tr><td class="solDisplay" id="heartStrDisplay"><b>Heart Problems: </b>Include garlic and lemon in your diet, eat one pomegranate every day. Avoid eating oil.</td></tr>
@@ -284,32 +299,31 @@
     </table>
 
     <div class="dietPlansUpload">
-        <a id="dpKapha1" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKapha1.html" target="_blank">DietPlan Average (Kapha)</a>
-        <a id="dpKapha2" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKapha2.html" target="_blank">DietPlan Medium (Kapha)</a>
-        <a id="dpKapha3" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKapha3.html" target="_blank">DietPlan Strict (Kapha)</a>
-        <a id="dpKaphaPitta1" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPitta1.html" target="_blank">DietPlan Average (Kapha+Pitta)</a>
-        <a id="dpKaphaPitta2" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPitta2.html" target="_blank">DietPlan Medium(Kapha+Pitta)</a>
-        <a id="dpKaphaPitta3" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPitta3.html" target="_blank">DietPlan Strict(Kapha+Pitta)</a>
-        <a id="dpKaphaVata1" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVata1.html" target="_blank">DietPlan Average (Kapha+Vata)</a>
-        <a id="dpKaphaVata2" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVata2.html" target="_blank">DietPlan Medium(Kapha+Vata)</a>
-        <a id="dpKaphaVata3" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVata3.html" target="_blank">DietPlan Strict(Kapha+Vata)</a>
-        <a id="dpKaphaDiab1" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaDiab1.html" target="_blank">DietPlan 1 (Kapha)(Diabetes)</a>
-        <a id="dpKaphaDiab2" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaDiab2.html" target="_blank">DietPlan 2 (Kapha)(Diabetes)</a>
-        <a id="dpKaphaPittaDiab1" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPittaDiab1.html" target="_blank">DietPlan 1 (Kapha+Pitta)(Diabetes)</a>
-        <a id="dpKaphaPittaDiab2" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPittaDiab2.html" target="_blank">DietPlan 2 (Kapha+Pitta)(Diabetes)</a>
-        <a id="dpKaphaVataDiab1" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVataDiab1.html" target="_blank">DietPlan 1 (Kapha+Vata)(Diabetes)</a>
-        <a id="dpKaphaVataDiab2" class="btn btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVataDiab2.html" target="_blank">DietPlan 2 (Kapha+Vata)(Diabetes)</a>
+        <a id="dpKapha1" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKapha1.html" target="_blank">DietPlan Average (Kapha)</a>
+        <a id="dpKapha2" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKapha2.html" target="_blank">DietPlan Medium (Kapha)</a>
+        <a id="dpKapha3" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKapha3.html" target="_blank">DietPlan Strict (Kapha)</a>
+        <a id="dpKaphaPitta1" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPitta1.html" target="_blank">DietPlan Average (Kapha+Pitta)</a>
+        <a id="dpKaphaPitta2" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPitta2.html" target="_blank">DietPlan Medium(Kapha+Pitta)</a>
+        <a id="dpKaphaPitta3" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPitta3.html" target="_blank">DietPlan Strict(Kapha+Pitta)</a>
+        <a id="dpKaphaVata1" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVata1.html" target="_blank">DietPlan Average (Kapha+Vata)</a>
+        <a id="dpKaphaVata2" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVata2.html" target="_blank">DietPlan Medium(Kapha+Vata)</a>
+        <a id="dpKaphaVata3" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVata3.html" target="_blank">DietPlan Strict(Kapha+Vata)</a>
+        <a id="dpKaphaDiab1" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaDiab1.html" target="_blank">DietPlan 1 (Kapha)(Diabetes)</a>
+        <a id="dpKaphaDiab2" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaDiab2.html" target="_blank">DietPlan 2 (Kapha)(Diabetes)</a>
+        <a id="dpKaphaPittaDiab1" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPittaDiab1.html" target="_blank">DietPlan 1 (Kapha+Pitta)(Diabetes)</a>
+        <a id="dpKaphaPittaDiab2" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaPittaDiab2.html" target="_blank">DietPlan 2 (Kapha+Pitta)(Diabetes)</a>
+        <a id="dpKaphaVataDiab1" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVataDiab1.html" target="_blank">DietPlan 1 (Kapha+Vata)(Diabetes)</a>
+        <a id="dpKaphaVataDiab2" class="btn-primary dpnBtn" href="../dietPlans/wlDietPlans/wlKaphaVataDiab2.html" target="_blank">DietPlan 2 (Kapha+Vata)(Diabetes)</a>
 
-        <a id="dpVata1" class="btn btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgVata1.html" target="_blank">DietPlan Average(Vata)</a>
-        <a id="dpVata2" class="btn btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgVata2.html" target="_blank">DietPlan Medium(Vata)</a>
-        <a id="dpVata3" class="btn btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgVata3.html" target="_blank">DietPlan Strict(Vata)</a>
-        <a id="dpPitta1" class="btn btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgPitta1.html" target="_blank">DietPlan Average(Pitta)</a>
-        <a id="dpPitta2" class="btn btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgPitta2.html" target="_blank">DietPlan Medium(Pitta)</a>
-        <a id="dpPitta3" class="btn btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgPitta3.html" target="_blank">DietPlan Strict(Pitta)</a>
+        <a id="dpVata1" class="btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgVata1.html" target="_blank">DietPlan Average(Vata)</a>
+        <a id="dpVata2" class="btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgVata2.html" target="_blank">DietPlan Medium(Vata)</a>
+        <a id="dpVata3" class="btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgVata3.html" target="_blank">DietPlan Strict(Vata)</a>
+        <a id="dpPitta1" class="btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgPitta1.html" target="_blank">DietPlan Average(Pitta)</a>
+        <a id="dpPitta2" class="btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgPitta2.html" target="_blank">DietPlan Medium(Pitta)</a>
+        <a id="dpPitta3" class="btn-primary dpnBtn" href="../dietPlans/wgDietPlans/wgPitta3.html" target="_blank">DietPlan Strict(Pitta)</a>
     </div>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="../js/allcommon.js"></script>
     <script src="calcJS/tridosh.js"></script>

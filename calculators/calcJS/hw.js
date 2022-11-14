@@ -106,6 +106,6 @@
 				idealWeight= "[73.5 kg to 89.8 kg] or [162 lb to 198 lb]";
 			}
 		}
-                $("#idlweightdisplay").html('<b>Your Ideal Weight should be:</b> <h3 style="background: #39CCCC;padding:20px;"> '+idealWeight+'</h3>');
+                $("#idlweightdisplay").html('<h3 style="margin-left:15px;"><b>Your Ideal Weight should be:</b></h3> <h2 style="background: #39CCCC;padding:20px;"> '+idealWeight+'</h2>');
             });
         });
