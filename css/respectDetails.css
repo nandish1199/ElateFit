@@ -67,12 +67,10 @@
 }
 
 .teachings {
-    background: #0099ff;
-    width: 100%;
+    background: #d3ad2f;
     text-align: center;
     padding: 10px 80px;
     z-index: 10;
     color: aqua;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
