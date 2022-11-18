@@ -21,6 +21,9 @@
             flex-direction: column;
             align-items: center;
         }
+        #hexaTextR, #hexaTextG, #hexaTextB{
+            width: 60px;
+        }
     </style>
 </head>
 
@@ -34,8 +37,12 @@
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
     <div class="containerItems">
-        <h2 id="hexaHeading" style="padding:10px;border:1px solid #7df084">HEX TO RGB CONVERTER</h2>
-        <input type="text" id="hexaText" placeholder="Enter HEX Code" class="search-item" style="margin-top:20px"> <br>
+        <h2 id="hexaHeading" style="padding:10px;border:1px solid #7df084">RGB TO HEX CONVERTER</h2>
+        <div>
+            <input type="number" id="hexaTextR" placeholder="R" class="search-item" style="margin-top:20px">
+            <input type="number" id="hexaTextG" placeholder="G" class="search-item" style="margin-top:20px">
+            <input type="number" id="hexaTextB" placeholder="B" class="search-item" style="margin-top:20px">
+        </div> <br>
         <a class="btn-warning" id="hexButton">CONVERT</a>
         <h4 id="hexResult" style="padding:15px;border:1px solid #76a979; margin-top: 20px;display:none;"></h4>
     </div>
@@ -49,30 +56,25 @@
 
     <script>
 
+        
+
+
         var hexButton = document.getElementById("hexButton");
         hexButton.addEventListener("click", hexaChange);
         function hexaChange(){
-            var hexaVal = document.getElementById("hexaText").value;
-            var opacityVal = 1;
-            var rgbVal = hex2rgb(hexaVal, opacityVal);
+            var rVal = Number($("#hexaTextR").val());
+            var gVal = Number($("#hexaTextG").val());
+            var bVal = Number($("#hexaTextB").val());
+            var hexVal = rgbToHex(rVal, gVal, bVal);
             $("#hexResult").css("display", "block");
-            $("#hexResult").html(rgbVal);
-            $("#hexResult").css("background", ""+rgbVal+"");
+            $("#hexResult").html(hexVal);
+            $("#hexResult").css("background", ""+hexVal+"");
         }
 
-
-    //Used to convert Hex to RGBA color code
-    function hex2rgb(hex, opacity) {
-        var h=hex.replace('#', '');
-        h =  h.match(new RegExp('(.{'+h.length/3+'})', 'g'));
-
-        for(var i=0; i<h.length; i++)
-            h[i] = parseInt(h[i].length==1? h[i]+h[i]:h[i], 16);
-
-        if (typeof opacity != 'undefined')  h.push(opacity);
-
-        return 'rgba('+h.join(',')+')';
-    }
+        //Used to convert Hex to RGBA color code
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
 
     </script> 
 </body>
