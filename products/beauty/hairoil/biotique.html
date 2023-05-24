@@ -14,8 +14,6 @@
 </head>
 
 <body>
-    <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0" nonce="jUc7iCdL"></script>
     <div id="navBarContainer">
         <button type="button" class="btn-warning" id="toggleBtn">
             <i class="fa-sharp fa-solid fa-bars"></i>
@@ -152,9 +150,24 @@
             </div>
         </div>
     </div>
-    <div class="fb-comments" data-href="https://www.elatefit.com/products/beauty/hairoil/biotique.html" data-width="300" data-numposts="5"></div>
 
     <h2 class="otherProdHeading">OTHER PRODUCTS</h2>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0" nonce="P4zh74fo"></script>
+    <div class="fb-comments" data-href="https://www.elatefit.com/products/beauty/hairoil/biotique.html" data-width="500" data-numposts="5"></div>
+
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : 'your-app-id',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v17.0'
+          });
+        };
+      </script>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
     <iframe id="fragmentBestProducts" src="../../../fragments/fragrandProduct.html" loading="lazy"></iframe>
 
