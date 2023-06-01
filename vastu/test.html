@@ -25,17 +25,27 @@
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe> 
 
     
+    <h1>Volume Control</h1>
+
+    <audio id="myAudio" src="path/to/audio.mp3"></audio>
+
+    <input type="range" min="0" max="1" step="0.1" value="1" onchange="changeVolume(this.value)">
 
     <div class="adVastu"></div>
-    <h1>hhhhhhhhhhhhh</h1>
+    
 
+    <script>
+        var volumeRange = document.querySelector("input[type='range']");
+        volumeRange.addEventListener("input", function() {
+            changeVolume(this.value);
+        });
+    </script>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
  
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
     <script src="../js/allcommon.js"></script>
-    <div class="fb-comments" data-href="https://www.elatefit.com/vastu/test.html" data-width="" data-numposts="5"></div>
 </body>
 
 </html>

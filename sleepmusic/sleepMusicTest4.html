@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/myBootstrap.css" />
+    <link rel="stylesheet" href="../css/productdetails.css" />
+    <title>Vastu, Introduction Ayurveda, Elatefit</title>
+    <style>
+        #audioContainer{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100vw;
+        }
+        .audioDiv{
+            display:flex; 
+            flex-direction:column;
+            width:150px;
+            height: 200px;
+            border:2px solid rgb(188, 188, 188);
+            margin:10px;
+            border-radius: 7px;
+        }
+        .audImg{
+            width: 150px;
+            height: 180px;
+            border-radius: 7px 7px 0 0;
+        }
+        .audBtnContainer{
+            width: 150px;
+            height: 180px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pauseBtn{
+            display:none;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+        .playBtn{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+        }
+        #favToggleBtn{
+            margin-left: 5px;
+        }
+        #audFavBtnContainer{
+            display: flex;
+            flex-direction: column;
+            width: 150px;
+            margin-left: 10px;
+        }
+        .eachFavBtn{
+            display: flex;
+            margin: 3px;
+            justify-content: space-around;
+        }
+        .audHeart{
+            position: absolute;
+            font-size: 20px;
+            display: flex;
+            margin: 3px;
+        }
+        .favDropinEachAudio{
+            position: absolute;
+            left: 40%;
+            bottom: 50%;
+            transition: 0.5s;
+            font-size: 35px;
+            border: 2px solid grey;
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            display: none;
+            background: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="navBarContainer">
+        <button type="button" class="btn-warning" id="toggleBtn">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe> 
+
+    
+    <h1 style="margin-top:100px;"> &nbsp; SLEEP BETTER</h1>
+
+    <button class="btn-danger" id="favToggleBtn" onclick="toggle('audFavBtnContainer')"><i class="fa-sharp fa-solid fa-heart"></i> Favourite <i class="fa-solid fa-circle-chevron-down"></i></button>
+    <div id="audFavBtnContainer">
+        <div class="eachFavBtn">
+            <button class="btn-secondary" id="audFav1"><i class="fa-sharp fa-solid fa-heart"></i> 1st Favorite</button>
+            <button class="btn-danger" id="firstFavPlay">Play</button>
+        </div>
+        <div class="eachFavBtn">
+            <button class="btn-secondary" id="audFav2"><i class="fa-sharp fa-solid fa-heart"></i> 2nd Favorite</button>
+            <button class="btn-danger" id="secondFav">Play</button>
+        </div>
+        <div class="eachFavBtn">
+            <button class="btn-secondary" id="audFav3"><i class="fa-sharp fa-solid fa-heart"></i> 3rd Favorite</button>
+            <button class="btn-danger" id="thirdFav">Play</button>
+        </div>
+    </div>
+    
+
+
+    <div id="audioContainer">
+    <!-- Audio 1-->
+    <div class="audioDiv" id="audioDiv1" value="false">
+        <img class="audImg" id="audImg1" src="images/hero.jfif" alt="hero image" loading="lazy">
+        <audio id="myAudio1" preload loop>
+            <source src="music/hero.mp3" type="audio/ogg">
+            Your browser does not support the audio tag.
+        </audio>
+        <input class="audRange" id="audRange1" type="range" min="0.0" max="1.0" step="0.01" value="0">
+        <i class="fa-solid fa-heart audHeart" value="1"></i>
+    </div>
+
+    <!-- Audio 2-->
+    <div class="audioDiv" id="audioDiv2" value="false">
+        <img class="audImg" id="audImg2" src="images/hitman.jfif" alt="hero image" loading="lazy">
+        <audio id="myAudio2" preload loop>
+            <source src="music/hit.mp3" type="audio/ogg">
+            Your browser does not support the audio tag.
+        </audio>
+        <input class="audRange" id="audRange2" type="range" min="0.0" max="1.0" step="0.01" value="0">
+        <i class="fa-solid fa-heart audHeart"></i>
+    </div>
+
+    <!-- Audio 3-->
+    <div class="audioDiv" id="audioDiv3" value="false">
+        <img class="audImg" id="audImg3" src="images/silver.jfif" alt="hero image" loading="lazy">
+        <audio id="myAudio3" preload loop>
+            <source src="music/silver.mp3" type="audio/ogg">
+            Your browser does not support the audio tag.
+        </audio>
+        <input class="audRange" id="audRange3" type="range" min="0.0" max="1.0" step="0.01" value="0">
+        <i class="fa-solid fa-heart audHeart"></i>
+    </div>
+
+    <div class="favDropinEachAudio" id="favDropinEachAudio1">
+        <div style="text-align:end;">X</div>
+        <div><i class="fa-solid fa-heart"></i> <small>First Fav</small></div> <hr>
+        <div><i class="fa-solid fa-heart"></i> <small>Second Fav</small></div> <hr>
+        <div><i class="fa-solid fa-heart"></i> <small>Third Fav</small></div>
+    </div>
+</div>
+
+
+
+    <script>
+        //BTN Toggle
+        function toggle(audFavBtnContainer){
+            var element = document.getElementById(audFavBtnContainer);
+            if(element.style.display === "none"){
+                element.style.display = "block";
+            }else{
+                element.style.display = "none";
+            };
+``      };
+
+        //Array Check
+        var audHeart = document.getElementsByClassName("audHeart");
+        var audHeartArray = Array.prototype.slice.call(audHeart);
+        var favDropinEachAudio1 = document.getElementById("favDropinEachAudio1");
+        var body = document.getElementById("body");
+        console.log(audHeartArray);
+        var totalAudio =[];
+        for(let i=1; i<= audHeartArray.length; i++){ 
+            totalAudio.push(i);
+        }
+        console.log(totalAudio);
+        audHeartArray.forEach(function(elem){
+            // Assign an event handler
+            elem.addEventListener("click", function(){
+                this.style.color = "red";
+                favDropinEachAudio1.style.display="block";
+                body.style.opacity= "0.7";
+                
+                localStorage.setItem("1", `${this.id}`);
+            });
+        });
+
+        //Audio1
+        var myAudio1 = document.getElementById("myAudio1");
+        var audRange1 = document.getElementById("audRange1");
+        var playAud1 = document.getElementById("playAud1");
+        var pauseAud1 = document.getElementById("pauseAud1");
+        var audImg1 = document.getElementById("audImg1");
+        var audioDiv1 = document.getElementById("audioDiv1");
+        var audclicks1 = 1;
+
+        audImg1.addEventListener("click", function(){
+            
+            if(audclicks1%2==0){
+                audioDiv1.style.border="2px solid rgb(188, 188, 188)";
+                myAudio1.pause();
+                audImg1.style.filter="blur(0px)";
+                console.log(audioDiv1.value);
+            }else{
+                audioDiv1.style.border="3px solid orange";
+                myAudio1.volume = 0.5;
+                myAudio1.play();
+                audImg1.style.filter="blur(3px)";
+            };
+            audclicks1=audclicks1+1;
+        });
+
+        audRange1.addEventListener("input", function() {
+            myAudio1.volume = audRange1.value;
+        });
+        
+
+        //Audio2
+        var myAudio2 = document.getElementById("myAudio2");
+        var audRange2 = document.getElementById("audRange2");
+        var playAud2 = document.getElementById("playAud2");
+        var pauseAud2 = document.getElementById("pauseAud2");
+        var audImg2 = document.getElementById("audImg2");
+        var audioDiv2 = document.getElementById("audioDiv2");
+        var audclicks2 = 1;
+
+        audImg2.addEventListener("click", function(){
+            
+            if(audclicks2%2==0){
+                audioDiv2.style.border="2px solid rgb(188, 188, 188)";
+                myAudio2.pause();
+                audImg2.style.filter="blur(0px)";
+                console.log(audioDiv2.value);
+            }else{
+                audioDiv2.style.border="3px solid orange";
+                myAudio2.volume = 0.5;
+                myAudio2.play();
+                audImg2.style.filter="blur(3px)";
+            };
+            audclicks2=audclicks2+1;
+        });   
+        
+        audRange2.addEventListener("input", function() {
+            myAudio2.volume = audRange2.value;
+        });
+
+        //Audio3
+        var myAudio3 = document.getElementById("myAudio3");
+        var audRange3 = document.getElementById("audRange3");
+        var playAud3 = document.getElementById("playAud3");
+        var pauseAud3 = document.getElementById("pauseAud3");
+        var audImg3 = document.getElementById("audImg3");
+        var audioDiv3 = document.getElementById("audioDiv3");
+        var audclicks3 = 1;
+
+        audImg3.addEventListener("click", function(){
+            
+            if(audclicks3%2==0){
+                audioDiv3.style.border="2px solid rgb(188, 188, 188)";
+                myAudio3.pause();
+                audImg3.style.filter="blur(0px)";
+                console.log(audioDiv3.value);
+            }else{
+                audioDiv3.style.border="3px solid orange";
+                myAudio3.volume = 0.5;
+                myAudio3.play();
+                audImg3.style.filter="blur(3px)";
+            };
+            audclicks3=audclicks3+1;
+        });   
+        
+        audRange3.addEventListener("input", function() {
+            myAudio3.volume = audRange3.value;
+        });
+
+
+
+        
+    </script>
+<!--<iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>-->
+    
+ 
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script src="../js/allcommon.js"></script>
+</body>
+
+</html>
