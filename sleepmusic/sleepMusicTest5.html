@@ -102,141 +102,252 @@
     <div id="navBarContainer">
         <button type="button" class="btn-warning" id="toggleBtn">
         <i class="fa-sharp fa-solid fa-bars"></i>
-      </button>
+        </button>
         <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
-    </div>
-    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe> 
-
-    
-    <h1 style="margin-top:100px;"> &nbsp; SLEEP BETTER</h1>
-
-    <button class="btn-danger" id="favToggleBtn" onclick="toggle('audFavBtnContainer')"><i class="fa-sharp fa-solid fa-heart"></i> Favourite <i class="fa-solid fa-circle-chevron-down"></i></button>
-    <div id="audFavBtnContainer">
+     </div>
+     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe> 
+     
+     <h1 style="margin-top:100px;"> &nbsp; SLEEP BETTER</h1>
+     <button class="btn-danger" id="favToggleBtn" onclick="toggle('audFavBtnContainer')"><i class="fa-sharp fa-solid fa-heart"></i> Favourite <i class="fa-solid fa-circle-chevron-down"></i></button>
+     <div id="audFavBtnContainer">
         <div class="eachFavBtn">
-            <a class="btn-warning" href="sleepMusicTest5.html"><i class="fa-sharp fa-solid fa-heart"></i> All </a>
+           <a class="btn-warning" href="sleepMusicTest5.html"><i class="fa-sharp fa-solid fa-heart"></i> All </a>
         </div>
         <div class="eachFavBtn">
-            <button class="btn-danger" id="firstFavPlay"><i class="fa-sharp fa-solid fa-heart"></i> 1st Favorite Play</button>
+           <button class="btn-danger" id="firstFavPlay"><i class="fa-sharp fa-solid fa-heart"></i> 1st Favorite Play</button>
         </div>
         <div class="eachFavBtn">
-            <button class="btn-danger" id="secondFavPlay"><i class="fa-sharp fa-solid fa-heart"></i> 2nd Favorite Play</button>
+           <button class="btn-danger" id="secondFavPlay"><i class="fa-sharp fa-solid fa-heart"></i> 2nd Favorite Play</button>
         </div>
         <div class="eachFavBtn">
-            <button class="btn-danger" id="thirdFavPlay"><i class="fa-sharp fa-solid fa-heart"></i> 3rd Favorite Play</button>
+           <button class="btn-danger" id="thirdFavPlay"><i class="fa-sharp fa-solid fa-heart"></i> 3rd Favorite Play</button>
         </div>
-    </div>
-    
+     </div>
+     <div id="audioContainer">
+        <!-- Audio 1-->
+        <div class="audioDiv" id="audioDiv101" value="false">
+            <img class="audImg" id="audImg101" divID="audioDiv101" audioID="myAudio101" src="images/hero.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio101" preload loop>
+               <source src="music/hero.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange101" audioID="myAudio101" idVal="101" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard101" divID="audioDiv101" rangeID="audRange101" audioID="myAudio101" value="101"></i>
+            <i class="removeFromPlaylist" value="101">X</i>
+         </div>
+         <!-- Audio 2-->
+         <div class="audioDiv" id="audioDiv102" value="false">
+            <img class="audImg" id="audImg102" divID="audioDiv102" audioID="myAudio102" src="images/hitman.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio102" preload loop>
+               <source src="music/hit.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange102" audioID="myAudio102" idVal="102" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard102" divID="audioDiv102" rangeID="audRange102" audioID="myAudio102" value="102"></i>
+            <i class="removeFromPlaylist" value="102">X</i>
+         </div>
+        <!-- Audio 3-->
+        <div class="audioDiv" id="audioDiv103" value="false">
+           <img class="audImg" id="audImg103" divID="audioDiv103" audioID="myAudio103" src="images/thunder2.jfif" alt="hero image" loading="lazy">
+           <audio class="myAudio" id="myAudio103" preload loop>
+              <source src="music/LowThunderRolls.mp3" type="audio/ogg">
+              Your browser does not support the audio tag.
+           </audio>
+           <input class="audRange" id="audRange103" audioID="myAudio103" idVal="103" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+           <i class="fa-solid fa-heart favInCard" id="favInCard103" divID="audioDiv103" rangeID="audRange103" audioID="myAudio103" value="103"></i>
+           <i class="removeFromPlaylist" value="103">X</i>
+        </div>
+        <!-- Audio 4-->
+        <div class="audioDiv" id="audioDiv104" value="false">
+           <img class="audImg" id="audImg104" divID="audioDiv104" audioID="myAudio104" src="images/rain1.jpg" alt="hero image" loading="lazy">
+           <audio class="myAudio" id="myAudio104" preload loop>
+              <source src="music/rainOnRoof.mp3" type="audio/ogg">
+              Your browser does not support the audio tag.
+           </audio>
+           <input class="audRange" id="audRange104" audioID="myAudio104" idVal="104" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+           <i class="fa-solid fa-heart favInCard" id="favInCard104" divID="audioDiv104" rangeID="audRange104" audioID="myAudio104" value="104"></i>
+           <i class="removeFromPlaylist" value="104">X</i>
+        </div>
+        <!-- Audio 5-->
+        <div class="audioDiv" id="audioDiv105" value="false">
+           <img class="audImg" id="audImg105" divID="audioDiv105" audioID="myAudio105" src="images/rain2.jpg" alt="hero image" loading="lazy">
+           <audio class="myAudio" id="myAudio105" preload loop>
+              <source src="music/rainOnCarHeavy.mp3" type="audio/ogg">
+              Your browser does not support the audio tag.
+           </audio>
+           <input class="audRange" id="audRange105" audioID="myAudio105" idVal="105" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+           <i class="fa-solid fa-heart favInCard" id="favInCard105" divID="audioDiv105" rangeID="audRange105" audioID="myAudio105" value="105"></i>
+           <i class="removeFromPlaylist" value="105">X</i>
+        </div>
+        <!-- Audio 6-->
+        <div class="audioDiv" id="audioDiv106" value="false">
+           <img class="audImg" id="audImg106" divID="audioDiv106" audioID="myAudio106" src="images/iceRain.jfif" alt="hero image" loading="lazy">
+           <audio class="myAudio" id="myAudio106" preload loop>
+              <source src="music/iceRain.mp3" type="audio/ogg">
+              Your browser does not support the audio tag.
+           </audio>
+           <input class="audRange" id="audRange106" audioID="myAudio106" idVal="106" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+           <i class="fa-solid fa-heart favInCard" id="favInCard106" divID="audioDiv106" rangeID="audRange106" audioID="myAudio106" value="106"></i>
+           <i class="removeFromPlaylist" value="106">X</i>
+        </div>
+        <!-- Audio 7-->
+        <div class="audioDiv" id="audioDiv107" value="false">
+           <img class="audImg" id="audImg107" divID="audioDiv107" audioID="myAudio107" src="images/rain3.jpg" alt="hero image" loading="lazy">
+           <audio class="myAudio" id="myAudio107" preload loop>
+              <source src="music/RainOnRooftop.mp3" type="audio/ogg">
+              Your browser does not support the audio tag.
+           </audio>
+           <input class="audRange" id="audRange107" audioID="myAudio107" idVal="107" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+           <i class="fa-solid fa-heart favInCard" id="favInCard107" divID="audioDiv107" rangeID="audRange107" audioID="myAudio107" value="107"></i>
+           <i class="removeFromPlaylist" value="107">X</i>
+        </div>
+        <!-- Audio 8-->
+        <div class="audioDiv" id="audioDiv108" value="false">
+           <img class="audImg" id="audImg108" divID="audioDiv108" audioID="myAudio108" src="images/thunder1.jfif" alt="hero image" loading="lazy">
+           <audio class="myAudio" id="myAudio108" preload loop>
+              <source src="music/distantThunder.mp3" type="audio/ogg">
+              Your browser does not support the audio tag.
+           </audio>
+           <input class="audRange" id="audRange108" audioID="myAudio108" idVal="108" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+           <i class="fa-solid fa-heart favInCard" id="favInCard108" divID="audioDiv108" rangeID="audRange108" audioID="myAudio108" value="108"></i>
+           <i class="removeFromPlaylist" value="108">X</i>
+        </div>
+        <!-- Audio 9-->
+        <div class="audioDiv" id="audioDiv109" value="false">
+            <img class="audImg" id="audImg109" divID="audioDiv109" audioID="myAudio109" src="images/rainWaterDrop.jpg" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio109" preload loop>
+               <source src="music/rainWaterDrop.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange109" audioID="myAudio109" idVal="109" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard109" divID="audioDiv109" rangeID="audRange109" audioID="myAudio109" value="109"></i>
+            <i class="removeFromPlaylist" value="109">X</i>
+         </div>
+        <!-- Audio 10-->
+        <div class="audioDiv" id="audioDiv110" value="false">
+            <img class="audImg" id="audImg110" divID="audioDiv110" audioID="myAudio110" src="images/carDriveBy.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio110" preload loop>
+               <source src="music/carDriveBy.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange110" audioID="myAudio110" idVal="110" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard110" divID="audioDiv110" rangeID="audRange110" audioID="myAudio110" value="110"></i>
+            <i class="removeFromPlaylist" value="110">X</i>
+         </div>
+        <!-- Audio 11-->
+        <div class="audioDiv" id="audioDiv111" value="false">
+            <img class="audImg" id="audImg111" divID="audioDiv111" audioID="myAudio111" src="images/kidsPlaying.jpg" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio111" preload loop>
+               <source src="music/KidsPlaying.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange111" audioID="myAudio111" idVal="111" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard111" divID="audioDiv111" rangeID="audRange111" audioID="myAudio111" value="111"></i>
+            <i class="removeFromPlaylist" value="111">X</i>
+         </div>
+         <!-- Audio 12-->
+        <div class="audioDiv" id="audioDiv112" value="false">
+            <img class="audImg" id="audImg112" divID="audioDiv112" audioID="myAudio112" src="images/factoryMorning.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio112" preload loop>
+               <source src="music/factoryMorning.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange112" audioID="myAudio112" idVal="112" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard112" divID="audioDiv112" rangeID="audRange112" audioID="myAudio112" value="112"></i>
+            <i class="removeFromPlaylist" value="112">X</i>
+         </div>
+          <!-- Audio 13-->
+        <div class="audioDiv" id="audioDiv113" value="false">
+            <img class="audImg" id="audImg113" divID="audioDiv113" audioID="myAudio113" src="images/factoryHard.jpg" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio113" preload loop>
+               <source src="music/FactoryHard.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange113" audioID="myAudio113" idVal="113" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard113" divID="audioDiv113" rangeID="audRange113" audioID="myAudio113" value="113"></i>
+            <i class="removeFromPlaylist" value="113">X</i>
+         </div>
+           <!-- Audio 14-->
+        <div class="audioDiv" id="audioDiv114" value="false">
+            <img class="audImg" id="audImg114" divID="audioDiv114" audioID="myAudio114" src="images/highway.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio114" preload loop>
+               <source src="music/highway1.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange114" audioID="myAudio114" idVal="114" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard114" divID="audioDiv114" rangeID="audRange114" audioID="myAudio114" value="114"></i>
+            <i class="removeFromPlaylist" value="114">X</i>
+         </div>
+            <!-- Audio 15-->
+        <div class="audioDiv" id="audioDiv115" value="false">
+            <img class="audImg" id="audImg115" divID="audioDiv115" audioID="myAudio115" src="images/highway2.jpg" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio115" preload loop>
+               <source src="music/highway2.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange115" audioID="myAudio115" idVal="115" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard115" divID="audioDiv115" rangeID="audRange115" audioID="myAudio115" value="115"></i>
+            <i class="removeFromPlaylist" value="115">X</i>
+         </div>
+            <!-- Audio 16-->
+        <div class="audioDiv" id="audioDiv116" value="false">
+            <img class="audImg" id="audImg116" divID="audioDiv116" audioID="myAudio116" src="images/lake.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio116" preload loop>
+               <source src="music/LakeWindAmbience.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange116" audioID="myAudio116" idVal="116" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard116" divID="audioDiv116" rangeID="audRange116" audioID="myAudio116" value="116"></i>
+            <i class="removeFromPlaylist" value="116">X</i>
+         </div>
+            <!-- Audio 17-->
+        <div class="audioDiv" id="audioDiv117" value="false">
+            <img class="audImg" id="audImg117" divID="audioDiv117" audioID="myAudio117" src="images/wind.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio117" preload loop>
+               <source src="music/windQuietCreaks.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange117" audioID="myAudio117" idVal="117" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard117" divID="audioDiv117" rangeID="audRange117" audioID="myAudio117" value="117"></i>
+            <i class="removeFromPlaylist" value="117">X</i>
+         </div>
+            <!-- Audio 18-->
+        <div class="audioDiv" id="audioDiv118" value="false">
+            <img class="audImg" id="audImg118" divID="audioDiv118" audioID="myAudio118" src="images/windForest.jfif" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio118" preload loop>
+               <source src="music/windForest.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange118" audioID="myAudio118" idVal="118" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard118" divID="audioDiv118" rangeID="audRange118" audioID="myAudio118" value="118"></i>
+            <i class="removeFromPlaylist" value="118">X</i>
+         </div>
+             <!-- Audio 19-->
+        <div class="audioDiv" id="audioDiv119" value="false">
+            <img class="audImg" id="audImg119" divID="audioDiv119" audioID="myAudio119" src="images/guitar1.jpg" alt="hero image" loading="lazy">
+            <audio class="myAudio" id="myAudio119" preload loop>
+               <source src="music/WoodDanHenig.mp3" type="audio/ogg">
+               Your browser does not support the audio tag.
+            </audio>
+            <input class="audRange" id="audRange119" audioID="myAudio119" idVal="119" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
+            <i class="fa-solid fa-heart favInCard" id="favInCard119" divID="audioDiv119" rangeID="audRange119" audioID="myAudio119" value="119"></i>
+            <i class="removeFromPlaylist" value="119">X</i>
+         </div>
 
-
-    <div id="audioContainer">
-    <!-- Audio 1-->
-    <div class="audioDiv" id="audioDiv1" value="false">
-        <img class="audImg" id="audImg1" divID="audioDiv1" audioID="myAudio1" src="images/hero.jfif" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio1" preload loop>
-            <source src="music/hero.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange1" audioID="myAudio1" idVal="0" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard1" divID="audioDiv1" rangeID="audRange1" audioID="myAudio1" value="0"></i>
-        <i class="removeFromPlaylist" value="0">X</i>
-    </div>
-
-    <!-- Audio 2-->
-    <div class="audioDiv" id="audioDiv2" value="false">
-        <img class="audImg" id="audImg2" divID="audioDiv2" audioID="myAudio2" src="images/hitman.jfif" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio2" preload loop>
-            <source src="music/hit.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange2" audioID="myAudio2" idVal="1" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard2" divID="audioDiv2" rangeID="audRange2" audioID="myAudio2" value="1"></i>
-        <i class="removeFromPlaylist" value="1">X</i>
-    </div>
-
-    <!-- Audio 3-->
-    <div class="audioDiv" id="audioDiv3" value="false">
-        <img class="audImg" id="audImg3" divID="audioDiv3" audioID="myAudio3" src="images/thunder2.jfif" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio3" preload loop>
-            <source src="music/LowThunderRolls.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange3" audioID="myAudio3" idVal="2" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard3" divID="audioDiv3" rangeID="audRange3" audioID="myAudio3" value="2"></i>
-        <i class="removeFromPlaylist" value="2">X</i>
-    </div>
-
-    <!-- Audio 4-->
-    <div class="audioDiv" id="audioDiv4" value="false">
-        <img class="audImg" id="audImg4" divID="audioDiv4" audioID="myAudio4" src="images/rain1.jpg" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio4" preload loop>
-            <source src="music/rainOnRoof.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange4" audioID="myAudio4" idVal="3" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard4" divID="audioDiv4" rangeID="audRange4" audioID="myAudio4" value="3"></i>
-        <i class="removeFromPlaylist" value="3">X</i>
-    </div>
-
-    <!-- Audio 5-->
-    <div class="audioDiv" id="audioDiv5" value="false">
-        <img class="audImg" id="audImg5" divID="audioDiv5" audioID="myAudio5" src="images/rain2.jpg" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio5" preload loop>
-            <source src="music/rainOnCarHeavy.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange5" audioID="myAudio5" idVal="4" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard5" divID="audioDiv5" rangeID="audRange5" audioID="myAudio5" value="4"></i>
-        <i class="removeFromPlaylist" value="4">X</i>
-    </div>
-
-    <!-- Audio 6-->
-    <div class="audioDiv" id="audioDiv6" value="false">
-        <img class="audImg" id="audImg6" divID="audioDiv6" audioID="myAudio6" src="images/iceRain.jfif" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio6" preload loop>
-            <source src="music/iceRain.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange6" audioID="myAudio6" idVal="5" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard6" divID="audioDiv6" rangeID="audRange6" audioID="myAudio6" value="5"></i>
-        <i class="removeFromPlaylist" value="5">X</i>
-    </div>
-
-    <!-- Audio 7-->
-    <div class="audioDiv" id="audioDiv7" value="false">
-        <img class="audImg" id="audImg7" divID="audioDiv7" audioID="myAudio7" src="images/rain3.jpg" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio7" preload loop>
-            <source src="music/RainOnRooftop.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange7" audioID="myAudio7" idVal="6" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard7" divID="audioDiv7" rangeID="audRange7" audioID="myAudio7" value="6"></i>
-        <i class="removeFromPlaylist" value="6">X</i>
-    </div>
-
-    <!-- Audio 8-->
-    <div class="audioDiv" id="audioDiv8" value="false">
-        <img class="audImg" id="audImg8" divID="audioDiv8" audioID="myAudio8" src="images/thunder1.jfif" alt="hero image" loading="lazy">
-        <audio class="myAudio" id="myAudio8" preload loop>
-            <source src="music/distantThunder.mp3" type="audio/ogg">
-            Your browser does not support the audio tag.
-        </audio>
-        <input class="audRange" id="audRange8" audioID="myAudio8" idVal="7" type="range" min="0.0" max="1.0" step="0.01" value="0.1">
-        <i class="fa-solid fa-heart favInCard" id="favInCard8" divID="audioDiv8" rangeID="audRange8" audioID="myAudio8" value="7"></i>
-        <i class="removeFromPlaylist" value="7">X</i>
-    </div>
-
-    <div id="favDropinEachAudio">
-        <div id="favDropinEachAudioCancel" style="text-align:end;">X</div>
-        <div id="firstFavSave"><i class="fa-solid fa-heart"></i> <small>First Fav</small></div> <hr>
-        <div id="secondFavSave"><i class="fa-solid fa-heart"></i> <small>Second Fav</small></div> <hr>
-        <div id="thirdFavSave"><i class="fa-solid fa-heart"></i> <small>Third Fav</small></div>
-    </div>
-</div>
+        <div id="favDropinEachAudio">
+           <div id="favDropinEachAudioCancel" style="text-align:end;">X</div>
+           <div id="firstFavSave"><i class="fa-solid fa-heart"></i> <small>First Fav</small></div>
+           <hr>
+           <div id="secondFavSave"><i class="fa-solid fa-heart"></i> <small>Second Fav</small></div>
+           <hr>
+           <div id="thirdFavSave"><i class="fa-solid fa-heart"></i> <small>Third Fav</small></div>
+        </div>
+     </div>
 
 
 
     <script>
-        //BTN Toggle
+        //FAV PLAY BTN TOGGLE-------------------------------------------------
         function toggle(audFavBtnContainer){
             var element = document.getElementById(audFavBtnContainer);
             if(element.style.display === "none"){
@@ -246,32 +357,13 @@
             };
 ``      };
 
-
-        // //Get the total no of audio available
-        // var totalAudio =[];
-        // for(let i=0; i< favInCardArray.length; i++){ 
-        //     totalAudio.push(i);
-        // }
-        // console.log(totalAudio);
-
-        // //Range Array
-        // var audRange = document.getElementsByClassName("audRange");
-        // var audRangeArray = Array.prototype.slice.call(audRange);
-        // var audRangeArrayAll = [];
-
-        // audRangeArray.forEach(function(elem){
-        //     audRangeArrayAll.push(elem.value);
-        // });
-        // console.log(audRangeArrayAll);
-
-        //PLAY AND PAUSE AUDIO
+        //PLAY AND PAUSE AUDIO-------------------------------------------------
         var audImg = document.getElementsByClassName("audImg");
         var audImgArray = Array.prototype.slice.call(audImg);
         let audclicks1 = 1;
 
         audImgArray.forEach(function(e){
             e.addEventListener("click", function(){
-                
                 let divID = e.getAttribute("divID");
                 let audioID = e.getAttribute("audioID");
                 let divIDTag = document.getElementById(divID);
@@ -279,7 +371,6 @@
                 console.log(divIDTag);
             
             if(audclicks1%2==0){
-
                 divIDTag.style.border="2px solid rgb(188, 188, 188)";
                 audioIDTag.pause();
                 e.style.filter="blur(0px)";
@@ -294,18 +385,18 @@
         });
         
 
-        //Toggle favDropinEachAudioCancel btn
+        //TOGGLE favDropinEachAudioCancel btn (cancel btn in add to fav dropdown)-----------------------------
         var favDropinEachAudioCancel = document.getElementById("favDropinEachAudioCancel");
         favDropinEachAudioCancel.addEventListener("click", function(){
             favDropinEachAudio.style.display="none";
             
         });
 
-        //Saving each Audio range in Local Storage
+        //Saving each Audio range in Local Storage----------------------------------------------------
         var audRange = document.getElementsByClassName("audRange");
         var audRangeArray = Array.prototype.slice.call(audRange);
+
         audRangeArray.forEach(function(e) {
-            
                 let audioID = e.getAttribute("audioID");
                 let val = e.getAttribute("idVal");
                 localStorage.setItem(val,"0.1"); //used to set volume initially by default
@@ -313,15 +404,14 @@
                 e.addEventListener("input", function() {
                     let audioIDTag = document.getElementById(audioID);
                     audioIDTag.volume = e.value;
-                    
                     localStorage.setItem(val,`${e.value}`);
                 });
         });
 
-        //Click Each Fav in Card
+        //Click Each Fav in Card--------------------------------------------------------------------
         var favInCard = document.getElementsByClassName("favInCard");
         var favInCardArray = Array.prototype.slice.call(favInCard);
-        var play1Set = new Set(); //set is used because it will not store duplicate values
+
         var firstFavSave = document.getElementById("firstFavSave");
         var secondFavSave = document.getElementById("secondFavSave");
         var thirdFavSave = document.getElementById("thirdFavSave");
@@ -339,12 +429,7 @@
                     let audioID = thiselem.getAttribute("audioID");
                     let audRangeVal = localStorage.getItem(selectedFavValue);
                 
-                    console.log(`Selected Fav btn value: ${selectedFavValue}`);
-                    console.log(`Selected Audio Div ID: ${audioDivVal}`);
-                    console.log(`Selected Audio Range Value from local Storage: ${audRangeVal}`);
                     localStorage.setItem(`play1${selectedFavValue}`,`${audioDivVal}${audRangeID}${audioID}${audRangeVal}`);
-                    play1Set.add(selectedFavValue);
-                    console.log(play1Set);
                     location.reload();
                     window.alert(`Song is added to Playlist 1!`);
                 });
@@ -356,12 +441,7 @@
                     let audioID = thiselem.getAttribute("audioID");
                     let audRangeVal = localStorage.getItem(selectedFavValue);
                 
-                    console.log(`Selected Fav btn value: ${selectedFavValue}`);
-                    console.log(`Selected Audio Div ID: ${audioDivVal}`);
-                    console.log(`Selected Audio Range Value from local Storage: ${audRangeVal}`);
                     localStorage.setItem(`play2${selectedFavValue}`,`${audioDivVal}${audRangeID}${audioID}${audRangeVal}`);
-                    play1Set.add(selectedFavValue);
-                    console.log(play1Set);
                     location.reload();
                     window.alert(`Song is added to Playlist 2!`);
                 });
@@ -373,21 +453,14 @@
                     let audioID = thiselem.getAttribute("audioID");
                     let audRangeVal = localStorage.getItem(selectedFavValue);
                 
-                    console.log(`Selected Fav btn value: ${selectedFavValue}`);
-                    console.log(`Selected Audio Div ID: ${audioDivVal}`);
-                    console.log(`Selected Audio Range Value from local Storage: ${audRangeVal}`);
                     localStorage.setItem(`play3${selectedFavValue}`,`${audioDivVal}${audRangeID}${audioID}${audRangeVal}`);
-                    play1Set.add(selectedFavValue);
-                    console.log(play1Set);
                     location.reload();
                     window.alert(`Song is added to Playlist 3!`);
                 });
-
-                
             });
         });
 
-        // Click Play for each Fav
+        // Click FAV Play btn ----------------------------------------------------------------------
         var firstFavPlay = document.getElementById("firstFavPlay");
         var secondFavPlay = document.getElementById("secondFavPlay");
         var thirdFavPlay = document.getElementById("thirdFavPlay");
@@ -403,7 +476,6 @@
 
         const keys = Object.keys(localStorage);
 
-
         // Initialize an empty array to store the data
         const dataArray = [];
 
@@ -412,17 +484,13 @@
             dataArray.push(key);
         });
 
-        //to get data from local storage that starts with play1
+        //to get data from local storage that starts with play1,play2,play3,play
         const filteredArray1 = dataArray.filter(item => item.startsWith('play1'));
         const filteredArray2 = dataArray.filter(item => item.startsWith('play2'));
         const filteredArray3 = dataArray.filter(item => item.startsWith('play3'));
         const filteredArrayForAll  = dataArray.filter(item => item.startsWith('play'));
-        console.log(dataArray);
-        console.log(filteredArray1);
 
-        
         firstFavPlay.addEventListener("click", function(){
-            console.log("clicked");
             // Used to hide all audio divs
             audioDivArray.forEach(function(e){ 
                 e.style.display="none";
@@ -431,7 +499,7 @@
             myAudioArray.forEach(function(e){
                 e.pause();
             });
-            // Used To remove all the fav icon from audio card refer line 234
+            // Used To remove all the fav icon from audio card refer line 291
             favInCardArray.forEach(function(e){ 
                 e.style.display="none";
             });
@@ -439,27 +507,25 @@
             removeFromPlaylistArray.forEach(function(e){
                 e.style.display="flex";
                 e.addEventListener("click", function(){
-                    let remobeBtnVal = e.getAttribute("value");
-                    console.log(remobeBtnVal);
-                    localStorage.removeItem(`play1${remobeBtnVal}`);
+                    let removeBtnVal = e.getAttribute("value");
+                    localStorage.removeItem(`play1${removeBtnVal}`);
                     location.reload();
                 });
             });
 
             filteredArray1.forEach(function(elem){
-                let eachPlay1Audio = localStorage.getItem(`${elem}`);
-                let extractedTextofDiv = eachPlay1Audio.substring(0, 9);
-                let extractedTextRangeID = eachPlay1Audio.substring(9, 18);
-                let extractedTextaudioID = eachPlay1Audio.substring(18, 26);
-                let extractedTextofRange = eachPlay1Audio.substring(26, );
-                console.log(extractedTextofRange);
+                let eachPlayAudio = localStorage.getItem(`${elem}`);
+                let extractedTextofDiv = eachPlayAudio.substring(0, 11);
+                let extractedTextRangeID = eachPlayAudio.substring(11, 22);
+                let extractedTextaudioID = eachPlayAudio.substring(22, 32);
+                let extractedTextofRange = eachPlayAudio.substring(32, );
+
                 document.getElementById(extractedTextofDiv).style.display="flex";
                 document.getElementById(extractedTextRangeID).value=extractedTextofRange;
                 
-                let play1AudioID = document.getElementById(extractedTextaudioID);
-                play1AudioID.volume = extractedTextofRange;
-                play1AudioID.play();
-
+                let playAudioID = document.getElementById(extractedTextaudioID);
+                playAudioID.volume = extractedTextofRange;
+                playAudioID.play();
                 extractedTextaudioID.volume = extractedTextofRange;
             });
         });
@@ -482,26 +548,24 @@
             removeFromPlaylistArray.forEach(function(e){
                 e.style.display="flex";
                 e.addEventListener("click", function(){
-                    let remobeBtnVal = e.getAttribute("value");
-                    console.log(remobeBtnVal);
-                    localStorage.removeItem(`play2${remobeBtnVal}`);
+                    let removeBtnVal = e.getAttribute("value");
+                    localStorage.removeItem(`play2${removeBtnVal}`);
                     location.reload();
                 });
             });
 
             filteredArray2.forEach(function(elem){
-                let eachPlay1Audio = localStorage.getItem(`${elem}`);
-                let extractedTextofDiv = eachPlay1Audio.substring(0, 9);
-                let extractedTextRangeID = eachPlay1Audio.substring(9, 18);
-                let extractedTextaudioID = eachPlay1Audio.substring(18, 26);
-                let extractedTextofRange = eachPlay1Audio.substring(26, );
-                console.log(extractedTextaudioID);
+                let eachPlayAudio = localStorage.getItem(`${elem}`);
+                let extractedTextofDiv = eachPlayAudio.substring(0, 11);
+                let extractedTextRangeID = eachPlayAudio.substring(11, 22);
+                let extractedTextaudioID = eachPlayAudio.substring(22, 32);
+                let extractedTextofRange = eachPlayAudio.substring(32, );
                 document.getElementById(extractedTextofDiv).style.display="flex";
                 document.getElementById(extractedTextRangeID).value=extractedTextofRange;
                 
-                let play1AudioID = document.getElementById(extractedTextaudioID);
-                play1AudioID.volume = extractedTextofRange;
-                play1AudioID.play();
+                let playAudioID = document.getElementById(extractedTextaudioID);
+                playAudioID.volume = extractedTextofRange;
+                playAudioID.play();
 
                 extractedTextaudioID.volume = extractedTextofRange;
             });
@@ -525,32 +589,27 @@
             removeFromPlaylistArray.forEach(function(e){
                 e.style.display="flex";
                 e.addEventListener("click", function(){
-                    let remobeBtnVal = e.getAttribute("value");
-                    console.log(remobeBtnVal);
-                    localStorage.removeItem(`play3${remobeBtnVal}`);
+                    let removeBtnVal = e.getAttribute("value");
+                    localStorage.removeItem(`play3${removeBtnVal}`);
                     location.reload();
                 });
             });
             filteredArray3.forEach(function(elem){
-                let eachPlay1Audio = localStorage.getItem(`${elem}`);
-                let extractedTextofDiv = eachPlay1Audio.substring(0, 9);
-                let extractedTextRangeID = eachPlay1Audio.substring(9, 18);
-                let extractedTextaudioID = eachPlay1Audio.substring(18, 26);
-                let extractedTextofRange = eachPlay1Audio.substring(26, );
-                console.log(extractedTextaudioID);
+                let eachPlayAudio = localStorage.getItem(`${elem}`);
+                let extractedTextofDiv = eachPlayAudio.substring(0, 11);
+                let extractedTextRangeID = eachPlayAudio.substring(11, 22);
+                let extractedTextaudioID = eachPlayAudio.substring(22, 32);
+                let extractedTextofRange = eachPlayAudio.substring(32, );
                 document.getElementById(extractedTextofDiv).style.display="flex";
                 document.getElementById(extractedTextRangeID).value=extractedTextofRange;
                 
-                let play1AudioID = document.getElementById(extractedTextaudioID);
-                play1AudioID.volume = extractedTextofRange;
-                play1AudioID.play();
+                let playAudioID = document.getElementById(extractedTextaudioID);
+                playAudioID.volume = extractedTextofRange;
+                playAudioID.play();
 
                 extractedTextaudioID.volume = extractedTextofRange;
             });
         });
-
-
-
         
     </script>
     
