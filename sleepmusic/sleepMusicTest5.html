@@ -512,19 +512,21 @@
             favInCardArray.forEach(function(e){ 
                 e.style.display="none";
             });
-            // Used to display cancel btn after clicking play, and remove each div card after clicking cancel
+            //Used to display cancel btn after clicking play, and remove each div card after clicking cancel
             removeFromPlaylistArray.forEach(function(e){
                 e.style.display="flex";
                 e.addEventListener("click", function(){
                     let removeBtnVal = e.getAttribute("value");
                     localStorage.removeItem(`play1${removeBtnVal}`);
-                    location.reload();
+                    document.getElementById(`audioDiv${removeBtnVal}`).style.display="none";
+                    document.getElementById(`myAudio${removeBtnVal}`).pause();
                 });
             });
 
             filteredArray1.forEach(function(elem){
                 let eachPlayAudio = localStorage.getItem(`${elem}`);
                 let extractedTextofDiv = eachPlayAudio.substring(0, 11);
+                console.log(extractedTextofDiv);
                 let extractedTextRangeID = eachPlayAudio.substring(11, 22);
                 let extractedTextaudioID = eachPlayAudio.substring(22, 32);
                 let extractedTextofRange = eachPlayAudio.substring(32, );
@@ -559,7 +561,8 @@
                 e.addEventListener("click", function(){
                     let removeBtnVal = e.getAttribute("value");
                     localStorage.removeItem(`play2${removeBtnVal}`);
-                    location.reload();
+                    document.getElementById(`audioDiv${removeBtnVal}`).style.display="none";
+                    document.getElementById(`myAudio${removeBtnVal}`).pause();
                 });
             });
 
@@ -600,7 +603,8 @@
                 e.addEventListener("click", function(){
                     let removeBtnVal = e.getAttribute("value");
                     localStorage.removeItem(`play3${removeBtnVal}`);
-                    location.reload();
+                    document.getElementById(`audioDiv${removeBtnVal}`).style.display="none";
+                    document.getElementById(`myAudio${removeBtnVal}`).pause();
                 });
             });
             filteredArray3.forEach(function(elem){
