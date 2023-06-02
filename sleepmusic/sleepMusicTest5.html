@@ -357,7 +357,6 @@
         //PLAY AND PAUSE AUDIO-------------------------------------------------
         var audImg = document.getElementsByClassName("audImg");
         var audImgArray = Array.prototype.slice.call(audImg);
-        let audclicks1 = 1;
 
         audImgArray.forEach(function(e){
             e.addEventListener("click", function(){
@@ -365,19 +364,15 @@
                 let audioID = e.getAttribute("audioID");
                 let divIDTag = document.getElementById(divID);
                 let audioIDTag = document.getElementById(audioID);
-                console.log(divIDTag);
+                console.log(audioIDTag);
             
-            if(audclicks1%2==0){
+            if(audioIDTag.paused){
+                divIDTag.style.border="4px solid orange";
+                audioIDTag.play();
+            }else{
                 divIDTag.style.border="2px solid rgb(188, 188, 188)";
                 audioIDTag.pause();
-                e.style.filter="blur(0px)";
-            }else{
-                divIDTag.style.border="3px solid orange";
-                document.getElementById(audioID).volume=0.1;
-                audioIDTag.play();
-                e.style.filter="blur(3px)";
             };
-            audclicks1=audclicks1+1;
             });
         });
         
@@ -527,12 +522,12 @@
             filteredArray1.forEach(function(elem){
                 let eachPlayAudio = localStorage.getItem(`${elem}`);
                 let extractedTextofDiv = eachPlayAudio.substring(0, 11);
-                console.log(extractedTextofDiv);
                 let extractedTextRangeID = eachPlayAudio.substring(11, 22);
                 let extractedTextaudioID = eachPlayAudio.substring(22, 32);
                 let extractedTextofRange = eachPlayAudio.substring(32, );
 
                 document.getElementById(extractedTextofDiv).style.display="flex";
+                document.getElementById(extractedTextofDiv).style.border="4px solid orange";
                 document.getElementById(extractedTextRangeID).value=extractedTextofRange;
                 
                 let playAudioID = document.getElementById(extractedTextaudioID);
@@ -574,6 +569,7 @@
                 let extractedTextaudioID = eachPlayAudio.substring(22, 32);
                 let extractedTextofRange = eachPlayAudio.substring(32, );
                 document.getElementById(extractedTextofDiv).style.display="flex";
+                document.getElementById(extractedTextofDiv).style.border="4px solid orange";
                 document.getElementById(extractedTextRangeID).value=extractedTextofRange;
                 
                 let playAudioID = document.getElementById(extractedTextaudioID);
@@ -615,6 +611,7 @@
                 let extractedTextaudioID = eachPlayAudio.substring(22, 32);
                 let extractedTextofRange = eachPlayAudio.substring(32, );
                 document.getElementById(extractedTextofDiv).style.display="flex";
+                document.getElementById(extractedTextofDiv).style.border="4px solid orange";
                 document.getElementById(extractedTextRangeID).value=extractedTextofRange;
                 
                 let playAudioID = document.getElementById(extractedTextaudioID);
