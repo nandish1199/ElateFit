@@ -76,16 +76,15 @@
         }
         #favDropinEachAudio{
             position: absolute;
-            left: 40%;
-            bottom: 50%;
-            transition: 0.5s;
-            font-size: 35px;
+            left: 30%;
+            font-size: 25px;
             border: 2px solid grey;
-            padding: 10px;
+            padding: 8px;
             box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
             display: none;
             background: rgb(255, 255, 255);
             cursor: pointer;
+            z-index: 1000;
         }
         .removeFromPlaylist{
             position: absolute;
@@ -342,8 +341,6 @@
            <hr>
            <div id="thirdFavSave"><i class="fa-solid fa-heart"></i> <small>Third Fav</small></div>
         </div>
-     </div>
-
 
 
     <script>
@@ -421,6 +418,8 @@
                 this.style.color = "red";
                 favDropinEachAudio.style.display="block";
                 var thiselem = elem; //it will fetch the current element in the loop and save it in var
+                
+                
 
                 firstFavSave.addEventListener("click", function(){
                     let selectedFavValue = thiselem.getAttribute("value");
@@ -457,6 +456,16 @@
                     location.reload();
                     window.alert(`Song is added to Playlist 3!`);
                 });
+
+                //Used to display favDropinEachAudio in the heart button click position
+                function scrollToButton() {
+                    // Get the position of the button relative to the document
+                    var buttonPositiony = thiselem.getBoundingClientRect().top + window.pageYOffset;
+                    var buttonPositionx = thiselem.getBoundingClientRect().left;
+                    favDropinEachAudio.style.top=`${buttonPositiony}px`;
+                    favDropinEachAudio.style.left=`${buttonPositionx}px`;
+                }
+                scrollToButton();
             });
         });
 
