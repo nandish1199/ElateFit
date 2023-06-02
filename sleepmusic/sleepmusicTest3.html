@@ -57,7 +57,7 @@
             margin-left: 5px;
         }
         #audFavBtnContainer{
-            display: flex;
+            display: none;
             flex-direction: column;
             width: 150px;
             margin-left: 10px;
@@ -347,10 +347,10 @@
         //FAV PLAY BTN TOGGLE-------------------------------------------------
         function toggle(audFavBtnContainer){
             var element = document.getElementById(audFavBtnContainer);
-            if(element.style.display === "none"){
-                element.style.display = "block";
-            }else{
+            if(element.style.display === "block"){
                 element.style.display = "none";
+            }else{
+                element.style.display = "block";
             };
 ``      };
 
@@ -386,6 +386,7 @@
         var favDropinEachAudioCancel = document.getElementById("favDropinEachAudioCancel");
         favDropinEachAudioCancel.addEventListener("click", function(){
             favDropinEachAudio.style.display="none";
+            location.reload();
             
         });
 
