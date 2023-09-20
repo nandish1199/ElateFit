@@ -23,17 +23,17 @@
 .indexfrontText {
     font-size: 10vh;
     font-weight: 700;
-    color: rgb(0, 185, 0);
+    color: #828282;
     text-align: center;
 }
 
 .indexfrontText span {
     font-size: 11vh;
-    color: rgb(0, 0, 255);
+    color: rgb(0, 50, 167);
 }
 
 #ininFront {
-    color: red;
+    color: rgb(92, 140, 251);
 }
 
 #index-front-card-container {

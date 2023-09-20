@@ -18,7 +18,7 @@ body {
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     height: 70px;
-    background: #ffc107;
+    background: #b2b2b2;
 }
 
 #navframe {
@@ -46,10 +46,13 @@ body {
 }
 
 #toggleBtn {
-    background: #ffc107;
+    background: #b2b2b2;
     box-shadow: none;
 }
 
+.fa-bars {
+    color: #ffffff;
+}
 
 
 /*______________Other______________*/

@@ -148,6 +148,10 @@ iframe {
     color: #6c757d;
 }
 
+*.text-black {
+    color: #2c2c2c;
+}
+
 /*_______________Table____________________*/
 .table-striped {
     width: 100%;
