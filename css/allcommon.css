@@ -38,7 +38,7 @@ body {
 /*______Navbar Shown in the top______*/
 #searchbar {
     width: 100%;
-    height: 77px;
+    height: 75px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -49,6 +49,8 @@ body {
 #toggleBtn {
     background: #b2b2b2;
     box-shadow: none;
+    border: none;
+    padding: 0 10px;
 }
 
 .fa-bars {
