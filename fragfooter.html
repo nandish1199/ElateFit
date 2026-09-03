@@ -1,57 +1,171 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/allcommon.css" />
-    <title>Hello, world!</title>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+		integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="css/allcommon.css" />
+	<title>ElateFit footer</title>
 	<style>
-		.footerImg{
+		:root {
+			--footer-ink: #dce9e4;
+			--footer-muted: #91aaa2;
+			--footer-accent: #e29a61;
+			--footer-panel: #173b38;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			background: var(--footer-panel);
+			color: var(--footer-ink);
+			margin: 0;
+		}
+
+		.siteFooter {
+			font-family: 'Segoe UI', Tahoma, sans-serif;
+			min-height: 190px;
+			padding: 28px 24px 0;
+		}
+
+		.footerInner {
+			align-items: center;
+			display: flex;
+			gap: 24px;
+			justify-content: space-between;
+			margin: 0 auto;
+			max-width: 1180px;
+		}
+
+		.footerBrand {
+			color: #ffffff;
+			font-size: 1.1rem;
+			font-weight: 700;
+			margin: 0 0 5px;
+		}
+
+		.footerTagline {
+			color: var(--footer-muted);
+			font-size: 0.9rem;
+			margin: 0;
+		}
+
+		.footerSocial {
+			align-items: center;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			justify-content: center;
+		}
+
+		.footerSocialLink,
+		.footerProfile {
+			align-items: center;
+			border: 1px solid rgba(220, 233, 228, 0.22);
+			border-radius: 8px;
+			color: var(--footer-ink);
+			display: inline-flex;
+			height: 40px;
+			justify-content: center;
+			text-decoration: none;
+			transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+			width: 40px;
+		}
+
+		.footerProfile {
 			border-radius: 50%;
+			height: 48px;
+			margin-right: 4px;
+			overflow: hidden;
+			width: 48px;
+		}
+
+		.footerImg {
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		.footerSocialLink:hover,
+		.footerProfile:hover {
+			background: rgba(226, 154, 97, 0.18);
+			border-color: var(--footer-accent);
+			color: #ffffff;
+			transform: translateY(-2px);
+		}
+
+		.footerCopyright {
+			border-top: 1px solid rgba(220, 233, 228, 0.14);
+			color: var(--footer-muted);
+			font-size: 0.8rem;
+			margin: 27px auto 0;
+			max-width: 1180px;
+			padding: 15px 0;
+			text-align: center;
+		}
+
+		.footerCopyright a {
+			color: var(--footer-ink);
+			text-decoration: none;
+		}
+
+		.footerCopyright a:hover {
+			color: var(--footer-accent);
+		}
+
+		@media (max-width: 600px) {
+			.siteFooter {
+				padding: 24px 16px 0;
+			}
+
+			.footerInner {
+				align-items: flex-start;
+				flex-direction: column;
+				gap: 18px;
+			}
+
+			.footerSocial {
+				justify-content: flex-start;
+			}
 		}
 	</style>
-  </head>
-  <body>
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-		<!-- Grid container -->
-		<div class="container pt-4">
-			<!-- Section: Social media -->
-			<section class="mb-4">
-				<a class="heroAction" href="people/nandish.html" target="_blank"><img class="footerImg" src="people/images/NandishStudio.jpg" width="65" title="Nandish Hiremath" loading="lazy" /></a>
-				<!-- Facebook -->
-				<a class="btn btn-link btn-floating btn-lg text-dark m-1" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100086578594963" role="button"
-					data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+</head>
 
-				<!-- Twitter -->
-				<a class="btn btn-link btn-floating btn-lg text-dark m-1" target="_blank" title="Twitter" href="https://mobile.twitter.com/Elatefit" role="button"
-					data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
-
-				<!-- Google -->
-				<a class="btn btn-link btn-floating btn-lg text-dark m-1" target="_blank" title="Youtube" href="https://www.youtube.com/channel/UC4Ht4DdARt28G5iBEuwMvNQ" role="button"
-					data-mdb-ripple-color="dark"><i class="fa-brands fa-youtube"></i></i></a>
-
-				<!-- Instagram -->
-				<a class="btn btn-link btn-floating btn-lg text-dark m-1" target="_blank" title="Instagram" href="https://www.instagram.com/elatefit/?hl=en" role="button"
-					data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
-
-				<!-- Linkedin -->
-				<a class="btn btn-link btn-floating btn-lg text-dark m-1" target="_blank" title="Linked In" href="https://www.linkedin.com/in/nandishh/" role="button"
-					data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
-				
-			</section>
-			<!-- Section: Social media -->
+<body>
+	<footer class="siteFooter">
+		<div class="footerInner">
+			<div>
+				<p class="footerBrand">ElateFit</p>
+				<p class="footerTagline">A calmer, healthier way forward.</p>
+			</div>
+			<div class="footerSocial" aria-label="Social media links">
+				<a class="footerProfile" href="people/nandish.html" target="_blank" title="Nandish Hiremath"><img
+						class="footerImg" src="people/images/NandishStudio.jpg" alt="Nandish Hiremath"
+						loading="lazy" /></a>
+				<a class="footerSocialLink" target="_blank" title="Facebook"
+					href="https://www.facebook.com/profile.php?id=100086578594963"><i class="fab fa-facebook-f"></i></a>
+				<a class="footerSocialLink" target="_blank" title="Twitter"
+					href="https://mobile.twitter.com/Elatefit"><i class="fab fa-twitter"></i></a>
+				<a class="footerSocialLink" target="_blank" title="YouTube"
+					href="https://www.youtube.com/channel/UC4Ht4DdARt28G5iBEuwMvNQ"><i
+						class="fa-brands fa-youtube"></i></a>
+				<a class="footerSocialLink" target="_blank" title="Instagram"
+					href="https://www.instagram.com/elatefit/?hl=en"><i class="fab fa-instagram"></i></a>
+				<a class="footerSocialLink" target="_blank" title="LinkedIn"
+					href="https://www.linkedin.com/in/nandishh/"><i class="fab fa-linkedin"></i></a>
+			</div>
 		</div>
-		<!-- Grid container -->
-
-		<!-- Copyright -->
-		<div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			© 2020 Copyright:
-			<a class="text-dark heroAction" href="mailto:contact@elatefit.com" target="_blank">elatefit.com</a>
+		<div class="footerCopyright">© 2020 ElateFit · <a href="mailto:contact@elatefit.com">contact@elatefit.com</a>
 		</div>
-		<!-- Copyright -->
 	</footer>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <script src="js/allcommon.js"></script>
-  </body>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="js/allcommon.js"></script>
+</body>
+
 </html>
