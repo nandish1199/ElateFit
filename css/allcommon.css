@@ -76,6 +76,29 @@ body {
     border: none;
 }
 
+.heroAction {
+    align-items: center;
+    border: 1px solid #b9cbc4;
+    border-radius: 8px;
+    color: #1d3835;
+    display: inline-flex;
+    gap: 9px;
+    padding: 12px 17px;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.heroAction:hover {
+    box-shadow: 0 8px 18px rgba(39, 79, 70, 0.13);
+    transform: translateY(-2px);
+}
+
+.heroActionPrimary {
+    background: #16756d;
+    border-color: #16756d;
+    color: #fff;
+}
+
 
 audio {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

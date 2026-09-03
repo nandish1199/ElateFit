@@ -1,98 +1,260 @@
 .indexfrontHead {
-    margin-top: 30px;
+    max-width: 1180px;
+    min-height: 390px;
+    margin: 105px auto 30px;
+    padding: 54px 72px;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    background: linear-gradient(115deg, #eaf6f2 0%, #f8efe2 100%);
+    border: 1px solid #d9e6df;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
 }
 
-.indexfrontHeadleft #indexFrontPara {
-    margin-top: -45px;
+.indexfrontHeadleft {
+    max-width: 650px;
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    color: #16756d;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    margin: 0 0 12px;
+    text-transform: uppercase;
 }
 
 #front-index-img {
-    width: 150px;
-    height: 150px;
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
 }
 
 .indexfrontHeadRight img {
-    width: 150px;
-    height: 150px;
+    width: 260px;
+    height: 260px;
 }
 
 .indexfrontText {
-    font-size: 10vh;
-    font-weight: 700;
-    color: #828282;
-    text-align: center;
+    color: #1d3835;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 800;
+    line-height: 0.98;
+    margin: 0;
 }
 
 .indexfrontText span {
-    font-size: 11vh;
-    color: rgb(0, 50, 167);
+    color: #16756d;
+    font-size: inherit;
 }
 
 #ininFront {
-    color: rgb(92, 140, 251);
+    color: #d27b45;
+}
+
+#indexFrontPara {
+    color: #526461;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 22px 0 28px;
+    max-width: 540px;
+}
+
+#indexLinkContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.quickNav a:hover,
+.sectionLink:hover {
+    box-shadow: 0 8px 18px rgba(39, 79, 70, 0.13);
+    transform: translateY(-2px);
+}
+
+.quickNav {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto 62px;
+    max-width: 1180px;
+}
+
+.quickNav a {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dce5e1;
+    border-radius: 8px;
+    color: #25413d;
+    display: flex;
+    gap: 12px;
+    min-height: 54px;
+    padding: 0 18px;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.quickNav i {
+    color: #d27b45;
+    font-size: 1.1rem;
+}
+
+.contentSection {
+    margin: 0 auto;
+    max-width: 1180px;
+}
+
+.sectionHeading {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.sectionHeading .eyebrow {
+    margin-bottom: 7px;
+}
+
+.sectionHeading h2 {
+    color: #1d3835;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.sectionLink {
+    color: #16756d;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 #index-front-card-container {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 70px;
 }
 
 .indexcard {
     background: #fff;
-    width: 350px;
-    height: fit-content;
-    border-radius: 40px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid #dce5e1;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(35, 60, 55, 0.06);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 10px;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.indexcard:hover {
+    box-shadow: 0 14px 28px rgba(35, 60, 55, 0.12);
+    transform: translateY(-4px);
 }
 
 .card-img-top {
-    width: 140px;
-    height: 130px;
-    margin: auto;
-    padding: 10px;
-    border-radius: 30%;
+    background: #f5f8f6;
+    height: 145px;
+    object-fit: contain;
+    padding: 18px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .indexcard .card-body {
     display: flex;
     flex-direction: column;
-    margin: 20px 20px 10px 20px;
+    flex: 1;
+    padding: 20px;
 }
 
 .indexcard .card-title {
     font-size: 18px;
     font-weight: 600;
-    margin-top: -10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1d3835;
+    font-size: 1.1rem;
+    margin: 0 0 9px;
 }
 
 .indexcard .card-text {
-    margin-top: -25px;
+    color: #64716e;
+    line-height: 1.55;
+    margin: 0 0 20px;
+}
+
+.indexcard .heroAction {
+    align-self: flex-start;
+    background: #16756d;
+    border: 0;
+    border-radius: 8px !important;
+    margin-top: auto;
+    padding: 10px 14px;
+    color: #f8efe2;
 }
 
 @media only screen and (max-width: 600px) {
+    .indexfrontHead {
+        margin: 92px 14px 24px;
+        min-height: 0;
+        padding: 34px 24px;
+    }
+
+    .indexfrontText {
+        font-size: 3.1rem;
+    }
+
+    #indexFrontPara {
+        font-size: 0.96rem;
+    }
+
     #front-index-img {
         display: none;
     }
 
-    #indexLinkContainer {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+    .quickNav {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 14px 45px;
     }
 
-    .indexFrontBtn {
-        margin: 2px;
+    .quickNav a {
+        font-size: 0.9rem;
+        padding: 0 12px;
+    }
+
+    .contentSection {
+        margin: 0 14px;
+    }
+
+    .sectionHeading {
+        align-items: start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #index-front-card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+
+    .indexfrontHead,
+    .quickNav,
+    .contentSection {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    .indexfrontHead {
+        padding: 42px;
+    }
+
+    #index-front-card-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
