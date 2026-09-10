@@ -29,6 +29,8 @@ body {
     left: 0;
     top: 70px;
     z-index: 20;
+    border: 0;
+    box-shadow: 8px 12px 28px rgba(30, 58, 49, 0.12);
 }
 
 #navCancel {

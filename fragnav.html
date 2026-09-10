@@ -4,51 +4,125 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/allcommon.css">
     <title>Yoga</title>
     <style>
-        body{
-            background: #f3f3f3;
+        :root {
+            --nav-ink: #24332f;
+            --nav-muted: #687873;
+            --nav-green: #1f6b5b;
+            --nav-green-dark: #174e44;
+            --nav-gold: #b58b45;
+            --nav-paper: #fbfaf6;
+            --nav-line: #dfe5df;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 190px;
+            margin: 0;
+            padding: 12px;
+            background: #f1f4f1;
+            color: var(--nav-ink);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body>div {
+            overflow: hidden;
+            background: var(--nav-paper);
+            border: 1px solid var(--nav-line);
+            border-radius: 5px;
+            box-shadow: 0 12px 28px rgba(30, 58, 49, 0.12);
+        }
+
         .navlinks {
+            display: block;
+            color: var(--nav-muted);
             text-decoration: none;
-            font-size: 10px;
-            color: black;
-            font-size: medium;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 160ms ease, background-color 160ms ease;
         }
-        
+
         .navlinks:hover {
-            background: #e2e2e2;
-            color: black;
+            background: #edf3ef;
+            color: var(--nav-green-dark);
         }
-        
+
+        .navlinks:focus-visible {
+            outline: 2px solid var(--nav-gold);
+            outline-offset: -2px;
+        }
+
         .insideNavLink {
-            height: 50px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 11px 14px;
+            border-bottom: 1px solid rgba(223, 229, 223, 0.8);
+            text-align: left;
+        }
+
+        .navlinks:last-child .insideNavLink {
+            border-bottom: 0;
+        }
+
+        .insideNavLink i:first-child {
+            width: 18px;
+            color: var(--nav-green);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .insideNavLink span {
+            flex: 1;
+            width: auto;
+        }
+
+        #calcdropdown .insideNavLink span {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px;
-            text-align: left;
         }
-        
-        .insideNavLink span {
-            width: 140px;
+
+        #calcdropdown .fa-caret-down {
+            width: auto;
+            color: var(--nav-gold);
+            font-size: 0.78rem;
         }
-        
+
         #calcdropdownContent {
             display: none;
+            padding: 5px 0 7px 45px;
+            background: #f4f7f4;
+            border-bottom: 1px solid var(--nav-line);
         }
-        
+
         #calcdropdownContent a {
+            display: block;
+            padding: 8px 12px 8px 0;
+            color: var(--nav-muted);
             text-decoration: none;
-            padding: 0 5px 5px 20px;
-            color: black;
+            font-size: 0.8rem;
+            line-height: 1.3;
         }
-        
+
         #calcdropdownContent a:hover {
-            background: rgb(228, 228, 228);
+            background: transparent;
+            color: var(--nav-green-dark);
+        }
+
+        #calcdropdownContent a::before {
+            margin-right: 8px;
+            color: var(--nav-gold);
+            content: "•";
         }
     </style>
 </head>
@@ -56,23 +130,26 @@
 <body>
     <div class="d-flex flex-column justify-content-around border">
         <a class="navlinks" href="searchPage.html" target="_top">
-            <div class="insideNavLink"><i class="fa-solid fa-magnifying-glass text-success"></i> <span>Search</span> </div>
+            <div class="insideNavLink"><i class="fa-solid fa-magnifying-glass text-success"></i> <span>Search</span>
+            </div>
         </a>
         <a class="navlinks" href="index.html" target="_top">
             <div class="insideNavLink"><i class="fa-solid fa-house text-secondary"></i> <span>Home</span> </div>
         </a>
         <a class="navlinks" href="products/pcategories.html" target="_top">
-            <div class="insideNavLink"><i class="fa-solid fa-bag-shopping text-secondary"></i> <span>Best Products</span></div>
+            <div class="insideNavLink"><i class="fa-solid fa-bag-shopping text-secondary"></i> <span>Best
+                    Products</span></div>
         </a>
         <a class="navlinks" target="_top" id="calcdropdown">
-            <div class="insideNavLink"><i class="fa-solid fa-laptop-medical text-secondary"></i> <span>Health Calculator <i class="fa-solid fa-caret-down"></i></span></div>
+            <div class="insideNavLink"><i class="fa-solid fa-laptop-medical text-secondary"></i> <span>Health Calculator
+                    <i class="fa-solid fa-caret-down"></i></span></div>
         </a>
         <div id="calcdropdownContent">
-            <a class="navlinks" href="calculators/healthcalculator.html" target="_top">Tridosh Calculator </a> </br>
-            <a class="navlinks" href="calculators/caloriesCalculator.html" target="_top">Calories Calculator </a> </br>
-            <a class="navlinks" href="calculators/bmiCalculator.html" target="_top">BMI Calculator </a> </br>
-            <a class="navlinks" href="calculators/hwcalculator.html" target="_top">H & W Ratio Calculator </a> </br>
-            <a class="navlinks" href="calculators/bpCalculator.html" target="_top">BP Calculator </a> </br>
+            <a class="navlinks" href="calculators/healthcalculator.html" target="_top">Tridosh Calculator </a>
+            <a class="navlinks" href="calculators/caloriesCalculator.html" target="_top">Calories Calculator </a>
+            <a class="navlinks" href="calculators/bmiCalculator.html" target="_top">BMI Calculator </a>
+            <a class="navlinks" href="calculators/hwcalculator.html" target="_top">H & W Ratio Calculator </a>
+            <a class="navlinks" href="calculators/bpCalculator.html" target="_top">BP Calculator </a>
             <a class="navlinks" href="nutrition/nutcategories.html" target="_top">Nutrition Values </a>
         </div>
         <a class="navlinks" href="blogs/blogCategories.html" target="_top">
@@ -82,19 +159,22 @@
             <div class="insideNavLink"><i class="fa-solid fa-gamepad text-secondary"></i> <span>Best Games</span></div>
         </a>
         <a class="navlinks" href="movies/movieCategories.html" target="_top">
-            <div class="insideNavLink"><i class="fa-solid fa-clapperboard text-secondary"></i> <span>Best Movies</span></div>
+            <div class="insideNavLink"><i class="fa-solid fa-clapperboard text-secondary"></i> <span>Best Movies</span>
+            </div>
         </a>
         <a class="navlinks" href="contact.html" target="_top">
             <div class="insideNavLink"><i class="fa-solid fa-phone text-secondary"></i> <span>Contact Us</span></div>
         </a>
         <a class="navlinks" href="people/about.html" target="_top">
-            <div class="insideNavLink"><i class="fa-solid fa-address-card text-secondary"></i> <span>About Us</span></div>
+            <div class="insideNavLink"><i class="fa-solid fa-address-card text-secondary"></i> <span>About Us</span>
+            </div>
         </a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="js/allcommon.js"></script>
     <script>
-        $("#calcdropdown").click(function() {
+        $("#calcdropdown").click(function () {
             $("#calcdropdownContent").toggle();
         });
     </script>
