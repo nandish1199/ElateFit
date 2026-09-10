@@ -8,6 +8,13 @@
     padding: 0 24px;
 }
 
+.fragmentItems {
+    gap: 16px;
+    margin: 0 auto;
+    max-width: 1180px;
+    padding: 0 20px 24px;
+}
+
 .item {
     background: #ffffff;
     border: 1px solid #dce5e1;
@@ -150,6 +157,11 @@
         grid-template-columns: 1fr;
         margin-top: 18px;
         padding: 0 16px;
+    }
+
+    .fragmentItems {
+        margin-top: 0;
+        padding: 0 12px 18px;
     }
 
     .imgdev {

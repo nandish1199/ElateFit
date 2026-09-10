@@ -63,15 +63,19 @@ body {
 
 /* ______Used in Nutrition Details Fragment______*/
 #nutriFragmentotherFoods {
-    height: 440px;
+    display: block;
+    height: 700px;
     width: 100%;
+    border: 0;
 }
 
 
 /* ______Used in Best Product Fragment______*/
 #fragmentBestProducts {
-    height: 440px;
+    display: block;
+    height: 700px;
     width: 100%;
+    border: 0;
 }
 
 #footer {
@@ -108,4 +112,22 @@ body {
 audio {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 30px 30px 30px 30px;
+}
+
+@media only screen and (max-width: 900px) {
+
+    #nutriFragmentotherFoods,
+    #fragmentBestProducts {
+        height: 1040px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #nutriFragmentotherFoods {
+        height: 1780px;
+    }
+
+    #fragmentBestProducts {
+        height: 1480px;
+    }
 }
