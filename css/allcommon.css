@@ -38,7 +38,7 @@ body {
 /*______Navbar Shown in the top______*/
 #searchbar {
     width: 100%;
-    height: 78px;
+    height: 75px;
     overflow: hidden;
     display: flex;
     align-items: center;
