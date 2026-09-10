@@ -1,6 +1,26 @@
 //Used to toggle navmenu
-$("#toggleBtn").click(function() {
-    $("#navframe").toggle();
+$("#toggleBtn").each(function() {
+    const toggleButton = $(this);
+    const toggleIcon = toggleButton.find("i");
+
+    toggleButton.attr({
+        "aria-expanded": "false",
+        "aria-label": "Open navigation menu",
+        "title": "Open navigation menu"
+    });
+
+    toggleButton.on("click", function() {
+        const navigationFrame = $("#navframe");
+        const isOpening = !navigationFrame.is(":visible");
+
+        navigationFrame.toggle(isOpening);
+        toggleButton.toggleClass("is-open", isOpening).attr({
+            "aria-expanded": String(isOpening),
+            "aria-label": isOpening ? "Close navigation menu" : "Open navigation menu",
+            "title": isOpening ? "Close navigation menu" : "Open navigation menu"
+        });
+        toggleIcon.toggleClass("fa-bars", !isOpening).toggleClass("fa-xmark", isOpening);
+    });
 });
 
 
