@@ -38,12 +38,12 @@
     .catcontent>b {
         color: #1d3835;
         font-size: 0.9rem;
-        line-height: 0.5;
+        line-height: 0.3;
     }
 
     .catcontent>p {
         color: #64716e;
-        line-height: 0.5;
+        line-height: 0.7;
         font-size: 0.6rem;
         margin: 0;
     }
