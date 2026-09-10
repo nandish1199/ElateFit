@@ -38,7 +38,7 @@
             display: flex;
             gap: 12px;
             justify-content: center;
-            margin-top: 70px;
+            margin: 70px 30px 0 0;
             min-height: 118px;
             padding: 24px;
         }
@@ -65,16 +65,6 @@
         #myInputSearch:focus {
             border-color: var(--search-green);
             box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
-        }
-
-        .form-search .heroAction {
-            min-height: 48px;
-            justify-content: center;
-            margin: 0;
-            border-color: #b9cbc4;
-            border-radius: 4px;
-            background: #ffffff;
-            color: var(--search-green-dark);
         }
 
         .form-search .heroAction:hover {
@@ -145,13 +135,12 @@
 
         @media only screen and (max-width: 520px) {
             .form-search {
-                align-items: stretch;
-                flex-direction: column;
+                flex-direction: row;
                 padding: 18px 16px;
             }
 
-            .form-search .heroAction {
-                width: 100%;
+            .form-search {
+                width: 90%;
             }
 
             #searchMainDiv {
@@ -173,8 +162,8 @@
 
     <!--used to search the Categories-->
     <div class="form-search">
-        <input id="myInputSearch" type="text" class="search-item form-control" placeholder="Search..." />
-        <a href="searchPage.html" class="mx-2 heroAction">Clear</a>
+        <input id="myInputSearch" type="text" placeholder="Search..." />
+        <a href="searchPage.html" class="heroAction">Clear</a>
     </div>
     <div class="containerItems" id="searchMainDiv">
         <!--__________________________Categories(MainPages)____________________-->
