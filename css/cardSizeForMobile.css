@@ -20,6 +20,9 @@
         background: #f5f8f6;
         height: 100%;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .imgdev img {
@@ -43,8 +46,8 @@
 
     .catcontent>p {
         color: #64716e;
-        line-height: 0.9;
-        font-size: 0.6rem;
+        line-height: 1.2;
+        font-size: 0.7rem;
         margin: 0;
     }
 }
