@@ -1,0 +1,37 @@
+@media only screen and (max-width: 600px) {
+    .containerItems {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .item {
+        background: #ffffff;
+        border: 1px solid #dce5e1;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(35, 60, 55, 0.07);
+        transition: box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .imgdev {
+        background: #f5f8f6;
+        height: 100%;
+        width: 100%;
+    }
+
+    .imgdev img {
+        display: block;
+        height: 100%;
+        object-fit: contain;
+        padding: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .catbottom {
+        display: none;
+    }
+}
