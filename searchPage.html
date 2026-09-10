@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="images/static/logo.png" />
     <link rel="stylesheet" href="css/allcommon.css" />
     <title>Search, ElateFit</title>
@@ -13,36 +14,150 @@
     <meta name="keywords" content="search, elatefit">
     <meta name="author" content="elatefit">
     <style>
-        .item{
-            text-decoration: none;
-            padding: 10px 15px;
-            background: #DDDDDD;
-            box-shadow: rgb(212, 212, 212) -4px -4px 7px 1px inset, rgb(221, 221, 221) -3px -3px 6px 1px inset;
-            font-weight: bold;
-            margin: 5px;
-            border-radius: 5px;
-            color: rgb(41, 40, 40);
+        :root {
+            --search-ink: #24332f;
+            --search-muted: #687873;
+            --search-green: #1f6b5b;
+            --search-green-dark: #174e44;
+            --search-gold: #b58b45;
+            --search-paper: #fbfaf6;
+            --search-line: #dfe5df;
         }
-        .item:hover{
-            background: #b7b7b7;
-            box-shadow: rgb(171, 171, 171) -4px -4px 7px 1px inset, rgb(174, 174, 174) -3px -3px 6px 1px inset;
-            color: rgb(255, 255, 242);
+
+        body {
+            background: #f1f4f1;
+            color: var(--search-ink);
         }
-        #searchMainDiv{
+
+        .form-search {
+            align-items: center;
+            background: var(--search-paper);
+            border-bottom: 1px solid var(--search-line);
+            border-top: 1px solid var(--search-line);
+            box-sizing: border-box;
             display: flex;
+            gap: 12px;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .form-search{
             margin-top: 70px;
-            display: flex;
-            justify-content: center;
+            min-height: 118px;
+            padding: 24px;
         }
-        #myInputSearch{
-            width: 70vw;
-            margin: 0px 5px;
-            border: 1px solid rgb(75, 75, 75);
+
+        #myInputSearch {
+            background: #ffffff;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            box-shadow: 0 5px 16px rgba(30, 58, 49, 0.06);
+            color: var(--search-ink);
+            font-size: 1rem;
+            height: 48px;
+            margin: 0;
+            max-width: 680px;
+            outline: none;
+            padding: 0 16px;
+            width: min(70vw, 680px);
+        }
+
+        #myInputSearch::placeholder {
+            color: #87958f;
+        }
+
+        #myInputSearch:focus {
+            border-color: var(--search-green);
+            box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
+        }
+
+        .form-search .heroAction {
+            min-height: 48px;
+            justify-content: center;
+            margin: 0;
+            border-color: #b9cbc4;
+            border-radius: 4px;
+            background: #ffffff;
+            color: var(--search-green-dark);
+        }
+
+        .form-search .heroAction:hover {
+            background: var(--search-green-dark);
+            border-color: var(--search-green-dark);
+            color: #ffffff;
+        }
+
+        #searchMainDiv {
+            box-sizing: border-box;
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin: 0 auto;
+            max-width: 1280px;
+            padding: 30px 28px 70px;
+        }
+
+        .item {
+            align-items: center;
+            background: var(--search-paper);
+            border: 1px solid var(--search-line);
+            border-left: 3px solid var(--search-gold);
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: var(--search-ink);
+            display: flex;
+            justify-content: flex-start;
+            min-height: 64px;
+            padding: 14px 16px;
+            text-align: left;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            line-height: 1.4;
+            transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        }
+
+        .item:hover {
+            background: #ffffff;
+            border-color: #b9cbc4;
+            box-shadow: 0 9px 20px rgba(30, 58, 49, 0.1);
+            color: var(--search-green-dark);
+            transform: translateY(-2px);
+        }
+
+        .item:focus-visible {
+            outline: 2px solid var(--search-gold);
+            outline-offset: 2px;
+        }
+
+        @media only screen and (max-width: 1050px) {
+            #searchMainDiv {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media only screen and (max-width: 720px) {
+            #searchMainDiv {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                padding: 22px 18px 52px;
+            }
+
+            #myInputSearch {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 520px) {
+            .form-search {
+                align-items: stretch;
+                flex-direction: column;
+                padding: 18px 16px;
+            }
+
+            .form-search .heroAction {
+                width: 100%;
+            }
+
+            #searchMainDiv {
+                grid-template-columns: 1fr;
+                padding: 18px 14px 42px;
+            }
         }
     </style>
 </head>
@@ -50,20 +165,17 @@
 <body>
     <div id="navBarContainer">
         <button type="button" class="btn btn-warning" id="toggleBtn">
-        <i class="fa-sharp fa-solid fa-bars"></i>
-      </button>
+            <i class="fa-sharp fa-solid fa-bars"></i>
+        </button>
         <iframe id="searchbar" src="fragsearchbar.html" name="iframe_a" title="Iframe Example"></iframe>
     </div>
     <iframe id="navframe" src="fragnav.html" name="iframe_a" title="Iframe Example"></iframe>
 
-    <br>
     <!--used to search the Categories-->
     <div class="form-search">
         <input id="myInputSearch" type="text" class="search-item form-control" placeholder="Search..." />
         <a href="searchPage.html" class="mx-2 heroAction">Clear</a>
     </div>
-    <br>
-
     <div class="containerItems" id="searchMainDiv">
         <!--__________________________Categories(MainPages)____________________-->
         <a class="item heroAction" href="ayurveda/ayurvedaCategories.html"> Ayurveda </a>
@@ -106,29 +218,50 @@
         <a class="item heroAction" href="bestYoutubers/vidyasagar.html"> Vidyasagar Ayurveda </a>
 
         <!--_____Weight Gain Diet Plans______-->
-        <a class="item heroAction" href="dietPlans/wgDietPlans/wgPitta1.html"> Weight Gain Diet Plan for Pitta Prakriti (1) </a>
-        <a class="item heroAction" href="dietPlans/wgDietPlans/wgPitta2.html"> Weight Gain Diet Plan for Pitta Prakriti (2) </a>
-        <a class="item heroAction" href="dietPlans/wgDietPlans/wgPitta3.html"> Weight Gain Diet Plan for Pitta Prakriti (3) </a>
-        <a class="item heroAction" href="dietPlans/wgDietPlans/wgVata1.html"> Weight Gain Diet Plan for Vata Prakriti (1) </a>
-        <a class="item heroAction" href="dietPlans/wgDietPlans/wgVata2.html"> Weight Gain Diet Plan for Vata Prakriti (2) </a>
-        <a class="item heroAction" href="dietPlans/wgDietPlans/wgVata3.html"> Weight Gain Diet Plan for Vata Prakriti (3) </a>
-        
+        <a class="item heroAction" href="dietPlans/wgDietPlans/wgPitta1.html"> Weight Gain Diet Plan for Pitta Prakriti
+            (1) </a>
+        <a class="item heroAction" href="dietPlans/wgDietPlans/wgPitta2.html"> Weight Gain Diet Plan for Pitta Prakriti
+            (2) </a>
+        <a class="item heroAction" href="dietPlans/wgDietPlans/wgPitta3.html"> Weight Gain Diet Plan for Pitta Prakriti
+            (3) </a>
+        <a class="item heroAction" href="dietPlans/wgDietPlans/wgVata1.html"> Weight Gain Diet Plan for Vata Prakriti
+            (1) </a>
+        <a class="item heroAction" href="dietPlans/wgDietPlans/wgVata2.html"> Weight Gain Diet Plan for Vata Prakriti
+            (2) </a>
+        <a class="item heroAction" href="dietPlans/wgDietPlans/wgVata3.html"> Weight Gain Diet Plan for Vata Prakriti
+            (3) </a>
+
         <!--_____Weight Loss Diet Plans______-->
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKapha1.html">Weight Loss Diet Plan for Kapha Prakriti (1)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKapha2.html">Weight Loss Diet Plan for Kapha Prakriti (2)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKapha3.html">Weight Loss Diet Plan for Kapha Prakriti (3)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaDiab1.html">Weight Loss Diet Plan for Kapha Prakriti (Diabetes) (1)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaDiab2.html">Weight Loss Diet Plan for Kapha Prakriti (Diabetes) (2)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPitta1.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (1)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPitta2.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (2)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPitta3.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (3)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPittaDiab1.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (Diabetes) (1)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPittaDiab2.html">Weight Loss Diet Plan for Kapha+Pitta Prakriti (Diabetes) (2)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVata1.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (1)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVata2.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (2)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVata3.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (3)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVataDiab1.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (Diabetes) (1)</a>
-        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVataDiab2.html">Weight Loss Diet Plan for Kapha+Vata Prakriti (Diabetes) (2)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKapha1.html">Weight Loss Diet Plan for Kapha Prakriti
+            (1)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKapha2.html">Weight Loss Diet Plan for Kapha Prakriti
+            (2)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKapha3.html">Weight Loss Diet Plan for Kapha Prakriti
+            (3)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaDiab1.html">Weight Loss Diet Plan for Kapha
+            Prakriti (Diabetes) (1)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaDiab2.html">Weight Loss Diet Plan for Kapha
+            Prakriti (Diabetes) (2)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPitta1.html">Weight Loss Diet Plan for Kapha+Pitta
+            Prakriti (1)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPitta2.html">Weight Loss Diet Plan for Kapha+Pitta
+            Prakriti (2)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPitta3.html">Weight Loss Diet Plan for Kapha+Pitta
+            Prakriti (3)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPittaDiab1.html">Weight Loss Diet Plan for
+            Kapha+Pitta Prakriti (Diabetes) (1)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaPittaDiab2.html">Weight Loss Diet Plan for
+            Kapha+Pitta Prakriti (Diabetes) (2)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVata1.html">Weight Loss Diet Plan for Kapha+Vata
+            Prakriti (1)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVata2.html">Weight Loss Diet Plan for Kapha+Vata
+            Prakriti (2)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVata3.html">Weight Loss Diet Plan for Kapha+Vata
+            Prakriti (3)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVataDiab1.html">Weight Loss Diet Plan for
+            Kapha+Vata Prakriti (Diabetes) (1)</a>
+        <a class="item heroAction" href="dietPlans/wlDietPlans/wlKaphaVataDiab2.html">Weight Loss Diet Plan for
+            Kapha+Vata Prakriti (Diabetes) (2)</a>
 
         <!--______________Vastu_____________-->
         <a class="item heroAction" href="vastu/introduction.html">Introduction to Vastu</a>
@@ -224,7 +357,7 @@
         <a class="item heroAction" href="nutrition/vegetables/ridgeGourd.html">Ridge Guard</a>
         <a class="item heroAction" href="nutrition/vegetables/spinach.html">Spinach</a>
         <a class="item heroAction" href="nutrition/vegetables/tomato.html">Tomato</a>
-        
+
         <!--______________Products_____________-->
         <a class="item heroAction" href="products/beauty/beautyCategories.html">Best Beauty Products</a>
         <a class="item heroAction" href="products/bike/bikeCategories.html">Best Bikes</a>
@@ -239,7 +372,8 @@
     </div>
 
     <iframe id="footer" src="fragfooter.html" loading="lazy"></iframe>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="js/allcommon.js"></script>
     <script src="js/searchAll.js"></script>
 </body>
