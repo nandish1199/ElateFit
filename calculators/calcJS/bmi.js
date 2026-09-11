@@ -1,10 +1,45 @@
 
         $(document).ready(function() {
-            $("#calcsubmit").click(function() {
+            $("#calcsubmit").click(function(event) {
+                event.preventDefault();
+
                 var height = $("#height").val();
                 var weight = $("#weight").val();
                 var age = $("#age").val();
                 var gender = $("input:radio[name=gender]:checked").val();
+                var missingFields = [];
+
+                if (!height || Number(height) <= 0) {
+                    missingFields.push("Height in centimeters");
+                }
+                if (!weight || Number(weight) <= 0) {
+                    missingFields.push("Weight in kilograms");
+                }
+                if (!age || Number(age) <= 0) {
+                    missingFields.push("Age");
+                }
+                if (!gender) {
+                    missingFields.push("Gender");
+                }
+
+                if (missingFields.length) {
+                    alert("Please enter or select the following fields:\n\n" + missingFields.map(function(field, index) {
+                        return (index + 1) + ". " + field;
+                    }).join("\n"));
+
+                    if (missingFields[0] === "Height in centimeters") {
+                        $("#height").trigger("focus");
+                    } else if (missingFields[0] === "Weight in kilograms") {
+                        $("#weight").trigger("focus");
+                    } else if (missingFields[0] === "Age") {
+                        $("#age").trigger("focus");
+                    } else {
+                        $("input:radio[name=gender]").first().trigger("focus");
+                    }
+                    return false;
+                }
+
+                $(".weightResult, .bmiDietPlannDisplay").css("display", "none");
 
                 $("#disclaimer").css("display","block");
                 var heightinMeter = height/100;

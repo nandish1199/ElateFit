@@ -4,14 +4,171 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
     <title>Height to Weight Ratio Calculator, Elatefit</title>
     <style>
-        #disclaimer{
+        :root {
+            --hw-ink: #24332f;
+            --hw-muted: #687873;
+            --hw-green: #1f6b5b;
+            --hw-green-dark: #174e44;
+            --hw-gold: #b58b45;
+            --hw-paper: #fbfaf6;
+            --hw-line: #dfe5df;
+            --hw-shadow: 0 10px 28px rgba(30, 58, 49, 0.09);
+        }
+
+        body {
+            background: #f1f4f1;
+            color: var(--hw-ink);
+        }
+
+        .hwTitle {
+            box-sizing: border-box;
+            margin: 70px 0 0;
+            padding: 30px clamp(18px, 5vw, 72px);
+            color: var(--hw-ink);
+            background: linear-gradient(115deg, #e7f0eb, #fbfaf6 72%);
+            border-bottom: 1px solid var(--hw-line);
+            font-size: clamp(1.4rem, 3vw, 2.15rem) !important;
+            letter-spacing: 0.06em;
+        }
+
+        .hwForm {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            max-width: 960px;
+            margin: 28px auto 36px;
+            padding: 0 24px;
+        }
+
+        .hwField {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            padding: 20px;
+            background: var(--hw-paper);
+            border: 1px solid var(--hw-line);
+            border-left: 4px solid var(--hw-gold);
+            border-radius: 5px;
+            box-shadow: var(--hw-shadow);
+        }
+
+        .hwField h3 {
+            margin: 0;
+            color: var(--hw-ink);
+            font-size: 1rem;
+        }
+
+        #heightCM {
+            box-sizing: border-box;
+            width: 100% !important;
+            min-height: 46px;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            color: var(--hw-ink);
+            padding: 0 14px;
+        }
+
+        #heightCM:focus {
+            border-color: var(--hw-green);
+            box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
+            outline: none;
+        }
+
+        .genderOptions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            color: var(--hw-muted);
+        }
+
+        .genderOptions label {
+            color: var(--hw-muted);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .genderOptions input {
+            accent-color: var(--hw-green);
+            margin-right: 5px;
+        }
+
+        #calcsubmit {
+            grid-column: 1 / -1;
+            justify-self: start;
+            margin: 6px 0 0;
+            border-radius: 4px;
+            background: var(--hw-green);
+            border-color: var(--hw-green);
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        #disclaimer {
             display: none;
+            box-sizing: border-box;
+            max-width: 960px;
+            margin: 0 auto 26px !important;
+            padding: 14px 18px;
+            color: #725b2e;
+            background: #f4f0e5;
+            border-left: 3px solid var(--hw-gold);
+            line-height: 1.55;
+        }
+
+        #idlweightdisplay {
+            max-width: 960px;
+            margin: 0 auto 36px;
+            padding: 0 24px;
+        }
+
+        .hwResult {
+            padding: 24px;
+            background: var(--hw-paper);
+            border: 1px solid var(--hw-line);
+            border-top: 4px solid var(--hw-gold);
+            border-radius: 5px;
+            box-shadow: var(--hw-shadow);
+        }
+
+        .hwResult h3 {
+            margin: 0 0 10px;
+            color: var(--hw-muted);
+            font-size: 0.88rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hwResult h2 {
+            margin: 0;
+            color: var(--hw-green-dark);
+            font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+            line-height: 1.4;
+        }
+
+        @media only screen and (max-width: 650px) {
+            .hwForm {
+                grid-template-columns: 1fr;
+                padding: 0 14px;
+            }
+
+            #calcsubmit {
+                width: 100%;
+                justify-content: center;
+            }
+
+            #idlweightdisplay {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 0;
+            }
         }
     </style>
 </head>
@@ -19,33 +176,36 @@
 <body>
     <div id="navBarContainer">
         <button type="button" class="btn-warning" id="toggleBtn">
-        <i class="fa-sharp fa-solid fa-bars"></i>
-      </button>
+            <i class="fa-sharp fa-solid fa-bars"></i>
+        </button>
         <iframe id="searchbar" src="../fragsearchbar.html" name="iframe_a" title="Iframe Example"></iframe>
     </div>
     <iframe id="navframe" src="../fragnav.html" name="iframe_a" title="Iframe Example"></iframe>
 
-    <h1 class="bg-info text-light" style="margin-top: 70px;padding: 10px;"><b>HEIGHT TO WEIGHT RATIO CALCULATOR</b></h1>
-    <div style="margin:10px">
-        <div style="margin:10px;">
+    <h1 class="hwTitle"><b>HEIGHT TO WEIGHT RATIO CALCULATOR</b></h1>
+    <div class="hwForm">
+        <div class="hwField">
             <h3>Enter your Height in Centimeters</h3>
-            <input class="search-item" id="heightCM" style="width: 70vw;" placeholder="Enter Your Height in Centimeters" />
+            <input class="search-item" id="heightCM" type="number" placeholder="Enter Your Height in Centimeters" />
         </div>
-        <div style="margin:10px;">
+        <div class="hwField">
             <h3>Choose your Gender</h3>
-            <input type="radio" name="gender" value="male" /> Male
-            <input type="radio" name="gender" value="female" /> Female
-        </div> 
-        <br>
-        <a class="heroAction" id="calcsubmit" style="margin:10px;">SUBMIT </a>
+            <div class="genderOptions">
+                <label><input type="radio" name="gender" value="male" /> Male</label>
+                <label><input type="radio" name="gender" value="female" /> Female</label>
+            </div>
+        </div>
+        <a class="heroAction" id="calcsubmit">SUBMIT </a>
     </div>
 
-    <p id="disclaimer" style="margin-left:15px;">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing the following results.</p>
+    <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing
+        the following results.</p>
     <div id="idlweightdisplay"></div>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="../js/allcommon.js"></script>
     <script src="calcJS/hw.js"></script>
 </body>

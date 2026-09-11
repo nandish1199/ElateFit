@@ -4,33 +4,187 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
     <title>BMI Calculator, Elatefit</title>
     <style>
-        .allInputContainer{
-            margin-bottom: 30px;
+        :root {
+            --bmi-ink: #24332f;
+            --bmi-muted: #687873;
+            --bmi-green: #1f6b5b;
+            --bmi-green-dark: #174e44;
+            --bmi-gold: #b58b45;
+            --bmi-paper: #fbfaf6;
+            --bmi-line: #dfe5df;
+            --bmi-shadow: 0 10px 28px rgba(30, 58, 49, 0.09);
         }
-        .weightResult{
-            display: none;
-            margin: 15px;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-        .bmiDietPlannDisplay, #disclaimer{
-            display: none;
-            margin: 15px;
-        }
-        .eachInputContainer{
-            margin: 17px;
 
+        body {
+            background: #f1f4f1;
+            color: var(--bmi-ink);
         }
-        .search-item{
-            width: 350px;
+
+        .bmiTitle {
+            box-sizing: border-box;
+            margin: 70px 0 0;
+            padding: 30px clamp(18px, 5vw, 72px);
+            color: var(--bmi-ink);
+            background: linear-gradient(115deg, #e7f0eb, #fbfaf6 72%);
+            border-bottom: 1px solid var(--bmi-line);
+            font-size: clamp(1.4rem, 3vw, 2.15rem) !important;
+            letter-spacing: 0.06em;
         }
-        #calcsubmit{
-            margin: 5px 0 20px 15px;
+
+        .allInputContainer {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            max-width: 960px;
+            margin: 28px auto 36px;
+            padding: 0 24px;
+        }
+
+        .eachInputContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin: 0;
+            padding: 20px;
+            background: var(--bmi-paper);
+            border: 1px solid var(--bmi-line);
+            border-left: 4px solid var(--bmi-gold);
+            border-radius: 5px;
+            box-shadow: var(--bmi-shadow);
+        }
+
+        .eachInputContainer label {
+            color: var(--bmi-ink);
+            line-height: 1.4;
+        }
+
+        .eachInputContainer input[type="number"] {
+            width: 100%;
+            min-height: 46px;
+            box-sizing: border-box;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            color: var(--bmi-ink);
+            padding: 0 14px;
+        }
+
+        .eachInputContainer input[type="number"]:focus {
+            border-color: var(--bmi-green);
+            box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
+            outline: none;
+        }
+
+        .genderOptions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            color: var(--bmi-muted);
+        }
+
+        .genderOptions label {
+            color: var(--bmi-muted);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .genderOptions input {
+            accent-color: var(--bmi-green);
+            margin-right: 5px;
+        }
+
+        #calcsubmit {
+            grid-column: 1 / -1;
+            justify-self: start;
+            margin: 6px 0 0;
+            border-radius: 4px;
+            background: var(--bmi-green);
+            border-color: var(--bmi-green);
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        #disclaimer {
+            box-sizing: border-box;
+            max-width: 960px;
+            margin: 0 auto 26px;
+            padding: 14px 18px;
+            color: #725b2e;
+            background: #f4f0e5;
+            border-left: 3px solid var(--bmi-gold);
+            line-height: 1.55;
+        }
+
+        .weightResult {
+            display: none;
+            max-width: 960px;
+            margin: 14px auto;
+            padding: 20px 24px;
+            background: var(--bmi-paper);
+            border: 1px solid var(--bmi-line);
+            border-radius: 5px;
+            box-shadow: var(--bmi-shadow);
+        }
+
+        .weightResult h2 {
+            margin: 0 0 14px;
+            color: var(--bmi-green-dark);
+            font-size: 1.08rem;
+        }
+
+        .progress {
+            height: 12px;
+            overflow: hidden;
+            background: #e7eeea;
+            border-radius: 999px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: inherit;
+            transition: width 500ms ease;
+        }
+
+        .bmiDietPlannDisplay {
+            display: none;
+            max-width: 960px;
+            margin: 18px auto;
+            padding: 0 24px;
+        }
+
+        .bmiDietPlannDisplay .heroAction {
+            border-radius: 4px;
+            background: #ffffff;
+            color: var(--bmi-green-dark);
+        }
+
+        @media only screen and (max-width: 650px) {
+            .allInputContainer {
+                grid-template-columns: 1fr;
+                padding: 0 14px;
+            }
+
+            #calcsubmit {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .weightResult,
+            .bmiDietPlannDisplay {
+                margin-left: 14px;
+                margin-right: 14px;
+            }
+
+            .bmiDietPlannDisplay {
+                padding: 0;
+            }
         }
     </style>
 </head>
@@ -38,95 +192,108 @@
 <body>
     <div id="navBarContainer">
         <button type="button" class="btn-warning" id="toggleBtn">
-        <i class="fa-sharp fa-solid fa-bars"></i>
-      </button>
+            <i class="fa-sharp fa-solid fa-bars"></i>
+        </button>
         <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
     </div>
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
-    <h1 class="bg-info text-light" style="margin-top: 70px;padding: 10px;"><b>BODY MASS INDEX CALCULATOR FOR ADULTS</b></h1>
+    <h1 class="bmiTitle"><b>BODY MASS INDEX CALCULATOR FOR ADULTS</b></h1>
     <div class="allInputContainer">
-        
+
         <div class="eachInputContainer">
-            <label for="exampleFormControlInput1" class="form-label"><b>Enter your Height in Centimeters</b></label>
+            <label for="height" class="form-label"><b>Enter your Height in Centimeters</b></label>
             <input type="number" class="form-control" id="height" placeholder="Enter Your Height in Centimeters" />
         </div>
         <div class="eachInputContainer">
-            <label for="exampleFormControlInput1" class="form-label"><b>Enter your Weight in Kg</b></label>
+            <label for="weight" class="form-label"><b>Enter your Weight in Kg</b></label>
             <input type="number" class="form-control" id="weight" placeholder="Enter Your Weight in Kg" />
         </div>
         <div class="eachInputContainer">
-            <label for="exampleFormControlInput1" class="form-label"><b>Enter your Age</b></label>
+            <label for="age" class="form-label"><b>Enter your Age</b></label>
             <input type="number" class="form-control" id="age" placeholder="Enter Your Age" />
         </div>
         <div class="eachInputContainer">
-            <label for="exampleFormControlInput1" class="form-label"><b>Choose your Gender</b></label>
-            <br />
-            <input type="radio" name="gender" value="male" /> Male
-            <input type="radio" name="gender" value="female" /> Female
+            <label class="form-label"><b>Choose your Gender</b></label>
+            <div class="genderOptions">
+                <label><input type="radio" name="gender" value="male" /> Male</label>
+                <label><input type="radio" name="gender" value="female" /> Female</label>
+            </div>
         </div>
         <a class="heroAction" id="calcsubmit" /> SUBMIT</a>
     </div>
 
-    <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing the following results.</p>
+    <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing
+        the following results.</p>
 
     <div class="weightResult" id="severeThinness">
         <h2>Underweight (Severe Thin)</h2>
         <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 12.5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 12.5%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="moderateThinness">
         <h2>Underweight (Moderate Thin)</h2>
         <div class="progress">
-            <div class="progress-bar bg-secondary" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-secondary" role="progressbar" aria-label="Success example" style="width: 25%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="mildThinness">
         <h2>Underweight (Mild Thin)</h2>
         <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example" style="width: 37.5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example" style="width: 37.5%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="normal">
         <h2>Perfect (Normal Weight)</h2>
         <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 50%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="overweight">
         <h2>Overweight</h2>
         <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example" style="width: 62.5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example" style="width: 62.5%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="mildObesity">
         <h2>Overweight (Mild Obesity)</h2>
         <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 75%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="obesity">
         <h2>Overweight (Obesity)</h2>
         <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 87.5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 87.5%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
     <div class="weightResult" id="severeObesity">
         <h2>Overweight (Severe Obesity)</h2>
         <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 100%"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
 
-    
-    <div class="bmiDietPlannDisplay" id="bimwlDietPlanDisplay"><a class="heroAction" href="../dietPlans/wlDietPlansCat.html">Weight Loss Diet Plans</a></div>
-    <div class="bmiDietPlannDisplay" id="bimwgDietPlanDisplay"><a class="heroAction" href="../dietPlans/wgDietPlansCat.html">Weight Gain Diet Plans</a></div>
-    
-    
+
+    <div class="bmiDietPlannDisplay" id="bimwlDietPlanDisplay"><a class="heroAction"
+            href="../dietPlans/wlDietPlansCat.html">Weight Loss Diet Plans</a></div>
+    <div class="bmiDietPlannDisplay" id="bimwgDietPlanDisplay"><a class="heroAction"
+            href="../dietPlans/wgDietPlansCat.html">Weight Gain Diet Plans</a></div>
+
+
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="../js/allcommon.js"></script>
     <script src="calcJS/bmi.js"></script>
 </body>

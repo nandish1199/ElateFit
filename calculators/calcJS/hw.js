@@ -1,9 +1,32 @@
 
         $(document).ready(function() {
-            $("#calcsubmit").click(function() {
+            $("#calcsubmit").click(function(event) {
+                event.preventDefault();
+
                 var idealWeight = "";
                 var heightCM = $("#heightCM").val();
                 var gender = $("input:radio[name=gender]:checked").val();
+                var missingFields = [];
+
+                if (!heightCM || Number(heightCM) <= 0) {
+                    missingFields.push("Height in centimeters");
+                }
+                if (!gender) {
+                    missingFields.push("Gender");
+                }
+
+                if (missingFields.length) {
+                    alert("Please enter or select the following fields:\n\n" + missingFields.map(function(field, index) {
+                        return (index + 1) + ". " + field;
+                    }).join("\n"));
+
+                    if (missingFields[0] === "Height in centimeters") {
+                        $("#heightCM").trigger("focus");
+                    } else {
+                        $("input:radio[name=gender]").first().trigger("focus");
+                    }
+                    return false;
+                }
 
                 $("#disclaimer").css("display","block");
                 
@@ -106,6 +129,6 @@
 				idealWeight= "[73.5 kg to 89.8 kg] or [162 lb to 198 lb]";
 			}
 		}
-                $("#idlweightdisplay").html('<h3 style="margin-left:15px;"><b>Your Ideal Weight should be:</b></h3> <h2 style="background: #39CCCC;padding:20px;"> '+idealWeight+'</h2>');
+                $("#idlweightdisplay").html('<div class="hwResult"><h3>Your Ideal Weight Should Be</h3><h2>' + (idealWeight || "The entered height is outside the available range.") + '</h2></div>');
             });
         });
