@@ -60,6 +60,8 @@
                 var kapha = 0;
 
                 $("#disclaimer").css("display","block");
+                $(".doshaResults").css("display", "flex");
+                $(".solutionsTable").css("display", "table");
                 $("#tridoshSolutions").css("display","block");
                 var anger = $('input:radio[name=anger]:checked').val();
                 if (anger == "high") {
