@@ -1,6 +1,60 @@
 
         $(document).ready(function() {
-            $(".calcsubmit").click(function() {
+            $(".calcsubmit").click(function(event) {
+                event.preventDefault();
+
+                var requiredFields = [
+                    { name: "anger", label: "Rate your Anger" },
+                    { name: "sleep", label: "Rate your Sleep" },
+                    { name: "jointpain", label: "Joint Pain" },
+                    { name: "acidity", label: "Acidity problem" },
+                    { name: "skinproblem", label: "Skin problems" },
+                    { name: "sweat", label: "Sweating" },
+                    { name: "sweatsmell", label: "Sweat smell" },
+                    { name: "thoughts", label: "Lots of thoughts" },
+                    { name: "skinType", label: "Skin type" },
+                    { name: "digestion", label: "Digestion power" },
+                    { name: "water", label: "Water intake" },
+                    { name: "depressed", label: "Depression tendency" },
+                    { name: "fat", label: "Body fat" },
+                    { name: "urine", label: "Urine smell" },
+                    { name: "work", label: "Working nature" },
+                    { name: "season", label: "Preferred season" },
+                    { name: "weightloss", label: "Willingness to lose weight" },
+                    { name: "weightgain", label: "Willingness to gain weight" },
+                    { name: "diabetes", label: "Diabetes" },
+                    { name: "heart", label: "Heart disease" },
+                    { name: "kidney", label: "Kidney disease" },
+                    { name: "lungs", label: "Lung problems" },
+                    { name: "eye", label: "Eye problems" }
+                ];
+                var missingFields = [];
+
+                requiredFields.forEach(function(field) {
+                    if (!$('input:radio[name="' + field.name + '"]:checked').length) {
+                        missingFields.push(field);
+                    }
+                });
+
+                var ageInput = $("#age");
+                if (!$.trim(ageInput.val())) {
+                    missingFields.push({ name: "age", label: "Age" });
+                }
+
+                if (missingFields.length) {
+                    var missingMessage = "Please complete the following fields:\n\n" + missingFields.map(function(field, index) {
+                        return (index + 1) + ". " + field.label;
+                    }).join("\n");
+
+                    alert(missingMessage);
+                    if (missingFields[0].name === "age") {
+                        ageInput.trigger("focus");
+                    } else {
+                        $('input:radio[name="' + missingFields[0].name + '"]').first().trigger("focus");
+                    }
+                    return false;
+                }
+
                 var vata = 0;
                 var pitta = 0;
                 var kapha = 0;
