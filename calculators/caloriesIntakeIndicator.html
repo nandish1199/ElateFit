@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
     <title>Calories Calculator, Elatefit</title>
     <style>
-        #disclaimer{
+        #disclaimer {
             display: none;
             margin: 15px;
         }
@@ -20,21 +21,23 @@
 <body>
     <div id="navBarContainer">
         <button type="button" class="btn-warning" id="toggleBtn">
-        <i class="fa-sharp fa-solid fa-bars"></i>
-      </button>
+            <i class="fa-sharp fa-solid fa-bars"></i>
+        </button>
         <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
     </div>
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
-    <h1 class="bg-info text-light" style="margin-top: 70px; padding: 10px;"><b> CALORIES CALCULATOR</b></h1>
+    <h1 class="bg-info text-light" style="margin-top: 70px; padding: 10px;"><b> CALORIE INTAKE INDICATOR</b></h1>
     <div style="margin:15px;">
         <div>
             <h3>Enter your Height in Centimeters</h3>
-            <input type="number" class="search-item" id="height" style="width:80vw;" placeholder="Enter Your Height in Centimeters" />
+            <input type="number" class="search-item" id="height" style="width:80vw;"
+                placeholder="Enter Your Height in Centimeters" />
         </div>
         <div>
             <h3>Enter your Weight in Kg</h3>
-            <input type="number" class="search-item" id="weight" style="width:80vw;" placeholder="Enter Your Weight in Kg" />
+            <input type="number" class="search-item" id="weight" style="width:80vw;"
+                placeholder="Enter Your Weight in Kg" />
         </div>
         <div>
             <h3>Enter your Age</h3>
@@ -45,17 +48,18 @@
             <input type="radio" name="gender" value="male" /> Male
             <input type="radio" name="gender" value="female" /> Female
         </div>
-            <h3>Choose your Activity</h3>
-            <input type="radio" name="exercise" value="bmr" /> BMR (Basal Metabolic Rate)  </br>
-            <input type="radio" name="exercise" value="sedentary" /> Almost No Exercise </br>
-            <input type="radio" name="exercise" value="low" /> Low Exercise </br>
-            <input type="radio" name="exercise" value="medium" /> Medium Exercise </br>
-            <input type="radio" name="exercise" value="intense" /> Intense Exercise </br>
-        </div>
-        <a type="submit" class="heroAction" id="calcsubmit" style="margin-left:15px;" > SUBMIT </a>
+        <h3>Choose your Activity</h3>
+        <input type="radio" name="exercise" value="bmr" /> BMR (Basal Metabolic Rate) </br>
+        <input type="radio" name="exercise" value="sedentary" /> Almost No Exercise </br>
+        <input type="radio" name="exercise" value="low" /> Low Exercise </br>
+        <input type="radio" name="exercise" value="medium" /> Medium Exercise </br>
+        <input type="radio" name="exercise" value="intense" /> Intense Exercise </br>
+    </div>
+    <a type="submit" class="heroAction" id="calcsubmit" style="margin-left:15px;"> SUBMIT </a>
     </div>
 
-    <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing the following results.</p>
+    <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing
+        the following results.</p>
     <div id="idlWeightDisplay"></div>
 
     <div id="bmrCalDisplayMale"></div>
@@ -71,11 +75,12 @@
     <div id="intenseCalDisplayFemale"></div>
 
     <div id="dietPlanDisplay"></div>
-    
+
 
     <br>
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="../js/allcommon.js"></script>
     <script src="calcJS/calories.js"></script>
 
