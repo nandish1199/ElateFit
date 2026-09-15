@@ -39,10 +39,8 @@
 }
 
 .imgdev img {
-    display: block;
     height: 100%;
     object-fit: contain;
-    padding: 14px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -166,5 +164,11 @@
 
     .imgdev {
         height: 175px;
+    }
+
+    .imgdev img {
+        height: 117px;
+        width: 117px;
+        padding: 0;
     }
 }
