@@ -27,10 +27,9 @@
 
     .imgdev img {
         display: block;
-        height: 100px;
+        height: 117px;
         object-fit: contain;
-        padding: 14px;
-        width: 100px;
+        width: 117px;
         box-sizing: border-box;
     }
 
