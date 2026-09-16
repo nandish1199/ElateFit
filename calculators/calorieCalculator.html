@@ -9,30 +9,389 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="../images/static/logo.png" />
     <link rel="stylesheet" href="../css/allcommon.css" />
-    <title>BP Calculator, Elatefit</title>
+    <title>Calories Calculator, Elatefit</title>
     <style>
-        #disclaimer {
-            display: none;
-            margin: 15px;
+        :root {
+            --nutrition-ink: #24332f;
+            --nutrition-muted: #687873;
+            --nutrition-green: #1f6b5b;
+            --nutrition-dark: #174e44;
+            --nutrition-gold: #b58b45;
+            --nutrition-paper: #fbfaf6;
+            --nutrition-line: #dfe5df;
+            --nutrition-shadow: 0 12px 30px rgba(30, 58, 49, 0.09);
+        }
+
+        body {
+            background: #f1f4f1;
+            color: var(--nutrition-ink);
+        }
+
+        .nutritionPage {
+            max-width: 1240px;
+            margin: 70px auto 0;
+            padding: 30px 24px 60px;
+        }
+
+        .nutritionHero {
+            margin-bottom: 24px;
+            padding: 28px clamp(18px, 4vw, 48px);
+            background: linear-gradient(115deg, #e7f0eb, var(--nutrition-paper) 70%);
+            border: 1px solid var(--nutrition-line);
+            border-top: 4px solid var(--nutrition-gold);
+            box-shadow: var(--nutrition-shadow);
+        }
+
+        .nutritionHero h1 {
+            margin: 0 0 8px;
+            color: var(--nutrition-ink);
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            letter-spacing: 0.06em;
+        }
+
+        .nutritionHero p {
+            margin: 0;
+            color: var(--nutrition-muted);
+            line-height: 1.55;
+        }
+
+        .nutritionGrid {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.45fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .nutritionPanel {
+            padding: 22px;
+            background: var(--nutrition-paper);
+            border: 1px solid var(--nutrition-line);
+            border-radius: 6px;
+            box-shadow: var(--nutrition-shadow);
+        }
+
+        .nutritionPanel h2 {
+            margin: 0 0 18px;
+            color: var(--nutrition-dark);
+            font-size: 1.05rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .foodForm {
+            display: grid;
+            gap: 12px;
+        }
+
+        .foodForm label {
+            color: var(--nutrition-muted);
+            font-size: 0.86rem;
+            font-weight: 600;
+        }
+
+        .foodForm input {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 44px;
+            margin-top: 6px;
+            padding: 0 12px;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            background: #ffffff;
+            color: var(--nutrition-ink);
+            font: inherit;
+        }
+
+        .foodForm input:focus {
+            border-color: var(--nutrition-green);
+            box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
+            outline: none;
+        }
+
+        .foodForm button,
+        .dangerButton,
+        .periodButton {
+            min-height: 42px;
+            border: 1px solid var(--nutrition-green);
+            border-radius: 4px;
+            background: var(--nutrition-green);
+            color: #ffffff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .foodForm button:hover,
+        .periodButton:hover,
+        .dangerButton:hover {
+            box-shadow: 0 8px 16px rgba(31, 107, 91, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .foodPreview,
+        .statusMessage {
+            min-height: 20px;
+            color: var(--nutrition-muted);
+            font-size: 0.86rem;
+            line-height: 1.45;
+        }
+
+        .summaryGrid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .summaryCard {
+            padding: 16px;
+            border: 1px solid var(--nutrition-line);
+            border-top: 3px solid var(--nutrition-gold);
+            background: #ffffff;
+        }
+
+        .summaryCard span {
+            display: block;
+            color: var(--nutrition-muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .summaryCard strong {
+            display: block;
+            margin-top: 7px;
+            color: var(--nutrition-dark);
+            font-size: 1.45rem;
+        }
+
+        .chartTools {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .periodButtons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .periodButton {
+            min-height: 34px;
+            padding: 0 11px;
+            background: transparent;
+            border-color: var(--nutrition-line);
+            color: var(--nutrition-muted);
+            font-size: 0.8rem;
+        }
+
+        .periodButton.active {
+            background: var(--nutrition-green);
+            border-color: var(--nutrition-green);
+            color: #ffffff;
+        }
+
+        .chartWrap {
+            position: relative;
+            height: 290px;
+            padding: 10px;
+            border: 1px solid var(--nutrition-line);
+            background: #ffffff;
+        }
+
+        #nutritionChart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .trendGrid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .trendCard {
+            padding: 14px;
+            border-left: 3px solid var(--nutrition-green);
+            background: #eef5f0;
+        }
+
+        .trendCard strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--nutrition-dark);
+        }
+
+        .trendCard span {
+            color: var(--nutrition-muted);
+            font-size: 0.88rem;
+        }
+
+        .entryHeader,
+        .entryRow {
+            display: grid;
+            grid-template-columns: 1.4fr 0.65fr 0.8fr 0.8fr 34px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .entryHeader {
+            padding: 0 10px 9px;
+            color: var(--nutrition-muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .entryRow {
+            padding: 12px 10px;
+            border-top: 1px solid var(--nutrition-line);
+            color: var(--nutrition-ink);
+            font-size: 0.88rem;
+        }
+
+        .entryRow small {
+            display: block;
+            margin-top: 3px;
+            color: var(--nutrition-muted);
+        }
+
+        .deleteEntry {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #e2c5bc;
+            border-radius: 4px;
+            background: #fff8f5;
+            color: #a45e4c;
+            cursor: pointer;
+        }
+
+        .deleteEntry:hover {
+            background: #a45e4c;
+            color: #ffffff;
+        }
+
+        .entryEmpty {
+            padding: 22px 10px;
+            color: var(--nutrition-muted);
+            text-align: center;
+        }
+
+        .dangerButton {
+            margin-top: 14px;
+            padding: 0 14px;
+            background: transparent;
+            border-color: #a45e4c;
+            color: #a45e4c;
+            font-size: 0.84rem;
+        }
+
+        .statusMessage {
+            color: #a45e4c;
+        }
+
+        @media only screen and (max-width: 900px) {
+            .nutritionGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .nutritionPage {
+                padding: 22px 14px 42px;
+            }
+
+            .summaryGrid,
+            .trendGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .entryHeader {
+                display: none;
+            }
+
+            .entryRow {
+                grid-template-columns: 1fr 0.8fr 0.8fr 34px;
+                gap: 6px;
+            }
+
+            .entryRow .entryFood {
+                grid-column: 1 / -1;
+            }
         }
     </style>
 </head>
 
 <body>
     <div id="navBarContainer">
-        <button type="button" class="btn-warning" id="toggleBtn">
-            <i class="fa-sharp fa-solid fa-bars"></i>
-        </button>
+        <button type="button" class="btn-warning" id="toggleBtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
         <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
     </div>
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
 
-    <h1 class="bg-info text-light" style="margin-top: 70px; padding:10px;"><b>CALORIE CALCULATOR</b></h1>
-
-    <input type="text" id="foodSearch" placeholder="Search food" />
-    <input type="number" id="enterGrams" placeholder="Enter Grams" />
-    <button id="loadCalories">Fetch JSON Data</button>
-    <pre id="output"></pre>
+    <main class="nutritionPage">
+        <section class="nutritionHero">
+            <h1>CALORIE INTAKE JOURNAL</h1>
+            <p>Add foods by weight, keep a dated nutrition record, and review your calorie and protein pattern over
+                time.</p>
+        </section>
+        <div class="nutritionGrid">
+            <section class="nutritionPanel">
+                <h2>Add Food</h2>
+                <form class="foodForm" id="foodForm">
+                    <label for="foodSearch">Food
+                        <input type="text" id="foodSearch" list="foodOptions" autocomplete="off"
+                            placeholder="Try rice, dal, carrot" required />
+                    </label>
+                    <datalist id="foodOptions"></datalist>
+                    <label for="enterGrams">Amount in grams
+                        <input type="number" id="enterGrams" min="1" step="1" placeholder="30" required />
+                    </label>
+                    <div class="foodPreview" id="foodPreview">Choose a food to see its nutrition per 100 g.</div>
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Add food</button>
+                    <div class="statusMessage" id="statusMessage" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+            <section class="nutritionPanel">
+                <h2>Today's Intake</h2>
+                <div class="summaryGrid">
+                    <div class="summaryCard"><span>Calories</span><strong id="todayCalories">0 kcal</strong></div>
+                    <div class="summaryCard"><span>Protein</span><strong id="todayProtein">0 g</strong></div>
+                    <div class="summaryCard"><span>Food entries</span><strong id="todayEntries">0</strong></div>
+                </div>
+                <div class="entryHeader">
+                    <span>Food</span><span>Amount</span><span>Calories</span><span>Protein</span><span></span>
+                </div>
+                <div id="entryList"></div>
+                <button type="button" class="dangerButton" id="deleteAllButton"><i class="fa-solid fa-trash"></i> Delete
+                    all saved data</button>
+            </section>
+            <section class="nutritionPanel">
+                <div class="chartTools">
+                    <h2>Progress</h2>
+                    <div class="periodButtons">
+                        <button type="button" class="periodButton active" data-period="7">7 days</button>
+                        <button type="button" class="periodButton" data-period="15">15 days</button>
+                        <button type="button" class="periodButton" data-period="30">30 days</button>
+                    </div>
+                </div>
+                <div class="chartWrap"><canvas id="nutritionChart"
+                        aria-label="Calorie and protein intake chart"></canvas></div>
+                <div class="trendGrid">
+                    <div class="trendCard"><strong>Calories trend</strong><span id="calorieTrend">Add entries to see
+                            progress.</span></div>
+                    <div class="trendCard"><strong>Protein trend</strong><span id="proteinTrend">Add entries to see
+                            progress.</span></div>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
     <script src="https://code.jquery.com/jquery-3.6.1.js"
