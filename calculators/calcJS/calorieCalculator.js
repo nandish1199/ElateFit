@@ -1,16 +1,48 @@
-document.getElementById('loadCalories').addEventListener('click', async () => {
-    try {
-      const response = await fetch('calorieData.json');
+const dairyProducts = [
+  {
+    name: "milk",
+    calories_kcal: 0.61,
+    protein: 0.24,
+    carbs_g: 0.048,
+    fat_g: 0.0325,
+    fiber_g: 0
+  },
+  {
+    name: "cheese",
+    protein: "7",
+    calories: "100",
+    calcium: "0.05",
+  },
+  {
+    name: "carrot",
+    protein: "7",
+    calories: "100",
+    calcium: "0.05",
+  }
+];
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+document.getElementById("loadCalories").addEventListener("click", function() {
 
-      const data = await response.json();
+    const searchText = document.getElementById("foodSearch").value
+        .trim()
+        .toLowerCase();
+    
+    const grams = document.getElementById("enterGrams").value;
 
-      // Display the retrieved data
-      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
-    } catch (error) {
-      console.error('Failed to fetch data:', error);
+    for (const i of dairyProducts) {
+
+        if (searchText === i.name && grams > 0) {
+            console.log("Found food: " + i.name);
+            console.log("Protein: " + i.protein * grams);
+            break;
+        }
+        else if (searchText === i.name && grams <= 0) {
+          alert("Grams must be greater than 0");
+          break;
+        }
+        else {
+          alert("Enter the valid food name.");
+          break;
+        }
     }
-  });
+});
