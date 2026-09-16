@@ -1,6 +1,9 @@
 const NUTRITION_DB_NAME = "elateFitNutritionDB";
 const NUTRITION_DB_VERSION = 1;
 const NUTRITION_STORE = "foodEntries";
+const PROFILE_DB_NAME = "elateFitUserProfileDB";
+const PROFILE_STORE_NAME = "profiles";
+const PROFILE_RECORD_ID = "profile";
 
 const foodCatalog = {
     rice: { label: "Rice", calories: 130, protein: 2.7 },
@@ -25,6 +28,7 @@ const foodCatalog = {
 let nutritionDb;
 let selectedPeriod = 7;
 let allEntries = [];
+let userProfile = null;
 
 function openNutritionDatabase() {
     return new Promise((resolve, reject) => {
@@ -73,6 +77,28 @@ function deleteAllEntries() {
     });
 }
 
+function openProfileDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open(PROFILE_DB_NAME, 1);
+        request.onupgradeneeded = event => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains(PROFILE_STORE_NAME)) {
+                db.createObjectStore(PROFILE_STORE_NAME, { keyPath: "id" });
+            }
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+    });
+}
+
+function getSavedProfile(db) {
+    return new Promise((resolve, reject) => {
+        const request = db.transaction(PROFILE_STORE_NAME, "readonly").objectStore(PROFILE_STORE_NAME).get(PROFILE_RECORD_ID);
+        request.onsuccess = () => resolve(request.result || null);
+        request.onerror = () => reject(request.error);
+    });
+}
+
 function normalizeFoodName(value) { return value.trim().toLowerCase(); }
 
 function getFood(value) {
@@ -100,6 +126,54 @@ function formatTime(date) {
 function dayKey(date) {
     const local = new Date(date);
     return `${local.getFullYear()}-${String(local.getMonth() + 1).padStart(2, "0")}-${String(local.getDate()).padStart(2, "0")}`;
+}
+
+function activityFactor(level) {
+    const factors = {
+        Sedentary: 1.2,
+        Light: 1.375,
+        Moderate: 1.55,
+        Active: 1.725,
+        "Very active": 1.9
+    };
+    return factors[level] || 1.2;
+}
+
+function bodyTypeFactor(bodyType) {
+    const factors = {
+        Ectomorphic: 1.1,
+        Mesomorphic: 1.0,
+        Endomorphic: 0.9
+    };
+    return factors[bodyType] || 1.0;
+}
+
+function targetFactor(target) {
+    const factors = {
+        "Lose weight": 0.85,
+        "Maintain weight": 1.0,
+        "Gain weight": 1.15
+    };
+    return factors[target] || 1.0;
+}
+
+function proteinFactor(profile) {
+    const factors = {
+        Ectomorphic: 1.9,
+        Mesomorphic: 1.7,
+        Endomorphic: 1.5
+    };
+    const base = factors[profile.bodyType] || 1.6;
+    if (profile.target === "Gain weight") return base + 0.2;
+    if (profile.target === "Lose weight") return Math.max(1.4, base - 0.1);
+    return base;
+}
+
+function calculateNutritionTargets(profile) {
+    const baseCalories = (10 * profile.weight) + (6.25 * profile.height) - (5 * profile.age) + 5;
+    const calories = Math.round(baseCalories * activityFactor(profile.activityLevel) * bodyTypeFactor(profile.bodyType) * targetFactor(profile.target));
+    const protein = Math.round(profile.weight * proteinFactor(profile));
+    return { calories, protein };
 }
 
 function calculateNutrition(food, grams) {
@@ -131,6 +205,49 @@ function renderEntries() {
     document.getElementById("todayCalories").textContent = `${calories.toFixed(0)} kcal`;
     document.getElementById("todayProtein").textContent = `${protein.toFixed(1)} g`;
     document.getElementById("todayEntries").textContent = entries.length;
+}
+
+function renderProfileTargets() {
+    const calorieCard = document.getElementById("calorieTargetCard");
+    const proteinCard = document.getElementById("proteinTargetCard");
+    const calorieValue = document.getElementById("calorieTargetValue");
+    const calorieLeft = document.getElementById("calorieTargetLeft");
+    const calorieBadge = document.getElementById("calorieTargetBadge");
+    const proteinValue = document.getElementById("proteinTargetValue");
+    const proteinLeft = document.getElementById("proteinTargetLeft");
+    const proteinBadge = document.getElementById("proteinTargetBadge");
+    if (!calorieCard || !proteinCard) return;
+
+    const entries = getTodayEntries();
+    const todayCalories = entries.reduce((sum, entry) => sum + entry.calories, 0);
+    const todayProtein = entries.reduce((sum, entry) => sum + entry.protein, 0);
+
+    if (!userProfile) {
+        calorieCard.classList.remove("is-complete");
+        proteinCard.classList.remove("is-complete");
+        calorieValue.textContent = "Set profile";
+        calorieLeft.textContent = "Add a profile to calculate your calorie target.";
+        calorieBadge.innerHTML = "Profile needed";
+        proteinValue.textContent = "Set profile";
+        proteinLeft.textContent = "Add a profile to calculate your protein target.";
+        proteinBadge.innerHTML = "Profile needed";
+        return;
+    }
+
+    const targets = calculateNutritionTargets(userProfile);
+    const calorieRemaining = targets.calories - todayCalories;
+    const proteinRemaining = targets.protein - todayProtein;
+    const calorieComplete = calorieRemaining <= 0;
+    const proteinComplete = proteinRemaining <= 0;
+
+    calorieCard.classList.toggle("is-complete", calorieComplete);
+    proteinCard.classList.toggle("is-complete", proteinComplete);
+    calorieValue.textContent = `${targets.calories} kcal`;
+    calorieLeft.textContent = calorieComplete ? `Target reached. ${Math.abs(calorieRemaining).toFixed(0)} kcal over.` : `${calorieRemaining.toFixed(0)} kcal left to reach your target.`;
+    calorieBadge.innerHTML = calorieComplete ? '<i class="fa-solid fa-star"></i> Target reached' : 'In progress';
+    proteinValue.textContent = `${targets.protein} g`;
+    proteinLeft.textContent = proteinComplete ? `Target reached. ${Math.abs(proteinRemaining).toFixed(1)} g over.` : `${proteinRemaining.toFixed(1)} g left to reach your target.`;
+    proteinBadge.innerHTML = proteinComplete ? '<i class="fa-solid fa-star"></i> Target reached' : 'In progress';
 }
 
 function aggregateByDay(days) {
@@ -215,12 +332,19 @@ function renderProgress() {
 async function refreshDashboard() {
     allEntries = await getAllEntries();
     renderEntries();
+    renderProfileTargets();
     renderProgress();
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
     try {
         nutritionDb = await openNutritionDatabase();
+        try {
+            const profileDb = await openProfileDatabase();
+            userProfile = await getSavedProfile(profileDb);
+        } catch (error) {
+            userProfile = null;
+        }
         const dataList = document.getElementById("foodOptions");
         dataList.innerHTML = Object.values(foodCatalog).map(food => `<option value="${food.label}"></option>`).join("");
         const foodSearch = document.getElementById("foodSearch");

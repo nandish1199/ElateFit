@@ -226,6 +226,13 @@
             margin-bottom: 20px;
         }
 
+        .targetGrid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
         .summaryCard {
             padding: 16px;
             border: 1px solid var(--nutrition-line);
@@ -246,6 +253,62 @@
             margin-top: 7px;
             color: var(--nutrition-dark);
             font-size: 1.45rem;
+        }
+
+        .targetCard {
+            position: relative;
+            padding: 16px;
+            border: 1px solid var(--nutrition-line);
+            border-top: 3px solid var(--nutrition-green);
+            background: #ffffff;
+        }
+
+        .targetCard span {
+            display: block;
+            color: var(--nutrition-muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .targetCard strong {
+            display: block;
+            margin-top: 7px;
+            color: var(--nutrition-dark);
+            font-size: 1.45rem;
+        }
+
+        .targetCard small {
+            display: block;
+            margin-top: 6px;
+            color: var(--nutrition-muted);
+            font-size: 0.84rem;
+            line-height: 1.45;
+        }
+
+        .targetBadge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #eef5f0;
+            color: var(--nutrition-green);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .targetCard.is-complete {
+            border-top-color: var(--nutrition-gold);
+            box-shadow: inset 0 0 0 1px rgba(181, 139, 69, 0.08);
+        }
+
+        .targetCard.is-complete .targetBadge {
+            background: #f7f1df;
+            color: #8c672c;
         }
 
         .chartTools {
@@ -448,6 +511,20 @@
                     <div class="summaryCard"><span>Calories</span><strong id="todayCalories">0 kcal</strong></div>
                     <div class="summaryCard"><span>Protein</span><strong id="todayProtein">0 g</strong></div>
                     <div class="summaryCard"><span>Food entries</span><strong id="todayEntries">0</strong></div>
+                </div>
+                <div class="targetGrid" id="targetGrid">
+                    <div class="targetCard" id="calorieTargetCard">
+                        <span>Calorie target</span>
+                        <strong id="calorieTargetValue">Set profile</strong>
+                        <small id="calorieTargetLeft">Add a profile to calculate your calorie target.</small>
+                        <div class="targetBadge" id="calorieTargetBadge">Profile needed</div>
+                    </div>
+                    <div class="targetCard" id="proteinTargetCard">
+                        <span>Protein target</span>
+                        <strong id="proteinTargetValue">Set profile</strong>
+                        <small id="proteinTargetLeft">Add a profile to calculate your protein target.</small>
+                        <div class="targetBadge" id="proteinTargetBadge">Profile needed</div>
+                    </div>
                 </div>
                 <div class="entryHeader">
                     <span>Food</span><span>Amount</span><span>Calories</span><span>Protein</span><span></span>
