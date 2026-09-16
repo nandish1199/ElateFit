@@ -89,8 +89,12 @@ function setWorkoutStatus(message, error = true) {
 }
 
 function renderExerciseOptions() {
-    const list = document.getElementById("exerciseOptions");
-    list.innerHTML = EXERCISE_OPTIONS.filter(option => option.value).map(option => `<option value="${option.value}"></option>`).join("");
+    const suggestions = document.getElementById("exerciseSuggestions");
+    const input = document.getElementById("exerciseName");
+    const query = input.value.trim().toLowerCase();
+    const matches = EXERCISE_OPTIONS.filter(option => option.value && option.label.toLowerCase().includes(query));
+    suggestions.innerHTML = matches.map(option => `<button type="button" class="exerciseSuggestion" data-exercise="${option.value}" role="option">${option.label}<small>Tap to select this exercise</small></button>`).join("");
+    suggestions.classList.toggle("is-visible", matches.length > 0 && document.activeElement === input);
 }
 
 function renderWorkoutList() {
@@ -193,6 +197,24 @@ document.addEventListener("DOMContentLoaded", async function() {
     try {
         workoutDb = await openWorkoutDatabase();
         renderExerciseOptions();
+        const exerciseName = document.getElementById("exerciseName");
+        const exerciseSuggestions = document.getElementById("exerciseSuggestions");
+        exerciseName.addEventListener("focus", function() {
+            renderExerciseOptions();
+        });
+        exerciseName.addEventListener("input", function() {
+            renderExerciseOptions();
+        });
+        exerciseName.addEventListener("blur", function() {
+            setTimeout(() => exerciseSuggestions.classList.remove("is-visible"), 150);
+        });
+        exerciseSuggestions.addEventListener("click", function(event) {
+            const suggestion = event.target.closest(".exerciseSuggestion");
+            if (!suggestion) return;
+            exerciseName.value = suggestion.dataset.exercise;
+            exerciseName.dispatchEvent(new Event("input", { bubbles: true }));
+            exerciseName.focus();
+        });
         document.getElementById("workoutForm").addEventListener("submit", async function(event) {
             event.preventDefault();
             const selected = document.getElementById("exerciseName").value;

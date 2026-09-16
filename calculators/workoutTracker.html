@@ -89,6 +89,33 @@
             font-weight: 600;
         }
 
+        .repsField {
+            display: block;
+        }
+
+        .repsField input {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 44px;
+            margin-top: 6px;
+            padding: 0 12px;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            background: #fff;
+            color: var(--work-ink);
+            font: inherit;
+        }
+
+        .repsField input:focus {
+            border-color: var(--work-green);
+            box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+            outline: none;
+        }
+
+        .exercisePicker {
+            position: relative;
+        }
+
         .workoutForm input,
         .workoutForm select {
             box-sizing: border-box;
@@ -108,6 +135,56 @@
             border-color: var(--work-green);
             box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
             outline: none;
+        }
+
+        .exerciseSuggestions {
+            position: absolute;
+            z-index: 5;
+            top: calc(100% + 5px);
+            right: 0;
+            left: 0;
+            display: none;
+            overflow: hidden;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 10px 22px rgba(30, 58, 49, .14);
+        }
+
+        .exerciseSuggestions.is-visible {
+            display: block;
+        }
+
+        .exerciseSuggestion {
+            display: block;
+            width: 100%;
+            padding: 11px 12px;
+            border: 0;
+            border-bottom: 1px solid #edf1ee;
+            background: #fff;
+            color: var(--work-ink);
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+        }
+
+        .exerciseSuggestion:last-child {
+            border-bottom: 0;
+        }
+
+        .exerciseSuggestion:hover,
+        .exerciseSuggestion:focus {
+            background: #eef5f0;
+            color: var(--work-dark);
+            outline: none;
+        }
+
+        .exerciseSuggestion small {
+            display: block;
+            margin-top: 3px;
+            color: var(--work-muted);
+            font-size: .75rem;
+            font-weight: 500;
         }
 
         .workoutForm button,
@@ -343,24 +420,17 @@
                 <h2>Log Workout</h2>
                 <form class="workoutForm" id="workoutForm">
                     <label for="exerciseName">Workout
-                        <input type="search" id="exerciseName" list="exerciseOptions" placeholder="Choose an exercise"
-                            required autocomplete="off" />
-                        <datalist id="exerciseOptions">
-                            <option value="Shoulder Press"></option>
-                            <option value="Biceps Curl"></option>
-                            <option value="Bench Press"></option>
-                            <option value="Squat"></option>
-                            <option value="Deadlift"></option>
-                            <option value="Lat Pulldown"></option>
-                            <option value="Leg Press"></option>
-                            <option value="Triceps Extension"></option>
-                            <option value="Other"></option>
-                        </datalist>
+                        <div class="exercisePicker">
+                            <input type="search" id="exerciseName" placeholder="Choose an exercise" required
+                                autocomplete="off" />
+                            <div class="exerciseSuggestions" id="exerciseSuggestions" role="listbox"
+                                aria-label="Exercise suggestions"></div>
+                        </div>
                     </label>
                     <label for="customExercise">Custom workout (optional)
                         <input type="text" id="customExercise" placeholder="e.g. Dumbbell Row" />
                     </label>
-                    <label for="workoutReps">Repetitions
+                    <label class="repsField" for="workoutReps">Repetitions completed
                         <input type="number" id="workoutReps" min="1" step="1" placeholder="10" required />
                     </label>
                     <label for="workoutWeight">Weight in kg
