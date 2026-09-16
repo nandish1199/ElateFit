@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/userProfile.css" />
+    <title>User Profile, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <main class="profilePage">
+        <section class="profileHero">
+            <h1>USER PROFILE</h1>
+            <p>Store your body measurements, target, and diet preferences so the site can keep your details ready for
+                future health tools and recommendations.</p>
+        </section>
+
+        <div class="profileLayout">
+            <section class="profilePanel">
+                <h2>Profile form</h2>
+                <form class="profileForm" id="profileForm">
+                    <div class="profileFormGrid">
+                        <label class="profileField profileSpan2" for="username">Username
+                            <input type="text" id="username" placeholder="Enter your name" required />
+                        </label>
+                        <label class="profileField" for="userAge">Age
+                            <input type="number" id="userAge" min="1" step="1" placeholder="25" required />
+                        </label>
+                        <label class="profileField" for="userHeight">Height in cm
+                            <input type="number" id="userHeight" min="1" step="0.1" placeholder="170" required />
+                        </label>
+                        <label class="profileField" for="userWeight">Weight in kg
+                            <input type="number" id="userWeight" min="1" step="0.1" placeholder="65" required />
+                        </label>
+                        <label class="profileField" for="userTarget">Target
+                            <select id="userTarget" required>
+                                <option value="">Choose a target</option>
+                                <option value="Lose weight">Lose weight</option>
+                                <option value="Gain weight">Gain weight</option>
+                                <option value="Maintain weight">Maintain weight</option>
+                            </select>
+                        </label>
+                        <label class="profileField" for="dietType">Diet preference
+                            <select id="dietType" required>
+                                <option value="">Choose a diet</option>
+                                <option value="Vegetarian">Vegetarian</option>
+                                <option value="Non-vegetarian">Non-vegetarian</option>
+                                <option value="Eggetarian">Eggetarian</option>
+                            </select>
+                        </label>
+                        <label class="profileField" for="lactoseIntolerant">Lactose tolerance
+                            <select id="lactoseIntolerant" required>
+                                <option value="">Choose one</option>
+                                <option value="Not lactose intolerant">Not lactose intolerant</option>
+                                <option value="Lactose intolerant">Lactose intolerant</option>
+                            </select>
+                        </label>
+                        <label class="profileField" for="bodyType">Body type
+                            <select id="bodyType" required>
+                                <option value="">Choose a body type</option>
+                                <option value="Ectomorphic">Ectomorphic</option>
+                                <option value="Mesomorphic">Mesomorphic</option>
+                                <option value="Endomorphic">Endomorphic</option>
+                            </select>
+                        </label>
+                        <label class="profileField profileSpan2" for="activityLevel">Activity level
+                            <select id="activityLevel" required>
+                                <option value="">Choose your activity level</option>
+                                <option value="Sedentary">Sedentary</option>
+                                <option value="Light">Light</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Active">Active</option>
+                                <option value="Very active">Very active</option>
+                            </select>
+                        </label>
+                        <label class="profileField profileSpan2" for="profileNotes">Health notes or allergies (optional)
+                            <textarea id="profileNotes"
+                                placeholder="Add any food preferences, allergies, or fitness notes."></textarea>
+                        </label>
+                    </div>
+                    <div class="profileActions">
+                        <button type="submit"><i class="fa-solid fa-floppy-disk"></i> Save profile</button>
+                    </div>
+                    <div class="profileStatus" id="profileStatus" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+
+            <section class="profilePanel">
+                <h2>Profile snapshot</h2>
+                <div id="profileSummary"></div>
+            </section>
+        </div>
+    </main>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/userProfile.js"></script>
+</body>
+
+</html>
