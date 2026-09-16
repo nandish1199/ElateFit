@@ -145,10 +145,10 @@
             left: 0;
             display: none;
             overflow: hidden;
-            border: 1px solid #b9cbc4;
+            border: 1px solid var(--nutrition-line);
             border-radius: 4px;
-            background: #fff;
-            box-shadow: 0 10px 22px rgba(30, 58, 49, .14);
+            background: #ffffff;
+            box-shadow: 0 10px 22px rgba(30, 58, 49, 0.14);
         }
 
         .exerciseSuggestions.is-visible {
@@ -161,8 +161,8 @@
             padding: 11px 12px;
             border: 0;
             border-bottom: 1px solid #edf1ee;
-            background: #fff;
-            color: var(--work-ink);
+            background: #ffffff;
+            color: var(--nutrition-ink);
             cursor: pointer;
             font: inherit;
             text-align: left;
@@ -174,9 +174,10 @@
 
         .exerciseSuggestion:hover,
         .exerciseSuggestion:focus {
-            background: #eef5f0;
+            background: #e7f0eb;
             color: var(--work-dark);
-            outline: none;
+            box-shadow: inset 3px 0 0 red;
+            transform: none;
         }
 
         .exerciseSuggestion small {
@@ -187,7 +188,7 @@
             font-weight: 500;
         }
 
-        .workoutForm button,
+        #addingWorkoutButton,
         .dangerButton,
         .rangeButton {
             min-height: 42px;
@@ -201,7 +202,7 @@
             transition: transform 160ms ease, box-shadow 160ms ease;
         }
 
-        .workoutForm button:hover,
+        .workoutForm #addingWorkoutButton:hover,
         .dangerButton:hover,
         .rangeButton:hover {
             box-shadow: 0 8px 16px rgba(31, 107, 91, .18);
@@ -436,7 +437,7 @@
                     <label for="workoutWeight">Weight in kg
                         <input type="number" id="workoutWeight" min="0" step="0.5" placeholder="20" required />
                     </label>
-                    <button type="submit"><i class="fa-solid fa-plus"></i> Add workout</button>
+                    <button type="submit" id="addingWorkoutButton"><i class="fa-solid fa-plus"></i> Add workout</button>
                     <div class="statusMessage" id="workoutStatus" role="status" aria-live="polite"></div>
                 </form>
             </section>
