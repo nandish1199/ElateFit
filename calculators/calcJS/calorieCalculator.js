@@ -80,6 +80,15 @@ function getFood(value) {
     return foodCatalog[key] || Object.values(foodCatalog).find(food => food.label.toLowerCase() === key);
 }
 
+function renderFoodSuggestions(query) {
+    const suggestions = document.getElementById("foodSuggestions");
+    const normalizedQuery = normalizeFoodName(query);
+    const matches = Object.values(foodCatalog).filter(food => !normalizedQuery || food.label.toLowerCase().includes(normalizedQuery));
+
+    suggestions.innerHTML = matches.map(food => `<button type="button" class="foodSuggestion" data-food="${food.label}" role="option">${food.label}<small>${food.calories} kcal - ${food.protein} g protein per 100 g</small></button>`).join("");
+    suggestions.classList.toggle("is-visible", matches.length > 0 && document.activeElement === document.getElementById("foodSearch"));
+}
+
 function formatDate(date) {
     return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", year: "numeric" }).format(date);
 }
@@ -214,9 +223,25 @@ document.addEventListener("DOMContentLoaded", async function() {
         nutritionDb = await openNutritionDatabase();
         const dataList = document.getElementById("foodOptions");
         dataList.innerHTML = Object.values(foodCatalog).map(food => `<option value="${food.label}"></option>`).join("");
-        document.getElementById("foodSearch").addEventListener("input", function() {
+        const foodSearch = document.getElementById("foodSearch");
+        const foodSuggestions = document.getElementById("foodSuggestions");
+        foodSearch.addEventListener("focus", function() {
+            renderFoodSuggestions(this.value);
+        });
+        foodSearch.addEventListener("input", function() {
+            renderFoodSuggestions(this.value);
             const food = getFood(this.value);
             document.getElementById("foodPreview").textContent = food ? `${food.label}: ${food.calories} kcal and ${food.protein} g protein per 100 g.` : "Choose a food to see its nutrition per 100 g.";
+        });
+        foodSearch.addEventListener("blur", function() {
+            setTimeout(() => foodSuggestions.classList.remove("is-visible"), 150);
+        });
+        foodSuggestions.addEventListener("click", function(event) {
+            const suggestion = event.target.closest(".foodSuggestion");
+            if (!suggestion) return;
+            foodSearch.value = suggestion.dataset.food;
+            foodSearch.dispatchEvent(new Event("input", { bubbles: true }));
+            foodSearch.focus();
         });
         document.getElementById("foodForm").addEventListener("submit", async function(event) {
             event.preventDefault();

@@ -83,6 +83,10 @@
             gap: 12px;
         }
 
+        .foodSearchField {
+            position: relative;
+        }
+
         .foodForm label {
             color: var(--nutrition-muted);
             font-size: 0.86rem;
@@ -106,6 +110,55 @@
             border-color: var(--nutrition-green);
             box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
             outline: none;
+        }
+
+        .foodSuggestions {
+            position: absolute;
+            z-index: 5;
+            top: calc(100% + 5px);
+            right: 0;
+            left: 0;
+            display: none;
+            overflow: hidden;
+            border: 1px solid var(--nutrition-line);
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 10px 22px rgba(30, 58, 49, 0.14);
+        }
+
+        .foodSuggestions.is-visible {
+            display: block;
+        }
+
+        .foodSuggestion {
+            display: block;
+            width: 100%;
+            padding: 11px 12px;
+            border: 0;
+            border-bottom: 1px solid #edf1ee;
+            background: #ffffff;
+            color: var(--nutrition-ink);
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+        }
+
+        .foodSuggestion:last-child {
+            border-bottom: 0;
+        }
+
+        .foodSuggestion:hover,
+        .foodSuggestion:focus {
+            background: #eef5f0;
+            color: var(--nutrition-dark);
+            outline: none;
+        }
+
+        .foodSuggestion small {
+            display: block;
+            margin-top: 3px;
+            color: var(--nutrition-muted);
+            font-size: 0.75rem;
         }
 
         .foodForm button,
@@ -345,9 +398,11 @@
             <section class="nutritionPanel">
                 <h2>Add Food</h2>
                 <form class="foodForm" id="foodForm">
-                    <label for="foodSearch">Food
+                    <label class="foodSearchField" for="foodSearch">Food
                         <input type="text" id="foodSearch" list="foodOptions" autocomplete="off"
                             placeholder="Try rice, dal, carrot" required />
+                        <div class="foodSuggestions" id="foodSuggestions" role="listbox" aria-label="Food suggestions">
+                        </div>
                     </label>
                     <datalist id="foodOptions"></datalist>
                     <label for="enterGrams">Amount in grams
