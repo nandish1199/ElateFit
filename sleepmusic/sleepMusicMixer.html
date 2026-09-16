@@ -64,6 +64,10 @@
             white-space: nowrap;
         }
 
+        .mixerHero .mixerControls {
+            margin-top: 14px;
+        }
+
         .mixerLayout {
             display: grid;
             grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr);
@@ -338,12 +342,8 @@
                 <p>Layer rain, wind, fire, thunder, and ambience. Set each volume, save your favourite mixes, and bring
                     them back with one tap.</p>
             </div>
-            <a class="heroAction" href="#trackGrid"><i class="fa-solid fa-music"></i> Browse library</a>
-        </section>
-        <div class="mixerLayout">
-            <section class="mixerPanel">
-                <h2>Default music library</h2>
-                <div class="trackGrid" id="trackGrid"></div>
+            <div>
+                <a class="heroAction" href="#trackGrid"><i class="fa-solid fa-music"></i> Browse library</a>
                 <div class="mixerControls">
                     <button type="button" id="playMix"><i class="fa-solid fa-play"></i> Play mix</button>
                     <button type="button" class="secondaryButton" id="stopMix"><i class="fa-solid fa-stop"></i>
@@ -351,6 +351,12 @@
                     <button type="button" class="secondaryButton" id="saveFavorite"><i class="fa-solid fa-heart"></i>
                         Save favourite</button>
                 </div>
+            </div>
+        </section>
+        <div class="mixerLayout">
+            <section class="mixerPanel">
+                <h2>Default music library</h2>
+                <div class="trackGrid" id="trackGrid"></div>
                 <div class="mixerStatus" id="mixerStatus" role="status" aria-live="polite"></div>
                 <div class="mixerNote"><strong>Admin library:</strong> place a new audio file in
                     <code>sleepmusic/music</code>, then add its filename and display name to the catalog in
