@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/trackSerumApplication.css" />
+    <title>Serum Application Tracker, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <main class="serumPage">
+        <section class="serumHero">
+            <h1>SERUM APPLICATION TRACKER</h1>
+            <p>Configure your serum list, mark today’s scheduled serums as applied, and review completion trends over
+                time.</p>
+        </section>
+
+        <div class="serumLayout">
+            <section class="serumPanel">
+                <h2 id="serumFormTitle">Configure serum</h2>
+                <form class="serumForm" id="serumForm">
+                    <div class="serumFormGrid">
+                        <label class="serumField serumSpan2" for="serumName">Serum name
+                            <input type="text" id="serumName" placeholder="Vitamin C serum" required />
+                        </label>
+                        <label class="serumField" for="serumDosage">Dosage / amount
+                            <input type="text" id="serumDosage" placeholder="2 drops" required />
+                        </label>
+                        <label class="serumField" for="serumTime">Time of day
+                            <input type="time" id="serumTime" required />
+                        </label>
+                        <label class="serumField serumSpan2" for="serumNotes">Notes (optional)
+                            <textarea id="serumNotes" placeholder="Use after cleansing, before moisturizer."></textarea>
+                        </label>
+                        <div class="serumField serumSpan2">
+                            Schedule days
+                            <div class="serumDays" id="serumDays">
+                                <label class="serumDay"><input type="checkbox" value="Mon"
+                                        checked /><span>Mon</span></label>
+                                <label class="serumDay"><input type="checkbox" value="Tue"
+                                        checked /><span>Tue</span></label>
+                                <label class="serumDay"><input type="checkbox" value="Wed"
+                                        checked /><span>Wed</span></label>
+                                <label class="serumDay"><input type="checkbox" value="Thu"
+                                        checked /><span>Thu</span></label>
+                                <label class="serumDay"><input type="checkbox" value="Fri"
+                                        checked /><span>Fri</span></label>
+                                <label class="serumDay"><input type="checkbox" value="Sat"
+                                        checked /><span>Sat</span></label>
+                                <label class="serumDay"><input type="checkbox" value="Sun"
+                                        checked /><span>Sun</span></label>
+                            </div>
+                        </div>
+                        <label class="serumField serumSpan2" for="serumActive">
+                            <span>Active in tracker</span>
+                            <select id="serumActive" required>
+                                <option value="true">Yes, keep this serum active</option>
+                                <option value="false">No, keep it paused</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="serumActions">
+                        <button type="submit" id="saveSerumBtn"><i class="fa-solid fa-plus"></i> Add serum</button>
+                        <button type="button" class="secondaryButton" id="resetFormBtn"><i
+                                class="fa-solid fa-rotate-left"></i> Clear form</button>
+                    </div>
+                    <div class="serumStatus" id="serumStatus" role="status" aria-live="polite"></div>
+                </form>
+
+                <div class="serumNote"><strong>Tip:</strong> the schedule controls which serums appear in today’s
+                    checklist.
+                    Use edit to update dosage or time whenever the routine changes.</div>
+            </section>
+
+            <section class="serumPanel">
+                <h2>Configured serums</h2>
+                <div class="serumList" id="serumList"></div>
+            </section>
+
+            <section class="serumPanel">
+                <div class="serumToolbar">
+                    <h2>Today’s checklist</h2>
+                    <div class="serumFilterButtons" id="todayStatsButtons" aria-hidden="true"></div>
+                </div>
+                <div class="serumStatsGrid">
+                    <div class="serumStatCard"><span>Scheduled</span><strong id="todayScheduledCount">0</strong></div>
+                    <div class="serumStatCard"><span>Applied</span><strong id="todayAppliedCount">0</strong></div>
+                    <div class="serumStatCard"><span>Pending</span><strong id="todayPendingCount">0</strong></div>
+                </div>
+                <div class="serumChecklist" id="dailyChecklist"></div>
+            </section>
+
+            <section class="serumPanel">
+                <div class="serumToolbar">
+                    <h2>Completion chart</h2>
+                    <div class="serumFilterButtons" id="periodButtons"></div>
+                </div>
+                <div class="serumStatsGrid">
+                    <div class="serumStatCard"><span>Applied in period</span><strong id="periodApplications">0</strong>
+                    </div>
+                    <div class="serumStatCard"><span>Scheduled today</span><strong id="periodScheduled">0</strong></div>
+                    <div class="serumStatCard"><span>Completion rate</span><strong id="completionRate">0%</strong></div>
+                </div>
+                <div class="chartWrap"><canvas id="serumChart" aria-label="Serum application chart"></canvas></div>
+            </section>
+        </div>
+    </main>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/trackSerumApplication.js"></script>
+</body>
+
+</html>
