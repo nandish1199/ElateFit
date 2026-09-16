@@ -2,89 +2,299 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <link rel="icon" href="images/static/logo.png" />
-    <link rel="stylesheet" href="css/allcommon.css" />
-    <title>Contact, Elatefit</title>
-    <meta name="description" content="contact us elatefit.com">
-    <meta name="keywords" content="elatefit, yoga, fitness, nutrition, health calculators, stock, movies, games, contact us">
-    <meta name="author" content="elatefit">
-    <style>
-      .gmap_iframe{
-        width: 340px;
-        height: 340px;
-        border: 1px solid rgb(181, 181, 181);
-        border-radius: 68% 32% 31% 69% / 67% 58% 42% 33%;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="images/static/logo.png" />
+  <link rel="stylesheet" href="css/allcommon.css" />
+  <title>Contact, Elatefit</title>
+  <meta name="description" content="contact us elatefit.com">
+  <meta name="keywords"
+    content="elatefit, yoga, fitness, nutrition, health calculators, stock, movies, games, contact us">
+  <meta name="author" content="elatefit">
+  <style>
+    :root {
+      --contact-ink: #24332f;
+      --contact-muted: #687873;
+      --contact-green: #1f6b5b;
+      --contact-dark: #174e44;
+      --contact-gold: #b58b45;
+      --contact-paper: #fbfaf6;
+      --contact-line: #dfe5df;
+      --contact-shadow: 0 12px 30px rgba(30, 58, 49, 0.09);
+    }
+
+    body {
+      background: #f1f4f1;
+      color: var(--contact-ink);
+    }
+
+    .contactPage {
+      max-width: 1240px;
+      margin: 70px auto 0;
+      padding: 30px 24px 60px;
+    }
+
+    .contactHero {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 22px;
+      padding: 30px clamp(18px, 4vw, 48px);
+      background: linear-gradient(115deg, #e7f0eb, var(--contact-paper) 70%);
+      border: 1px solid var(--contact-line);
+      border-top: 4px solid var(--contact-gold);
+      box-shadow: var(--contact-shadow);
+    }
+
+    .contactHero h1 {
+      margin: 0 0 8px;
+      color: var(--contact-ink);
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      letter-spacing: .06em;
+    }
+
+    .contactHero p {
+      max-width: 720px;
+      margin: 0;
+      color: var(--contact-muted);
+      line-height: 1.55;
+    }
+
+    .contactHero .heroAction {
+      white-space: nowrap;
+    }
+
+    .contactLayout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .contactPanel {
+      padding: 22px;
+      background: var(--contact-paper);
+      border: 1px solid var(--contact-line);
+      border-radius: 6px;
+      box-shadow: var(--contact-shadow);
+    }
+
+    .contactPanel h2 {
+      margin: 0 0 18px;
+      color: var(--contact-dark);
+      font-size: 1.05rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .contactCards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contactCard {
+      padding: 18px;
+      border: 1px solid var(--contact-line);
+      border-top: 3px solid var(--contact-gold);
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .contactCardIcon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #eef5f0;
+      color: var(--contact-green);
+      font-size: 1rem;
+    }
+
+    .contactCard h3 {
+      margin: 0 0 8px;
+      color: var(--contact-dark);
+      font-size: 1rem;
+    }
+
+    .contactCard p {
+      margin: 0 0 12px;
+      color: var(--contact-muted);
+      line-height: 1.55;
+    }
+
+    .contactLink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--contact-green);
+      text-decoration: none;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .contactLink:hover {
+      text-decoration: underline;
+    }
+
+    .contactMetaGrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .contactMeta {
+      padding: 12px;
+      border: 1px solid #e3ebe6;
+      border-radius: 4px;
+      background: #f8fbf9;
+    }
+
+    .contactMeta span {
+      display: block;
+      color: var(--contact-muted);
+      font-size: .74rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .contactMeta strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--contact-dark);
+    }
+
+    .gmap_iframe {
+      width: 100%;
+      min-height: 420px;
+      border: 1px solid var(--contact-line);
+      border-radius: 6px;
+      box-shadow: var(--contact-shadow);
+    }
+
+    .contactAside {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contactNote {
+      padding: 16px;
+      border-left: 3px solid var(--contact-gold);
+      background: #f4f0e5;
+      color: #725b2e;
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .contactLayout {
+        grid-template-columns: 1fr;
       }
-      .contactInfo{
-        display: flex;
-        flex-direction: column;
-      }
-      .contactHead{
-        margin-top: 70px;
-        font-size: 70px;
-        font-weight: 800;
-        text-align: center;
-        color: rgb(133, 162, 255);
-        text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      }
-      #contactBox{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-      #contactBox h3{
-        color: rgb(92, 92, 92);
-      }
-      a{
-        text-decoration: none;
-        font-size: 20px;
-      }
-      .fa-message{
-        color: rgb(207, 207, 207);
-        font-size: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .contactPage {
+        padding: 22px 14px 42px;
       }
 
-    </style>
+      .contactHero {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contactCards,
+      .contactMetaGrid {
+        grid-template-columns: 1fr;
+      }
+
+      .contactHero .heroAction {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .gmap_iframe {
+        min-height: 320px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="navBarContainer">
-        <button type="button" class="btn-warning" id="toggleBtn">
-        <i class="fa-sharp fa-solid fa-bars"></i>
-      </button>
-        <iframe id="searchbar" src="fragsearchbar.html" name="iframe_a" title="Iframe Example"></iframe>
-    </div>
-    <iframe id="navframe" src="fragnav.html" name="iframe_a" title="Iframe Example"></iframe>
- 
-    <div class="contactInfo">
-      <h1 class="contactHead">Let's Connect</h1>
+  <div id="navBarContainer">
+    <button type="button" class="btn-warning" id="toggleBtn">
+      <i class="fa-sharp fa-solid fa-bars"></i>
+    </button>
+    <iframe id="searchbar" src="fragsearchbar.html" name="iframe_a" title="Iframe Example"></iframe>
+  </div>
+  <iframe id="navframe" src="fragnav.html" name="iframe_a" title="Iframe Example"></iframe>
 
-      <div id="contactBox">
-        <div>
-          <h3> FOR BUSINESS QUERY: </h3>
-          <div><i class="fa-solid fa-message"></i> <a class="heroAction" href="mailto:contact@elatefit.com">contact@elatefit.com</a></div>
-          <br>
-          <h3> FOR OTHER QUERY: </h3>
-          <div><i class="fa-solid fa-message"></i> <a class="heroAction" href="mailto:nandish1199@gmail.com">nandish1199@gmail.com</a></div>
-        </div>
-        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=hubli&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+  <main class="contactPage">
+    <section class="contactHero">
+      <div>
+        <h1>LET'S CONNECT</h1>
+        <p>Reach out for business inquiries, feedback, or general support. The contact options are kept simple,
+          direct, and easy to scan on desktop or mobile.</p>
       </div>
+      <a class="heroAction" href="mailto:contact@elatefit.com"><i class="fa-solid fa-envelope"></i> Email us</a>
+    </section>
+
+    <div class="contactLayout">
+      <section class="contactPanel">
+        <h2>Contact details</h2>
+        <div class="contactCards">
+          <div class="contactCard">
+            <span class="contactCardIcon"><i class="fa-solid fa-briefcase"></i></span>
+            <h3>Business query</h3>
+            <p>For partnerships, promotions, collaborations, or business related communication.</p>
+            <a class="contactLink" href="mailto:contact@elatefit.com"><i class="fa-solid fa-message"></i>
+              contact@elatefit.com</a>
+          </div>
+          <div class="contactCard">
+            <span class="contactCardIcon"><i class="fa-solid fa-user"></i></span>
+            <h3>General support</h3>
+            <p>For app feedback, suggestions, page issues, or other questions about ElateFit.</p>
+            <a class="contactLink" href="mailto:nandish1199@gmail.com"><i class="fa-solid fa-message"></i>
+              nandish1199@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contactMetaGrid">
+          <div class="contactMeta">
+            <span>Response style</span>
+            <strong>Direct and practical</strong>
+          </div>
+          <div class="contactMeta">
+            <span>Availability</span>
+            <strong>Checked regularly</strong>
+          </div>
+        </div>
+
+        <div class="contactNote">
+          <strong>Tip:</strong> include the page name or calculator name in your email subject so the request
+          is easier to route and answer quickly.
+        </div>
+      </section>
+
+      <aside class="contactAside">
+        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+          src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=hubli&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+      </aside>
     </div>
-    <br>
+  </main>
 
-    <iframe id="footer" src="fragfooter.html" loading="lazy"></iframe>
+  <iframe id="footer" src="fragfooter.html" loading="lazy"></iframe>
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.js"
-      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/allcommon.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  <script src="js/allcommon.js"></script>
+</body>
+
 </html>
