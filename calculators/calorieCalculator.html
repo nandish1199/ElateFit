@@ -182,6 +182,35 @@
             transform: translateY(-2px);
         }
 
+        .foodForm .foodSuggestion {
+            min-height: 0;
+            margin: 0;
+            padding: 11px 12px;
+            border: 0;
+            border-bottom: 1px solid #e4ece7;
+            border-radius: 0;
+            background: var(--nutrition-paper);
+            box-shadow: none;
+            color: var(--nutrition-ink);
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-align: left;
+            transform: none;
+        }
+
+        .foodForm .foodSuggestion:hover,
+        .foodForm .foodSuggestion:focus {
+            background: #e7f0eb;
+            color: var(--nutrition-dark);
+            box-shadow: inset 3px 0 0 var(--nutrition-gold);
+            transform: none;
+        }
+
+        .foodForm .foodSuggestion small {
+            color: var(--nutrition-muted);
+            font-weight: 400;
+        }
+
         .foodPreview,
         .statusMessage {
             min-height: 20px;
