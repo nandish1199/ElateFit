@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <title>About Us, Elatefit</title>
+    <meta name="description"
+        content="About ElateFit, a free fitness website with research-based guidance and honest product recommendations.">
+    <meta name="keywords"
+        content="elatefit, about us, free fitness website, research based guidance, honest products, contact us">
+    <meta name="author" content="elatefit">
+    <style>
+        :root {
+            --about-ink: #24332f;
+            --about-muted: #687873;
+            --about-green: #1f6b5b;
+            --about-dark: #174e44;
+            --about-gold: #b58b45;
+            --about-paper: #fbfaf6;
+            --about-line: #dfe5df;
+            --about-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+        }
+
+        body {
+            background: #f1f4f1;
+            color: var(--about-ink);
+        }
+
+        .aboutPage {
+            max-width: 1240px;
+            margin: 70px auto 0;
+            padding: 30px 24px 60px;
+        }
+
+        .aboutHero {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 22px;
+            padding: 30px clamp(18px, 4vw, 48px);
+            background: linear-gradient(115deg, #e7f0eb, var(--about-paper) 70%);
+            border: 1px solid var(--about-line);
+            border-top: 4px solid var(--about-gold);
+            box-shadow: var(--about-shadow);
+        }
+
+        .aboutHero h1 {
+            margin: 0 0 8px;
+            color: var(--about-ink);
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            letter-spacing: .06em;
+        }
+
+        .aboutHero p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--about-muted);
+            line-height: 1.55;
+        }
+
+        .aboutHero .heroAction {
+            white-space: nowrap;
+        }
+
+        .aboutLayout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .aboutPanel {
+            padding: 22px;
+            background: var(--about-paper);
+            border: 1px solid var(--about-line);
+            border-radius: 6px;
+            box-shadow: var(--about-shadow);
+        }
+
+        .aboutPanel h2 {
+            margin: 0 0 18px;
+            color: var(--about-dark);
+            font-size: 1.05rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .aboutCards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .aboutCard {
+            padding: 18px;
+            border: 1px solid var(--about-line);
+            border-top: 3px solid var(--about-gold);
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .aboutCardIcon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 12px;
+            border-radius: 50%;
+            background: #eef5f0;
+            color: var(--about-green);
+            font-size: 1rem;
+        }
+
+        .aboutCard h3 {
+            margin: 0 0 8px;
+            color: var(--about-dark);
+            font-size: 1rem;
+        }
+
+        .aboutCard p {
+            margin: 0;
+            color: var(--about-muted);
+            line-height: 1.55;
+        }
+
+        .aboutQuote {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 3px solid var(--about-green);
+            background: #eef5f0;
+            color: var(--about-dark);
+            line-height: 1.55;
+        }
+
+        .aboutList {
+            display: grid;
+            gap: 10px;
+        }
+
+        .aboutListItem {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px;
+            border: 1px solid #e3ebe6;
+            border-radius: 4px;
+            background: #fff;
+        }
+
+        .aboutListItem i {
+            margin-top: 2px;
+            color: var(--about-green);
+        }
+
+        .aboutListItem strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--about-dark);
+        }
+
+        .aboutListItem span {
+            color: var(--about-muted);
+            line-height: 1.45;
+        }
+
+        .aboutAside {
+            display: grid;
+            gap: 12px;
+        }
+
+        .aboutContact {
+            padding: 18px;
+            border: 1px solid var(--about-line);
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: var(--about-shadow);
+        }
+
+        .aboutContact h2 {
+            margin: 0 0 14px;
+            color: var(--about-dark);
+            font-size: 1rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .aboutContact p {
+            margin: 0 0 12px;
+            color: var(--about-muted);
+            line-height: 1.55;
+        }
+
+        .aboutContact a {
+            color: var(--about-green);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .aboutContact a:hover {
+            text-decoration: underline;
+        }
+
+        .aboutNote {
+            padding: 16px;
+            border-left: 3px solid var(--about-gold);
+            background: #f4f0e5;
+            color: #725b2e;
+            font-size: .86rem;
+            line-height: 1.55;
+        }
+
+        .aboutBadge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: #eef5f0;
+            color: var(--about-green);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .aboutLayout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .aboutPage {
+                padding: 22px 14px 42px;
+            }
+
+            .aboutHero {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .aboutCards {
+                grid-template-columns: 1fr;
+            }
+
+            .aboutHero .heroAction {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn-warning" id="toggleBtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <main class="aboutPage">
+        <section class="aboutHero">
+            <div>
+                <h1>ABOUT ELATEFIT</h1>
+                <p>ElateFit is a free fitness website built to share useful, practical, and research-based guidance for
+                    fitness seekers. We keep the content honest, simple to follow, and focused on betterment without
+                    hidden sponsorship noise.</p>
+            </div>
+            <a class="heroAction" href="../contact.html"><i class="fa-solid fa-envelope"></i> Connect with us</a>
+        </section>
+
+        <div class="aboutLayout">
+            <section class="aboutPanel">
+                <h2>What we stand for</h2>
+                <div class="aboutCards">
+                    <div class="aboutCard">
+                        <span class="aboutCardIcon"><i class="fa-solid fa-circle-check"></i></span>
+                        <h3>Free for everyone</h3>
+                        <p>We provide free content so anyone can access helpful fitness information without paywalls or
+                            subscriptions.</p>
+                    </div>
+                    <div class="aboutCard">
+                        <span class="aboutCardIcon"><i class="fa-solid fa-flask"></i></span>
+                        <h3>Research-based guidance</h3>
+                        <p>Our fitness content is written to be practical and backed by commonly accepted health and
+                            fitness principles.</p>
+                    </div>
+                    <div class="aboutCard">
+                        <span class="aboutCardIcon"><i class="fa-solid fa-bullhorn"></i></span>
+                        <h3>Honest recommendations</h3>
+                        <p>We share product suggestions honestly and avoid sponsored messaging that could affect the
+                            trust of our readers.</p>
+                    </div>
+                    <div class="aboutCard">
+                        <span class="aboutCardIcon"><i class="fa-solid fa-handshake-angle"></i></span>
+                        <h3>Built with support</h3>
+                        <p>If you want to join our journey or help in any way, we welcome your support and collaboration
+                            through email.</p>
+                    </div>
+                </div>
+                <div class="aboutQuote">
+                    We want ElateFit to remain a simple, honest, and useful place for people who are working on their
+                    fitness goals.
+                </div>
+            </section>
+
+            <aside class="aboutAside">
+                <section class="aboutContact">
+                    <h2>Join our journey</h2>
+                    <p>If you also want to be part of the ElateFit journey or help us in any way, please connect through
+                        email.</p>
+                    <div class="aboutBadge"><i class="fa-solid fa-message"></i> Open to support</div>
+                    <p style="margin-top:12px; margin-bottom:0;"><a
+                            href="mailto:contact@elatefit.com">contact@elatefit.com</a></p>
+                </section>
+                <section class="aboutPanel">
+                    <h2>Why people visit us</h2>
+                    <div class="aboutList">
+                        <div class="aboutListItem">
+                            <i class="fa-solid fa-dumbbell"></i>
+                            <div>
+                                <strong>Better fitness decisions</strong>
+                                <span>Clear calculators, practical tracking tools, and content designed to support
+                                    healthy progress.</span>
+                            </div>
+                        </div>
+                        <div class="aboutListItem">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <div>
+                                <strong>Useful day-to-day guidance</strong>
+                                <span>Simple fitness and nutrition help that people can actually use in a regular
+                                    routine.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="aboutNote">
+                    <strong>Note:</strong> our focus is educational and supportive. We aim to keep the platform
+                    trustworthy,
+                    accessible, and helpful for everyone who wants to improve their health.
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+</body>
+
+</html>
