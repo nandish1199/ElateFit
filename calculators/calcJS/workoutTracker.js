@@ -4,6 +4,18 @@ const WORKOUT_STORE = "workouts";
 let workoutDb;
 let workoutEntries = [];
 let selectedRange = 7;
+const EXERCISE_OPTIONS = [
+    { value: "", label: "Choose an exercise" },
+    { value: "Shoulder Press", label: "Shoulder Press" },
+    { value: "Biceps Curl", label: "Biceps Curl" },
+    { value: "Bench Press", label: "Bench Press" },
+    { value: "Squat", label: "Squat" },
+    { value: "Deadlift", label: "Deadlift" },
+    { value: "Lat Pulldown", label: "Lat Pulldown" },
+    { value: "Leg Press", label: "Leg Press" },
+    { value: "Triceps Extension", label: "Triceps Extension" },
+    { value: "Other", label: "Other" }
+];
 
 function openWorkoutDatabase() {
     return new Promise((resolve, reject) => {
@@ -74,6 +86,11 @@ function setWorkoutStatus(message, error = true) {
     const status = document.getElementById("workoutStatus");
     status.textContent = message;
     status.style.color = error ? "#a45e4c" : "#1f6b5b";
+}
+
+function renderExerciseOptions() {
+    const list = document.getElementById("exerciseOptions");
+    list.innerHTML = EXERCISE_OPTIONS.filter(option => option.value).map(option => `<option value="${option.value}"></option>`).join("");
 }
 
 function renderWorkoutList() {
@@ -175,6 +192,7 @@ async function refreshWorkoutDashboard() {
 document.addEventListener("DOMContentLoaded", async function() {
     try {
         workoutDb = await openWorkoutDatabase();
+        renderExerciseOptions();
         document.getElementById("workoutForm").addEventListener("submit", async function(event) {
             event.preventDefault();
             const selected = document.getElementById("exerciseName").value;

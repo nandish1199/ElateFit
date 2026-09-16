@@ -343,18 +343,19 @@
                 <h2>Log Workout</h2>
                 <form class="workoutForm" id="workoutForm">
                     <label for="exerciseName">Workout
-                        <select id="exerciseName" required>
-                            <option value="">Choose an exercise</option>
-                            <option>Shoulder Press</option>
-                            <option>Biceps Curl</option>
-                            <option>Bench Press</option>
-                            <option>Squat</option>
-                            <option>Deadlift</option>
-                            <option>Lat Pulldown</option>
-                            <option>Leg Press</option>
-                            <option>Triceps Extension</option>
-                            <option>Other</option>
-                        </select>
+                        <input type="search" id="exerciseName" list="exerciseOptions" placeholder="Choose an exercise"
+                            required autocomplete="off" />
+                        <datalist id="exerciseOptions">
+                            <option value="Shoulder Press"></option>
+                            <option value="Biceps Curl"></option>
+                            <option value="Bench Press"></option>
+                            <option value="Squat"></option>
+                            <option value="Deadlift"></option>
+                            <option value="Lat Pulldown"></option>
+                            <option value="Leg Press"></option>
+                            <option value="Triceps Extension"></option>
+                            <option value="Other"></option>
+                        </datalist>
                     </label>
                     <label for="customExercise">Custom workout (optional)
                         <input type="text" id="customExercise" placeholder="e.g. Dumbbell Row" />
@@ -382,7 +383,8 @@
                     <div class="summaryCard"><span>Total volume</span><strong id="volumeCount">0 kg</strong></div>
                 </div>
                 <div class="workoutTableHeader">
-                    <span>Exercise</span><span>Reps</span><span>Weight</span><span>Volume</span><span></span></div>
+                    <span>Exercise</span><span>Reps</span><span>Weight</span><span>Volume</span><span></span>
+                </div>
                 <div id="workoutList"></div>
                 <button type="button" class="dangerButton" id="deleteAllWorkouts"><i class="fa-solid fa-trash"></i>
                     Delete all workouts</button>
