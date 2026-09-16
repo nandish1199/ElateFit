@@ -67,6 +67,54 @@ function bmiLabel(bmi) {
     return "Higher range";
 }
 
+function activityFactor(level) {
+    const factors = {
+        Sedentary: 1.2,
+        Light: 1.375,
+        Moderate: 1.55,
+        Active: 1.725,
+        "Very active": 1.9
+    };
+    return factors[level] || 1.2;
+}
+
+function bodyTypeFactor(bodyType) {
+    const factors = {
+        Ectomorphic: 1.1,
+        Mesomorphic: 1.0,
+        Endomorphic: 0.9
+    };
+    return factors[bodyType] || 1.0;
+}
+
+function targetFactor(target) {
+    const factors = {
+        "Lose weight": 0.85,
+        "Maintain weight": 1.0,
+        "Gain weight": 1.15
+    };
+    return factors[target] || 1.0;
+}
+
+function proteinFactor(profile) {
+    const factors = {
+        Ectomorphic: 1.9,
+        Mesomorphic: 1.7,
+        Endomorphic: 1.5
+    };
+    const base = factors[profile.bodyType] || 1.6;
+    if (profile.target === "Gain weight") return base + 0.2;
+    if (profile.target === "Lose weight") return Math.max(1.4, base - 0.1);
+    return base;
+}
+
+function calculateNutritionTargets(profile) {
+    const baseCalories = (10 * profile.weight) + (6.25 * profile.height) - (5 * profile.age) + 5;
+    const calories = Math.round(baseCalories * activityFactor(profile.activityLevel) * bodyTypeFactor(profile.bodyType) * targetFactor(profile.target));
+    const protein = Math.round(profile.weight * proteinFactor(profile));
+    return { calories, protein };
+}
+
 function setProfileStatus(message, error = true) {
     const status = document.getElementById("profileStatus");
     if (!status) return;
@@ -135,6 +183,7 @@ function renderProfileSummary(profile) {
 
     const bmi = calculateBmi(profile.height, profile.weight);
     const bmiText = bmi ? `${bmi.toFixed(1)} (${bmiLabel(bmi)})` : "Not available";
+    const nutrition = calculateNutritionTargets(profile);
     const notesText = profile.notes ? profile.notes : "No extra notes saved.";
     summary.innerHTML = `
         <div class="profileSummaryCard">
@@ -154,6 +203,8 @@ function renderProfileSummary(profile) {
                 <div class="profileStat"><span>Body type</span><strong>${profile.bodyType}</strong></div>
                 <div class="profileStat"><span>Lactose</span><strong>${profile.lactoseIntolerant}</strong></div>
                 <div class="profileStat"><span>Activity</span><strong>${profile.activityLevel}</strong></div>
+                <div class="profileStat"><span>Daily calories</span><strong>${nutrition.calories} kcal</strong></div>
+                <div class="profileStat"><span>Daily protein</span><strong>${nutrition.protein} g</strong></div>
             </div>
             <div class="profileNote">${notesText}</div>
         </div>`;
