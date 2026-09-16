@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <title>Workout Tracker, Elatefit</title>
+    <style>
+        :root {
+            --work-ink: #24332f;
+            --work-muted: #687873;
+            --work-green: #1f6b5b;
+            --work-dark: #174e44;
+            --work-gold: #b58b45;
+            --work-paper: #fbfaf6;
+            --work-line: #dfe5df;
+            --work-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+        }
+
+        body {
+            background: #f1f4f1;
+            color: var(--work-ink);
+        }
+
+        .workoutPage {
+            max-width: 1240px;
+            margin: 70px auto 0;
+            padding: 30px 24px 60px;
+        }
+
+        .workoutHero {
+            margin-bottom: 22px;
+            padding: 28px clamp(18px, 4vw, 48px);
+            background: linear-gradient(115deg, #e7f0eb, var(--work-paper) 70%);
+            border: 1px solid var(--work-line);
+            border-top: 4px solid var(--work-gold);
+            box-shadow: var(--work-shadow);
+        }
+
+        .workoutHero h1 {
+            margin: 0 0 8px;
+            color: var(--work-ink);
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            letter-spacing: .06em;
+        }
+
+        .workoutHero p {
+            margin: 0;
+            color: var(--work-muted);
+            line-height: 1.55;
+        }
+
+        .workoutGrid {
+            display: grid;
+            grid-template-columns: minmax(280px, .75fr) minmax(0, 1.5fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .workoutPanel {
+            padding: 22px;
+            background: var(--work-paper);
+            border: 1px solid var(--work-line);
+            border-radius: 6px;
+            box-shadow: var(--work-shadow);
+        }
+
+        .workoutPanel h2 {
+            margin: 0 0 18px;
+            color: var(--work-dark);
+            font-size: 1.05rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .workoutForm {
+            display: grid;
+            gap: 12px;
+        }
+
+        .workoutForm label {
+            color: var(--work-muted);
+            font-size: .86rem;
+            font-weight: 600;
+        }
+
+        .workoutForm input,
+        .workoutForm select {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 44px;
+            margin-top: 6px;
+            padding: 0 12px;
+            border: 1px solid #b9cbc4;
+            border-radius: 4px;
+            background: #fff;
+            color: var(--work-ink);
+            font: inherit;
+        }
+
+        .workoutForm input:focus,
+        .workoutForm select:focus {
+            border-color: var(--work-green);
+            box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+            outline: none;
+        }
+
+        .workoutForm button,
+        .dangerButton,
+        .rangeButton {
+            min-height: 42px;
+            border: 1px solid var(--work-green);
+            border-radius: 4px;
+            background: var(--work-green);
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .workoutForm button:hover,
+        .dangerButton:hover,
+        .rangeButton:hover {
+            box-shadow: 0 8px 16px rgba(31, 107, 91, .18);
+            transform: translateY(-2px);
+        }
+
+        .statusMessage {
+            min-height: 20px;
+            color: #a45e4c;
+            font-size: .86rem;
+        }
+
+        .summaryGrid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .summaryCard {
+            padding: 16px;
+            border: 1px solid var(--work-line);
+            border-top: 3px solid var(--work-gold);
+            background: #fff;
+        }
+
+        .summaryCard span {
+            display: block;
+            color: var(--work-muted);
+            font-size: .76rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .summaryCard strong {
+            display: block;
+            margin-top: 7px;
+            color: var(--work-dark);
+            font-size: 1.35rem;
+        }
+
+        .viewTools {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .rangeButtons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .rangeButton {
+            min-height: 34px;
+            padding: 0 11px;
+            background: transparent;
+            border-color: var(--work-line);
+            color: var(--work-muted);
+            font-size: .8rem;
+        }
+
+        .rangeButton.active {
+            background: var(--work-green);
+            border-color: var(--work-green);
+            color: #fff;
+        }
+
+        .workoutTableHeader,
+        .workoutRow {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr .7fr .8fr 34px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .workoutTableHeader {
+            padding: 0 10px 9px;
+            color: var(--work-muted);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .workoutRow {
+            padding: 12px 10px;
+            border-top: 1px solid var(--work-line);
+            font-size: .88rem;
+        }
+
+        .workoutRow small {
+            display: block;
+            margin-top: 3px;
+            color: var(--work-muted);
+        }
+
+        .deleteWorkout {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #e2c5bc;
+            border-radius: 4px;
+            background: #fff8f5;
+            color: #a45e4c;
+            cursor: pointer;
+        }
+
+        .deleteWorkout:hover {
+            background: #a45e4c;
+            color: #fff;
+        }
+
+        .emptyState {
+            padding: 22px 10px;
+            color: var(--work-muted);
+            text-align: center;
+        }
+
+        .dangerButton {
+            margin-top: 14px;
+            padding: 0 14px;
+            background: transparent;
+            border-color: #a45e4c;
+            color: #a45e4c;
+            font-size: .84rem;
+        }
+
+        .chartWrap {
+            height: 300px;
+            padding: 10px;
+            border: 1px solid var(--work-line);
+            background: #fff;
+        }
+
+        #overloadChart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .progressCards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .progressCard {
+            padding: 14px;
+            border-left: 3px solid var(--work-green);
+            background: #eef5f0;
+        }
+
+        .progressCard strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--work-dark);
+        }
+
+        .progressCard span {
+            color: var(--work-muted);
+            font-size: .88rem;
+        }
+
+        @media(max-width:900px) {
+            .workoutGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .workoutPage {
+                padding: 22px 14px 42px;
+            }
+
+            .summaryGrid,
+            .progressCards {
+                grid-template-columns: 1fr;
+            }
+
+            .workoutTableHeader {
+                display: none;
+            }
+
+            .workoutRow {
+                grid-template-columns: 1fr .65fr .75fr 34px;
+                gap: 6px;
+            }
+
+            .workoutRow .workoutName {
+                grid-column: 1/-1;
+            }
+
+            .viewTools {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <main class="workoutPage">
+        <section class="workoutHero">
+            <h1>WORKOUT TRACKER</h1>
+            <p>Record your lifts, follow your weekly and monthly training, and see progressive overload build over time.
+            </p>
+        </section>
+        <div class="workoutGrid">
+            <section class="workoutPanel">
+                <h2>Log Workout</h2>
+                <form class="workoutForm" id="workoutForm">
+                    <label for="exerciseName">Workout
+                        <select id="exerciseName" required>
+                            <option value="">Choose an exercise</option>
+                            <option>Shoulder Press</option>
+                            <option>Biceps Curl</option>
+                            <option>Bench Press</option>
+                            <option>Squat</option>
+                            <option>Deadlift</option>
+                            <option>Lat Pulldown</option>
+                            <option>Leg Press</option>
+                            <option>Triceps Extension</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+                    <label for="customExercise">Custom workout (optional)
+                        <input type="text" id="customExercise" placeholder="e.g. Dumbbell Row" />
+                    </label>
+                    <label for="workoutReps">Repetitions
+                        <input type="number" id="workoutReps" min="1" step="1" placeholder="10" required />
+                    </label>
+                    <label for="workoutWeight">Weight in kg
+                        <input type="number" id="workoutWeight" min="0" step="0.5" placeholder="20" required />
+                    </label>
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Add workout</button>
+                    <div class="statusMessage" id="workoutStatus" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+            <section class="workoutPanel">
+                <div class="viewTools">
+                    <h2>Training Log</h2>
+                    <div class="rangeButtons"><button type="button" class="rangeButton active"
+                            data-range="7">Week</button><button type="button" class="rangeButton"
+                            data-range="30">Month</button></div>
+                </div>
+                <div class="summaryGrid">
+                    <div class="summaryCard"><span>Sessions</span><strong id="sessionCount">0</strong></div>
+                    <div class="summaryCard"><span>Total reps</span><strong id="repCount">0</strong></div>
+                    <div class="summaryCard"><span>Total volume</span><strong id="volumeCount">0 kg</strong></div>
+                </div>
+                <div class="workoutTableHeader">
+                    <span>Exercise</span><span>Reps</span><span>Weight</span><span>Volume</span><span></span></div>
+                <div id="workoutList"></div>
+                <button type="button" class="dangerButton" id="deleteAllWorkouts"><i class="fa-solid fa-trash"></i>
+                    Delete all workouts</button>
+            </section>
+            <section class="workoutPanel">
+                <div class="viewTools">
+                    <h2>Progressive Overload</h2><select id="chartExercise" class="rangeButton"
+                        aria-label="Select exercise for chart">
+                        <option value="all">All workouts</option>
+                    </select>
+                </div>
+                <div class="chartWrap"><canvas id="overloadChart" aria-label="Progressive overload chart"></canvas>
+                </div>
+                <div class="progressCards">
+                    <div class="progressCard"><strong>Weight progression</strong><span id="weightProgress">Add workouts
+                            to see your progress.</span></div>
+                    <div class="progressCard"><strong>Volume progression</strong><span id="volumeProgress">Add workouts
+                            to see your progress.</span></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="calcJS/workoutTracker.js"></script>
+</body>
+
+</html>
