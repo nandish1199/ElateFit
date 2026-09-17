@@ -193,6 +193,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const stopButton = document.getElementById("stopMix");
     if (stopButton) stopButton.addEventListener("click", () => { stopAll(); setStatus("Mix stopped."); });
     document.getElementById("clearMix").addEventListener("click", () => { loadMix([]); setStatus("Mix cleared."); });
+    document.getElementById("mobileFavoritesToggle").addEventListener("click", function() {
+        const list = document.getElementById("favoriteList");
+        const isOpen = list.classList.toggle("is-open");
+        this.setAttribute("aria-expanded", String(isOpen));
+        this.setAttribute("aria-label", isOpen ? "Hide saved mixes" : "Show saved mixes");
+        this.title = isOpen ? "Hide saved mixes" : "Show saved mixes";
+        this.innerHTML = `<i class="fa-regular fa-bookmark${isOpen ? "-slash" : ""}" aria-hidden="true"></i>`;
+    });
     document.getElementById("saveFavorite").addEventListener("click", () => {
         const sounds = selectedSounds();
         if (!sounds.length) { setStatus("Choose at least one sound before saving a favourite.", true); return; }
