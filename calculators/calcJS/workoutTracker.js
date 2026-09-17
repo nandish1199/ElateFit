@@ -123,6 +123,7 @@ function chartEntries() {
     const selected = document.getElementById("chartExercise").value;
     const today = new Date();
     const entries = workoutEntries.filter(entry => selected === "all" || entry.exercise === selected);
+    let currentWeight = 0;
     const values = [];
     for (let offset = selectedRange - 1; offset >= 0; offset -= 1) {
         const date = new Date(today);
@@ -130,9 +131,10 @@ function chartEntries() {
         const key = dayKey(date);
         const dayEntries = entries.filter(entry => dayKey(entry.createdAt) === key);
         const latest = dayEntries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        if (latest) currentWeight = latest.weight;
         values.push({
             date,
-            weight: latest ? latest.weight : null,
+            weight: currentWeight,
             volume: dayEntries.reduce((sum, entry) => sum + entry.volume, 0)
         });
     }
