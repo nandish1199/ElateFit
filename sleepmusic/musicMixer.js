@@ -162,7 +162,7 @@ function renderFavorites() {
     const list = document.getElementById("favoriteList");
     list.innerHTML = favorites.length ? favorites.map((favorite, index) => {
         const sounds = favorite.sounds || favorite.tracks || [];
-        return `<div class="favoriteItem"><div><strong>${favorite.name}</strong><small>${sounds.length} sounds saved</small></div><div class="favoriteActions"><button type="button" data-action="play" data-index="${index}" aria-label="Play ${favorite.name}"><i class="fa-solid fa-play"></i></button><button type="button" data-action="load" data-index="${index}" aria-label="Load ${favorite.name}"><i class="fa-solid fa-arrow-rotate-left"></i></button><button type="button" data-action="delete" data-index="${index}" aria-label="Delete ${favorite.name}"><i class="fa-solid fa-xmark"></i></button></div></div>`;
+        return `<div class="favoriteItem"><div><strong>${favorite.name}</strong><small>${sounds.length} sounds saved</small></div><div class="favoriteActions"><button type="button" data-action="play" data-index="${index}" aria-label="Play ${favorite.name}"><i class="fa-solid fa-play"></i></button><button type="button" data-action="stop" data-index="${index}" aria-label="Stop ${favorite.name}"><i class="fa-solid fa-stop"></i></button><button type="button" data-action="load" data-index="${index}" aria-label="Load ${favorite.name}"><i class="fa-solid fa-arrow-rotate-left"></i></button><button type="button" data-action="delete" data-index="${index}" aria-label="Delete ${favorite.name}"><i class="fa-solid fa-xmark"></i></button></div></div>`;
     }).join("") : '<div class="emptyState">No saved mixes yet. Choose a few sounds and save your first calm space.</div>';
 }
 
@@ -217,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const favorite = favorites[Number(button.dataset.index)];
         const sounds = favorite.sounds || favorite.tracks || [];
         if (button.dataset.action === "play") playMix(sounds);
+        if (button.dataset.action === "stop") { stopAll(); setStatus(`Stopped ${favorite.name}.`); }
         if (button.dataset.action === "load") { loadMix(sounds); setStatus(`Loaded ${favorite.name}.`); }
         if (button.dataset.action === "delete") { if (!confirm(`Delete ${favorite.name}?`)) return; favorites.splice(Number(button.dataset.index), 1); saveFavorites(); renderFavorites(); }
     });
