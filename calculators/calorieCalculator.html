@@ -486,11 +486,56 @@
                 padding: 22px 14px 42px;
             }
 
-            .summaryGrid,
             .targetGrid,
             .nutrientGrid,
             .trendGrid {
                 grid-template-columns: 1fr;
+            }
+
+            .summaryGrid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 6px;
+            }
+
+            .summaryCard {
+                min-width: 0;
+                padding: 10px 7px;
+            }
+
+            .summaryCard span {
+                font-size: .62rem;
+                letter-spacing: .03em;
+                line-height: 1.2;
+                overflow-wrap: anywhere;
+            }
+
+            .summaryCard strong {
+                margin-top: 5px;
+                font-size: .95rem;
+                white-space: nowrap;
+            }
+
+            .nutrientGrid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 6px;
+            }
+
+            .nutrientCard {
+                min-width: 0;
+                padding: 10px 8px;
+            }
+
+            .nutrientCard span {
+                font-size: .62rem;
+                letter-spacing: .03em;
+                line-height: 1.2;
+                overflow-wrap: anywhere;
+            }
+
+            .nutrientCard strong {
+                margin-top: 5px;
+                font-size: .95rem;
+                white-space: nowrap;
             }
 
             .entryHeader {
