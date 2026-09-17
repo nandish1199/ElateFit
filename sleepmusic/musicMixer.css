@@ -337,7 +337,12 @@ input {
 
 .favoritesPanel {
     position: sticky;
-    top: 70px;
+    top: 75px;
+}
+
+.favoritesPanel>.mixerActions {
+    margin-top: 0;
+    margin-bottom: 18px;
 }
 
 .mobileFavoritesToggle {
