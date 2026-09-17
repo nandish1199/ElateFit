@@ -6,23 +6,23 @@ const PROFILE_STORE_NAME = "profiles";
 const PROFILE_RECORD_ID = "profile";
 
 const foodCatalog = {
-    rice: { label: "Rice", calories: 130, protein: 2.7 },
-    dal: { label: "Dal", calories: 116, protein: 9.0 },
-    carrot: { label: "Carrot", calories: 41, protein: 0.9 },
-    wheat: { label: "Wheat", calories: 340, protein: 13.7 },
-    oats: { label: "Oats", calories: 389, protein: 16.9 },
-    roti: { label: "Roti", calories: 297, protein: 11.0 },
-    potato: { label: "Potato", calories: 77, protein: 2.0 },
-    banana: { label: "Banana", calories: 89, protein: 1.1 },
-    apple: { label: "Apple", calories: 52, protein: 0.3 },
-    egg: { label: "Egg", calories: 155, protein: 13.0 },
-    chicken: { label: "Chicken", calories: 239, protein: 27.3 },
-    paneer: { label: "Paneer", calories: 265, protein: 18.3 },
-    milk: { label: "Milk", calories: 61, protein: 3.2 },
-    curd: { label: "Curd", calories: 61, protein: 3.5 },
-    peanuts: { label: "Peanuts", calories: 567, protein: 25.8 },
-    spinach: { label: "Spinach", calories: 23, protein: 2.9 },
-    tomato: { label: "Tomato", calories: 18, protein: 0.9 }
+    rice: { label: "Rice", calories: 130, protein: 2.7, saturatedFat: 0.1, unsaturatedFat: 0.2, solubleFiber: 0.1, insolubleFiber: 0.3 },
+    dal: { label: "Dal", calories: 116, protein: 9.0, saturatedFat: 0.1, unsaturatedFat: 0.2, solubleFiber: 1.3, insolubleFiber: 3.1 },
+    carrot: { label: "Carrot", calories: 41, protein: 0.9, saturatedFat: 0.0, unsaturatedFat: 0.1, solubleFiber: 0.9, insolubleFiber: 1.6 },
+    wheat: { label: "Wheat", calories: 340, protein: 13.7, saturatedFat: 0.4, unsaturatedFat: 0.8, solubleFiber: 1.2, insolubleFiber: 10.0 },
+    oats: { label: "Oats", calories: 389, protein: 16.9, saturatedFat: 1.2, unsaturatedFat: 3.5, solubleFiber: 4.0, insolubleFiber: 6.2 },
+    roti: { label: "Roti", calories: 297, protein: 11.0, saturatedFat: 0.4, unsaturatedFat: 0.8, solubleFiber: 1.2, insolubleFiber: 6.0 },
+    potato: { label: "Potato", calories: 77, protein: 2.0, saturatedFat: 0.0, unsaturatedFat: 0.1, solubleFiber: 0.3, insolubleFiber: 1.4 },
+    banana: { label: "Banana", calories: 89, protein: 1.1, saturatedFat: 0.1, unsaturatedFat: 0.1, solubleFiber: 0.7, insolubleFiber: 1.0 },
+    apple: { label: "Apple", calories: 52, protein: 0.3, saturatedFat: 0.0, unsaturatedFat: 0.1, solubleFiber: 1.0, insolubleFiber: 1.2 },
+    egg: { label: "Egg", calories: 155, protein: 13.0, saturatedFat: 3.1, unsaturatedFat: 5.4, solubleFiber: 0.0, insolubleFiber: 0.0 },
+    chicken: { label: "Chicken", calories: 239, protein: 27.3, saturatedFat: 3.8, unsaturatedFat: 5.0, solubleFiber: 0.0, insolubleFiber: 0.0 },
+    paneer: { label: "Paneer", calories: 265, protein: 18.3, saturatedFat: 14.0, unsaturatedFat: 7.0, solubleFiber: 0.0, insolubleFiber: 0.0 },
+    milk: { label: "Milk", calories: 61, protein: 3.2, saturatedFat: 1.9, unsaturatedFat: 0.8, solubleFiber: 0.0, insolubleFiber: 0.0 },
+    curd: { label: "Curd", calories: 61, protein: 3.5, saturatedFat: 1.2, unsaturatedFat: 0.5, solubleFiber: 0.0, insolubleFiber: 0.0 },
+    peanuts: { label: "Peanuts", calories: 567, protein: 25.8, saturatedFat: 7.3, unsaturatedFat: 36.0, solubleFiber: 2.1, insolubleFiber: 6.0 },
+    spinach: { label: "Spinach", calories: 23, protein: 2.9, saturatedFat: 0.1, unsaturatedFat: 0.1, solubleFiber: 0.6, insolubleFiber: 1.5 },
+    tomato: { label: "Tomato", calories: 18, protein: 0.9, saturatedFat: 0.0, unsaturatedFat: 0.1, solubleFiber: 0.2, insolubleFiber: 1.2 }
 };
 
 let nutritionDb;
@@ -111,7 +111,7 @@ function renderFoodSuggestions(query) {
     const normalizedQuery = normalizeFoodName(query);
     const matches = Object.values(foodCatalog).filter(food => !normalizedQuery || food.label.toLowerCase().includes(normalizedQuery));
 
-    suggestions.innerHTML = matches.map(food => `<button type="button" class="foodSuggestion" data-food="${food.label}" role="option">${food.label}<small>${food.calories} kcal - ${food.protein} g protein per 100 g</small></button>`).join("");
+    suggestions.innerHTML = matches.map(food => `<button type="button" class="foodSuggestion" data-food="${food.label}" role="option">${food.label}<small>${food.calories} kcal - ${food.protein} g protein - ${food.saturatedFat} g saturated fat per 100 g</small></button>`).join("");
     suggestions.classList.toggle("is-visible", matches.length > 0 && document.activeElement === document.getElementById("foodSearch"));
 }
 
@@ -177,7 +177,14 @@ function calculateNutritionTargets(profile) {
 }
 
 function calculateNutrition(food, grams) {
-    return { calories: food.calories * grams / 100, protein: food.protein * grams / 100 };
+    return {
+        calories: food.calories * grams / 100,
+        protein: food.protein * grams / 100,
+        saturatedFat: food.saturatedFat * grams / 100,
+        unsaturatedFat: food.unsaturatedFat * grams / 100,
+        solubleFiber: food.solubleFiber * grams / 100,
+        insolubleFiber: food.insolubleFiber * grams / 100
+    };
 }
 
 function setStatus(message, isError = true) {
@@ -198,13 +205,23 @@ function renderEntries() {
         <div class="entryRow">
             <div class="entryFood"><strong>${entry.foodLabel}</strong><small>${formatDate(new Date(entry.createdAt))} · ${formatTime(new Date(entry.createdAt))}</small></div>
             <span>${entry.grams} g</span><span>${entry.calories.toFixed(0)} kcal</span><span>${entry.protein.toFixed(1)} g</span>
+            <span>${(entry.saturatedFat || 0).toFixed(1)} g</span><span>${(entry.unsaturatedFat || 0).toFixed(1)} g</span>
+            <span>${((entry.solubleFiber || 0) + (entry.insolubleFiber || 0)).toFixed(1)} g</span>
             <button type="button" class="deleteEntry" data-id="${entry.id}" data-food="${entry.foodLabel}" aria-label="Delete ${entry.foodLabel}"><i class="fa-solid fa-xmark"></i></button>
         </div>`).join("") : '<div class="entryEmpty">No food entries saved for today.</div>';
     const calories = entries.reduce((sum, entry) => sum + entry.calories, 0);
     const protein = entries.reduce((sum, entry) => sum + entry.protein, 0);
+    const saturatedFat = entries.reduce((sum, entry) => sum + (entry.saturatedFat || 0), 0);
+    const unsaturatedFat = entries.reduce((sum, entry) => sum + (entry.unsaturatedFat || 0), 0);
+    const solubleFiber = entries.reduce((sum, entry) => sum + (entry.solubleFiber || 0), 0);
+    const insolubleFiber = entries.reduce((sum, entry) => sum + (entry.insolubleFiber || 0), 0);
     document.getElementById("todayCalories").textContent = `${calories.toFixed(0)} kcal`;
     document.getElementById("todayProtein").textContent = `${protein.toFixed(1)} g`;
     document.getElementById("todayEntries").textContent = entries.length;
+    document.getElementById("todaySaturatedFat").textContent = `${saturatedFat.toFixed(1)} g`;
+    document.getElementById("todayUnsaturatedFat").textContent = `${unsaturatedFat.toFixed(1)} g`;
+    document.getElementById("todaySolubleFiber").textContent = `${solubleFiber.toFixed(1)} g`;
+    document.getElementById("todayInsolubleFiber").textContent = `${insolubleFiber.toFixed(1)} g`;
 }
 
 function renderProfileTargets() {
@@ -373,7 +390,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             const grams = Number(document.getElementById("enterGrams").value);
             if (!food || !grams || grams <= 0) { setStatus("Choose a listed food and enter a gram amount greater than zero."); return; }
             const nutrition = calculateNutrition(food, grams);
-            await saveEntry({ id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`, foodKey: normalizeFoodName(food.label), foodLabel: food.label, grams, calories: nutrition.calories, protein: nutrition.protein, createdAt: new Date().toISOString() });
+            await saveEntry({ id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`, foodKey: normalizeFoodName(food.label), foodLabel: food.label, grams, calories: nutrition.calories, protein: nutrition.protein, saturatedFat: nutrition.saturatedFat, unsaturatedFat: nutrition.unsaturatedFat, solubleFiber: nutrition.solubleFiber, insolubleFiber: nutrition.insolubleFiber, createdAt: new Date().toISOString() });
             this.reset();
             document.getElementById("foodPreview").textContent = "Food saved with the current date and time.";
             setStatus("Food added to today's journal.", false);

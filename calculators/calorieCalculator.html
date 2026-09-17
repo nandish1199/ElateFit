@@ -233,6 +233,13 @@
             margin-bottom: 20px;
         }
 
+        .nutrientGrid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
         .summaryCard {
             padding: 16px;
             border: 1px solid var(--nutrition-line);
@@ -253,6 +260,29 @@
             margin-top: 7px;
             color: var(--nutrition-dark);
             font-size: 1.45rem;
+        }
+
+        .nutrientCard {
+            padding: 14px;
+            border: 1px solid var(--nutrition-line);
+            border-top: 3px solid var(--nutrition-green);
+            background: #ffffff;
+        }
+
+        .nutrientCard span {
+            display: block;
+            color: var(--nutrition-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        .nutrientCard strong {
+            display: block;
+            margin-top: 6px;
+            color: var(--nutrition-dark);
+            font-size: 1.15rem;
         }
 
         .targetCard {
@@ -380,9 +410,13 @@
         .entryHeader,
         .entryRow {
             display: grid;
-            grid-template-columns: 1.4fr 0.65fr 0.8fr 0.8fr 34px;
+            grid-template-columns: 1.25fr .55fr .7fr .65fr .7fr .75fr .7fr 34px;
             gap: 10px;
             align-items: center;
+        }
+
+        .entryTableScroll {
+            overflow-x: auto;
         }
 
         .entryHeader {
@@ -453,6 +487,8 @@
             }
 
             .summaryGrid,
+            .targetGrid,
+            .nutrientGrid,
             .trendGrid {
                 grid-template-columns: 1fr;
             }
@@ -462,12 +498,17 @@
             }
 
             .entryRow {
-                grid-template-columns: 1fr 0.8fr 0.8fr 34px;
+                min-width: 820px;
+                grid-template-columns: 1.25fr .55fr .7fr .65fr .7fr .75fr .7fr 34px;
                 gap: 6px;
             }
 
             .entryRow .entryFood {
                 grid-column: 1 / -1;
+            }
+
+            .entryHeader {
+                min-width: 820px;
             }
         }
     </style>
@@ -512,6 +553,16 @@
                     <div class="summaryCard"><span>Protein</span><strong id="todayProtein">0 g</strong></div>
                     <div class="summaryCard"><span>Food entries</span><strong id="todayEntries">0</strong></div>
                 </div>
+                <div class="nutrientGrid">
+                    <div class="nutrientCard"><span>Saturated fat</span><strong id="todaySaturatedFat">0 g</strong>
+                    </div>
+                    <div class="nutrientCard"><span>Unsaturated fat</span><strong id="todayUnsaturatedFat">0 g</strong>
+                    </div>
+                    <div class="nutrientCard"><span>Soluble fiber</span><strong id="todaySolubleFiber">0 g</strong>
+                    </div>
+                    <div class="nutrientCard"><span>Insoluble fiber</span><strong id="todayInsolubleFiber">0 g</strong>
+                    </div>
+                </div>
                 <div class="targetGrid" id="targetGrid">
                     <div class="targetCard" id="calorieTargetCard">
                         <span>Calorie target</span>
@@ -526,10 +577,13 @@
                         <div class="targetBadge" id="proteinTargetBadge">Profile needed</div>
                     </div>
                 </div>
-                <div class="entryHeader">
-                    <span>Food</span><span>Amount</span><span>Calories</span><span>Protein</span><span></span>
+                <div class="entryTableScroll">
+                    <div class="entryHeader">
+                        <span>Food</span><span>Amount</span><span>Calories</span><span>Protein</span><span>Saturated
+                            fat</span><span>Unsaturated fat</span><span>Fiber</span><span></span>
+                    </div>
+                    <div id="entryList"></div>
                 </div>
-                <div id="entryList"></div>
                 <button type="button" class="dangerButton" id="deleteAllButton"><i class="fa-solid fa-trash"></i> Delete
                     all saved data</button>
             </section>
