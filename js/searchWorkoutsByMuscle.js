@@ -16,7 +16,6 @@ const exerciseCatalog = [
 ].map(([name, muscle, equipment, difficulty, description, steps]) => ({ name, muscle, equipment, difficulty, description, steps }));
 
 const FAVORITE_EXERCISES_KEY = "elateFitFavoriteExercises";
-let activeMuscle = "All muscles";
 let favoriteExercises = loadFavoriteExercises();
 
 function loadFavoriteExercises() {
@@ -25,17 +24,16 @@ function loadFavoriteExercises() {
 
 function saveFavoriteExercises() { localStorage.setItem(FAVORITE_EXERCISES_KEY, JSON.stringify(favoriteExercises)); }
 
-function renderMuscleTabs() {
+function renderMuscleFilter() {
     const muscles = ["All muscles", ...new Set(exerciseCatalog.map(exercise => exercise.muscle))];
-    document.getElementById("muscleTabs").innerHTML = muscles.map(muscle => `<button type="button" class="muscleTab ${muscle === activeMuscle ? "active" : ""}" data-muscle="${muscle}">${muscle}</button>`).join("");
+    document.getElementById("muscleFilter").innerHTML = '<option value="">Choose a muscle group</option>' + muscles.map(muscle => `<option value="${muscle === "All muscles" ? "" : muscle}">${muscle}</option>`).join("");
 }
 
 function matchesFilters(exercise) {
-    const query = document.getElementById("exerciseSearch").value.trim().toLowerCase();
+    const muscle = document.getElementById("muscleFilter").value;
     const equipment = document.getElementById("equipmentFilter").value;
     const difficulty = document.getElementById("difficultyFilter").value;
-    return (activeMuscle === "All muscles" || exercise.muscle === activeMuscle)
-        && (!query || `${exercise.name} ${exercise.muscle} ${exercise.equipment}`.toLowerCase().includes(query))
+    return (!muscle || exercise.muscle === muscle)
         && (!equipment || exercise.equipment === equipment)
         && (!difficulty || exercise.difficulty === difficulty);
 }
@@ -59,18 +57,11 @@ function renderExercises() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    renderMuscleTabs();
+    renderMuscleFilter();
     renderExercises();
-    document.getElementById("exerciseSearch").addEventListener("input", renderExercises);
+    document.getElementById("muscleFilter").addEventListener("change", renderExercises);
     document.getElementById("equipmentFilter").addEventListener("change", renderExercises);
     document.getElementById("difficultyFilter").addEventListener("change", renderExercises);
-    document.getElementById("muscleTabs").addEventListener("click", event => {
-        const tab = event.target.closest(".muscleTab");
-        if (!tab) return;
-        activeMuscle = tab.dataset.muscle;
-        renderMuscleTabs();
-        renderExercises();
-    });
     document.getElementById("exerciseGrid").addEventListener("click", event => {
         const button = event.target.closest(".favoriteExercise");
         if (!button) return;

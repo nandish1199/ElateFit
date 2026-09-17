@@ -28,8 +28,9 @@
             <aside class="exercisePanel">
                 <h2>Filter library</h2>
                 <div class="filterStack">
-                    <label class="filterLabel" for="exerciseSearch">Search exercises<input type="search"
-                            id="exerciseSearch" placeholder="Try shoulder or squat" autocomplete="off" /></label>
+                    <label class="filterLabel" for="muscleFilter">Muscle group<select id="muscleFilter">
+                            <option value="">Choose a muscle group</option>
+                        </select></label>
                     <label class="filterLabel" for="equipmentFilter">Equipment<select id="equipmentFilter">
                             <option value="">All equipment</option>
                             <option>Dumbbell</option>
@@ -44,10 +45,6 @@
                             <option>Intermediate</option>
                             <option>Advanced</option>
                         </select></label>
-                    <div>
-                        <div class="filterLabel">Muscle group</div>
-                        <div class="muscleTabs" id="muscleTabs"></div>
-                    </div>
                 </div>
             </aside>
             <section class="exercisePanel">
