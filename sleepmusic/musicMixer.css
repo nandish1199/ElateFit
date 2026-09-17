@@ -306,7 +306,7 @@ input {
 .mixerButton {
     min-height: 42px;
     padding: 0 15px;
-    border: 1px solid var(--mixer-green);
+    border: 2px solid var(--mixer-line);
     border-radius: 999px;
     background: var(--mixer-green);
     color: #fff;
@@ -328,8 +328,10 @@ input {
 }
 
 .mixerStatus {
+    text-align: center;
     min-height: 20px;
-    margin-top: 11px;
+    margin: 10px;
+    margin-top: -10px;
     color: var(--mixer-muted);
     font-family: "Segoe UI", sans-serif;
     font-size: .8rem;

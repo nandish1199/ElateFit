@@ -38,9 +38,6 @@
                     <div class="categoryTabs" id="categoryTabs" aria-label="Sound categories"></div>
                 </div>
                 <div class="soundGrid" id="soundGrid"></div>
-                <div class="mixerStatus" id="mixerStatus" role="status" aria-live="polite">Choose a sound to begin.
-                </div>
-
             </section>
             <aside class="mixerPanel favoritesPanel">
                 <div class="mobileMixerBar">
@@ -54,7 +51,10 @@
                             id="saveFavorite" aria-label="Save favourite" title="Save favourite"><i
                                 class="fa-regular fa-heart"></i><span class="mixerButtonText"> Save
                                 favourite</span></button>
-                    </div><button type="button" class="mobileFavoritesToggle" id="mobileFavoritesToggle"
+                    </div>
+                    <div class="mixerStatus" id="mixerStatus" role="status" aria-live="polite">Choose a sound to begin.
+                    </div>
+                    <button type="button" class="mobileFavoritesToggle" id="mobileFavoritesToggle"
                         aria-label="Show saved mixes" aria-expanded="false" title="Show saved mixes">
                         <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
                     </button>
