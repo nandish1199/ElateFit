@@ -27,10 +27,24 @@ let favorites = loadFavorites();
 let activeCategory = "All sounds";
 
 function loadFavorites() {
-    try { return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]"); } catch (error) { return []; }
+    try {
+        const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+        return Array.isArray(saved) ? saved.map(favorite => ({
+            ...favorite,
+            sounds: favorite.sounds || favorite.tracks || []
+        })) : [];
+    } catch (error) { return []; }
 }
 
-function saveFavorites() { localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites)); }
+function saveFavorites() {
+    try {
+        localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+        return true;
+    } catch (error) {
+        setStatus("Favourite storage is unavailable in this browser.", true);
+        return false;
+    }
+}
 
 function setStatus(message, error = false) {
     const status = document.getElementById("mixerStatus");
@@ -146,7 +160,10 @@ function updateMixCount() {
 
 function renderFavorites() {
     const list = document.getElementById("favoriteList");
-    list.innerHTML = favorites.length ? favorites.map((favorite, index) => `<div class="favoriteItem"><div><strong>${favorite.name}</strong><small>${favorite.sounds.length} sounds saved</small></div><div class="favoriteActions"><button type="button" data-action="play" data-index="${index}" aria-label="Play ${favorite.name}"><i class="fa-solid fa-play"></i></button><button type="button" data-action="load" data-index="${index}" aria-label="Load ${favorite.name}"><i class="fa-solid fa-arrow-rotate-left"></i></button><button type="button" data-action="delete" data-index="${index}" aria-label="Delete ${favorite.name}"><i class="fa-solid fa-xmark"></i></button></div></div>`).join("") : '<div class="emptyState">No saved mixes yet. Choose a few sounds and save your first calm space.</div>';
+    list.innerHTML = favorites.length ? favorites.map((favorite, index) => {
+        const sounds = favorite.sounds || favorite.tracks || [];
+        return `<div class="favoriteItem"><div><strong>${favorite.name}</strong><small>${sounds.length} sounds saved</small></div><div class="favoriteActions"><button type="button" data-action="play" data-index="${index}" aria-label="Play ${favorite.name}"><i class="fa-solid fa-play"></i></button><button type="button" data-action="load" data-index="${index}" aria-label="Load ${favorite.name}"><i class="fa-solid fa-arrow-rotate-left"></i></button><button type="button" data-action="delete" data-index="${index}" aria-label="Delete ${favorite.name}"><i class="fa-solid fa-xmark"></i></button></div></div>`;
+    }).join("") : '<div class="emptyState">No saved mixes yet. Choose a few sounds and save your first calm space.</div>';
 }
 
 function loadMix(sounds) {
@@ -173,22 +190,26 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("soundSearch").addEventListener("input", filterSounds);
     document.getElementById("categoryTabs").addEventListener("click", event => { const tab = event.target.closest(".categoryTab"); if (!tab) return; activeCategory = tab.dataset.category; filterSounds(); });
     document.getElementById("playMix").addEventListener("click", () => playMix());
-    document.getElementById("stopMix").addEventListener("click", () => { stopAll(); setStatus("Mix stopped."); });
+    const stopButton = document.getElementById("stopMix");
+    if (stopButton) stopButton.addEventListener("click", () => { stopAll(); setStatus("Mix stopped."); });
     document.getElementById("clearMix").addEventListener("click", () => { loadMix([]); setStatus("Mix cleared."); });
     document.getElementById("saveFavorite").addEventListener("click", () => {
         const sounds = selectedSounds();
         if (!sounds.length) { setStatus("Choose at least one sound before saving a favourite.", true); return; }
-        const name = prompt("Name this calm mix:", `Sleep mix ${favorites.length + 1}`);
-        if (!name || !name.trim()) return;
-        favorites.push({ name: name.trim(), sounds });
-        saveFavorites(); renderFavorites(); setStatus(`Saved ${name.trim()} to favourites.`);
+        const defaultName = `Sleep mix ${favorites.length + 1}`;
+        const savedSounds = sounds.map(sound => ({ file: sound.file, name: sound.name, volume: Number(sound.volume) }));
+        favorites.push({ name: defaultName, sounds: savedSounds });
+        const stored = saveFavorites();
+        renderFavorites();
+        setStatus(stored ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${defaultName}.` : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.`, !stored);
     });
     document.getElementById("favoriteList").addEventListener("click", event => {
         const button = event.target.closest("button[data-action]");
         if (!button) return;
         const favorite = favorites[Number(button.dataset.index)];
-        if (button.dataset.action === "play") playMix(favorite.sounds);
-        if (button.dataset.action === "load") { loadMix(favorite.sounds); setStatus(`Loaded ${favorite.name}.`); }
+        const sounds = favorite.sounds || favorite.tracks || [];
+        if (button.dataset.action === "play") playMix(sounds);
+        if (button.dataset.action === "load") { loadMix(sounds); setStatus(`Loaded ${favorite.name}.`); }
         if (button.dataset.action === "delete") { if (!confirm(`Delete ${favorite.name}?`)) return; favorites.splice(Number(button.dataset.index), 1); saveFavorites(); renderFavorites(); }
     });
     updateMixCount();
