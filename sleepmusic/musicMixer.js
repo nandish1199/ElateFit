@@ -205,11 +205,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const sounds = selectedSounds();
         if (!sounds.length) { setStatus("Choose at least one sound before saving a favourite.", true); return; }
         const defaultName = `Sleep mix ${favorites.length + 1}`;
+        const enteredName = window.prompt("Name this favourite mix:", defaultName);
+        if (enteredName === null) {
+            setStatus("Favourite mix was not saved.");
+            return;
+        }
+        const name = enteredName.trim() || defaultName;
         const savedSounds = sounds.map(sound => ({ file: sound.file, name: sound.name, volume: Number(sound.volume) }));
-        favorites.push({ name: defaultName, sounds: savedSounds });
+        favorites.push({ name, sounds: savedSounds });
         const stored = saveFavorites();
         renderFavorites();
-        setStatus(stored ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${defaultName}.` : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.`, !stored);
+        setStatus(stored ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${name}.` : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.`, !stored);
     });
     document.getElementById("favoriteList").addEventListener("click", event => {
         const button = event.target.closest("button[data-action]");
