@@ -44,26 +44,27 @@
                     quieter layer. Keep the final volume comfortable.</div>
             </section>
             <aside class="mixerPanel favoritesPanel">
-                <div class="mixerActions"><button class="mixerButton" type="button" id="playMix"><i
-                            class="fa-solid fa-play"></i> Play my mix</button><button class="mixerButton secondary"
-                        type="button" id="stopMix" aria-label="Stop mix" title="Stop mix"><i
-                            class="fa-solid fa-stop"></i><span class="mixerButtonText"> Stop</span></button><button
-                        class="mixerButton secondary" type="button" id="clearMix" aria-label="Clear mix"
-                        title="Clear mix"><i class="fa-solid fa-rotate-left"></i><span class="mixerButtonText">
-                            Clear</span></button><button class="mixerButton secondary" type="button" id="saveFavorite"
-                        aria-label="Save favourite" title="Save favourite"><i class="fa-regular fa-heart"></i><span
-                            class="mixerButtonText"> Save
-                            favourite</span></button>
+                <div class="mobileMixerBar">
+                    <div class="mixerActions"><button class="mixerButton" type="button" id="playMix"><i
+                                class="fa-solid fa-play"></i> Play my mix</button><button class="mixerButton secondary"
+                            type="button" id="stopMix" aria-label="Stop mix" title="Stop mix"><i
+                                class="fa-solid fa-stop"></i><span class="mixerButtonText"> Stop</span></button><button
+                            class="mixerButton secondary" type="button" id="clearMix" aria-label="Clear mix"
+                            title="Clear mix"><i class="fa-solid fa-rotate-left"></i><span class="mixerButtonText">
+                                Clear</span></button><button class="mixerButton secondary" type="button"
+                            id="saveFavorite" aria-label="Save favourite" title="Save favourite"><i
+                                class="fa-regular fa-heart"></i><span class="mixerButtonText"> Save
+                                favourite</span></button>
+                    </div><button type="button" class="mobileFavoritesToggle" id="mobileFavoritesToggle"
+                        aria-label="Show saved mixes" aria-expanded="false" title="Show saved mixes">
+                        <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="panelHeading">
                     <div id="panelHeadingMobile">
                         <h2>Saved mixes</h2>
                         <p>Your personal soundscapes, saved on this device.</p>
                     </div>
-                    <button type="button" class="mobileFavoritesToggle" id="mobileFavoritesToggle"
-                        aria-label="Show saved mixes" aria-expanded="false" title="Show saved mixes">
-                        <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
-                    </button>
                 </div>
                 <div class="favoriteList" id="favoriteList"></div>
             </aside>

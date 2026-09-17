@@ -345,6 +345,15 @@ input {
     margin-bottom: 18px;
 }
 
+.mobileMixerBar {
+    display: contents;
+}
+
+.mobileMixerBar>.mixerActions {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
 .mobileFavoritesToggle {
     display: none;
     width: 34px;
@@ -450,37 +459,28 @@ input {
         padding: 14px;
     }
 
-    #stopMix,
-    #clearMix,
-    #saveFavorite {
+    .mobileMixerBar {
         position: fixed;
         z-index: 20;
-        right: 16px;
-        bottom: 16px;
-        display: inline-flex;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
-        min-height: 44px;
-        padding: 0;
-        border-radius: 50%;
+        gap: 8px;
+        min-height: 64px;
+        padding: 10px 16px;
+        border-top: 1px solid var(--mixer-line);
+        background: rgba(251, 250, 247, .96);
         box-shadow: 0 8px 20px rgba(35, 76, 69, .2);
     }
 
-    #stopMix {
-        right: 68px;
-    }
-
-    #clearMix {
-        right: 120px;
+    .mobileMixerBar .mixerActions {
+        display: contents;
     }
 
     .mobileFavoritesToggle {
-        position: fixed;
-        z-index: 22;
-        right: 16px;
-        bottom: 68px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -490,14 +490,14 @@ input {
         border-radius: 50%;
         background: var(--mixer-green);
         color: #fff;
-        box-shadow: 0 8px 20px rgba(35, 76, 69, .2);
+        box-shadow: 0 4px 12px rgba(35, 76, 69, .16);
     }
 
     .favoriteList {
         position: fixed;
         z-index: 21;
         right: 16px;
-        bottom: 122px;
+        bottom: 76px;
         display: none;
         width: min(320px, calc(100vw - 32px));
         max-height: min(55vh, 360px);
