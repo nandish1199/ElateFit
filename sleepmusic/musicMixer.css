@@ -451,6 +451,7 @@ input {
     }
 
     #stopMix,
+    #clearMix,
     #saveFavorite {
         position: fixed;
         z-index: 20;
@@ -469,6 +470,10 @@ input {
 
     #stopMix {
         right: 68px;
+    }
+
+    #clearMix {
+        right: 120px;
     }
 
     .mobileFavoritesToggle {
@@ -566,6 +571,10 @@ input {
 
     .panelHeading {
         flex-direction: column;
+    }
+
+    #panelHeadingMobile {
+        display: none;
     }
 
     .libraryTools {
