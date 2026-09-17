@@ -135,9 +135,15 @@ function stopSound(card) {
 function stopAll() { audioMap.forEach(audio => { audio.pause(); audio.currentTime = 0; }); }
 
 async function previewSound(card) {
+    const audio = audioMap.get(card.dataset.file);
+    if (audio && !audio.paused) {
+        stopSound(card);
+        setStatus(`${card.dataset.name} stopped.`);
+        return;
+    }
     stopAll();
     await startSound(card);
-    setStatus(`Previewing ${card.dataset.name}. Add it to your mix with the plus button.`);
+    setStatus(`Previewing ${card.dataset.name}. Click the card again to stop it.`);
 }
 
 async function playMix(mix = selectedSounds()) {
