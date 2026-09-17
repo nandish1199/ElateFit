@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="musicMixer.css" />
+    <title>Music Mixer, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+    <main class="mixerPage">
+        <section class="mixerHero">
+            <p class="mixerEyebrow">A quieter way to unwind</p>
+            <h1>Build your own calm.</h1>
+            <p>Layer gentle rain, warm ambience, nature, and soft movement into a personal soundscape. Choose a sound,
+                set its volume, and let the room become yours.</p>
+        </section>
+        <div class="mixerShell">
+            <section class="mixerPanel">
+                <div class="panelHeading">
+                    <div>
+                        <h2>Explore sounds</h2>
+                        <p>Start with one sound. Add a second when you want more depth.</p>
+                    </div><span class="mixerCount" id="mixCount">0 selected</span>
+                </div>
+                <div class="libraryTools"><input class="mixerSearch" id="soundSearch" type="search"
+                        placeholder="Search rain, wind, campfire..." autocomplete="off" />
+                    <div class="categoryTabs" id="categoryTabs" aria-label="Sound categories"></div>
+                </div>
+                <div class="soundGrid" id="soundGrid"></div>
+                <div class="mixerActions"><button class="mixerButton" type="button" id="playMix"><i
+                            class="fa-solid fa-play"></i> Play my mix</button><button class="mixerButton secondary"
+                        type="button" id="clearMix"><i class="fa-solid fa-rotate-left"></i> Clear</button><button
+                        class="mixerButton secondary" type="button" id="saveFavorite"><i
+                            class="fa-regular fa-heart"></i> Save favourite</button></div>
+                <div class="mixerStatus" id="mixerStatus" role="status" aria-live="polite">Choose a sound to begin.
+                </div>
+                <div class="mixerHint"><strong>For a restful mix:</strong> use one steady sound as your base, then add a
+                    quieter layer. Keep the final volume comfortable.</div>
+            </section>
+            <aside class="mixerPanel favoritesPanel">
+                <div class="panelHeading">
+                    <div>
+                        <h2>Saved mixes</h2>
+                        <p>Your personal soundscapes, saved on this device.</p>
+                    </div><i class="fa-regular fa-bookmark" aria-hidden="true"></i>
+                </div>
+                <div class="favoriteList" id="favoriteList"></div>
+            </aside>
+        </div>
+    </main>
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="musicMixer.js"></script>
+</body>
+
+</html>

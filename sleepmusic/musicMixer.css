@@ -1,0 +1,439 @@
+:root {
+    --mixer-ink: #263c3a;
+    --mixer-muted: #708784;
+    --mixer-green: #2d7166;
+    --mixer-deep: #1c514b;
+    --mixer-aqua: #d9eee9;
+    --mixer-sage: #edf6f2;
+    --mixer-paper: #fbfaf7;
+    --mixer-line: #d8e8e2;
+    --mixer-gold: #c69b61;
+    --mixer-shadow: 0 18px 40px rgba(35, 76, 69, .10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #edf5f2;
+    color: var(--mixer-ink);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.mixerPage {
+    max-width: 1240px;
+    margin: 70px auto 0;
+    padding: 28px 24px 64px;
+}
+
+.mixerHero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 22px;
+    padding: clamp(28px, 5vw, 58px);
+    border: 1px solid var(--mixer-line);
+    border-radius: 18px;
+    background: radial-gradient(circle at 85% 20%, rgba(198, 155, 97, .22), transparent 32%), linear-gradient(135deg, #dcefe9, var(--mixer-paper) 68%);
+    box-shadow: var(--mixer-shadow);
+}
+
+.mixerHero::after {
+    position: absolute;
+    right: 8%;
+    bottom: -75px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(45, 113, 102, .18);
+    border-radius: 50%;
+    content: "";
+}
+
+.mixerEyebrow {
+    margin: 0 0 10px;
+    color: var(--mixer-green);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.mixerHero h1 {
+    max-width: 660px;
+    margin: 0 0 12px;
+    color: var(--mixer-deep);
+    font-size: clamp(2rem, 5vw, 4.2rem);
+    font-weight: 400;
+    line-height: .98;
+}
+
+.mixerHero p {
+    max-width: 620px;
+    margin: 0;
+    color: var(--mixer-muted);
+    font-size: 1.04rem;
+    line-height: 1.65;
+}
+
+.mixerShell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.mixerPanel {
+    padding: 22px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 14px;
+    background: rgba(251, 250, 247, .92);
+    box-shadow: var(--mixer-shadow);
+}
+
+.panelHeading {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 18px;
+}
+
+.panelHeading h2 {
+    margin: 0;
+    color: var(--mixer-deep);
+    font-size: 1.18rem;
+    font-weight: 600;
+}
+
+.panelHeading p {
+    margin: 5px 0 0;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .82rem;
+    line-height: 1.4;
+}
+
+.mixerCount {
+    flex: 0 0 auto;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: var(--mixer-sage);
+    color: var(--mixer-green);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.libraryTools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.mixerSearch {
+    flex: 1 1 220px;
+    min-height: 42px;
+    padding: 0 13px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--mixer-ink);
+    outline: none;
+}
+
+.mixerSearch:focus {
+    border-color: var(--mixer-green);
+    box-shadow: 0 0 0 3px rgba(45, 113, 102, .12);
+}
+
+.categoryTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.categoryTab {
+    min-height: 36px;
+    padding: 0 11px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--mixer-muted);
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+    font-size: .76rem;
+    font-weight: 600;
+}
+
+.categoryTab.active,
+.categoryTab:hover {
+    border-color: var(--mixer-green);
+    background: var(--mixer-sage);
+    color: var(--mixer-deep);
+}
+
+.soundGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.soundCard {
+    position: relative;
+    padding: 14px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.soundCard:hover,
+.soundCard.is-selected {
+    border-color: #98c8bb;
+    box-shadow: 0 12px 24px rgba(45, 113, 102, .11);
+    transform: translateY(-2px);
+}
+
+.soundCard.is-playing {
+    border-color: var(--mixer-gold);
+    box-shadow: 0 0 0 3px rgba(198, 155, 97, .17);
+}
+
+.soundCard.is-hidden {
+    display: none;
+}
+
+.soundTop {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.soundOrb {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 50%;
+    background: var(--mixer-aqua);
+    color: var(--mixer-green);
+}
+
+.soundCard.is-playing .soundOrb {
+    background: #f4ead8;
+    color: #986f35;
+}
+
+.soundName {
+    display: block;
+    color: var(--mixer-deep);
+    font-size: 1.03rem;
+    font-weight: 600;
+}
+
+.soundCategory {
+    display: block;
+    margin-top: 3px;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .72rem;
+}
+
+.soundSelect {
+    width: 34px;
+    height: 34px;
+    margin-left: auto;
+    flex: 0 0 34px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 50%;
+    background: #f8fcfa;
+    color: var(--mixer-green);
+    cursor: pointer;
+}
+
+.soundCard.is-selected .soundSelect {
+    background: var(--mixer-green);
+    color: #fff;
+}
+
+.soundStatus {
+    display: block;
+    min-height: 17px;
+    margin: 11px 0 7px;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .7rem;
+}
+
+.soundVolume {
+    display: grid;
+    grid-template-columns: auto 1fr 42px;
+    gap: 9px;
+    align-items: center;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .75rem;
+}
+
+.soundVolume input {
+    width: 100%;
+    accent-color: var(--mixer-green);
+}
+
+.soundVolume output {
+    color: var(--mixer-deep);
+    text-align: right;
+}
+
+.mixerActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.mixerButton {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 1px solid var(--mixer-green);
+    border-radius: 999px;
+    background: var(--mixer-green);
+    color: #fff;
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.mixerButton.secondary {
+    background: transparent;
+    color: var(--mixer-deep);
+    border-color: var(--mixer-line);
+}
+
+.mixerButton:hover {
+    box-shadow: 0 8px 18px rgba(45, 113, 102, .16);
+    transform: translateY(-1px);
+}
+
+.mixerStatus {
+    min-height: 20px;
+    margin-top: 11px;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .8rem;
+}
+
+.favoritesPanel {
+    position: sticky;
+    top: 16px;
+}
+
+.favoriteList {
+    display: grid;
+    gap: 9px;
+}
+
+.favoriteItem {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid var(--mixer-line);
+    border-left: 3px solid var(--mixer-gold);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.favoriteItem strong {
+    display: block;
+    color: var(--mixer-deep);
+    font-size: .92rem;
+}
+
+.favoriteItem small {
+    display: block;
+    margin-top: 4px;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .72rem;
+}
+
+.favoriteActions {
+    display: flex;
+    gap: 5px;
+}
+
+.favoriteActions button {
+    width: 31px;
+    height: 31px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 50%;
+    background: var(--mixer-sage);
+    color: var(--mixer-green);
+    cursor: pointer;
+}
+
+.favoriteActions button:hover {
+    background: var(--mixer-green);
+    color: #fff;
+}
+
+.emptyState {
+    padding: 18px 4px;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .84rem;
+    line-height: 1.5;
+}
+
+.mixerHint {
+    margin-top: 16px;
+    padding: 14px;
+    border-left: 3px solid var(--mixer-gold);
+    background: #f6f0e4;
+    color: #715b35;
+    font-family: "Segoe UI", sans-serif;
+    font-size: .8rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .mixerShell {
+        grid-template-columns: 1fr;
+    }
+
+    .favoritesPanel {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .mixerPage {
+        padding: 22px 14px 42px;
+    }
+
+    .soundGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .panelHeading {
+        flex-direction: column;
+    }
+
+    .libraryTools {
+        display: grid;
+    }
+}
