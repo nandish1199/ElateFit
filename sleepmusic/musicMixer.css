@@ -360,7 +360,6 @@ input {
     height: 34px;
     border: 1px solid var(--mixer-line);
     border-radius: 50%;
-    background: var(--mixer-sage);
     color: var(--mixer-green);
     cursor: pointer;
 }
@@ -469,7 +468,7 @@ input {
         align-items: center;
         justify-content: center;
         gap: 8px;
-        min-height: 64px;
+        min-height: 84px;
         padding: 10px 16px;
         border-top: 1px solid var(--mixer-line);
         background: rgba(251, 250, 247, .96);
@@ -525,7 +524,6 @@ input {
     .mobileMixerBar #saveFavorite:hover,
     .mobileMixerBar #mobileFavoritesToggle:hover {
         border-color: var(--mixer-green);
-        background: var(--mixer-sage);
         color: var(--mixer-green);
         transform: translateY(-2px);
     }
@@ -536,8 +534,7 @@ input {
         justify-content: center;
         border-color: var(--mixer-green);
         border-radius: 50%;
-        background: var(--mixer-green);
-        color: #fff;
+        color: #936018;
     }
 
     .favoriteList {
