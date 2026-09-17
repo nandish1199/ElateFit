@@ -112,8 +112,8 @@ function calculateNutritionTargets(profile) {
     const baseCalories = (10 * profile.weight) + (6.25 * profile.height) - (5 * profile.age) + 5;
     const calories = Math.round(baseCalories * activityFactor(profile.activityLevel) * bodyTypeFactor(profile.bodyType) * targetFactor(profile.target));
     const protein = Math.round(profile.weight * proteinFactor(profile));
-    const saturatedFat = Math.round(calories * 0.10 / 9);
-    const unsaturatedFat = Math.round(calories * 0.25 / 9);
+        const saturatedFat = Math.round(calories * 0.07 / 9);
+        const unsaturatedFat = Math.round(calories * 0.17 / 9);
     const totalFiber = Math.round(calories / 1000 * 14);
     const solubleFiber = Math.round(totalFiber * 0.25);
     const insolubleFiber = Math.max(1, totalFiber - solubleFiber);
