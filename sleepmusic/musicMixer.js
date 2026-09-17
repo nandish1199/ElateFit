@@ -25,6 +25,7 @@ const FAVORITES_KEY = "elateFitMusicMixerFavorites";
 const audioMap = new Map();
 let favorites = loadFavorites();
 let activeCategory = "All sounds";
+let statusTimer;
 
 function loadFavorites() {
     try {
@@ -48,8 +49,11 @@ function saveFavorites() {
 
 function setStatus(message, error = false) {
     const status = document.getElementById("mixerStatus");
+    clearTimeout(statusTimer);
     status.textContent = message;
     status.style.color = error ? "#a45e4c" : "#708784";
+    status.classList.add("is-visible");
+    statusTimer = setTimeout(() => status.classList.remove("is-visible"), 2000);
 }
 
 function selectedSounds() {

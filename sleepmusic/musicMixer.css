@@ -335,6 +335,10 @@ input {
     font-size: .8rem;
 }
 
+.mixerStatus.is-visible {
+    opacity: 1;
+}
+
 .favoritesPanel {
     position: sticky;
     top: 75px;
@@ -460,6 +464,33 @@ input {
 
     .mixerPanel {
         padding: 14px;
+    }
+
+    .mixerStatus {
+        position: fixed;
+        z-index: 19;
+        right: 16px;
+        bottom: 92px;
+        left: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        margin: 0;
+        padding: 9px 14px;
+        border: 1px solid var(--mixer-line);
+        border-radius: 999px;
+        background: rgba(251, 250, 247, .97);
+        box-shadow: 0 8px 20px rgba(35, 76, 69, .16);
+        opacity: 0;
+        pointer-events: none;
+        text-align: center;
+        transition: opacity 160ms ease;
+        visibility: hidden;
+    }
+
+    .mixerStatus.is-visible {
+        visibility: visible;
     }
 
     .mobileMixerBar {
