@@ -434,6 +434,10 @@ input {
     line-height: 1.5;
 }
 
+#playMix {
+    display: none;
+}
+
 @media (max-width: 900px) {
     .mixerShell {
         grid-template-columns: 1fr;
