@@ -533,12 +533,23 @@ input {
     }
 
     .mobileFavoritesToggle {
+        position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-color: var(--mixer-green);
         border-radius: 50%;
         color: #936018;
+    }
+
+    .mobileFavoritesToggle.is-open::after {
+        position: absolute;
+        width: 31px;
+        height: 3px;
+        border-radius: 3px;
+        background: currentColor;
+        content: "";
+        transform: rotate(-45deg);
     }
 
     .favoriteList {

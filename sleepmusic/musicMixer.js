@@ -196,10 +196,11 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("mobileFavoritesToggle").addEventListener("click", function() {
         const list = document.getElementById("favoriteList");
         const isOpen = list.classList.toggle("is-open");
+        this.classList.toggle("is-open", isOpen);
         this.setAttribute("aria-expanded", String(isOpen));
         this.setAttribute("aria-label", isOpen ? "Hide saved mixes" : "Show saved mixes");
         this.title = isOpen ? "Hide saved mixes" : "Show saved mixes";
-        this.innerHTML = `<i class="fa-regular fa-bookmark${isOpen ? "-slash" : ""}" aria-hidden="true"></i>`;
+        this.innerHTML = '<i class="fa-regular fa-bookmark" aria-hidden="true"></i>';
     });
     document.getElementById("saveFavorite").addEventListener("click", () => {
         const sounds = selectedSounds();
