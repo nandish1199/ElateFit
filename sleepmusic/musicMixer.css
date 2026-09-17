@@ -189,7 +189,7 @@ input {
 
 .soundCard {
     position: relative;
-    padding: 14px;
+    padding: 11px;
     border: 1px solid var(--mixer-line);
     border-radius: 12px;
     background: #fff;
@@ -214,7 +214,7 @@ input {
 
 .soundTop {
     display: flex;
-    gap: 12px;
+    gap: 9px;
     align-items: center;
 }
 
@@ -222,9 +222,9 @@ input {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
     border-radius: 50%;
     background: var(--mixer-aqua);
     color: var(--mixer-green);
@@ -238,7 +238,7 @@ input {
 .soundName {
     display: block;
     color: var(--mixer-deep);
-    font-size: 1.03rem;
+    font-size: .94rem;
     font-weight: 600;
 }
 
@@ -251,8 +251,8 @@ input {
 }
 
 .soundSelect {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     margin-left: auto;
     flex: 0 0 34px;
     border: 1px solid var(--mixer-line);
@@ -270,7 +270,7 @@ input {
 .soundStatus {
     display: block;
     min-height: 17px;
-    margin: 11px 0 7px;
+    margin: 8px 0 5px;
     color: var(--mixer-muted);
     font-family: "Segoe UI", sans-serif;
     font-size: .7rem;
@@ -278,8 +278,8 @@ input {
 
 .soundVolume {
     display: grid;
-    grid-template-columns: auto 1fr 42px;
-    gap: 9px;
+    grid-template-columns: auto 1fr 36px;
+    gap: 6px;
     align-items: center;
     color: var(--mixer-muted);
     font-family: "Segoe UI", sans-serif;
@@ -426,7 +426,64 @@ input {
     }
 
     .soundGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .mixerPanel {
+        padding: 14px;
+    }
+
+    .soundCard {
+        padding: 9px;
+        border-radius: 9px;
+    }
+
+    .soundTop {
+        gap: 6px;
+    }
+
+    .soundOrb {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+        font-size: .78rem;
+    }
+
+    .soundName {
+        font-size: .8rem;
+        line-height: 1.15;
+    }
+
+    .soundCategory {
+        font-size: .61rem;
+    }
+
+    .soundSelect {
+        width: 25px;
+        height: 25px;
+        font-size: .7rem;
+    }
+
+    .soundStatus {
+        font-size: .61rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .soundVolume {
+        grid-template-columns: 1fr 30px;
+        gap: 5px;
+        font-size: .64rem;
+    }
+
+    .soundVolume span {
+        display: none;
+    }
+
+    .soundVolume output {
+        font-size: .64rem;
     }
 
     .panelHeading {
