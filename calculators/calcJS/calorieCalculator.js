@@ -315,6 +315,14 @@ function drawChart(data) {
             index ? context.lineTo(x, y) : context.moveTo(x, y);
         });
         context.strokeStyle = color; context.lineWidth = 2.5; context.stroke();
+        data.forEach((day, index) => {
+            const x = padding.left + chartWidth * index / Math.max(1, data.length - 1);
+            const y = padding.top + chartHeight - chartHeight * day[valueSelector] * scale / maxValue;
+            context.fillStyle = "#ffffff";
+            context.beginPath(); context.arc(x, y, 4.5, 0, Math.PI * 2); context.fill();
+            context.fillStyle = color;
+            context.beginPath(); context.arc(x, y, 3, 0, Math.PI * 2); context.fill();
+        });
     }
     drawLine("calories", "#1f6b5b");
     drawLine("protein", "#b58b45", 10);
