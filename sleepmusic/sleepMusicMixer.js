@@ -2,15 +2,42 @@ const mixerCatalog = [
     ["campFire.mp3", "Campfire"], ["carDriveBy.mp3", "Car Drive By"], ["distantThunder.mp3", "Distant Thunder"], ["FactoryHard.mp3", "Factory Hard"], ["factoryMorning.mp3", "Factory Morning"], ["hero.mp3", "Soft Atmosphere"], ["highway1.mp3", "Highway One"], ["highway2.mp3", "Highway Two"], ["hit.mp3", "Soft Pulse"], ["IceRain.mp3", "Ice Rain"], ["KidsPlaying.mp3", "Kids Playing"], ["LakeWindAmbience.mp3", "Lake Wind"], ["rainOnCarHeavy.mp3", "Heavy Rain on Car"], ["rainOnRoof.mp3", "Rain on Roof"], ["RainOnRooftop.mp3", "Rain on Rooftop"], ["rainWaterDrop.mp3", "Rain Drops"], ["silver.mp3", "Silver Ambience"], ["windForest.mp3", "Forest Wind"], ["windQuietCreaks.mp3", "Quiet Wind"], ["WoodDanHenig.mp3", "Wooden Strings"]
 ].map(([file, name]) => ({ file, name }));
 
+const categoryRules = [
+    { category: "Nature", icon: "leaf", names: ["Campfire", "Distant Thunder", "Lake Wind", "Forest Wind", "Quiet Wind"] },
+    { category: "Rain & Water", icon: "cloud-rain", names: ["Ice Rain", "Heavy Rain on Car", "Rain on Roof", "Rain on Rooftop", "Rain Drops"] },
+    { category: "Travel & City", icon: "road", names: ["Car Drive By", "Highway One", "Highway Two", "Factory Hard", "Factory Morning", "Kids Playing"] },
+    { category: "Ambient", icon: "music", names: ["Soft Atmosphere", "Soft Pulse", "Silver Ambience", "Wooden Strings"] }
+];
+
+mixerCatalog.forEach(track => {
+    const match = categoryRules.find(rule => rule.names.includes(track.name));
+    track.category = match ? match.category : "Ambient";
+    track.icon = match ? match.icon : "music";
+});
+
 const MIXER_STORAGE_KEY = "elateFitSleepMixFavorites";
 const audioTracks = new Map();
 let favorites = loadFavorites();
+let activeCategory = "All sounds";
 
 function loadFavorites() {
     try { return JSON.parse(localStorage.getItem(MIXER_STORAGE_KEY) || "[]"); } catch (error) { return []; }
 }
 
 function saveFavorites() { localStorage.setItem(MIXER_STORAGE_KEY, JSON.stringify(favorites)); }
+
+function renderSoundFilters() {
+    const filters = document.getElementById("soundFilters");
+    const categories = ["All sounds", ...categoryRules.map(rule => rule.category)];
+    filters.innerHTML = categories.map(category => `<button type="button" class="soundFilter ${category === activeCategory ? "active" : ""}" data-category="${category}">${category}</button>`).join("");
+}
+
+function applyCategoryFilter() {
+    document.querySelectorAll(".trackCard").forEach(card => {
+        card.classList.toggle("is-filtered-out", activeCategory !== "All sounds" && card.dataset.category !== activeCategory);
+    });
+    document.querySelectorAll(".soundFilter").forEach(button => button.classList.toggle("active", button.dataset.category === activeCategory));
+}
 
 function selectedMix() {
     return [...document.querySelectorAll(".trackCard.is-selected")].map(card => ({
@@ -47,9 +74,9 @@ async function previewTrack(card) {
 function renderCatalog() {
     const grid = document.getElementById("trackGrid");
     grid.innerHTML = mixerCatalog.map(track => `
-        <article class="trackCard" data-file="${track.file}" data-name="${track.name}">
+        <article class="trackCard" data-file="${track.file}" data-name="${track.name}" data-category="${track.category}">
             <button type="button" class="trackToggle" aria-label="Select ${track.name}" aria-pressed="false"><i class="fa-solid fa-plus"></i></button>
-            <div><span class="trackName">${track.name}</span><span class="trackFile">${track.file}</span><span class="trackState">Ready</span></div>
+            <div><span class="trackName">${track.name}</span><span class="trackFile">${track.file}</span><span class="trackCategory"><i class="fa-solid fa-${track.icon}"></i> ${track.category}</span><span class="trackState">Ready</span></div>
             <label class="trackVolume">Volume <input type="range" min="0" max="1" step="0.01" value="0.35"><output>35%</output></label>
             <audio preload="none" loop src="music/${track.file}"></audio>
         </article>`).join("");
@@ -100,6 +127,7 @@ function renderCatalog() {
             card.querySelector(".trackState").textContent = "Finished";
         });
     });
+    applyCategoryFilter();
 }
 
 async function playSelectedTrack(card) {
@@ -155,7 +183,22 @@ function loadMix(mix) {
 
 document.addEventListener("DOMContentLoaded", function() {
     renderCatalog();
+    renderSoundFilters();
     renderFavorites();
+    document.getElementById("favoritesToggle").addEventListener("click", function() {
+        const list = document.getElementById("favoriteList");
+        const isExpanded = this.getAttribute("aria-expanded") === "true";
+        this.setAttribute("aria-expanded", String(!isExpanded));
+        list.hidden = isExpanded;
+        this.querySelector("i").classList.toggle("fa-chevron-down", isExpanded);
+        this.querySelector("i").classList.toggle("fa-chevron-up", !isExpanded);
+    });
+    document.getElementById("soundFilters").addEventListener("click", event => {
+        const button = event.target.closest(".soundFilter");
+        if (!button) return;
+        activeCategory = button.dataset.category;
+        applyCategoryFilter();
+    });
     document.getElementById("playMix").addEventListener("click", () => playMix());
     document.getElementById("stopMix").addEventListener("click", () => { stopMix(); setStatus("Mix stopped."); });
     document.getElementById("saveFavorite").addEventListener("click", function() {

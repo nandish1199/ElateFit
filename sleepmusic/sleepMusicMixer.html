@@ -75,6 +75,11 @@
             align-items: start;
         }
 
+        .favoritesPanel {
+            position: sticky;
+            top: 16px;
+        }
+
         .mixerPanel {
             padding: 22px;
             background: var(--mix-paper);
@@ -89,6 +94,76 @@
             font-size: 1.05rem;
             letter-spacing: .1em;
             text-transform: uppercase;
+        }
+
+        .favoritesToggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0 0 18px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: var(--mix-dark);
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+        }
+
+        .favoritesToggle h2 {
+            margin: 0;
+        }
+
+        .favoritesToggle i {
+            color: var(--mix-green);
+            font-size: .9rem;
+        }
+
+        .favoriteList[hidden] {
+            display: none;
+        }
+
+        .libraryToolbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .libraryIntro {
+            margin: -8px 0 0;
+            color: var(--mix-muted);
+            font-size: .86rem;
+            line-height: 1.45;
+        }
+
+        .soundFilters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+
+        .soundFilter {
+            min-height: 32px;
+            padding: 0 10px;
+            border: 1px solid var(--mix-line);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--mix-muted);
+            cursor: pointer;
+            font: inherit;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .soundFilter.active,
+        .soundFilter:hover {
+            border-color: var(--mix-green);
+            background: #eef5f0;
+            color: var(--mix-dark);
         }
 
         .trackGrid {
@@ -118,6 +193,10 @@
             border-color: var(--mix-green);
             box-shadow: 0 8px 18px rgba(31, 107, 91, .13);
             transform: translateY(-2px);
+        }
+
+        .trackCard.is-filtered-out {
+            display: none;
         }
 
         .trackToggle {
@@ -152,6 +231,18 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+
+        .trackCategory {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 7px;
+            color: var(--mix-green);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
         }
 
         .trackState {
@@ -305,6 +396,10 @@
             .mixerLayout {
                 grid-template-columns: 1fr;
             }
+
+            .favoritesPanel {
+                position: static;
+            }
         }
 
         @media(max-width:600px) {
@@ -319,6 +414,14 @@
 
             .trackGrid {
                 grid-template-columns: 1fr;
+            }
+
+            .libraryToolbar {
+                flex-direction: column;
+            }
+
+            .soundFilters {
+                justify-content: flex-start;
             }
 
             .mixerHero .heroAction {
@@ -343,7 +446,6 @@
                     them back with one tap.</p>
             </div>
             <div>
-                <a class="heroAction" href="#trackGrid"><i class="fa-solid fa-music"></i> Browse library</a>
                 <div class="mixerControls">
                     <button type="button" id="playMix"><i class="fa-solid fa-play"></i> Play mix</button>
                     <button type="button" class="secondaryButton" id="stopMix"><i class="fa-solid fa-stop"></i>
@@ -355,7 +457,14 @@
         </section>
         <div class="mixerLayout">
             <section class="mixerPanel">
-                <h2>Default music library</h2>
+                <div class="libraryToolbar">
+                    <div>
+                        <h2>Sound library</h2>
+                        <p class="libraryIntro">Start with one calming layer, then add rain, wind, ambience, or travel
+                            sounds for depth.</p>
+                    </div>
+                    <div class="soundFilters" id="soundFilters" aria-label="Filter sounds"></div>
+                </div>
                 <div class="trackGrid" id="trackGrid"></div>
                 <div class="mixerStatus" id="mixerStatus" role="status" aria-live="polite"></div>
                 <div class="mixerNote"><strong>Admin library:</strong> place a new audio file in
@@ -363,9 +472,13 @@
                     <code>sleepMusicMixer.js</code>.
                 </div>
             </section>
-            <aside class="mixerPanel">
-                <h2>Favourite mixes</h2>
-                <div class="favoriteList" id="favoriteList"></div>
+            <aside class="mixerPanel favoritesPanel" id="favoritesPanel">
+                <button type="button" class="favoritesToggle" id="favoritesToggle" aria-expanded="false"
+                    aria-controls="favoriteList">
+                    <h2>Favourite mixes</h2>
+                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="favoriteList" id="favoriteList" hidden></div>
             </aside>
         </div>
     </main>
