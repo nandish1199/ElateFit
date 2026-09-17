@@ -112,7 +112,12 @@ function calculateNutritionTargets(profile) {
     const baseCalories = (10 * profile.weight) + (6.25 * profile.height) - (5 * profile.age) + 5;
     const calories = Math.round(baseCalories * activityFactor(profile.activityLevel) * bodyTypeFactor(profile.bodyType) * targetFactor(profile.target));
     const protein = Math.round(profile.weight * proteinFactor(profile));
-    return { calories, protein };
+    const saturatedFat = Math.round(calories * 0.10 / 9);
+    const unsaturatedFat = Math.round(calories * 0.25 / 9);
+    const totalFiber = Math.round(calories / 1000 * 14);
+    const solubleFiber = Math.round(totalFiber * 0.25);
+    const insolubleFiber = Math.max(1, totalFiber - solubleFiber);
+    return { calories, protein, saturatedFat, unsaturatedFat, solubleFiber, insolubleFiber };
 }
 
 function setProfileStatus(message, error = true) {
@@ -205,6 +210,10 @@ function renderProfileSummary(profile) {
                 <div class="profileStat"><span>Activity</span><strong>${profile.activityLevel}</strong></div>
                 <div class="profileStat"><span>Daily calories</span><strong>${nutrition.calories} kcal</strong></div>
                 <div class="profileStat"><span>Daily protein</span><strong>${nutrition.protein} g</strong></div>
+                <div class="profileStat"><span>Saturated fat limit</span><strong>${nutrition.saturatedFat} g</strong></div>
+                <div class="profileStat"><span>Unsaturated fat</span><strong>${nutrition.unsaturatedFat} g</strong></div>
+                <div class="profileStat"><span>Soluble fiber</span><strong>${nutrition.solubleFiber} g</strong></div>
+                <div class="profileStat"><span>Insoluble fiber</span><strong>${nutrition.insolubleFiber} g</strong></div>
             </div>
             <div class="profileNote">${notesText}</div>
         </div>`;
