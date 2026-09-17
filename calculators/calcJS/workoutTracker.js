@@ -121,15 +121,22 @@ function refreshExerciseOptions() {
 
 function chartEntries() {
     const selected = document.getElementById("chartExercise").value;
-    const entries = currentRangeEntries().filter(entry => selected === "all" || entry.exercise === selected);
-    const grouped = {};
-    entries.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).forEach(entry => {
-        const key = dayKey(entry.createdAt);
-        if (!grouped[key]) grouped[key] = { date: new Date(entry.createdAt), weight: 0, volume: 0 };
-        grouped[key].weight = Math.max(grouped[key].weight, entry.weight);
-        grouped[key].volume += entry.volume;
-    });
-    return Object.values(grouped);
+    const today = new Date();
+    const entries = workoutEntries.filter(entry => selected === "all" || entry.exercise === selected);
+    const values = [];
+    for (let offset = selectedRange - 1; offset >= 0; offset -= 1) {
+        const date = new Date(today);
+        date.setDate(today.getDate() - offset);
+        const key = dayKey(date);
+        const dayEntries = entries.filter(entry => dayKey(entry.createdAt) === key);
+        const latest = dayEntries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        values.push({
+            date,
+            weight: latest ? latest.weight : null,
+            volume: dayEntries.reduce((sum, entry) => sum + entry.volume, 0)
+        });
+    }
+    return values;
 }
 
 function drawOverloadChart(data) {
@@ -156,10 +163,16 @@ function drawOverloadChart(data) {
     }
     function line(key, color, scale = 1) {
         context.beginPath();
+        let drawing = false;
         data.forEach((item, index) => {
+            if (item[key] === null) {
+                drawing = false;
+                return;
+            }
             const x = pad.left + chartWidth * index / Math.max(1, data.length - 1);
             const y = pad.top + chartHeight - chartHeight * item[key] * scale / maxValue;
-            index ? context.lineTo(x, y) : context.moveTo(x, y);
+            drawing ? context.lineTo(x, y) : context.moveTo(x, y);
+            drawing = true;
         });
         context.strokeStyle = color; context.lineWidth = 2.5; context.stroke();
     }
@@ -167,11 +180,31 @@ function drawOverloadChart(data) {
     line("volume", "#b58b45", 0.1);
     data.forEach((item, index) => {
         const x = pad.left + chartWidth * index / Math.max(1, data.length - 1);
-        const y = pad.top + chartHeight - chartHeight * item.weight / maxValue;
-        context.fillStyle = "#1f6b5b"; context.beginPath(); context.arc(x, y, 3, 0, Math.PI * 2); context.fill();
-        if (data.length <= 8 || index % Math.ceil(data.length / 6) === 0 || index === data.length - 1) {
-            context.fillStyle = "#687873"; context.fillText(new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(item.date), x - 16, height - 12);
+        if (item.weight !== null) {
+            const y = pad.top + chartHeight - chartHeight * item.weight / maxValue;
+            context.fillStyle = "#1f6b5b";
+            context.beginPath(); context.arc(x, y, 3.5, 0, Math.PI * 2); context.fill();
         }
+        if (item.volume > 0) {
+            const y = pad.top + chartHeight - chartHeight * item.volume * 0.1 / maxValue;
+            context.fillStyle = "#b58b45";
+            context.beginPath(); context.arc(x, y, 3, 0, Math.PI * 2); context.fill();
+        }
+    });
+
+    const labelStep = data.length > 30 ? Math.ceil(data.length / 6) : data.length > 15 ? 3 : data.length > 8 ? 2 : 1;
+    context.fillStyle = "#687873";
+    let lastLabelRight = -Infinity;
+    data.forEach((item, index) => {
+        if (index % labelStep !== 0 && index !== data.length - 1) return;
+        const x = pad.left + chartWidth * index / Math.max(1, data.length - 1);
+        const label = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(item.date);
+        const labelWidth = context.measureText(label).width;
+        const left = x - labelWidth / 2;
+        const right = x + labelWidth / 2;
+        if (left <= lastLabelRight + 8 && index !== data.length - 1) return;
+        context.fillText(label, left, height - 12);
+        lastLabelRight = right;
     });
     context.fillStyle = "#1f6b5b"; context.fillRect(width - 178, 12, 12, 3); context.fillStyle = "#24332f"; context.fillText("Weight kg", width - 160, 16);
     context.fillStyle = "#b58b45"; context.fillRect(width - 86, 12, 12, 3); context.fillStyle = "#24332f"; context.fillText("Volume / 10", width - 68, 16);
@@ -180,8 +213,9 @@ function drawOverloadChart(data) {
 function renderProgress() {
     const data = chartEntries();
     drawOverloadChart(data);
-    const first = data[0];
-    const last = data[data.length - 1];
+    const measured = data.filter(item => item.weight !== null);
+    const first = measured[0];
+    const last = measured[measured.length - 1];
     document.getElementById("weightProgress").textContent = first && last ? `${last.weight > first.weight ? "Up" : last.weight < first.weight ? "Down" : "Steady"}: ${first.weight.toFixed(1)} kg to ${last.weight.toFixed(1)} kg.` : "Add workouts to see your progress.";
     document.getElementById("volumeProgress").textContent = first && last ? `${last.volume > first.volume ? "Up" : last.volume < first.volume ? "Down" : "Steady"}: latest tracked volume is ${last.volume.toFixed(1)} kg.` : "Add workouts to see your progress.";
 }
@@ -236,10 +270,10 @@ document.addEventListener("DOMContentLoaded", async function() {
             if (!confirm("This will permanently delete your complete workout history. Continue?")) return;
             await removeAllWorkouts(); setWorkoutStatus("All workouts deleted.", false); await refreshWorkoutDashboard();
         });
-        document.querySelectorAll(".rangeButton").forEach(button => button.addEventListener("click", function() {
+        document.querySelectorAll(".rangeButtons .rangeButton").forEach(button => button.addEventListener("click", function() {
             if (!this.dataset.range) return;
             selectedRange = Number(this.dataset.range);
-            document.querySelectorAll(".rangeButton").forEach(item => item.classList.remove("active")); this.classList.add("active");
+            document.querySelectorAll(".rangeButtons .rangeButton").forEach(item => item.classList.remove("active")); this.classList.add("active");
             renderWorkoutList(); renderProgress();
         }));
         document.getElementById("chartExercise").addEventListener("change", renderProgress);
