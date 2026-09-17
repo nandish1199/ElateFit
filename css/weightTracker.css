@@ -1,0 +1,324 @@
+:root {
+    --weight-ink: #24332f;
+    --weight-muted: #687873;
+    --weight-green: #1f6b5b;
+    --weight-dark: #174e44;
+    --weight-gold: #b58b45;
+    --weight-paper: #fbfaf6;
+    --weight-line: #dfe5df;
+    --weight-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+}
+
+body {
+    background: #f1f4f1;
+    color: var(--weight-ink);
+}
+
+.weightPage {
+    max-width: 1240px;
+    margin: 70px auto 0;
+    padding: 30px 24px 60px;
+}
+
+.weightHero {
+    margin-bottom: 22px;
+    padding: 28px clamp(18px, 4vw, 48px);
+    background: linear-gradient(115deg, #e7f0eb, var(--weight-paper) 70%);
+    border: 1px solid var(--weight-line);
+    border-top: 4px solid var(--weight-gold);
+    box-shadow: var(--weight-shadow);
+}
+
+.weightHero h1 {
+    margin: 0 0 8px;
+    color: var(--weight-ink);
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    letter-spacing: .06em;
+}
+
+.weightHero p {
+    max-width: 760px;
+    margin: 0;
+    color: var(--weight-muted);
+    line-height: 1.55;
+}
+
+.weightLayout {
+    display: grid;
+    grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.weightPanel {
+    padding: 22px;
+    background: var(--weight-paper);
+    border: 1px solid var(--weight-line);
+    border-radius: 6px;
+    box-shadow: var(--weight-shadow);
+}
+
+.weightPanel h2 {
+    margin: 0 0 18px;
+    color: var(--weight-dark);
+    font-size: 1.05rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.weightForm {
+    display: grid;
+    gap: 12px;
+}
+
+.weightField {
+    display: flex;
+    flex-direction: column;
+    color: var(--weight-muted);
+    font-size: .86rem;
+    font-weight: 600;
+}
+
+.weightField input,
+.weightField textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 6px;
+    padding: 0 12px;
+    border: 1px solid #b9cbc4;
+    border-radius: 4px;
+    background: #fff;
+    color: var(--weight-ink);
+    font: inherit;
+}
+
+.weightField textarea {
+    min-height: 90px;
+    padding: 12px;
+    resize: vertical;
+}
+
+.weightField input:focus,
+.weightField textarea:focus {
+    border-color: var(--weight-green);
+    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    outline: none;
+}
+
+.weightActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.weightActions button,
+.periodButton {
+    min-height: 42px;
+    padding: 0 15px;
+    border: 1px solid var(--weight-green);
+    border-radius: 4px;
+    background: var(--weight-green);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.weightActions .secondaryButton,
+.periodButton {
+    background: transparent;
+    color: var(--weight-dark);
+    border-color: var(--weight-line);
+}
+
+.weightStatus {
+    min-height: 20px;
+    color: #a45e4c;
+    font-size: .86rem;
+}
+
+.weightToolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.periodButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.periodButton {
+    min-height: 34px;
+    padding: 0 11px;
+    font-size: .8rem;
+}
+
+.periodButton.active {
+    background: var(--weight-green);
+    border-color: var(--weight-green);
+    color: #fff;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.statCard {
+    padding: 14px;
+    border: 1px solid var(--weight-line);
+    border-top: 3px solid var(--weight-gold);
+    background: #fff;
+}
+
+.statCard span {
+    display: block;
+    color: var(--weight-muted);
+    font-size: .73rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+}
+
+.statCard strong {
+    display: block;
+    margin-top: 6px;
+    color: var(--weight-dark);
+    font-size: 1.2rem;
+}
+
+.chartWrap {
+    height: 300px;
+    padding: 10px;
+    border: 1px solid var(--weight-line);
+    background: #fff;
+}
+
+#weightChart {
+    width: 100%;
+    height: 100%;
+}
+
+.entryList,
+.photoGrid {
+    display: grid;
+    gap: 10px;
+}
+
+.weightEntry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 13px;
+    border: 1px solid var(--weight-line);
+    background: #fff;
+}
+
+.entryName {
+    color: var(--weight-dark);
+    font-weight: 700;
+}
+
+.entryMeta {
+    margin-top: 4px;
+    color: var(--weight-muted);
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+.entryActions {
+    display: flex;
+    gap: 6px;
+}
+
+.entryActions button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--weight-line);
+    border-radius: 4px;
+    background: #f8fbf9;
+    color: var(--weight-green);
+    cursor: pointer;
+}
+
+.photoGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.photoCard {
+    overflow: hidden;
+    border: 1px solid var(--weight-line);
+    background: #fff;
+}
+
+.photoCard img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: #eef2ef;
+}
+
+.photoCard figcaption {
+    padding: 9px;
+    color: var(--weight-muted);
+    font-size: .78rem;
+    line-height: 1.35;
+}
+
+.emptyState {
+    padding: 18px;
+    color: var(--weight-muted);
+    font-size: .88rem;
+    line-height: 1.5;
+}
+
+.weightNote {
+    margin-top: 14px;
+    padding: 13px 14px;
+    border-left: 3px solid var(--weight-gold);
+    background: #f4f0e5;
+    color: #725b2e;
+    font-size: .84rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .weightLayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .weightPage {
+        padding: 22px 14px 42px;
+    }
+
+    .weightToolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .photoGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .weightEntry {
+        grid-template-columns: 1fr;
+    }
+
+    .entryActions {
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/weightTracker.css" />
+    <title>Weight Tracker, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+    <main class="weightPage">
+        <section class="weightHero">
+            <h1>WEIGHT TRACKER</h1>
+            <p>Record your daily measurements, understand your trend, and keep monthly progress photos in one private
+                browser-based journal.</p>
+        </section>
+        <div class="weightLayout">
+            <section class="weightPanel">
+                <h2>Daily measurement</h2>
+                <form class="weightForm" id="weightForm">
+                    <label class="weightField" for="weightValue">Weight in kg<input type="number" id="weightValue"
+                            min="1" max="500" step="0.1" placeholder="65.0" required /></label>
+                    <label class="weightField" for="weightNotes">Notes (optional)<textarea id="weightNotes"
+                            placeholder="Morning measurement, after workout, etc."></textarea></label>
+                    <div class="weightActions"><button type="submit"><i class="fa-solid fa-plus"></i> Save
+                            weight</button></div>
+                    <div class="weightStatus" id="weightStatus" role="status" aria-live="polite"></div>
+                </form>
+                <div class="weightNote"><strong>Privacy:</strong> measurements and photos stay in this browser’s
+                    IndexedDB. They are not uploaded by this tracker.</div>
+            </section>
+            <section class="weightPanel">
+                <div class="weightToolbar">
+                    <h2>Weight trend</h2>
+                    <div class="periodButtons"><button type="button" class="periodButton active" data-period="7">7
+                            days</button><button type="button" class="periodButton" data-period="15">15
+                            days</button><button type="button" class="periodButton" data-period="30">30 days</button>
+                    </div>
+                </div>
+                <div class="statsGrid">
+                    <div class="statCard"><span>Current</span><strong id="currentWeight">--</strong></div>
+                    <div class="statCard"><span>Total change</span><strong id="weightChange">--</strong></div>
+                    <div class="statCard"><span>Entries</span><strong id="weightEntries">0</strong></div>
+                </div>
+                <div class="chartWrap"><canvas id="weightChart" aria-label="Weight trend chart"></canvas></div>
+            </section>
+            <section class="weightPanel">
+                <h2>Weight history</h2>
+                <div class="entryList" id="weightEntryList"></div>
+            </section>
+            <section class="weightPanel">
+                <h2>Add progress photo</h2>
+                <form class="weightForm" id="photoForm"><label class="weightField" for="progressPhoto">Body photo<input
+                            type="file" id="progressPhoto" accept="image/*" required /></label><label
+                        class="weightField" for="photoNote">Photo note (optional)<input type="text" id="photoNote"
+                            placeholder="September front photo" /></label>
+                    <div class="weightActions"><button type="submit"><i class="fa-solid fa-camera"></i> Save
+                            photo</button></div>
+                </form>
+                <div class="weightNote">Take photos in similar lighting, clothing, and posture each month for a more
+                    useful comparison.</div>
+            </section>
+            <section class="weightPanel">
+                <div class="weightToolbar">
+                    <h2>Monthly progress photos</h2><span class="weightNote" style="margin:0">Stored locally</span>
+                </div>
+                <div class="photoGrid" id="photoGrid"></div>
+            </section>
+        </div>
+    </main>
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/weightTracker.js"></script>
+</body>
+
+</html>
