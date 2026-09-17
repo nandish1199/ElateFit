@@ -434,6 +434,31 @@ input {
         padding: 14px;
     }
 
+    #stopMix,
+    #saveFavorite {
+        position: fixed;
+        z-index: 20;
+        right: 16px;
+        bottom: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        border-radius: 50%;
+        box-shadow: 0 8px 20px rgba(35, 76, 69, .2);
+    }
+
+    #stopMix {
+        right: 68px;
+    }
+
+    .mixerButtonText {
+        display: none;
+    }
+
     .soundCard {
         padding: 9px;
         border-radius: 9px;
