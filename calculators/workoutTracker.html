@@ -444,9 +444,6 @@
             <section class="workoutPanel">
                 <div class="viewTools">
                     <h2>Training Log</h2>
-                    <div class="rangeButtons"><button type="button" class="rangeButton active"
-                            data-range="7">Week</button><button type="button" class="rangeButton"
-                            data-range="30">Month</button></div>
                 </div>
                 <div class="summaryGrid">
                     <div class="summaryCard"><span>Sessions</span><strong id="sessionCount">0</strong></div>
@@ -466,6 +463,11 @@
                         aria-label="Select exercise for chart">
                         <option value="all">All workouts</option>
                     </select>
+                </div>
+                <div class="rangeButtons" aria-label="Chart date range">
+                    <button type="button" class="rangeButton active" data-range="7">7 days</button>
+                    <button type="button" class="rangeButton" data-range="15">15 days</button>
+                    <button type="button" class="rangeButton" data-range="30">30 days</button>
                 </div>
                 <div class="chartWrap"><canvas id="overloadChart" aria-label="Progressive overload chart"></canvas>
                 </div>
