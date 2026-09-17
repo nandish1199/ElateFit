@@ -206,7 +206,7 @@ function renderEntries() {
             <div class="entryFood"><strong>${entry.foodLabel}</strong><small>${formatDate(new Date(entry.createdAt))} · ${formatTime(new Date(entry.createdAt))}</small></div>
             <span>${entry.grams} g</span><span>${entry.calories.toFixed(0)} kcal</span><span>${entry.protein.toFixed(1)} g</span>
             <span>${(entry.saturatedFat || 0).toFixed(1)} g</span><span>${(entry.unsaturatedFat || 0).toFixed(1)} g</span>
-            <span>${((entry.solubleFiber || 0) + (entry.insolubleFiber || 0)).toFixed(1)} g</span>
+            <span>${(entry.solubleFiber || 0).toFixed(1)} g</span><span>${(entry.insolubleFiber || 0).toFixed(1)} g</span>
             <button type="button" class="deleteEntry" data-id="${entry.id}" data-food="${entry.foodLabel}" aria-label="Delete ${entry.foodLabel}"><i class="fa-solid fa-xmark"></i></button>
         </div>`).join("") : '<div class="entryEmpty">No food entries saved for today.</div>';
     const calories = entries.reduce((sum, entry) => sum + entry.calories, 0);
