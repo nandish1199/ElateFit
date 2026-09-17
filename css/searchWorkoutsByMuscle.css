@@ -1,0 +1,280 @@
+:root {
+    --exercise-ink: #24332f;
+    --exercise-muted: #687873;
+    --exercise-green: #1f6b5b;
+    --exercise-dark: #174e44;
+    --exercise-gold: #b58b45;
+    --exercise-paper: #fbfaf6;
+    --exercise-line: #dfe5df;
+    --exercise-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+}
+
+body {
+    background: #f1f4f1;
+    color: var(--exercise-ink);
+}
+
+.exercisePage {
+    max-width: 1240px;
+    margin: 70px auto 0;
+    padding: 30px 24px 60px;
+}
+
+.exerciseHero {
+    margin-bottom: 22px;
+    padding: 28px clamp(18px, 4vw, 48px);
+    background: linear-gradient(115deg, #e7f0eb, var(--exercise-paper) 70%);
+    border: 1px solid var(--exercise-line);
+    border-top: 4px solid var(--exercise-gold);
+    box-shadow: var(--exercise-shadow);
+}
+
+.exerciseHero h1 {
+    margin: 0 0 8px;
+    color: var(--exercise-ink);
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    letter-spacing: .06em;
+}
+
+.exerciseHero p {
+    max-width: 780px;
+    margin: 0;
+    color: var(--exercise-muted);
+    line-height: 1.55;
+}
+
+.exerciseLayout {
+    display: grid;
+    grid-template-columns: minmax(240px, .7fr) minmax(0, 1.8fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.exercisePanel {
+    padding: 22px;
+    background: var(--exercise-paper);
+    border: 1px solid var(--exercise-line);
+    border-radius: 6px;
+    box-shadow: var(--exercise-shadow);
+}
+
+.exercisePanel h2 {
+    margin: 0 0 18px;
+    color: var(--exercise-dark);
+    font-size: 1.05rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.filterStack {
+    display: grid;
+    gap: 14px;
+}
+
+.filterLabel {
+    display: grid;
+    gap: 6px;
+    color: var(--exercise-muted);
+    font-size: .82rem;
+    font-weight: 600;
+}
+
+.filterLabel input,
+.filterLabel select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    padding: 0 11px;
+    border: 1px solid #b9cbc4;
+    border-radius: 4px;
+    background: #fff;
+    color: var(--exercise-ink);
+    font: inherit;
+}
+
+.filterLabel input:focus,
+.filterLabel select:focus {
+    border-color: var(--exercise-green);
+    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    outline: none;
+}
+
+.muscleTabs {
+    display: grid;
+    gap: 6px;
+}
+
+.muscleTab {
+    min-height: 38px;
+    padding: 0 11px;
+    border: 1px solid var(--exercise-line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--exercise-muted);
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+}
+
+.muscleTab.active,
+.muscleTab:hover {
+    border-color: var(--exercise-green);
+    background: #eef5f0;
+    color: var(--exercise-dark);
+}
+
+.resultToolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.resultCount {
+    color: var(--exercise-muted);
+    font-size: .82rem;
+}
+
+.exerciseGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.exerciseCard {
+    overflow: hidden;
+    border: 1px solid var(--exercise-line);
+    border-radius: 6px;
+    background: #fff;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.exerciseCard:hover {
+    border-color: #9bbcaf;
+    box-shadow: 0 9px 20px rgba(31, 107, 91, .1);
+    transform: translateY(-2px);
+}
+
+.exerciseImagePlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    padding: 18px;
+    background: repeating-linear-gradient(135deg, #eef5f0, #eef5f0 10px, #e5f0eb 10px, #e5f0eb 20px);
+    color: var(--exercise-muted);
+    font-size: .8rem;
+    text-align: center;
+}
+
+.exerciseBody {
+    padding: 15px;
+}
+
+.exerciseHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: start;
+}
+
+.exerciseName {
+    color: var(--exercise-dark);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.favoriteExercise {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border: 1px solid var(--exercise-line);
+    border-radius: 50%;
+    background: #f8fbf9;
+    color: var(--exercise-green);
+    cursor: pointer;
+}
+
+.favoriteExercise.is-favorite {
+    background: #f7f1df;
+    border-color: #dfc58f;
+    color: #986f35;
+}
+
+.exerciseMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 9px;
+}
+
+.metaPill {
+    padding: 4px 7px;
+    border-radius: 999px;
+    background: #eef5f0;
+    color: var(--exercise-green);
+    font-size: .68rem;
+    font-weight: 700;
+}
+
+.exerciseDescription {
+    margin: 11px 0 0;
+    color: var(--exercise-muted);
+    font-size: .84rem;
+    line-height: 1.5;
+}
+
+.exerciseDetails {
+    margin-top: 10px;
+}
+
+.exerciseDetails summary {
+    color: var(--exercise-green);
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.exerciseDetails ol {
+    margin: 8px 0 0 18px;
+    padding: 0;
+    color: var(--exercise-muted);
+    font-size: .8rem;
+    line-height: 1.5;
+}
+
+.emptyResults {
+    padding: 28px 10px;
+    color: var(--exercise-muted);
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .exerciseLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .muscleTabs {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .exercisePage {
+        padding: 22px 14px 42px;
+    }
+
+    .exerciseGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .muscleTabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .resultToolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
