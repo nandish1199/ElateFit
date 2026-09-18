@@ -1,0 +1,342 @@
+:root {
+    --cardio-ink: #24332f;
+    --cardio-muted: #687873;
+    --cardio-green: #1f6b5b;
+    --cardio-dark: #174e44;
+    --cardio-gold: #b58b45;
+    --cardio-paper: #fbfaf6;
+    --cardio-line: #dfe5df;
+    --cardio-shadow: 0 12px 30px rgba(30, 58, 49, .09)
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f1f4f1;
+    color: var(--cardio-ink);
+    font-family: Segoe UI, Tahoma, sans-serif
+}
+
+.cardioPage {
+    max-width: 1240px;
+    margin: 70px auto 0;
+    padding: 30px 24px 60px
+}
+
+.cardioHero {
+    margin-bottom: 22px;
+    padding: 30px clamp(18px, 4vw, 48px);
+    background: linear-gradient(115deg, #e7f0eb, var(--cardio-paper) 70%);
+    border: 1px solid var(--cardio-line);
+    border-top: 4px solid var(--cardio-gold);
+    box-shadow: var(--cardio-shadow)
+}
+
+.cardioHero h1 {
+    margin: 0 0 8px;
+    color: var(--cardio-ink);
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    letter-spacing: .06em
+}
+
+.cardioHero p {
+    max-width: 780px;
+    margin: 0;
+    color: var(--cardio-muted);
+    line-height: 1.55
+}
+
+.cardioLayout {
+    display: grid;
+    grid-template-columns: minmax(280px, .78fr) minmax(0, 1.22fr);
+    gap: 20px;
+    align-items: start
+}
+
+.cardioPanel {
+    padding: 22px;
+    background: var(--cardio-paper);
+    border: 1px solid var(--cardio-line);
+    border-radius: 6px;
+    box-shadow: var(--cardio-shadow)
+}
+
+.cardioPanel h2 {
+    margin: 0 0 18px;
+    color: var(--cardio-dark);
+    font-size: 1.05rem;
+    letter-spacing: .1em;
+    text-transform: uppercase
+}
+
+.planForm {
+    display: grid;
+    gap: 12px
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    color: var(--cardio-muted);
+    font-size: .84rem;
+    font-weight: 600
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    min-height: 43px;
+    margin-top: 6px;
+    padding: 0 11px;
+    border: 1px solid #b9cbc4;
+    border-radius: 4px;
+    background: #fff;
+    color: var(--cardio-ink);
+    font: inherit
+}
+
+.field textarea {
+    min-height: 78px;
+    padding: 11px;
+    resize: vertical
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: var(--cardio-green);
+    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    outline: none
+}
+
+.roundGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px
+}
+
+.formActions,
+.timerActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+.cardioButton {
+    min-height: 40px;
+    padding: 0 14px;
+    border: 1px solid var(--cardio-green);
+    border-radius: 4px;
+    background: var(--cardio-green);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700
+}
+
+.cardioButton.secondary {
+    background: transparent;
+    color: var(--cardio-dark);
+    border-color: var(--cardio-line)
+}
+
+.cardioButton:hover {
+    box-shadow: 0 8px 16px rgba(31, 107, 91, .18);
+    transform: translateY(-1px)
+}
+
+.cardioStatus {
+    min-height: 20px;
+    color: #a45e4c;
+    font-size: .84rem
+}
+
+.cardioList {
+    display: grid;
+    gap: 10px
+}
+
+.cardioItem {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 12px;
+    align-items: start;
+    padding: 14px;
+    border: 1px solid var(--cardio-line);
+    background: #fff
+}
+
+.orderControls {
+    display: grid;
+    gap: 5px
+}
+
+.iconButton {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--cardio-line);
+    border-radius: 4px;
+    background: #eef5f0;
+    color: var(--cardio-green);
+    cursor: pointer
+}
+
+.iconButton:disabled {
+    opacity: .35;
+    cursor: not-allowed
+}
+
+.cardioItem h3 {
+    margin: 0;
+    color: var(--cardio-dark);
+    font-size: 1rem
+}
+
+.itemMeta {
+    margin-top: 5px;
+    color: var(--cardio-muted);
+    font-size: .8rem;
+    line-height: 1.45
+}
+
+.itemActions {
+    display: flex;
+    gap: 5px
+}
+
+.planEmpty {
+    padding: 18px;
+    color: var(--cardio-muted);
+    font-size: .88rem;
+    line-height: 1.5
+}
+
+.timerPanel {
+    margin-top: 20px
+}
+
+.timerDisplay {
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--cardio-line);
+    background: #fff
+}
+
+.timerPhase {
+    color: var(--cardio-green);
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase
+}
+
+.timerName {
+    margin: 8px 0;
+    color: var(--cardio-dark);
+    font-size: 1.35rem;
+    font-weight: 700
+}
+
+.timerClock {
+    font-variant-numeric: tabular-nums;
+    color: var(--cardio-ink);
+    font-size: clamp(2.8rem, 7vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1
+}
+
+.timerProgress {
+    height: 7px;
+    margin: 18px auto 0;
+    max-width: 500px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #e8efeb
+}
+
+.timerProgress span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--cardio-gold);
+    transition: width 300ms linear
+}
+
+.timerNext {
+    margin-top: 12px;
+    color: var(--cardio-muted);
+    font-size: .84rem
+}
+
+.timerMessage {
+    min-height: 21px;
+    margin-top: 12px;
+    color: var(--cardio-muted);
+    font-size: .82rem
+}
+
+.timerActions {
+    justify-content: center;
+    margin-top: 18px
+}
+
+.savedPlanList {
+    display: grid;
+    gap: 8px
+}
+
+.savedPlan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-left: 3px solid var(--cardio-gold);
+    background: #fff
+}
+
+.savedPlan strong {
+    color: var(--cardio-dark);
+    font-size: .86rem
+}
+
+.savedPlan small {
+    display: block;
+    margin-top: 3px;
+    color: var(--cardio-muted);
+    font-size: .73rem
+}
+
+.hidden {
+    display: none !important
+}
+
+@media(max-width:900px) {
+    .cardioLayout {
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:600px) {
+    .cardioPage {
+        padding: 22px 14px 42px
+    }
+
+    .roundGrid {
+        grid-template-columns: 1fr
+    }
+
+    .cardioItem {
+        grid-template-columns: 34px 1fr
+    }
+
+    .itemActions {
+        grid-column: 2
+    }
+
+    .timerDisplay {
+        padding: 20px 12px
+    }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/cardioConfigure.css" />
+    <title>Cardio Session Builder, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div><iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+    <main class="cardioPage">
+        <section class="cardioHero">
+            <h1>CARDIO SESSION BUILDER</h1>
+            <p>Build an ordered cardio circuit, set the work and rest for every block, then follow a guided timer with
+                voice countdowns.</p>
+        </section>
+        <div class="cardioLayout">
+            <section class="cardioPanel">
+                <h2 id="cardioFormTitle">Add cardio</h2>
+                <form class="planForm" id="cardioForm"><label class="field" for="cardioName">Cardio name<input
+                            id="cardioName" placeholder="Jumping jacks" required /></label>
+                    <div class="roundGrid"><label class="field" for="cardioRounds">Repetitions / rounds<input
+                                type="number" id="cardioRounds" min="1" value="3" required /></label><label
+                            class="field" for="workSeconds">Work seconds<input type="number" id="workSeconds" min="1"
+                                value="60" required /></label><label class="field" for="restSeconds">Rest after each
+                            round<input type="number" id="restSeconds" min="0" value="10" required /></label>
+                    </div><label class="field" for="cardioNotes">Notes<input id="cardioNotes"
+                            placeholder="Moderate pace, keep knees soft" /></label>
+                    <div class="formActions"><button class="cardioButton" id="saveCardio" type="submit"><i
+                                class="fa-solid fa-plus"></i> Add cardio</button><button class="cardioButton secondary"
+                            id="clearCardio" type="button"><i class="fa-solid fa-rotate-left"></i> Clear</button></div>
+                    <div class="cardioStatus" id="cardioStatus" role="status" aria-live="polite"></div>
+                </form>
+                <div class="cardioPanel timerPanel hidden" id="timerPanel">
+                    <h2>Guided session</h2>
+                    <div class="timerDisplay">
+                        <div class="timerPhase" id="timerPhase">Ready</div>
+                        <div class="timerName" id="timerName">Build a plan</div>
+                        <div class="timerClock" id="timerClock">0:00</div>
+                        <div class="timerProgress"><span id="timerProgressBar"></span></div>
+                        <div class="timerNext" id="timerNext"></div>
+                        <div class="timerMessage" id="timerMessage">Voice cues announce counts, rests, changes, and
+                            completion.</div>
+                    </div>
+                    <div class="timerActions"><button class="cardioButton" id="pauseTimer" type="button"><i
+                                class="fa-solid fa-pause"></i> Pause</button><button class="cardioButton secondary"
+                            id="skipTimer" type="button"><i class="fa-solid fa-forward"></i> Skip</button><button
+                            class="cardioButton secondary" id="resetTimer" type="button"><i
+                                class="fa-solid fa-stop"></i> End</button></div>
+                </div>
+            </section>
+            <section class="cardioPanel">
+                <h2>Your cardio order</h2>
+                <div class="cardioList" id="cardioList"></div>
+                <div class="formActions"><button class="cardioButton" id="startSession" type="button"><i
+                            class="fa-solid fa-play"></i> Start session</button><button class="cardioButton secondary"
+                        id="savePlan" type="button"><i class="fa-solid fa-bookmark"></i> Save plan</button></div>
+                <div class="cardioStatus" id="cardioStatusMirror"></div>
+                <h2 style="margin-top:24px">Saved sessions</h2>
+                <div class="savedPlanList" id="savedPlanList"></div>
+            </section>
+        </div>
+    </main><iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/cardioConfigure.js"></script>
+</body>
+
+</html>
