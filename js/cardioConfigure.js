@@ -74,7 +74,7 @@ function formData() {
     ),
     reps,
     secondsPerRep,
-    work: reps * secondsPerRep,
+    work: reps * secondsPerRep + 1,
     rest: Math.max(
       0,
       Number(document.getElementById("restSeconds").value) || 0,
