@@ -295,6 +295,29 @@
             font-size: .88rem;
         }
 
+        #workoutList {
+            max-height: 360px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            border-bottom: 1px solid var(--work-line);
+            scrollbar-color: var(--work-green) var(--work-paper);
+            scrollbar-width: thin;
+        }
+
+        #workoutList::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #workoutList::-webkit-scrollbar-track {
+            background: var(--work-paper);
+        }
+
+        #workoutList::-webkit-scrollbar-thumb {
+            border: 2px solid var(--work-paper);
+            border-radius: 8px;
+            background: var(--work-green);
+        }
+
         .workoutRow small {
             display: block;
             margin-top: 3px;
@@ -390,6 +413,10 @@
             .workoutRow {
                 grid-template-columns: 1fr .65fr .75fr 34px;
                 gap: 6px;
+            }
+
+            #workoutList {
+                max-height: 300px;
             }
 
             .workoutRow .workoutName {
