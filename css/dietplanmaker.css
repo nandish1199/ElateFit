@@ -1,0 +1,281 @@
+body {
+    background: #f3f7f4;
+    color: #2b443d;
+}
+
+.planPage {
+    max-width: 1180px;
+    margin: 70px auto 0;
+    padding: 34px 24px 70px;
+}
+
+.planHero {
+    align-items: center;
+    background: linear-gradient(115deg, #e3f1eb, #f8f5ec);
+    border: 1px solid #d5e5dd;
+    border-top: 4px solid #6a9b8c;
+    box-shadow: 0 12px 30px rgba(42, 77, 66, .08);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    padding: 34px clamp(22px, 5vw, 60px);
+}
+
+.planHero h1 {
+    color: #294b42;
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1.05;
+    margin: 0 0 12px;
+    max-width: 650px;
+}
+
+.planHero p:not(.eyebrow) {
+    color: #60736c;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 650px;
+}
+
+.eyebrow {
+    color: #438376;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.planHeroIcon {
+    color: #79a897;
+    font-size: clamp(4rem, 9vw, 7rem);
+    margin-left: 24px;
+    opacity: .55;
+}
+
+.planLayout {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, .75fr);
+}
+
+.planPanel {
+    background: #fcfefc;
+    border: 1px solid #dce9e2;
+    box-shadow: 0 8px 24px rgba(42, 77, 66, .055);
+    padding: 24px;
+}
+
+.setupPanel,
+.resultsPanel {
+    grid-column: 1 / -1;
+}
+
+.panelHeading {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.panelHeading h2 {
+    color: #294b42;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.headingIcon {
+    color: #78a595;
+    font-size: 1.4rem;
+}
+
+.profileStatusPill,
+.planDate {
+    background: #edf6f1;
+    color: #4a7568;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 7px 10px;
+}
+
+.profileRequired {
+    align-items: flex-start;
+    background: #f4eee9;
+    border: 1px solid #e4d5cb;
+    color: #765f54;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding: 14px;
+}
+
+.profileRequired > i {
+    color: #a77962;
+    margin-top: 2px;
+}
+
+.profileRequired p {
+    font-size: .86rem;
+    line-height: 1.45;
+    margin: 4px 0 8px;
+}
+
+.profileRequired a {
+    color: #8e604c;
+    font-size: .84rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.profileRequired a:hover { text-decoration: underline; }
+
+.setupPanel.is-locked form {
+    filter: grayscale(.7);
+    opacity: .48;
+}
+
+.setupPanel.is-locked form button:not(#loadProfileButton),
+.setupPanel.is-locked form input,
+.setupPanel.is-locked form select,
+.setupPanel.is-locked form textarea {
+    cursor: not-allowed;
+}
+
+.formGrid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.formGrid label {
+    color: #60736c;
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.formGrid input,
+.formGrid select,
+.formGrid textarea {
+    background: #fff;
+    border: 1px solid #c8dbd2;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #29443c;
+    display: block;
+    font: inherit;
+    margin-top: 7px;
+    min-height: 43px;
+    padding: 0 11px;
+    width: 100%;
+}
+
+.formGrid textarea {
+    min-height: 76px;
+    padding-top: 10px;
+    resize: vertical;
+}
+
+.formGrid input:focus,
+.formGrid select:focus,
+.formGrid textarea:focus {
+    border-color: #4d8b7c;
+    box-shadow: 0 0 0 3px rgba(77, 139, 124, .12);
+    outline: none;
+}
+
+.wideField { grid-column: span 3; }
+
+.foodChoiceField { border: 1px solid #d5e5dd; margin: 0; min-width: 0; padding: 12px; }
+.foodChoiceField legend { color: #31594e; font-size: .86rem; font-weight: 800; padding: 0 5px; }
+.foodChoiceToolbar { align-items: center; color: #6a7d75; display: flex; font-size: .76rem; justify-content: space-between; margin: 2px 0 8px; }
+.textButton { background: transparent; border: 0; color: #438376; cursor: pointer; font: inherit; font-weight: 800; padding: 2px 4px; }
+.textButton:hover { text-decoration: underline; }
+.foodChoices { background: #f7fbf8; border: 1px solid #e0ece6; display: grid; gap: 6px 10px; grid-template-columns: repeat(4, minmax(0, 1fr)); max-height: 220px; overflow-y: auto; padding: 10px; }
+.foodChoice { align-items: center; color: #526a61; display: flex; font-size: .78rem; font-weight: 600; gap: 6px; }
+.foodChoice input { accent-color: #438376; margin: 0; min-height: 0; width: auto; }
+.foodChoiceField > small { color: #71827b; display: block; font-size: .74rem; margin-top: 7px; }
+
+.formActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.primaryButton,
+.secondaryButton,
+.replaceFoodButton {
+    border: 1px solid #4d8b7c;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    min-height: 42px;
+    padding: 0 15px;
+}
+
+.primaryButton { background: #438376; color: #fff; }
+.secondaryButton { background: transparent; color: #438376; }
+.primaryButton:hover,
+.secondaryButton:hover,
+.replaceFoodButton:hover { box-shadow: 0 6px 14px rgba(43, 96, 80, .14); transform: translateY(-1px); }
+
+.formStatus { color: #a45e4c; min-height: 20px; padding-top: 12px; }
+.profileSummary,
+.targetNote {
+    background: #f0f7f3;
+    color: #60736c;
+    line-height: 1.55;
+    margin-top: 18px;
+    padding: 12px 14px;
+}
+
+.targetGrid { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
+.targetGrid > div { background: #f0f7f3; border-top: 3px solid #7da997; padding: 14px; }
+.targetGrid span,
+.targetGrid small { color: #6a7d75; display: block; font-size: .75rem; }
+.targetGrid strong { color: #2d5b4e; display: block; font-size: 1.5rem; margin: 5px 0; }
+
+.planWarnings { color: #9b644d; font-size: .84rem; margin-bottom: 12px; }
+.dayPlan { border-top: 1px solid #dce9e2; padding: 22px 0 8px; }
+.dayPlan:first-child { border-top: 0; padding-top: 0; }
+.dayHeader { align-items: end; display: flex; justify-content: space-between; margin-bottom: 14px; }
+.dayHeader h3 { color: #294b42; margin: 0; }
+.dayTotals { color: #6a7d75; font-size: .83rem; }
+.mealGrid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.mealCard { background: #f7fbf8; border-left: 3px solid #8ab2a3; padding: 14px; }
+.mealTime { color: #438376; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.mealCard h4 { color: #31594e; font-size: 1rem; margin: 7px 0 10px; }
+.mealFood { align-items: center; border-top: 1px solid #e2ece7; display: flex; justify-content: space-between; padding: 7px 0; }
+.mealFood span { color: #516962; font-size: .85rem; }
+.mealFood small { color: #74847e; font-size: .75rem; }
+.mealMacros { color: #63766e; font-size: .75rem; margin-top: 10px; }
+.replaceFoodButton { background: transparent; border-color: #c5d9d0; color: #438376; font-size: .72rem; min-height: 28px; padding: 0 8px; }
+.emptyPlan { color: #6a7d75; padding: 46px 20px; text-align: center; }
+.emptyPlan i { color: #86ad9d; font-size: 2rem; }
+.emptyPlan h3 { color: #31594e; margin: 12px 0 6px; }
+.emptyPlan p { margin: 0; }
+
+@media (max-width: 800px) {
+    .planLayout { grid-template-columns: 1fr; }
+    .targetPanel { grid-column: 1 / -1; }
+    .formGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .wideField { grid-column: span 2; }
+    .planHeroIcon { display: none; }
+}
+
+@media (max-width: 520px) {
+    .planPage { padding: 22px 14px 44px; }
+    .planHero { padding: 26px 20px; }
+    .planPanel { padding: 18px; }
+    .formGrid,
+    .targetGrid { grid-template-columns: 1fr; }
+    .wideField { grid-column: auto; }
+    .foodChoices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dayHeader { align-items: flex-start; flex-direction: column; gap: 5px; }
+}
+
+@media print {
+    #navBarContainer, #navframe, #footer, .setupPanel, .targetPanel, .replaceFoodButton { display: none !important; }
+    .planPage { margin: 0; max-width: none; padding: 0; }
+    .resultsPanel { box-shadow: none; }
+}

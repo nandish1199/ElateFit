@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/dietplanmaker.css" />
+    <title>Diet Plan Maker, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <main class="planPage">
+        <section class="planHero">
+            <div>
+                <p class="eyebrow">Personal nutrition studio</p>
+                <h1>Build a diet plan that fits your day.</h1>
+                <p>Use your saved profile, choose a rhythm, and generate a practical seven-day plan from the Elatefit
+                    food catalog.</p>
+            </div>
+            <i class="fa-solid fa-bowl-food planHeroIcon" aria-hidden="true"></i>
+        </section>
+
+        <div class="planLayout">
+            <section class="planPanel setupPanel">
+                <div class="panelHeading">
+                    <div>
+                        <p class="eyebrow">Start here</p>
+                        <h2>Plan settings</h2>
+                    </div><span class="profileStatusPill" id="profileStatusPill">Profile not loaded</span>
+                </div>
+                <div class="profileRequired" id="profileRequired" role="alert">
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <div><strong>Set up your profile first</strong>
+                        <p>We need your measurements and diet preferences to calculate a safe starting target.</p><a
+                            href="userProfile.html">Open user profile <i class="fa-solid fa-arrow-right"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <form id="planForm">
+                    <div class="formGrid">
+                        <label>Plan length
+                            <select id="planDays">
+                                <option value="1">1 day</option>
+                                <option value="3">3 days</option>
+                                <option value="7" selected>7 days</option>
+                            </select>
+                        </label>
+                        <label>Meals per day
+                            <select id="mealsPerDay">
+                                <option value="3">3 meals</option>
+                                <option value="4">4 meals</option>
+                                <option value="5" selected>5 meals</option>
+                                <option value="6">6 meals</option>
+                            </select>
+                        </label>
+                        <label>First meal
+                            <input type="time" id="firstMealTime" value="08:00" required />
+                        </label>
+                        <label>Gap between meals
+                            <select id="mealInterval">
+                                <option value="120">2 hours</option>
+                                <option value="150" selected>2.5 hours</option>
+                                <option value="180">3 hours</option>
+                                <option value="210">3.5 hours</option>
+                                <option value="240">4 hours</option>
+                            </select>
+                        </label>
+                        <label>Daily calorie adjustment
+                            <select id="calorieAdjustment">
+                                <option value="-10">10% below target</option>
+                                <option value="0" selected>Use profile target</option>
+                                <option value="10">10% above target</option>
+                            </select>
+                        </label>
+                        <label>Portion style
+                            <select id="portionStyle">
+                                <option value="simple" selected>Simple household portions</option>
+                                <option value="gram">Show grams</option>
+                            </select>
+                        </label>
+                        <label class="wideField">Foods to avoid (comma separated)
+                            <input type="text" id="avoidFoods" placeholder="e.g. peanuts, banana, paneer" />
+                        </label>
+                        <fieldset class="wideField foodChoiceField">
+                            <legend>Foods to include in this plan</legend>
+                            <div class="foodChoiceToolbar"><span id="foodChoiceCount">Choose at least one
+                                    food</span><span><button type="button" class="textButton" id="selectAllFoods">Select
+                                        all</button><button type="button" class="textButton"
+                                        id="clearAllFoods">Clear</button></span></div>
+                            <div class="foodChoices" id="foodChoices" aria-describedby="foodChoiceHint"></div>
+                            <small id="foodChoiceHint">The plan will use only the foods selected here, after your diet
+                                and allergy filters are applied.</small>
+                        </fieldset>
+                        <label class="wideField">Notes for this plan
+                            <textarea id="planNotes"
+                                placeholder="Training days, preferred cooking style, or reminders..."></textarea>
+                        </label>
+                    </div>
+                    <div class="formActions"><button type="submit" class="primaryButton"><i
+                                class="fa-solid fa-wand-magic-sparkles"></i> Generate plan</button><button type="button"
+                            class="secondaryButton" id="loadProfileButton"><i class="fa-solid fa-user-check"></i> Load
+                            profile</button><button type="button" class="secondaryButton" id="printPlanButton"><i
+                                class="fa-solid fa-print"></i> Print</button></div>
+                    <div class="formStatus" id="planStatus" role="status" aria-live="polite"></div>
+                </form>
+                <div class="profileSummary" id="profileSummary">Create a profile first, or generate a plan with manual
+                    settings below.</div>
+            </section>
+
+            <section class="planPanel targetPanel">
+                <div class="panelHeading">
+                    <div>
+                        <p class="eyebrow">Daily guide</p>
+                        <h2>Your targets</h2>
+                    </div><i class="fa-solid fa-chart-simple headingIcon" aria-hidden="true"></i>
+                </div>
+                <div class="targetGrid">
+                    <div><span>Calories</span><strong id="targetCalories">--</strong><small>kcal / day</small></div>
+                    <div><span>Protein</span><strong id="targetProtein">--</strong><small>g / day</small></div>
+                    <div><span>Fiber</span><strong id="targetFiber">--</strong><small>g / day</small></div>
+                </div>
+                <div class="targetNote" id="targetNote">Targets will be calculated from your saved user profile.</div>
+            </section>
+
+            <section class="planPanel resultsPanel" id="planResults">
+                <div class="panelHeading">
+                    <div>
+                        <p class="eyebrow">Your menu</p>
+                        <h2>Generated meal plan</h2>
+                    </div><span class="planDate" id="planDate"></span>
+                </div>
+                <div class="planWarnings" id="planWarnings"></div>
+                <div id="mealPlanOutput">
+                    <div class="emptyPlan"><i class="fa-solid fa-seedling"></i>
+                        <h3>Your plan will appear here</h3>
+                        <p>Complete the settings and generate a plan tailored to your profile.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzXrX3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="calcJS/dietplanmaker.js"></script>
+</body>
+
+</html>
