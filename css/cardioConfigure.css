@@ -207,36 +207,49 @@ body {
 }
 
 .planEmpty {
-    .transitionRestField {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        margin-top: 9px;
-        color: var(--cardio-muted);
-        font-size: .78rem;
-        font-weight: 600;
-    }
-
-    .transitionRestInput {
-        width: 64px;
-        min-height: 30px;
-        padding: 0 7px;
-        border: 1px solid #b9cbc4;
-        border-radius: 4px;
-        color: var(--cardio-ink);
-        font: inherit;
-    }
-
-    .transitionRestInput:focus {
-        border-color: var(--cardio-green);
-        box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
-        outline: none;
-    }
-
     padding: 18px;
     color: var(--cardio-muted);
     font-size: .88rem;
     line-height: 1.5
+}
+
+.transitionRestField {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 6px 9px;
+    border: 1px solid var(--cardio-line);
+    border-radius: 6px;
+    background: #f4f8f5;
+    color: var(--cardio-dark);
+    font-size: .76rem;
+    font-weight: 700;
+}
+
+.transitionRestField::before {
+    color: var(--cardio-gold);
+    content: "Rest";
+    font-size: .92rem;
+}
+
+.transitionRestInput {
+    width: 58px;
+    min-height: 30px;
+    padding: 0 8px;
+    border: 1px solid #abc5b9;
+    border-radius: 5px;
+    background: #fff;
+    color: var(--cardio-dark);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.transitionRestInput:focus {
+    border-color: var(--cardio-green);
+    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    outline: none;
 }
 
 .timerPanel {
