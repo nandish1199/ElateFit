@@ -77,7 +77,7 @@ function formData() {
     work: reps * secondsPerRep + 1,
     rest: Math.max(
       0,
-      Number(document.getElementById("restSeconds").value) || 0,
+      (Number(document.getElementById("restSeconds").value) || 0) + 1,
     ),
     transitionRest: existing?.transitionRest || 0,
     notes: document.getElementById("cardioNotes").value.trim(),
@@ -185,7 +185,7 @@ function tick() {
     }
   }
   if (timerState.phase === "rest" || timerState.phase === "transition") {
-    if (timerState.remaining > 0 && timerState.remaining <= 6)
+    if (timerState.remaining > 0 && timerState.remaining <= 7)
       speak(String(timerState.remaining));
   }
   if (timerState.remaining <= 0) {
