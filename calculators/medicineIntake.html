@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/medicineIntake.css" />
+    <title>Medicine Intake Tracker, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer"><button type="button" class="btn-warning" id="toggleBtn"><i
+                class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
+            loading="lazy"></iframe></div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+    <main class="medicinePage">
+        <section class="medicineHero">
+            <div>
+                <p class="eyebrow">PERSONAL HEALTH LOG</p>
+                <h1>MEDICINE INTAKE TRACKER</h1>
+                <p>Keep your medicine schedule in one place, mark doses as taken, and spot missed doses before they
+                    become a pattern.</p>
+            </div>
+            <div class="heroIcon" aria-hidden="true"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+        </section>
+        <div class="medicineLayout">
+            <section class="medicinePanel">
+                <h2 id="medicineFormTitle">Add medicine</h2>
+                <form class="medicineForm" id="medicineForm">
+                    <div class="medicineFormGrid">
+                        <label class="medicineField medicineSpan2" for="medicineName">Medicine name<input type="text"
+                                id="medicineName" placeholder="e.g. Vitamin D3" required /></label>
+                        <label class="medicineField" for="medicineDosage">Dose<input type="text" id="medicineDosage"
+                                placeholder="1 tablet" required /></label>
+                        <label class="medicineField" for="medicineFormType">Form<select id="medicineFormType">
+                                <option>Tablet</option>
+                                <option>Capsule</option>
+                                <option>Syrup</option>
+                                <option>Drop</option>
+                                <option>Injection</option>
+                                <option>Other</option>
+                            </select></label>
+                        <label class="medicineField" for="medicineRoute">How to take<select id="medicineRoute">
+                                <option>By mouth</option>
+                                <option>With water</option>
+                                <option>Topical</option>
+                                <option>Inhaled</option>
+                                <option>Other</option>
+                            </select></label>
+                        <label class="medicineField" for="medicineFrequency">Frequency<select id="medicineFrequency">
+                                <option value="Once daily">Once daily</option>
+                                <option value="Twice daily">Twice daily</option>
+                                <option value="Every other day">Every other day</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="As needed">As needed</option>
+                            </select></label>
+                        <label class="medicineField" for="medicineTime">Reminder time<input type="time"
+                                id="medicineTime" required /></label>
+                        <label class="medicineField" for="medicineMeal">Meal instruction<select id="medicineMeal">
+                                <option>Any time</option>
+                                <option>Before food</option>
+                                <option>With food</option>
+                                <option>After food</option>
+                                <option>At bedtime</option>
+                            </select></label>
+                        <label class="medicineField" for="medicineStartDate">Start date<input type="date"
+                                id="medicineStartDate" required /></label>
+                        <label class="medicineField" for="medicineEndDate">End date (optional)<input type="date"
+                                id="medicineEndDate" /></label>
+                        <div class="medicineField medicineSpan2">Scheduled days<div class="medicineDays"
+                                id="medicineDays"><label class="medicineDay"><input type="checkbox" value="Mon"
+                                        checked /><span>Mon</span></label><label class="medicineDay"><input
+                                        type="checkbox" value="Tue" checked /><span>Tue</span></label><label
+                                    class="medicineDay"><input type="checkbox" value="Wed"
+                                        checked /><span>Wed</span></label><label class="medicineDay"><input
+                                        type="checkbox" value="Thu" checked /><span>Thu</span></label><label
+                                    class="medicineDay"><input type="checkbox" value="Fri"
+                                        checked /><span>Fri</span></label><label class="medicineDay"><input
+                                        type="checkbox" value="Sat" checked /><span>Sat</span></label><label
+                                    class="medicineDay"><input type="checkbox" value="Sun"
+                                        checked /><span>Sun</span></label></div>
+                        </div>
+                        <label class="medicineField medicineSpan2" for="medicineNotes">Instructions or notes
+                            (optional)<textarea id="medicineNotes"
+                                placeholder="Extra instructions, prescriber notes, or side effects to watch for."></textarea></label>
+                    </div>
+                    <div class="medicineActions"><button type="submit" id="saveMedicineBtn"><i
+                                class="fa-solid fa-plus"></i> Add medicine</button><button type="button"
+                            class="secondaryButton" id="resetMedicineBtn"><i class="fa-solid fa-rotate-left"></i> Clear
+                            form</button></div>
+                    <div class="medicineStatus" id="medicineStatus" role="status" aria-live="polite"></div>
+                </form>
+                <div class="medicineNote"><strong>Safety note:</strong> this tracker records your schedule; it does not
+                    replace advice from a doctor or pharmacist.</div>
+            </section>
+            <section class="medicinePanel">
+                <h2>Medicine cabinet</h2>
+                <div class="medicineList" id="medicineList"></div>
+            </section>
+            <section class="medicinePanel">
+                <div class="medicineToolbar">
+                    <h2>Today's doses</h2><span class="dateBadge" id="todayLabel"></span>
+                </div>
+                <div class="medicineStatsGrid">
+                    <div class="medicineStatCard"><span>Scheduled</span><strong id="todayScheduledCount">0</strong>
+                    </div>
+                    <div class="medicineStatCard"><span>Taken</span><strong id="todayTakenCount">0</strong></div>
+                    <div class="medicineStatCard"><span>Pending</span><strong id="todayPendingCount">0</strong></div>
+                </div>
+                <div class="medicineChecklist" id="dailyMedicineChecklist"></div>
+            </section>
+            <section class="medicinePanel">
+                <div class="medicineToolbar">
+                    <h2>Adherence history</h2>
+                    <div class="periodButtons" id="medicinePeriodButtons"></div>
+                </div>
+                <div class="medicineStatsGrid">
+                    <div class="medicineStatCard"><span>Doses taken</span><strong id="periodTaken">0</strong></div>
+                    <div class="medicineStatCard"><span>Doses scheduled</span><strong id="periodScheduled">0</strong>
+                    </div>
+                    <div class="medicineStatCard"><span>Adherence</span><strong id="adherenceRate">0%</strong></div>
+                </div>
+                <div class="medicineChartWrap"><canvas id="medicineChart"
+                        aria-label="Medicine adherence chart"></canvas></div>
+            </section>
+        </div>
+    </main>
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/medicineIntake.js"></script>
+</body>
+
+</html>
