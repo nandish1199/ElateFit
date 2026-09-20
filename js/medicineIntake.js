@@ -100,6 +100,44 @@ function today() {
   return key(new Date());
 }
 
+function normalizedTimes(medicine) {
+  if (Array.isArray(medicine?.times) && medicine.times.length)
+    return [...new Set(medicine.times.filter(Boolean))].sort();
+  return medicine?.time ? [medicine.time] : [];
+}
+
+function doseId(medicineId, reminderTime) {
+  return `${medicineId}::${reminderTime}`;
+}
+
+function renderReminderTimeInputs(times = [""]) {
+  document.getElementById("reminderTimes").innerHTML = times
+    .map(
+      (time, index) => `
+    <div class="reminderTimeRow">
+      <input type="time" class="medicineReminderTime" value="${time}" required aria-label="Reminder time ${index + 1}" />
+      ${times.length > 1 ? `<button type="button" class="removeReminderButton" aria-label="Remove reminder time ${index + 1}"><i class="fa-solid fa-xmark"></i></button>` : ""}
+    </div>`,
+    )
+    .join("");
+}
+
+function readReminderTimes() {
+  return [...document.querySelectorAll(".medicineReminderTime")]
+    .map((input) => input.value)
+    .filter(Boolean)
+    .sort();
+}
+
+function intakeDoseId(item) {
+  if (item.doseId) return item.doseId;
+  const medicine = medicines.find((entry) => entry.id === item.medicineId);
+  return doseId(
+    item.medicineId,
+    item.reminderTime || normalizedTimes(medicine)[0] || "",
+  );
+}
+
 function formValues() {
   return {
     name: document.getElementById("medicineName").value.trim(),
@@ -107,7 +145,7 @@ function formValues() {
     formType: document.getElementById("medicineFormType").value,
     route: document.getElementById("medicineRoute").value,
     frequency: document.getElementById("medicineFrequency").value,
-    time: document.getElementById("medicineTime").value,
+    times: readReminderTimes(),
     meal: document.getElementById("medicineMeal").value,
     startDate: document.getElementById("medicineStartDate").value,
     endDate: document.getElementById("medicineEndDate").value,
@@ -128,7 +166,6 @@ function fillForm(medicine = null) {
   const values = {
     medicineName: medicine?.name || "",
     medicineDosage: medicine?.dosage || "",
-    medicineTime: medicine?.time || "",
     medicineStartDate: medicine?.startDate || "",
     medicineEndDate: medicine?.endDate || "",
     medicineNotes: medicine?.notes || "",
@@ -136,6 +173,7 @@ function fillForm(medicine = null) {
   Object.entries(values).forEach(([field, value]) => {
     document.getElementById(field).value = value;
   });
+  renderReminderTimeInputs(normalizedTimes(medicine));
   document.getElementById("medicineFormType").value =
     medicine?.formType || "Tablet";
   document.getElementById("medicineRoute").value =
@@ -158,9 +196,7 @@ function isScheduled(medicine, date = new Date()) {
 }
 function takenToday() {
   return new Set(
-    intakes
-      .filter((item) => item.dayKey === today())
-      .map((item) => item.medicineId),
+    intakes.filter((item) => item.dayKey === today()).map(intakeDoseId),
   );
 }
 
@@ -175,18 +211,24 @@ function renderMedicines() {
     .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
     .map(
       (item) =>
-        `<div class="medicineItem"><div class="medicineItemHeader"><div><div class="medicineItemName">${item.name}</div><div class="medicineItemMeta">${item.dosage} · ${item.formType} · ${item.frequency}</div><div class="medicineItemMeta">${item.time} · ${item.meal} · ${daysLabel(item.days)}</div></div><div class="medicinePill">${item.active ? "Active" : "Paused"}</div></div><div class="medicineItemMeta">${item.notes || "No extra instructions saved."}</div><div class="medicineItemActions"><button type="button" class="editMedicine" data-id="${item.id}"><i class="fa-solid fa-pen"></i> Edit</button><button type="button" class="toggleMedicine" data-id="${item.id}"><i class="fa-solid fa-power-off"></i> ${item.active ? "Pause" : "Activate"}</button><button type="button" class="deleteMedicine" data-id="${item.id}"><i class="fa-solid fa-trash"></i> Delete</button></div></div>`,
+        `<div class="medicineItem"><div class="medicineItemHeader"><div><div class="medicineItemName">${item.name}</div><div class="medicineItemMeta">${item.dosage} · ${item.formType} · ${item.frequency}</div><div class="medicineItemMeta">${normalizedTimes(item).join(", ")} · ${item.meal} · ${daysLabel(item.days)}</div></div><div class="medicinePill">${item.active ? "Active" : "Paused"}</div></div><div class="medicineItemMeta">${item.notes || "No extra instructions saved."}</div><div class="medicineItemActions"><button type="button" class="editMedicine" data-id="${item.id}"><i class="fa-solid fa-pen"></i> Edit</button><button type="button" class="toggleMedicine" data-id="${item.id}"><i class="fa-solid fa-power-off"></i> ${item.active ? "Pause" : "Activate"}</button><button type="button" class="deleteMedicine" data-id="${item.id}"><i class="fa-solid fa-trash"></i> Delete</button></div></div>`,
     )
     .join("");
 }
 function renderChecklist() {
   const scheduled = medicines.filter((item) => isScheduled(item));
   const taken = takenToday();
-  const takenCount = scheduled.filter((item) => taken.has(item.id)).length;
-  document.getElementById("todayScheduledCount").textContent = scheduled.length;
+  const scheduledDoses = scheduled.flatMap((medicine) =>
+    normalizedTimes(medicine).map((time) => ({ medicine, time })),
+  );
+  const takenCount = scheduledDoses.filter(({ medicine, time }) =>
+    taken.has(doseId(medicine.id, time)),
+  ).length;
+  document.getElementById("todayScheduledCount").textContent =
+    scheduledDoses.length;
   document.getElementById("todayTakenCount").textContent = takenCount;
   document.getElementById("todayPendingCount").textContent = Math.max(
-    scheduled.length - takenCount,
+    scheduledDoses.length - takenCount,
     0,
   );
   document.getElementById("todayLabel").textContent = dateLabel(today());
@@ -196,10 +238,11 @@ function renderChecklist() {
       '<div class="medicineEmpty">Nothing is scheduled for today. Add a medicine or update its schedule above.</div>';
     return;
   }
-  checklist.innerHTML = scheduled
-    .map((item) => {
-      const isTaken = taken.has(item.id);
-      return `<label class="medicineChecklistItem ${isTaken ? "is-taken" : ""}"><input type="checkbox" class="markMedicineTaken" data-id="${item.id}" ${isTaken ? "checked" : ""} /><div><div class="medicineChecklistHeader"><div><div class="medicineChecklistName">${item.name}</div><div class="medicineChecklistMeta">${item.dosage} · ${item.time} · ${item.meal}</div></div><div class="medicinePill">${isTaken ? "Taken" : "Pending"}</div></div><div class="medicineChecklistMeta">${item.route}${item.notes ? ` · ${item.notes}` : ""}</div><small>${item.frequency} · scheduled for ${WEEKDAYS[new Date().getDay()]}</small></div></label>`;
+  checklist.innerHTML = scheduledDoses
+    .map(({ medicine, time }) => {
+      const currentDoseId = doseId(medicine.id, time);
+      const isTaken = taken.has(currentDoseId);
+      return `<label class="medicineChecklistItem ${isTaken ? "is-taken" : ""}"><input type="checkbox" class="markMedicineTaken" data-dose-id="${currentDoseId}" data-id="${medicine.id}" data-time="${time}" ${isTaken ? "checked" : ""} /><div><div class="medicineChecklistHeader"><div><div class="medicineChecklistName">${medicine.name}</div><div class="medicineChecklistMeta">${medicine.dosage} · ${time} · ${medicine.meal}</div></div><div class="medicinePill">${isTaken ? "Taken" : "Pending"}</div></div><div class="medicineChecklistMeta">${medicine.route}${medicine.notes ? ` · ${medicine.notes}` : ""}</div><small>${medicine.frequency} · scheduled for ${WEEKDAYS[new Date().getDay()]}</small></div></label>`;
     })
     .join("");
 }
@@ -280,7 +323,12 @@ function updateStats() {
   const scheduled = data.reduce(
     (total, item) =>
       total +
-      medicines.filter((medicine) => isScheduled(medicine, item.date)).length,
+      medicines
+        .filter((medicine) => isScheduled(medicine, item.date))
+        .reduce(
+          (count, medicine) => count + normalizedTimes(medicine).length,
+          0,
+        ),
     0,
   );
   document.getElementById("periodTaken").textContent = taken;
@@ -318,10 +366,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (
           !values.name ||
           !values.dosage ||
-          !values.time ||
+          !values.times.length ||
           !values.startDate
         ) {
-          status("Please add the medicine name, dose, time, and start date.");
+          status(
+            "Please add the medicine name, dose, at least one reminder time, and start date.",
+          );
           return;
         }
         if (!values.days.length) {
@@ -335,6 +385,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const existing = medicines.find((item) => item.id === editingId);
         await save(MEDICINE_STORE, {
           ...values,
+          time: values.times[0],
           id: editingId || id(),
           active: existing ? existing.active !== false : true,
           updatedAt: new Date().toISOString(),
@@ -343,6 +394,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("medicineStartDate").value = today();
         status("Medicine saved successfully.", false);
         await refresh();
+      });
+    document
+      .getElementById("addReminderButton")
+      .addEventListener("click", () => {
+        renderReminderTimeInputs([...readReminderTimes(), ""]);
+      });
+    document
+      .getElementById("reminderTimes")
+      .addEventListener("click", (event) => {
+        const removeButton = event.target.closest(".removeReminderButton");
+        if (!removeButton) return;
+        const row = removeButton.closest(".reminderTimeRow");
+        const remaining = [
+          ...document.querySelectorAll(".medicineReminderTime"),
+        ]
+          .filter(
+            (input) => input !== row.querySelector(".medicineReminderTime"),
+          )
+          .map((input) => input.value)
+          .filter(Boolean);
+        renderReminderTimeInputs(remaining.length ? remaining : [""]);
       });
     document
       .getElementById("medicineList")
@@ -383,18 +455,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         const checkbox = event.target.closest(".markMedicineTaken");
         if (!checkbox) return;
         const dateKey = today();
+        const currentDoseId = checkbox.dataset.doseId;
         const existing = intakes.find(
           (item) =>
-            item.medicineId === checkbox.dataset.id && item.dayKey === dateKey,
+            intakeDoseId(item) === currentDoseId && item.dayKey === dateKey,
         );
         if (checkbox.checked && !existing) {
           const medicine = medicines.find(
             (item) => item.id === checkbox.dataset.id,
           );
           await save(INTAKE_STORE, {
-            id: `${checkbox.dataset.id}-${dateKey}`,
+            id: `${currentDoseId}-${dateKey}`,
+            doseId: currentDoseId,
             medicineId: checkbox.dataset.id,
             medicineName: medicine.name,
+            reminderTime: checkbox.dataset.time,
             dayKey: dateKey,
             takenAt: new Date().toISOString(),
           });

@@ -64,8 +64,12 @@
                                 <option value="Hourly">Hourly</option>
                                 <option value="As needed">As needed</option>
                             </select></label>
-                        <label class="medicineField" for="medicineTime">Reminder time<input type="time"
-                                id="medicineTime" required /></label>
+                        <div class="medicineField" id="reminderTimesField">
+                            <span>Add reminder time</span>
+                            <div class="reminderTimes" id="reminderTimes"></div>
+                            <button type="button" class="addReminderButton" id="addReminderButton"
+                                aria-label="Add reminder time"><i class="fa-solid fa-plus"></i></button>
+                        </div>
                         <label class="medicineField" for="medicineMeal">Meal instruction<select id="medicineMeal">
                                 <option>Any time</option>
                                 <option>Before food</option>
