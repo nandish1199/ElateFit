@@ -57,11 +57,11 @@
 .breathingSessionLabel { min-height: 22px; color: var(--breath-teal); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .breathingTechniqueName { margin: 8px 0 3px !important; font-size: clamp(1.4rem, 3vw, 2rem) !important; }
 .breathingPhase { min-height: 33px; margin: 0; color: var(--breath-muted); font-size: 1.1rem; }
-.breathingOrb { width: min(270px, 65vw); aspect-ratio: 1; display: grid; place-items: center; margin: 30px auto 26px; border: 12px solid rgba(22, 125, 120, .2); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #c4e8dc); box-shadow: 0 0 0 16px rgba(22, 125, 120, .07), 0 15px 32px rgba(36, 97, 89, .12), inset 0 0 30px rgba(22, 125, 120, .13); transform: scale(.78); transition: transform 1s linear, border-color .3s ease, background .3s ease; }
-.breathingOrb.inhale { transform: scale(1); border-color: rgba(19, 122, 118, .55); }
-.breathingOrb.hold { transform: scale(1); border-color: rgba(199, 94, 78, .5); background: radial-gradient(circle at 35% 30%, #fff, #f4d8c8); }
+.breathingOrb { width: min(270px, 65vw); aspect-ratio: 1; display: grid; place-items: center; margin: 30px auto 26px; border: 12px solid rgba(226, 157, 96, .2); border-radius: 50%; background: radial-gradient(circle at 34% 27%, #fffefa 0%, #fff7e9 42%, #ffe8c5 76%, #f7d3ad 100%); box-shadow: 0 0 0 12px rgba(245, 202, 151, .08), 0 0 0 20px rgba(22, 125, 120, .035), 0 18px 36px rgba(166, 124, 91, .08), inset 0 0 34px rgba(218, 157, 109, .06); transform: scale(.78); transition: transform 1s linear, border-color .3s ease, background .3s ease, box-shadow .3s ease; }
+.breathingOrb.inhale { transform: scale(1); border-color: rgba(225, 147, 90, .28); box-shadow: 0 0 0 14px rgba(245, 202, 151, .1), 0 0 0 23px rgba(22, 125, 120, .045), 0 20px 40px rgba(166, 124, 91, .1), inset 0 0 38px rgba(218, 157, 109, .05); }
+.breathingOrb.hold { transform: scale(1); border-color: rgba(221, 140, 103, .3); background: radial-gradient(circle at 34% 27%, #fffefa 0%, #fff2e3 46%, #ffdfc2 80%, #f4c8ab 100%); }
 .breathingOrb.exhale { transform: scale(.78); }
-.breathingOrb.rest { transform: scale(.7); border-color: rgba(106, 121, 124, .35); background: #edf2ef; }
+.breathingOrb.rest { transform: scale(.7); border-color: rgba(121, 160, 148, .2); background: radial-gradient(circle at 34% 27%, #fffffc 0%, #f4faf4 58%, #e3f0e5 100%); box-shadow: 0 0 0 12px rgba(145, 183, 163, .045), 0 14px 30px rgba(60, 103, 92, .06), inset 0 0 28px rgba(66, 112, 98, .04); }
 .breathingCount { font-size: 3rem; font-variant-numeric: tabular-nums; }
 .breathingProgressTrack { height: 7px; margin: 20px auto 0; overflow: hidden; border-radius: 99px; background: #dcebe5; }
 .breathingProgressBar { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #4a9b8c, var(--breath-teal)); transition: width .4s ease; }
