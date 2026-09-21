@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home2/elatec40/repositories/ElateFit/
-    - /bin/cp index.html $DEPLOYPATH
+    - export DEPLOYPATH=/home2/elatec40/public_html/
+    - /bin/cp -R ./* $DEPLOYPATH
