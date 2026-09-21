@@ -187,8 +187,10 @@ function announceTechnique(name) {
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(name);
   utterance.rate = 0.9;
+  let announcementFinished = false;
   const continueBreathing = () => {
-    if (!session) return;
+    if (announcementFinished || !session) return;
+    announcementFinished = true;
     session.waitingForAnnouncement = false;
     speakPhase("Inhale");
   };
@@ -219,8 +221,14 @@ function announceSessionStart() {
       announcements[announcementIndex++],
     );
     utterance.rate = 0.9;
-    utterance.onend = speakNextAnnouncement;
-    utterance.onerror = speakNextAnnouncement;
+    let announcementFinished = false;
+    const continueCountdown = () => {
+      if (announcementFinished) return;
+      announcementFinished = true;
+      speakNextAnnouncement();
+    };
+    utterance.onend = continueCountdown;
+    utterance.onerror = continueCountdown;
     window.speechSynthesis.speak(utterance);
   };
 
