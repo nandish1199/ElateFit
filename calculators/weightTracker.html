@@ -78,6 +78,18 @@
             </section>
         </div>
     </main>
+    <div class="photoViewer" id="photoViewer" role="dialog" aria-modal="true" aria-labelledby="photoViewerTitle" hidden>
+        <div class="photoViewerBackdrop" data-close-photo-viewer></div>
+        <div class="photoViewerPanel">
+            <div class="photoViewerHeader">
+                <h2 id="photoViewerTitle">Progress photo</h2>
+                <button type="button" class="closePhotoViewer" id="closePhotoViewer" aria-label="Close photo viewer"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <img id="photoViewerImage" class="photoViewerImage" alt="" />
+            <p id="photoViewerNote" class="photoViewerNote"></p>
+        </div>
+    </div>
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>

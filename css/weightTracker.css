@@ -266,6 +266,20 @@ body {
     background: #eef2ef;
 }
 
+.photoPreview {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: #eef2ef;
+    cursor: zoom-in;
+}
+
+.photoPreview:focus-visible {
+    outline: 3px solid var(--weight-gold);
+    outline-offset: -3px;
+}
+
 .photoCard figcaption {
     padding: 9px;
     color: var(--weight-muted);
@@ -287,6 +301,86 @@ body {
     background: #f4f0e5;
     color: #725b2e;
     font-size: .84rem;
+    line-height: 1.5;
+}
+
+.photoViewer[hidden] {
+    display: none;
+}
+
+.photoViewer {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.photoViewerBackdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 31, 28, .78);
+}
+
+.photoViewerPanel {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 100%);
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: var(--weight-paper);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .3);
+}
+
+.photoViewerHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.photoViewerHeader h2 {
+    margin: 0;
+    color: var(--weight-dark);
+    font-size: 1rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.closePhotoViewer {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--weight-line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--weight-dark);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.closePhotoViewer:hover,
+.closePhotoViewer:focus-visible {
+    background: var(--weight-green);
+    color: #fff;
+    outline: none;
+}
+
+.photoViewerImage {
+    display: block;
+    width: 100%;
+    max-height: calc(100vh - 170px);
+    object-fit: contain;
+    background: #e9eeeb;
+}
+
+.photoViewerNote {
+    margin: 14px 0 0;
+    color: var(--weight-muted);
+    font-size: .9rem;
     line-height: 1.5;
 }
 
