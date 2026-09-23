@@ -1,13 +1,15 @@
 const WEIGHT_DB_NAME = "elateFitWeightTrackerDB";
-const WEIGHT_DB_VERSION = 1;
+const WEIGHT_DB_VERSION = 2;
 const WEIGHT_STORE = "weightEntries";
 const PHOTO_STORE = "progressPhotos";
+const GOAL_MAP_STORE = "goalMapState";
 const PERIODS = [7, 15, 30];
 let weightDb;
 let weightEntries = [];
 let progressPhotos = [];
 let selectedPeriod = 7;
 let savedProfile = null;
+let goalMapState = null;
 
 const PROFILE_DB_NAME = "elateFitUserProfileDB";
 const PROFILE_STORE_NAME = "profiles";
@@ -25,6 +27,9 @@ function openWeightDatabase() {
       if (!db.objectStoreNames.contains(PHOTO_STORE)) {
         const store = db.createObjectStore(PHOTO_STORE, { keyPath: "id" });
         store.createIndex("capturedAt", "capturedAt");
+      }
+      if (!db.objectStoreNames.contains(GOAL_MAP_STORE)) {
+        db.createObjectStore(GOAL_MAP_STORE, { keyPath: "id" });
       }
     };
     request.onsuccess = () => resolve(request.result);
@@ -62,6 +67,37 @@ function removeRecord(storeName, id) {
       .delete(id);
     request.onsuccess = () => resolve();
     request.onerror = () => reject(request.error);
+  });
+}
+
+function getGoalMapState() {
+  return new Promise((resolve, reject) => {
+    const request = weightDb
+      .transaction(GOAL_MAP_STORE, "readonly")
+      .objectStore(GOAL_MAP_STORE)
+      .get("goal");
+    request.onsuccess = () => resolve(request.result || null);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function establishGoalMapState() {
+  goalMapState = await getGoalMapState();
+  if (
+    goalMapState ||
+    !savedProfile ||
+    !Number.isFinite(Number(savedProfile.targetWeight))
+  )
+    return;
+  const firstEntry = weightEntries
+    .slice()
+    .sort((a, b) => new Date(a.recordedAt) - new Date(b.recordedAt))[0];
+  if (!firstEntry || !Number.isFinite(Number(firstEntry.weight))) return;
+  goalMapState = await putRecord(GOAL_MAP_STORE, {
+    id: "goal",
+    startWeight: Number(firstEntry.weight),
+    targetWeight: Number(savedProfile.targetWeight),
+    createdAt: new Date().toISOString(),
   });
 }
 
@@ -128,10 +164,12 @@ function renderGoalMap() {
     .sort((a, b) => new Date(a.recordedAt) - new Date(b.recordedAt));
   const latest = entries[entries.length - 1];
   const currentWeight = latest ? Number(latest.weight) : null;
-  const targetWeight = savedProfile ? Number(savedProfile.targetWeight) : null;
+  const startWeight = goalMapState ? Number(goalMapState.startWeight) : null;
+  const targetWeight = goalMapState ? Number(goalMapState.targetWeight) : null;
 
   if (
     !Number.isFinite(currentWeight) ||
+    !Number.isFinite(startWeight) ||
     !Number.isFinite(targetWeight) ||
     targetWeight <= 0
   ) {
@@ -147,8 +185,8 @@ function renderGoalMap() {
     return;
   }
 
-  const direction = targetWeight > currentWeight ? 1 : -1;
-  const firstGoal = Math.round(currentWeight) + direction;
+  const direction = targetWeight > startWeight ? 1 : -1;
+  const firstGoal = Math.round(startWeight) + direction;
   const lastGoal = Math.round(targetWeight);
   const goals = [];
   for (
@@ -178,7 +216,7 @@ function renderGoalMap() {
     .join(" ");
 
   map.innerHTML = `<div class="goalMapSummary"><span>Start <strong>${currentWeight.toFixed(1)} kg</strong></span><span>Target <strong>${targetWeight.toFixed(0)} kg</strong></span><span><strong>${goals.length}</strong> flags</span></div>
-    <div class="goalMapViewport"><div class="goalMapTrack"><svg class="goalMapPath" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="goalMapBasePath" d="${routePath}"></path><path class="goalMapProgressPath" pathLength="1" stroke-dasharray="${progressRatio} 1" d="${routePath}"></path></svg><div class="goalMapEndpoint goalMapStart"><span class="goalMapEndpointPin"><i class="fa-solid fa-location-dot"></i></span><strong>Start</strong><small>${currentWeight.toFixed(1)} kg</small></div>${goals
+    <div class="goalMapViewport"><div class="goalMapTrack"><svg class="goalMapPath" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="goalMapBasePath" d="${routePath}"></path><path class="goalMapProgressPath" pathLength="1" stroke-dasharray="${progressRatio} 1" d="${routePath}"></path></svg><div class="goalMapEndpoint goalMapStart"><span class="goalMapEndpointPin"><i class="fa-solid fa-location-dot"></i></span><strong>Start</strong><small>${startWeight.toFixed(1)} kg</small></div>${goals
       .map((weight, index) => {
         const tier = goalTier(index, goals.length);
         const achieved = reached(weight);
@@ -371,6 +409,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     weightDb = await openWeightDatabase();
     savedProfile = await getSavedProfile();
+    weightEntries = await getAll(WEIGHT_STORE);
+    await establishGoalMapState();
     await refresh();
     document
       .getElementById("weightForm")
@@ -391,6 +431,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
         this.reset();
         setStatus("Weight entry saved.", false);
+        await establishGoalMapState();
         await refresh();
       });
     document
