@@ -54,6 +54,16 @@
                 </div>
                 <div class="chartWrap"><canvas id="weightChart" aria-label="Weight trend chart"></canvas></div>
             </section>
+            <section class="weightPanel goalMapPanel">
+                <div class="weightToolbar">
+                    <div>
+                        <h2>Goal map</h2>
+                        <p class="goalMapIntro">Reach each flagged weight to unlock the next batch.</p>
+                    </div>
+                    <span class="goalMapDirection" id="goalMapDirection">Set a target in your profile</span>
+                </div>
+                <div id="goalMap" class="goalMap" aria-live="polite"></div>
+            </section>
             <section class="weightPanel">
                 <h2>Weight history</h2>
                 <div class="entryList" id="weightEntryList"></div>

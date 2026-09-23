@@ -7,6 +7,11 @@ let weightDb;
 let weightEntries = [];
 let progressPhotos = [];
 let selectedPeriod = 7;
+let savedProfile = null;
+
+const PROFILE_DB_NAME = "elateFitUserProfileDB";
+const PROFILE_STORE_NAME = "profiles";
+const PROFILE_RECORD_ID = "profile";
 
 function openWeightDatabase() {
   return new Promise((resolve, reject) => {
@@ -77,6 +82,113 @@ function setStatus(message, error = true) {
   const status = document.getElementById("weightStatus");
   status.textContent = message;
   status.style.color = error ? "#a45e4c" : "#1f6b5b";
+}
+
+function getSavedProfile() {
+  return new Promise((resolve) => {
+    const request = indexedDB.open(PROFILE_DB_NAME, 1);
+    request.onsuccess = () => {
+      const db = request.result;
+      if (!db.objectStoreNames.contains(PROFILE_STORE_NAME)) {
+        db.close();
+        resolve(null);
+        return;
+      }
+      const profileRequest = db
+        .transaction(PROFILE_STORE_NAME, "readonly")
+        .objectStore(PROFILE_STORE_NAME)
+        .get(PROFILE_RECORD_ID);
+      profileRequest.onsuccess = () => {
+        db.close();
+        resolve(profileRequest.result || null);
+      };
+      profileRequest.onerror = () => {
+        db.close();
+        resolve(null);
+      };
+    };
+    request.onerror = () => resolve(null);
+  });
+}
+
+function goalTier(index, total) {
+  const progress = total <= 1 ? 1 : index / (total - 1);
+  if (progress >= 0.8) return "Diamond";
+  if (progress >= 0.6) return "Titanium";
+  if (progress >= 0.4) return "Gold";
+  if (progress >= 0.2) return "Silver";
+  return "Copper";
+}
+
+function renderGoalMap() {
+  const map = document.getElementById("goalMap");
+  const directionLabel = document.getElementById("goalMapDirection");
+  const entries = weightEntries
+    .slice()
+    .sort((a, b) => new Date(a.recordedAt) - new Date(b.recordedAt));
+  const latest = entries[entries.length - 1];
+  const currentWeight = latest ? Number(latest.weight) : null;
+  const targetWeight = savedProfile ? Number(savedProfile.targetWeight) : null;
+
+  if (
+    !Number.isFinite(currentWeight) ||
+    !Number.isFinite(targetWeight) ||
+    targetWeight <= 0
+  ) {
+    directionLabel.textContent = "Profile target needed";
+    map.innerHTML =
+      '<div class="goalMapEmpty">Add a weight entry and save a target weight in User Profile to build your goal map.</div>';
+    return;
+  }
+
+  if (currentWeight === targetWeight) {
+    directionLabel.textContent = "Target reached";
+    map.innerHTML = `<div class="goalMapComplete"><i class="fa-solid fa-flag-checkered"></i><strong>${currentWeight.toFixed(1)} kg reached</strong><span>Set a new target in your profile to open another route.</span></div>`;
+    return;
+  }
+
+  const direction = targetWeight > currentWeight ? 1 : -1;
+  const firstGoal = Math.round(currentWeight) + direction;
+  const lastGoal = Math.round(targetWeight);
+  const goals = [];
+  for (
+    let weight = firstGoal;
+    direction === 1 ? weight <= lastGoal : weight >= lastGoal;
+    weight += direction
+  ) {
+    goals.push(weight);
+  }
+  const reached = (weight) =>
+    direction === 1 ? currentWeight >= weight : currentWeight <= weight;
+  const achievedGoals = goals.filter(reached).length;
+  const progressRatio = goals.length ? achievedGoals / goals.length : 0;
+  directionLabel.textContent =
+    direction === 1 ? "Building upward" : "Moving downward";
+
+  const routePoints = goals.map((weight, index) => {
+    const progress = goals.length === 1 ? 0.5 : index / (goals.length - 1);
+    return {
+      weight,
+      x: 12 + progress * 74,
+      y: 78 - progress * 63 + Math.sin(progress * Math.PI * 4) * 8,
+    };
+  });
+  const routePath = [{ x: 8, y: 78 }, ...routePoints, { x: 92, y: 15 }]
+    .map((point, index) => `${index ? "L" : "M"} ${point.x} ${point.y}`)
+    .join(" ");
+
+  map.innerHTML = `<div class="goalMapSummary"><span>Start <strong>${currentWeight.toFixed(1)} kg</strong></span><span>Target <strong>${targetWeight.toFixed(0)} kg</strong></span><span><strong>${goals.length}</strong> flags</span></div>
+    <div class="goalMapViewport"><div class="goalMapTrack"><svg class="goalMapPath" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="goalMapBasePath" d="${routePath}"></path><path class="goalMapProgressPath" pathLength="1" stroke-dasharray="${progressRatio} 1" d="${routePath}"></path></svg><div class="goalMapEndpoint goalMapStart"><span class="goalMapEndpointPin"><i class="fa-solid fa-location-dot"></i></span><strong>Start</strong><small>${currentWeight.toFixed(1)} kg</small></div>${goals
+      .map((weight, index) => {
+        const tier = goalTier(index, goals.length);
+        const achieved = reached(weight);
+        const point = routePoints[index];
+        return `<div class="goalFlag batch-${tier.toLowerCase()} ${achieved ? "achieved" : ""}" style="--flag-left:${point.x}%;--flag-top:${point.y}%" title="${tier} goal: ${weight} kg"><div class="goalFlagPole"></div><div class="goalFlagCloth"><i class="fa-solid fa-flag"></i></div><div class="goalFlagLabel"><strong>${weight} kg</strong><span>${tier}</span>${achieved ? "<small>Achieved</small>" : ""}</div></div>`;
+      })
+      .join(
+        "",
+      )}<div class="goalMapEndpoint goalMapFinish"><span class="goalMapEndpointPin"><i class="fa-solid fa-flag-checkered"></i></span><strong>Finish</strong><small>${targetWeight.toFixed(0)} kg</small></div></div></div>
+    <div class="goalBatchLegend" aria-label="Goal batches">${["Copper", "Silver", "Gold", "Titanium", "Diamond"].map((tier) => `<span class="batch-${tier.toLowerCase()}"><i class="fa-solid fa-flag"></i>${tier}</span>`).join("")}</div>`;
 }
 
 function rangeData() {
@@ -191,6 +303,7 @@ function renderStats() {
     latest && first ? `${change > 0 ? "+" : ""}${change.toFixed(1)} kg` : "--";
   document.getElementById("weightEntries").textContent = values.length;
   drawChart(rangeData());
+  renderGoalMap();
 }
 
 function renderEntries() {
@@ -257,6 +370,7 @@ async function refresh() {
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     weightDb = await openWeightDatabase();
+    savedProfile = await getSavedProfile();
     await refresh();
     document
       .getElementById("weightForm")
