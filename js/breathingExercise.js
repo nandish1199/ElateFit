@@ -178,6 +178,31 @@ function speakPhase(phaseName) {
   speak(cue);
 }
 
+function isCountedPhase(phaseName) {
+  const phase = phaseName.toLowerCase();
+  return phase.includes("inhale") || phase.includes("exhale");
+}
+
+function speakPhaseStart(phaseName, duration) {
+  const phase = phaseName.toLowerCase();
+  const cue = phase.includes("exhale")
+    ? "Exhale"
+    : phase.includes("inhale")
+      ? "Inhale"
+      : phaseName;
+  speak(
+    voiceToggle.value === "voice-count" && isCountedPhase(phaseName)
+      ? `${cue}, ${duration}`
+      : cue,
+  );
+}
+
+function speakPhaseCount(phaseName, count) {
+  if (voiceToggle.value === "voice-count" && isCountedPhase(phaseName)) {
+    speak(String(count));
+  }
+}
+
 function announceTechnique(name) {
   session.waitingForAnnouncement = true;
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) {
@@ -192,7 +217,8 @@ function announceTechnique(name) {
     if (announcementFinished || !session) return;
     announcementFinished = true;
     session.waitingForAnnouncement = false;
-    speakPhase("Inhale");
+    const firstPhase = session.plan[session.techniqueIndex].phases[0];
+    speakPhaseStart(firstPhase[0], firstPhase[1]);
   };
   utterance.onend = continueBreathing;
   utterance.onerror = continueBreathing;
@@ -349,24 +375,28 @@ function tick() {
     return;
   }
 
+  const item = session.plan[session.techniqueIndex];
   if (session.remaining > 0) {
+    speakPhaseCount(item.phases[session.phaseIndex][0], session.remaining);
     renderSession();
     return;
   }
 
-  const item = session.plan[session.techniqueIndex];
   session.phaseIndex++;
   if (session.phaseIndex < item.phases.length) {
     session.remaining = item.phases[session.phaseIndex][1];
     chime();
-    speakPhase(item.phases[session.phaseIndex][0]);
+    speakPhaseStart(
+      item.phases[session.phaseIndex][0],
+      item.phases[session.phaseIndex][1],
+    );
     renderSession();
   } else if (session.repetitionIndex < item.repetitions) {
     session.repetitionIndex++;
     session.phaseIndex = 0;
     session.remaining = item.phases[0][1];
     chime();
-    speakPhase(item.phases[0][0]);
+    speakPhaseStart(item.phases[0][0], item.phases[0][1]);
     renderSession();
   } else if (session.techniqueIndex < session.plan.length - 1) {
     session.techniqueIndex++;
