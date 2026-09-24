@@ -298,8 +298,26 @@
 
         .micronutrientList {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 10px;
+            max-height: 620px;
+            overflow-y: auto;
+            padding: 2px 8px 8px 2px;
+            scrollbar-color: var(--nutrition-green) #e5ece7;
+            scrollbar-width: thin;
+        }
+
+        .micronutrientList::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .micronutrientList::-webkit-scrollbar-track {
+            background: #e5ece7;
+        }
+
+        .micronutrientList::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: var(--nutrition-green);
         }
 
         .micronutrientCard {
@@ -364,8 +382,22 @@
         }
 
         .micronutrientGuidance strong {
+            display: block;
+            margin-bottom: 5px;
             color: var(--nutrition-dark);
             font-size: inherit;
+        }
+
+        .micronutrientGuidance ul {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 3px 12px;
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        .micronutrientGuidance li {
+            padding-left: 2px;
         }
 
         .targetCard {
@@ -621,6 +653,7 @@
             .micronutrientList {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 6px;
+                max-height: 70vh;
             }
 
             .micronutrientCard {
@@ -648,6 +681,10 @@
 
             .micronutrientGuidance {
                 font-size: .68rem;
+            }
+
+            .micronutrientGuidance ul {
+                grid-template-columns: 1fr;
             }
 
             .entryRow {

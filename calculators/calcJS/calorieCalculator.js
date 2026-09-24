@@ -3265,7 +3265,10 @@ function renderMicronutrients(entries) {
       const percentage = Math.min(100, (consumed / reference) * 100);
       const guidance =
         consumed < reference
-          ? `<p class="micronutrientGuidance"><strong>Foods to consider:</strong> ${foodSuggestions}</p>`
+          ? `<div class="micronutrientGuidance"><strong>Foods to consider</strong><ul>${foodSuggestions
+              .split(", ")
+              .map((food) => `<li>${food}</li>`)
+              .join("")}</ul></div>`
           : "";
       return `
       <div class="micronutrientCard">
