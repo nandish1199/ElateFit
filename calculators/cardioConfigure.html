@@ -19,13 +19,14 @@
             loading="lazy"></iframe></div><iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
     <main class="cardioPage">
         <section class="cardioHero">
+            <span class="cardioEyebrow"><i class="fa-solid fa-bolt"></i> Train with purpose</span>
             <h1>CARDIO SESSION BUILDER</h1>
             <p>Build an ordered cardio circuit, set the work and rest for every block, then follow a guided timer with
                 voice countdowns.</p>
         </section>
         <div class="cardioLayout">
             <section class="cardioPanel">
-                <h2 id="cardioFormTitle">Add cardio</h2>
+                <h2 id="cardioFormTitle"><i class="fa-solid fa-fire-flame-curved"></i> Add cardio</h2>
                 <form class="planForm" id="cardioForm"><label class="field" for="cardioName">Cardio name<input
                             id="cardioName" placeholder="Jumping jacks" required /></label>
                     <div class="roundGrid"><label class="field" for="cardioRounds">Rounds<input type="number"
@@ -43,7 +44,7 @@
                     <div class="cardioStatus" id="cardioStatus" role="status" aria-live="polite"></div>
                 </form>
                 <div class="cardioPanel timerPanel hidden" id="timerPanel">
-                    <h2>Guided session</h2>
+                    <h2><i class="fa-solid fa-stopwatch"></i> Guided session</h2>
                     <div class="timerDisplay">
                         <div class="timerPhase" id="timerPhase">Ready</div>
                         <div class="timerName" id="timerName">Build a plan</div>
@@ -61,19 +62,19 @@
                 </div>
             </section>
             <section class="cardioPanel">
-                <h2>Your cardio order</h2>
+                <h2><i class="fa-solid fa-list-check"></i> Your cardio order</h2>
                 <div class="cardioList" id="cardioList"></div>
                 <div class="formActions"><button class="cardioButton" id="startSession" type="button"><i
                             class="fa-solid fa-play"></i> Start session</button><button class="cardioButton secondary"
                         id="savePlan" type="button"><i class="fa-solid fa-bookmark"></i> Save plan</button></div>
                 <div class="cardioStatus" id="cardioStatusMirror"></div>
-                <h2 style="margin-top:24px">Saved sessions</h2>
+                <h2 class="savedSessionsHeading"><i class="fa-solid fa-bookmark"></i> Saved sessions</h2>
                 <div class="savedPlanList" id="savedPlanList"></div>
             </section>
             <section class="cardioPanel cardioCalendarPanel" aria-labelledby="cardioCalendarHeading">
                 <div class="calendarTools">
                     <div>
-                        <h2 id="cardioCalendarHeading">Cardio calendar</h2>
+                        <h2 id="cardioCalendarHeading"><i class="fa-solid fa-calendar-check"></i> Cardio calendar</h2>
                         <span class="calendarMonth" id="cardioCalendarMonth"></span>
                     </div>
                     <div class="calendarNavigation" aria-label="Change cardio calendar month">
