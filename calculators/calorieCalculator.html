@@ -285,96 +285,6 @@
             font-size: 1.15rem;
         }
 
-        .micronutrientSection {
-            grid-column: 1 / -1;
-            margin-bottom: 20px;
-            padding: 16px;
-            border: 1px solid var(--nutrition-line);
-            border-top: 3px solid var(--nutrition-gold);
-            background: #ffffff;
-        }
-
-        .micronutrientSection h3 {
-            margin: 0 0 5px;
-            color: var(--nutrition-dark);
-            font-size: 1rem;
-        }
-
-        .micronutrientSection p {
-            margin: 0 0 14px;
-            color: var(--nutrition-muted);
-            font-size: .82rem;
-            line-height: 1.45;
-        }
-
-        .micronutrientProgress {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px 18px;
-            max-height: 560px;
-            overflow-y: auto;
-            padding-right: 4px;
-        }
-
-        .micronutrientProgressRow {
-            padding: 10px;
-            border: 1px solid #e3ebe6;
-            background: #f8fbf9;
-        }
-
-        .micronutrientProgressHeader {
-            display: flex;
-            justify-content: space-between;
-            gap: 8px;
-            color: var(--nutrition-dark);
-            font-size: .78rem;
-        }
-
-        .micronutrientProgressHeader span {
-            color: var(--nutrition-muted);
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        .micronutrientProgressTrack {
-            height: 7px;
-            margin: 8px 0 6px;
-            overflow: hidden;
-            border-radius: 999px;
-            background: #e5ece7;
-        }
-
-        .micronutrientProgressTrack span {
-            display: block;
-            height: 100%;
-            border-radius: inherit;
-            background: var(--nutrition-green);
-            transition: width 220ms ease;
-        }
-
-        .micronutrientProgressRow small {
-            display: block;
-            color: var(--nutrition-muted);
-            font-size: .72rem;
-            line-height: 1.4;
-        }
-
-        .micronutrientSuggestions {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 2px 14px;
-            margin: 5px 0 0;
-            padding-left: 18px;
-            color: var(--nutrition-dark);
-            font-size: .75rem;
-            line-height: 1.4;
-        }
-
-        .micronutrientTargetReached {
-            color: var(--nutrition-green);
-            font-weight: 700;
-        }
-
         .targetCard {
             position: relative;
             padding: 16px;
@@ -578,14 +488,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .micronutrientProgress {
-                grid-template-columns: 1fr;
-            }
-
-            .micronutrientSuggestions {
-                grid-template-columns: 1fr;
-            }
-
             .summaryGrid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 6px;
@@ -737,13 +639,6 @@
                 </div>
                 <button type="button" class="dangerButton" id="deleteAllButton"><i class="fa-solid fa-trash"></i> Delete
                     all saved data</button>
-            </section>
-            <section class="micronutrientSection" aria-labelledby="micronutrientProgressHeading">
-                <h3 id="micronutrientProgressHeading">Today's micronutrient intake</h3>
-                <p>Compared with the daily micronutrient references shown in your Profile snapshot. It's an
-                    approximation, not 100% accurate, but it will help you
-                    reach near to your daily micronutrient goals.</p>
-                <div class="micronutrientProgress" id="micronutrientProgress"></div>
             </section>
             <section class="nutritionPanel">
                 <div class="chartTools">
