@@ -2944,6 +2944,174 @@ const foodCatalog = {
   },
 };
 
+// Micronutrients are per 100 g of food and every value is stored in mg.
+const MICRONUTRIENT_KEYS = [
+  "vitaminA_mg",
+  "vitaminC_mg",
+  "vitaminD_mg",
+  "vitaminE_mg",
+  "vitaminK_mg",
+  "vitaminB1_thiamine_mg",
+  "vitaminB2_riboflavin_mg",
+  "vitaminB3_niacin_mg",
+  "vitaminB6_mg",
+  "folate_B9_mg",
+  "vitaminB12_mg",
+  "calcium_mg",
+  "iron_mg",
+  "magnesium_mg",
+  "zinc_mg",
+  "iodine_mg",
+  "selenium_mg",
+  "copper_mg",
+  "potassium_mg",
+  "phosphorus_mg",
+];
+
+const MICRONUTRIENT_REQUIREMENTS_MG = {
+  vitaminA_mg: { label: "Vitamin A", amount: 0.6 },
+  vitaminC_mg: { label: "Vitamin C", amount: 45 },
+  vitaminD_mg: { label: "Vitamin D", amount: 0.005 },
+  vitaminE_mg: { label: "Vitamin E", amount: 10 },
+  vitaminK_mg: { label: "Vitamin K", amount: 0.055 },
+  vitaminB1_thiamine_mg: { label: "Vitamin B1 (Thiamine)", amount: 1.1 },
+  vitaminB2_riboflavin_mg: { label: "Vitamin B2 (Riboflavin)", amount: 1.1 },
+  vitaminB3_niacin_mg: { label: "Vitamin B3 (Niacin)", amount: 14 },
+  vitaminB6_mg: { label: "Vitamin B6", amount: 1.3 },
+  folate_B9_mg: { label: "Folate (Vitamin B9)", amount: 0.4 },
+  vitaminB12_mg: { label: "Vitamin B12", amount: 0.0024 },
+  calcium_mg: { label: "Calcium", amount: 1000 },
+  iron_mg: { label: "Iron", amount: 8 },
+  magnesium_mg: { label: "Magnesium", amount: 310 },
+  zinc_mg: { label: "Zinc", amount: 8 },
+  iodine_mg: { label: "Iodine", amount: 0.15 },
+  selenium_mg: { label: "Selenium", amount: 0.055 },
+  copper_mg: { label: "Copper", amount: 0.9 },
+  potassium_mg: { label: "Potassium", amount: 3500 },
+  phosphorus_mg: { label: "Phosphorus", amount: 700 },
+};
+
+const MICRONUTRIENT_DEFAULTS_MG = {
+  vitaminA_mg: 0.05,
+  vitaminC_mg: 10,
+  vitaminD_mg: 0,
+  vitaminE_mg: 1,
+  vitaminK_mg: 0.01,
+  vitaminB1_thiamine_mg: 0.1,
+  vitaminB2_riboflavin_mg: 0.1,
+  vitaminB3_niacin_mg: 1,
+  vitaminB6_mg: 0.1,
+  folate_B9_mg: 0.02,
+  vitaminB12_mg: 0,
+  calcium_mg: 30,
+  iron_mg: 1.5,
+  magnesium_mg: 30,
+  zinc_mg: 1,
+  iodine_mg: 0.015,
+  selenium_mg: 0.005,
+  copper_mg: 0.1,
+  potassium_mg: 200,
+  phosphorus_mg: 100,
+};
+
+const MICRONUTRIENT_CATEGORY_OVERRIDES_MG = [
+  {
+    pattern: /milk|curd|yogurt|paneer|cheese|lassi|cream/i,
+    values: {
+      vitaminA_mg: 0.06,
+      vitaminD_mg: 0.001,
+      vitaminB2_riboflavin_mg: 0.18,
+      vitaminB12_mg: 0.0004,
+      calcium_mg: 120,
+      iodine_mg: 0.02,
+      phosphorus_mg: 90,
+    },
+  },
+  {
+    pattern: /chicken|mutton|meat|fish|prawn|shrimp|egg|tuna|salmon|sardine/i,
+    values: {
+      vitaminA_mg: 0.03,
+      vitaminD_mg: 0.001,
+      vitaminB2_riboflavin_mg: 0.2,
+      vitaminB3_niacin_mg: 5,
+      vitaminB12_mg: 0.0015,
+      iron_mg: 1.5,
+      zinc_mg: 2,
+      iodine_mg: 0.01,
+      selenium_mg: 0.02,
+      phosphorus_mg: 180,
+    },
+  },
+  {
+    pattern:
+      /spinach|fenugreek|methi|lettuce|coriander|mint|cabbage|broccoli|kale|okra|drumstick|amaranth/i,
+    values: {
+      vitaminA_mg: 0.5,
+      vitaminC_mg: 30,
+      vitaminE_mg: 2,
+      vitaminK_mg: 0.3,
+      folate_B9_mg: 0.1,
+      calcium_mg: 100,
+      iron_mg: 2,
+      magnesium_mg: 50,
+      potassium_mg: 400,
+    },
+  },
+  {
+    pattern:
+      /apple|banana|mango|orange|papaya|grape|guava|watermelon|melon|berry|pineapple|pomegranate|lemon/i,
+    values: {
+      vitaminA_mg: 0.05,
+      vitaminC_mg: 30,
+      vitaminK_mg: 0.005,
+      folate_B9_mg: 0.02,
+      potassium_mg: 200,
+    },
+  },
+  {
+    pattern:
+      /dal|lentil|bean|chickpea|chana|rajma|pea|soy|tofu|urad|moong|masoor/i,
+    values: {
+      vitaminC_mg: 3,
+      vitaminE_mg: 1,
+      vitaminK_mg: 0.005,
+      vitaminB1_thiamine_mg: 0.3,
+      folate_B9_mg: 0.15,
+      calcium_mg: 50,
+      iron_mg: 3,
+      magnesium_mg: 50,
+      zinc_mg: 1.5,
+      potassium_mg: 350,
+      phosphorus_mg: 200,
+    },
+  },
+  {
+    pattern:
+      /almond|cashew|walnut|pistachio|peanut|nut|seed|sesame|flax|chia|sunflower/i,
+    values: {
+      vitaminE_mg: 5,
+      vitaminB1_thiamine_mg: 0.3,
+      vitaminB3_niacin_mg: 4,
+      folate_B9_mg: 0.08,
+      calcium_mg: 100,
+      iron_mg: 3,
+      magnesium_mg: 150,
+      zinc_mg: 3,
+      copper_mg: 1,
+      potassium_mg: 600,
+      phosphorus_mg: 300,
+    },
+  },
+];
+
+Object.values(foodCatalog).forEach((food) => {
+  const categoryValues =
+    MICRONUTRIENT_CATEGORY_OVERRIDES_MG.find(({ pattern }) =>
+      pattern.test(food.label),
+    )?.values || {};
+  Object.assign(food, MICRONUTRIENT_DEFAULTS_MG, categoryValues);
+});
+
 let nutritionDb;
 let selectedPeriod = 7;
 let allEntries = [];
@@ -3148,7 +3316,77 @@ function calculateNutrition(food, grams) {
     unsaturatedFat: (food.unsaturatedFat * grams) / 100,
     solubleFiber: (food.solubleFiber * grams) / 100,
     insolubleFiber: (food.insolubleFiber * grams) / 100,
+    micronutrients: Object.fromEntries(
+      MICRONUTRIENT_KEYS.map((key) => [key, (food[key] * grams) / 100]),
+    ),
   };
+}
+
+function getEntryMicronutrients(entry) {
+  if (entry.micronutrients) return entry.micronutrients;
+  const food = getFood(entry.foodLabel);
+  return food ? calculateNutrition(food, entry.grams).micronutrients : {};
+}
+
+function getTodayMicronutrients(entries) {
+  return MICRONUTRIENT_KEYS.reduce((totals, key) => {
+    totals[key] = entries.reduce(
+      (sum, entry) => sum + (getEntryMicronutrients(entry)[key] || 0),
+      0,
+    );
+    return totals;
+  }, {});
+}
+
+function getMicronutrientFoodSuggestions(key) {
+  const labels = [];
+  Object.values(foodCatalog)
+    .filter((food) => food[key] > 0)
+    .sort((first, second) => second[key] - first[key])
+    .forEach((food) => {
+      if (!labels.includes(food.label) && labels.length < 10) {
+        labels.push(food.label);
+      }
+    });
+  return labels.length ? labels : ["a varied whole-food meal"];
+}
+
+function formatMicronutrientAmount(amount) {
+  if (amount < 0.01) return amount.toFixed(4);
+  if (amount < 1) return amount.toFixed(3);
+  return amount.toFixed(1);
+}
+
+function renderMicronutrientProgress() {
+  const container = document.getElementById("micronutrientProgress");
+  if (!container) return;
+  const entries = getTodayEntries();
+  const totals = getTodayMicronutrients(entries);
+  const rows = MICRONUTRIENT_KEYS.map((key) => {
+    const requirement = MICRONUTRIENT_REQUIREMENTS_MG[key];
+    const consumed = totals[key] || 0;
+    const percentage = Math.min(100, (consumed / requirement.amount) * 100);
+    const remaining = Math.max(0, requirement.amount - consumed);
+    const suggestions = remaining ? getMicronutrientFoodSuggestions(key) : [];
+    const suggestionMarkup = remaining
+      ? `<ul class="micronutrientSuggestions">${suggestions
+          .map((suggestion) => `<li>${suggestion}</li>`)
+          .join("")}</ul>`
+      : '<span class="micronutrientTargetReached">Target reached</span>';
+    const guidanceMarkup = remaining
+      ? `<small>Add ${formatMicronutrientAmount(remaining)} mg more. Try these foods:</small>${suggestionMarkup}`
+      : `<small>${suggestionMarkup}</small>`;
+    return `
+      <div class="micronutrientProgressRow">
+        <div class="micronutrientProgressHeader">
+          <strong>${requirement.label}</strong>
+          <span>${formatMicronutrientAmount(consumed)} / ${formatMicronutrientAmount(requirement.amount)} mg</span>
+        </div>
+        <div class="micronutrientProgressTrack" role="progressbar" aria-label="${requirement.label} daily intake" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percentage.toFixed(0)}"><span style="width: ${percentage.toFixed(1)}%"></span></div>
+        ${guidanceMarkup}
+      </div>`;
+  }).join("");
+  container.innerHTML = rows;
 }
 
 function setStatus(message, isError = true) {
@@ -3212,6 +3450,7 @@ function renderEntries() {
     `${solubleFiber.toFixed(1)} g`;
   document.getElementById("todayInsolubleFiber").textContent =
     `${insolubleFiber.toFixed(1)} g`;
+  renderMicronutrientProgress();
 }
 
 function renderProfileTargets() {
@@ -3464,6 +3703,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           unsaturatedFat: nutrition.unsaturatedFat,
           solubleFiber: nutrition.solubleFiber,
           insolubleFiber: nutrition.insolubleFiber,
+          micronutrients: nutrition.micronutrients,
           createdAt: new Date().toISOString(),
         });
         this.reset();
