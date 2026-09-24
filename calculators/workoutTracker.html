@@ -12,18 +12,18 @@
     <title>Workout Tracker, Elatefit</title>
     <style>
         :root {
-            --work-ink: #263934;
-            --work-muted: #65756f;
-            --work-green: #356f61;
-            --work-dark: #234d43;
-            --work-gold: #a9824c;
-            --work-paper: #fcfbf8;
-            --work-line: #d8e1dc;
-            --work-shadow: 0 12px 30px rgba(40, 67, 58, .08);
+            --work-ink: #263b40;
+            --work-muted: #607477;
+            --work-green: #0f8879;
+            --work-dark: #075b59;
+            --work-coral: #ef765f;
+            --work-paper: #fbfdfb;
+            --work-line: #d6e7e2;
+            --work-shadow: 0 14px 32px rgba(20, 78, 75, .1);
         }
 
         body {
-            background: #f0f3f1;
+            background: linear-gradient(135deg, #f2f8f6 0%, #fff9f4 100%);
             color: var(--work-ink);
         }
 
@@ -34,19 +34,46 @@
         }
 
         .workoutHero {
+            position: relative;
+            overflow: hidden;
             margin-bottom: 22px;
             padding: 28px clamp(18px, 4vw, 48px);
-            background: linear-gradient(115deg, #e4eeea, var(--work-paper) 72%);
+            background: linear-gradient(115deg, #dff3ee 0%, #fffdf8 64%, #fff0e8 100%);
             border: 1px solid var(--work-line);
-            border-top: 4px solid var(--work-green);
+            border-top: 4px solid var(--work-coral);
+            border-radius: 3px;
             box-shadow: var(--work-shadow);
+        }
+
+        .workoutHero::after {
+            position: absolute;
+            right: 6%;
+            bottom: -62px;
+            width: 190px;
+            height: 190px;
+            border: 1px solid rgba(15, 136, 121, .18);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .workoutEyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 12px;
+            color: var(--work-coral);
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
         }
 
         .workoutHero h1 {
             margin: 0 0 8px;
             color: var(--work-ink);
             font-size: clamp(1.5rem, 3vw, 2.25rem);
-            letter-spacing: .06em;
+            letter-spacing: .04em;
+            font-weight: 800;
         }
 
         .workoutHero p {
@@ -56,6 +83,8 @@
         }
 
         .challengePanel {
+            position: relative;
+            overflow: hidden;
             display: grid;
             grid-template-columns: minmax(220px, .8fr) minmax(0, 1.4fr);
             gap: 24px;
@@ -63,14 +92,15 @@
             margin-bottom: 20px;
             padding: 20px 22px;
             border: 1px solid #cbdad3;
-            border-left: 4px solid var(--work-gold);
-            background: linear-gradient(110deg, #e8f0ec, #fcfbf8 67%, #f7f1e5);
+            border-left: 4px solid var(--work-coral);
+            border-radius: 3px;
+            background: linear-gradient(110deg, #e2f5ef, #fffdf8 67%, #fff0e8);
             box-shadow: var(--work-shadow);
         }
 
         .challengeEyebrow {
             margin: 0 0 5px;
-            color: var(--work-dark);
+            color: var(--work-coral);
             font-size: .72rem;
             font-weight: 800;
             letter-spacing: .12em;
@@ -80,7 +110,7 @@
         .challengePanel h2 {
             margin: 0 0 5px;
             color: var(--work-dark);
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
 
         .challengePanel p {
@@ -98,7 +128,8 @@
 
         .challengeStat {
             padding: 10px 12px;
-            border: 1px solid rgba(203, 218, 211, .95);
+            border: 1px solid rgba(198, 225, 218, .95);
+            border-radius: 2px;
             background: rgba(255, 255, 255, .78);
         }
 
@@ -123,14 +154,14 @@
             margin-top: 12px;
             overflow: hidden;
             border-radius: 999px;
-            background: #dce8e2;
+            background: #d8ece7;
         }
 
         .challengeProgressBar {
             width: 0;
             height: 100%;
             border-radius: inherit;
-            background: linear-gradient(90deg, #7da994, var(--work-green));
+            background: linear-gradient(90deg, var(--work-green), var(--work-coral));
             transition: width 240ms ease;
         }
 
@@ -152,7 +183,7 @@
             min-height: 36px;
             padding: 0 13px;
             border: 1px solid var(--work-green);
-            border-radius: 4px;
+            border-radius: 2px;
             background: var(--work-dark);
             color: #fff;
             cursor: pointer;
@@ -176,8 +207,7 @@
             padding: 22px;
             background: var(--work-paper);
             border: 1px solid var(--work-line);
-            border-top: 3px solid var(--work-green);
-            border-radius: 6px;
+            border-radius: 3px;
             box-shadow: var(--work-shadow);
         }
 
@@ -187,6 +217,12 @@
             font-size: 1.05rem;
             letter-spacing: .1em;
             text-transform: uppercase;
+        }
+
+        .workoutPanel h2 i {
+            margin-right: 7px;
+            color: var(--work-coral);
+            font-size: .9em;
         }
 
         .calendarPanel {
@@ -224,14 +260,14 @@
             min-height: 30px;
             padding: 0;
             border: 1px solid var(--work-line);
-            border-radius: 4px;
+            border-radius: 2px;
             background: #fff;
             color: var(--work-green);
             cursor: pointer;
         }
 
         .calendarNavigation button:hover {
-            background: #eef5f0;
+            background: #e7f5f1;
         }
 
         .calendarWeekdays,
@@ -256,7 +292,7 @@
             min-height: 46px;
             padding: 6px;
             border: 1px solid var(--work-line);
-            border-radius: 6px;
+            border-radius: 2px;
             background: #fff;
             color: var(--work-ink);
         }
@@ -273,13 +309,13 @@
         }
 
         .calendarDayToday {
-            border-color: var(--work-gold);
-            box-shadow: inset 0 0 0 1px rgba(169, 130, 76, .22);
+            border-color: var(--work-coral);
+            box-shadow: inset 0 0 0 1px rgba(239, 118, 95, .25);
         }
 
         .calendarDayWorkout {
-            background: #e7f1ec;
-            border-color: #a9c8ba;
+            background: #e3f4ee;
+            border-color: #9ed1c4;
             color: var(--work-dark);
         }
 
@@ -287,7 +323,7 @@
             position: absolute;
             right: 7px;
             bottom: 7px;
-            color: var(--work-gold);
+            color: var(--work-coral);
             font-size: .78rem;
         }
 
@@ -301,7 +337,7 @@
         }
 
         .calendarLegend i {
-            color: var(--work-green);
+            color: var(--work-coral);
         }
 
         .workoutForm {
@@ -325,8 +361,8 @@
             min-height: 44px;
             margin-top: 6px;
             padding: 0 12px;
-            border: 1px solid #b9cbc4;
-            border-radius: 4px;
+            border: 1px solid #c5ddd7;
+            border-radius: 3px;
             background: #fff;
             color: var(--work-ink);
             font: inherit;
@@ -334,7 +370,7 @@
 
         .repsField input:focus {
             border-color: var(--work-green);
-            box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+            box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
             outline: none;
         }
 
@@ -349,8 +385,8 @@
             min-height: 44px;
             margin-top: 6px;
             padding: 0 12px;
-            border: 1px solid #b9cbc4;
-            border-radius: 4px;
+            border: 1px solid #c5ddd7;
+            border-radius: 3px;
             background: #fff;
             color: var(--work-ink);
             font: inherit;
@@ -359,7 +395,7 @@
         .workoutForm input:focus,
         .workoutForm select:focus {
             border-color: var(--work-green);
-            box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+            box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
             outline: none;
         }
 
@@ -371,10 +407,10 @@
             left: 0;
             display: none;
             overflow: hidden;
-            border: 1px solid var(--nutrition-line);
-            border-radius: 4px;
+            border: 1px solid var(--work-line);
+            border-radius: 3px;
             background: #ffffff;
-            box-shadow: 0 10px 22px rgba(30, 58, 49, 0.14);
+            box-shadow: 0 10px 22px rgba(20, 78, 75, .14);
         }
 
         .exerciseSuggestions.is-visible {
@@ -388,7 +424,7 @@
             border: 0;
             border-bottom: 1px solid #edf1ee;
             background: #ffffff;
-            color: var(--nutrition-ink);
+            color: var(--work-ink);
             cursor: pointer;
             font: inherit;
             text-align: left;
@@ -400,9 +436,9 @@
 
         .exerciseSuggestion:hover,
         .exerciseSuggestion:focus {
-            background: #e7f0eb;
+            background: #e7f5f1;
             color: var(--work-dark);
-            box-shadow: inset 3px 0 0 var(--work-gold);
+            box-shadow: inset 3px 0 0 var(--work-coral);
             transform: none;
         }
 
@@ -419,7 +455,7 @@
         .rangeButton {
             min-height: 42px;
             border: 1px solid var(--work-green);
-            border-radius: 4px;
+            border-radius: 3px;
             background: var(--work-green);
             color: #fff;
             cursor: pointer;
@@ -431,7 +467,7 @@
         .workoutForm #addingWorkoutButton:hover,
         .dangerButton:hover,
         .rangeButton:hover {
-            box-shadow: 0 8px 16px rgba(31, 107, 91, .18);
+            box-shadow: 0 8px 16px rgba(15, 136, 121, .2);
             transform: translateY(-2px);
         }
 
@@ -462,8 +498,10 @@
         .summaryCard {
             padding: 16px;
             border: 1px solid var(--work-line);
-            border-top: 3px solid var(--work-green);
+            border-top: 3px solid var(--work-coral);
+            border-radius: 3px;
             background: #fff;
+            box-shadow: 0 4px 12px rgba(20, 78, 75, .05);
         }
 
         .summaryCard span {
@@ -504,8 +542,8 @@
         }
 
         .rangeButton.active {
-            background: var(--work-dark);
-            border-color: var(--work-dark);
+            background: var(--work-green);
+            border-color: var(--work-green);
             color: #fff;
         }
 
@@ -551,7 +589,7 @@
 
         #workoutList::-webkit-scrollbar-thumb {
             border: 2px solid var(--work-paper);
-            border-radius: 8px;
+            border-radius: 2px;
             background: var(--work-green);
         }
 
@@ -565,7 +603,7 @@
             width: 30px;
             height: 30px;
             border: 1px solid #e2c5bc;
-            border-radius: 4px;
+            border-radius: 2px;
             background: #fff8f5;
             color: #a45e4c;
             cursor: pointer;
@@ -595,6 +633,7 @@
             height: 300px;
             padding: 10px;
             border: 1px solid var(--work-line);
+            border-radius: 3px;
             background: #fff;
         }
 
@@ -612,8 +651,9 @@
 
         .progressCard {
             padding: 14px;
-            border-left: 3px solid var(--work-gold);
-            background: #f1f5f1;
+            border-left: 3px solid var(--work-coral);
+            border-radius: 0 3px 3px 0;
+            background: linear-gradient(110deg, #fff0e8, #eff8f5);
         }
 
         .progressCard strong {
@@ -741,6 +781,7 @@
 
     <main class="workoutPage">
         <section class="workoutHero">
+            <span class="workoutEyebrow"><i class="fa-solid fa-bolt"></i> Train with purpose</span>
             <h1>WORKOUT TRACKER</h1>
             <p>Record the work, follow your training rhythm, and build measurable strength over time.
             </p>
@@ -748,7 +789,7 @@
         <section class="challengePanel" aria-labelledby="challengeHeading">
             <div>
                 <p class="challengeEyebrow">90-DAY CHALLENGE</p>
-                <h2 id="challengeHeading">A disciplined 90 days.</h2>
+                <h2 id="challengeHeading">A DISCIPLINED 90 DAYS!</h2>
                 <p id="challengeMessage">Your first workout starts the 90-day clock. Make today count.
                 </p>
             </div>
@@ -773,7 +814,7 @@
         </section>
         <div class="workoutGrid">
             <section class="workoutPanel">
-                <h2>Log Workout</h2>
+                <h2><i class="fa-solid fa-dumbbell"></i> Log Workout</h2>
                 <form class="workoutForm" id="workoutForm">
                     <label for="exerciseName">Workout
                         <div class="exercisePicker">
@@ -798,7 +839,7 @@
             </section>
             <section class="workoutPanel">
                 <div class="viewTools">
-                    <h2>Training Log</h2>
+                    <h2><i class="fa-solid fa-list-check"></i> Training Log</h2>
                 </div>
                 <div class="summaryGrid">
                     <div class="summaryCard"><span>Sessions</span><strong id="sessionCount">0</strong></div>
@@ -815,7 +856,7 @@
             <section class="workoutPanel calendarPanel" aria-labelledby="workoutCalendarHeading">
                 <div class="calendarTools">
                     <div>
-                        <h2 id="workoutCalendarHeading">Workout Calendar</h2>
+                        <h2 id="workoutCalendarHeading"><i class="fa-solid fa-calendar-check"></i> Workout Calendar</h2>
                         <span class="calendarMonth" id="calendarMonth"></span>
                     </div>
                     <div class="calendarNavigation" aria-label="Change calendar month">
@@ -835,8 +876,8 @@
             </section>
             <section class="workoutPanel">
                 <div class="viewTools">
-                    <h2>Progressive Overload</h2><select id="chartExercise" class="rangeButton"
-                        aria-label="Select exercise for chart">
+                    <h2><i class="fa-solid fa-chart-line"></i> Progressive Overload</h2><select id="chartExercise"
+                        class="rangeButton" aria-label="Select exercise for chart">
                         <option value="all">All workouts</option>
                     </select>
                 </div>
