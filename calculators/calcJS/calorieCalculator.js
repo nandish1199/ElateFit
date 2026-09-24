@@ -10,16 +10,17 @@ const foodCatalog = {
   // 1. GRAINS & MILLETS (Raw & Boiled)
   // ==========================================
   rice: {
-    label: "Rice",
+    label: "Rice (RAW)",
     calories: 130,
     protein: 2.7,
     saturatedFat: 0.1,
     unsaturatedFat: 0.2,
     solubleFiber: 0.1,
     insolubleFiber: 0.3,
+    btype: "raw",
   },
-  boiled_rice: {
-    label: "Boiled Rice",
+  cooked_rice: {
+    label: "Cooked Rice",
     calories: 123,
     protein: 2.5,
     saturatedFat: 0.1,
@@ -28,25 +29,27 @@ const foodCatalog = {
     insolubleFiber: 0.3,
   },
   brown_rice: {
-    label: "Brown Rice",
+    label: "Brown Rice (RAW)",
     calories: 111,
     protein: 2.6,
     saturatedFat: 0.2,
     unsaturatedFat: 0.6,
     solubleFiber: 0.4,
     insolubleFiber: 3.1,
+    btype: "raw",
   },
   wheat: {
-    label: "Wheat",
+    label: "Wheat (RAW)",
     calories: 340,
     protein: 13.7,
     saturatedFat: 0.4,
     unsaturatedFat: 0.8,
     solubleFiber: 1.2,
     insolubleFiber: 10.0,
+    btype: "raw",
   },
-  boiled_wheat: {
-    label: "Boiled Wheat",
+  cooked_wheat: {
+    label: "Cooked Wheat",
     calories: 125,
     protein: 4.8,
     saturatedFat: 0.1,
@@ -55,6 +58,7 @@ const foodCatalog = {
     insolubleFiber: 3.5,
   },
   oats: {
+    btype: "raw (RAW)",
     label: "Oats",
     calories: 389,
     protein: 16.9,
@@ -73,7 +77,8 @@ const foodCatalog = {
     insolubleFiber: 1.5,
   },
   jowar: {
-    label: "Jowar (Sorghum)",
+    btype: "raw",
+    label: "Jowar (Sorghum) (RAW)",
     calories: 339,
     protein: 11.3,
     saturatedFat: 0.5,
@@ -81,8 +86,8 @@ const foodCatalog = {
     solubleFiber: 1.5,
     insolubleFiber: 8.0,
   },
-  boiled_jowar: {
-    label: "Boiled Jowar",
+  cooked_jowar: {
+    label: "Cooked Jowar",
     calories: 140,
     protein: 4.5,
     saturatedFat: 0.2,
@@ -91,7 +96,8 @@ const foodCatalog = {
     insolubleFiber: 3.2,
   },
   bajra: {
-    label: "Bajra (Pearl Millet)",
+    btype: "raw",
+    label: "Bajra (Pearl Millet) (RAW)",
     calories: 361,
     protein: 11.6,
     saturatedFat: 0.5,
@@ -99,8 +105,8 @@ const foodCatalog = {
     solubleFiber: 1.2,
     insolubleFiber: 7.3,
   },
-  boiled_bajra: {
-    label: "Boiled Bajra",
+  cooked_bajra: {
+    label: "Cooked Bajra",
     calories: 135,
     protein: 4.2,
     saturatedFat: 0.2,
@@ -109,13 +115,14 @@ const foodCatalog = {
     insolubleFiber: 2.8,
   },
   ragi: {
-    label: "Ragi (Finger Millet)",
+    label: "Ragi (Finger Millet) (RAW)",
     calories: 328,
     protein: 7.3,
     saturatedFat: 0.3,
     unsaturatedFat: 1.5,
     solubleFiber: 1.8,
     insolubleFiber: 9.5,
+    btype: "raw",
   },
   cooked_ragi: {
     label: "Cooked Ragi",
@@ -127,7 +134,8 @@ const foodCatalog = {
     insolubleFiber: 3.2,
   },
   foxtail_millet: {
-    label: "Foxtail Millet",
+    btype: "raw",
+    label: "Foxtail Millet (RAW)",
     calories: 331,
     protein: 12.3,
     saturatedFat: 0.4,
@@ -135,8 +143,8 @@ const foodCatalog = {
     solubleFiber: 1.5,
     insolubleFiber: 6.5,
   },
-  boiled_foxtail_millet: {
-    label: "Boiled Foxtail Millet",
+  cooked_foxtail_millet: {
+    label: "Cooked Foxtail Millet",
     calories: 120,
     protein: 4.0,
     saturatedFat: 0.1,
@@ -145,7 +153,8 @@ const foodCatalog = {
     insolubleFiber: 2.2,
   },
   little_millet: {
-    label: "Little Millet",
+    btype: "raw",
+    label: "Little Millet (RAW)",
     calories: 341,
     protein: 7.7,
     saturatedFat: 0.6,
@@ -153,8 +162,8 @@ const foodCatalog = {
     solubleFiber: 1.4,
     insolubleFiber: 7.0,
   },
-  boiled_little_millet: {
-    label: "Boiled Little Millet",
+  cooked_little_millet: {
+    label: "Cooked Little Millet",
     calories: 125,
     protein: 2.8,
     saturatedFat: 0.2,
@@ -163,7 +172,8 @@ const foodCatalog = {
     insolubleFiber: 2.5,
   },
   barnyard_millet: {
-    label: "Barnyard Millet",
+    btype: "raw",
+    label: "Barnyard Millet (RAW)",
     calories: 307,
     protein: 6.2,
     saturatedFat: 0.2,
@@ -171,8 +181,8 @@ const foodCatalog = {
     solubleFiber: 1.2,
     insolubleFiber: 8.6,
   },
-  boiled_barnyard_millet: {
-    label: "Boiled Barnyard Millet",
+  cooked_barnyard_millet: {
+    label: "Cooked Barnyard Millet",
     calories: 110,
     protein: 2.2,
     saturatedFat: 0.1,
@@ -181,7 +191,8 @@ const foodCatalog = {
     insolubleFiber: 3.0,
   },
   kodo_millet: {
-    label: "Kodo Millet",
+    btype: "raw",
+    label: "Kodo Millet (RAW)",
     calories: 309,
     protein: 8.3,
     saturatedFat: 0.4,
@@ -189,8 +200,8 @@ const foodCatalog = {
     solubleFiber: 1.6,
     insolubleFiber: 9.0,
   },
-  boiled_kodo_millet: {
-    label: "Boiled Kodo Millet",
+  cooked_kodo_millet: {
+    label: "Cooked Kodo Millet",
     calories: 115,
     protein: 3.0,
     saturatedFat: 0.1,
@@ -199,7 +210,8 @@ const foodCatalog = {
     insolubleFiber: 3.2,
   },
   proso_millet: {
-    label: "Proso Millet",
+    btype: "raw",
+    label: "Proso Millet (RAW)",
     calories: 341,
     protein: 11.0,
     saturatedFat: 0.5,
@@ -207,8 +219,8 @@ const foodCatalog = {
     solubleFiber: 1.3,
     insolubleFiber: 7.2,
   },
-  boiled_proso_millet: {
-    label: "Boiled Proso Millet",
+  cooked_proso_millet: {
+    label: "Cooked Proso Millet",
     calories: 128,
     protein: 3.8,
     saturatedFat: 0.2,
@@ -217,7 +229,8 @@ const foodCatalog = {
     insolubleFiber: 2.6,
   },
   corn: {
-    label: "Sweet Corn",
+    btype: "raw",
+    label: "Sweet Corn (RAW)",
     calories: 86,
     protein: 3.3,
     saturatedFat: 0.2,
@@ -225,8 +238,8 @@ const foodCatalog = {
     solubleFiber: 0.8,
     insolubleFiber: 1.9,
   },
-  boiled_corn: {
-    label: "Boiled Corn",
+  cooked_corn: {
+    label: "Cooked Corn",
     calories: 96,
     protein: 3.4,
     saturatedFat: 0.3,
@@ -235,7 +248,8 @@ const foodCatalog = {
     insolubleFiber: 2.1,
   },
   sabudana: {
-    label: "Sabudana (Tapioca Sago)",
+    btype: "raw",
+    label: "Sabudana (Tapioca Sago) (RAW)",
     calories: 358,
     protein: 0.2,
     saturatedFat: 0.1,
@@ -243,8 +257,8 @@ const foodCatalog = {
     solubleFiber: 0.2,
     insolubleFiber: 0.3,
   },
-  boiled_sabudana: {
-    label: "Boiled Sabudana",
+  cooked_sabudana: {
+    label: "Cooked Sabudana",
     calories: 140,
     protein: 0.1,
     saturatedFat: 0.0,
@@ -253,7 +267,8 @@ const foodCatalog = {
     insolubleFiber: 0.1,
   },
   quinoa: {
-    label: "Quinoa",
+    btype: "raw",
+    label: "Quinoa (RAW)",
     calories: 120,
     protein: 4.4,
     saturatedFat: 0.2,
@@ -266,7 +281,8 @@ const foodCatalog = {
   // 2. PULSES & LEGUMES (Raw & Boiled)
   // ==========================================
   dal: {
-    label: "Dal (Generic Moong/Toor)",
+    btype: "raw",
+    label: "Dal (Generic Moong/Toor) (RAW)",
     calories: 116,
     protein: 9.0,
     saturatedFat: 0.1,
@@ -275,7 +291,8 @@ const foodCatalog = {
     insolubleFiber: 3.1,
   },
   toor_dal: {
-    label: "Toor Dal (Raw)",
+    btype: "raw",
+    label: "Toor Dal (RAW)",
     calories: 343,
     protein: 22.3,
     saturatedFat: 0.3,
@@ -283,8 +300,8 @@ const foodCatalog = {
     solubleFiber: 3.5,
     insolubleFiber: 11.5,
   },
-  boiled_toor_dal: {
-    label: "Boiled Toor Dal",
+  cooked_toor_dal: {
+    label: "Cooked Toor Dal",
     calories: 115,
     protein: 7.5,
     saturatedFat: 0.1,
@@ -293,7 +310,8 @@ const foodCatalog = {
     insolubleFiber: 3.8,
   },
   moong_dal: {
-    label: "Moong Dal (Raw)",
+    btype: "raw",
+    label: "Moong Dal (RAW)",
     calories: 347,
     protein: 24.0,
     saturatedFat: 0.3,
@@ -301,8 +319,8 @@ const foodCatalog = {
     solubleFiber: 3.2,
     insolubleFiber: 13.0,
   },
-  boiled_moong_dal: {
-    label: "Boiled Moong Dal",
+  cooked_moong_dal: {
+    label: "Cooked Moong Dal",
     calories: 105,
     protein: 7.0,
     saturatedFat: 0.1,
@@ -311,7 +329,8 @@ const foodCatalog = {
     insolubleFiber: 4.0,
   },
   chana_dal: {
-    label: "Chana Dal (Raw)",
+    btype: "raw",
+    label: "Chana Dal (RAW)",
     calories: 360,
     protein: 20.8,
     saturatedFat: 0.5,
@@ -319,8 +338,8 @@ const foodCatalog = {
     solubleFiber: 4.0,
     insolubleFiber: 11.0,
   },
-  boiled_chana_dal: {
-    label: "Boiled Chana Dal",
+  cooked_chana_dal: {
+    label: "Cooked Chana Dal",
     calories: 134,
     protein: 7.2,
     saturatedFat: 0.2,
@@ -329,7 +348,8 @@ const foodCatalog = {
     insolubleFiber: 4.2,
   },
   masoor_dal: {
-    label: "Masoor Dal (Raw)",
+    btype: "raw",
+    label: "Masoor Dal (RAW)",
     calories: 353,
     protein: 25.0,
     saturatedFat: 0.4,
@@ -337,8 +357,8 @@ const foodCatalog = {
     solubleFiber: 3.0,
     insolubleFiber: 8.5,
   },
-  boiled_masoor_dal: {
-    label: "Boiled Masoor Dal",
+  cooked_masoor_dal: {
+    label: "Cooked Masoor Dal",
     calories: 116,
     protein: 9.0,
     saturatedFat: 0.1,
@@ -347,7 +367,8 @@ const foodCatalog = {
     insolubleFiber: 3.0,
   },
   urad_dal: {
-    label: "Urad Dal (Raw)",
+    btype: "raw",
+    label: "Urad Dal (RAW)",
     calories: 341,
     protein: 25.2,
     saturatedFat: 0.3,
@@ -355,8 +376,8 @@ const foodCatalog = {
     solubleFiber: 4.5,
     insolubleFiber: 13.5,
   },
-  boiled_urad_dal: {
-    label: "Boiled Urad Dal",
+  cooked_urad_dal: {
+    label: "Cooked Urad Dal",
     calories: 110,
     protein: 8.0,
     saturatedFat: 0.1,
@@ -365,6 +386,7 @@ const foodCatalog = {
     insolubleFiber: 4.5,
   },
   rajma: {
+    btype: "raw",
     label: "Rajma (Kidney Beans - Raw)",
     calories: 333,
     protein: 23.6,
@@ -373,8 +395,8 @@ const foodCatalog = {
     solubleFiber: 6.0,
     insolubleFiber: 18.0,
   },
-  boiled_rajma: {
-    label: "Boiled Rajma",
+  cooked_rajma: {
+    label: "Cooked Rajma",
     calories: 127,
     protein: 8.7,
     saturatedFat: 0.1,
@@ -383,6 +405,7 @@ const foodCatalog = {
     insolubleFiber: 6.5,
   },
   chole: {
+    btype: "raw",
     label: "Kabuli Chana (Chickpeas - Raw)",
     calories: 364,
     protein: 19.0,
@@ -391,8 +414,8 @@ const foodCatalog = {
     solubleFiber: 5.0,
     insolubleFiber: 12.5,
   },
-  boiled_chole: {
-    label: "Boiled Chole",
+  cooked_chole: {
+    label: "Cooked Chole (Chickpeas)",
     calories: 164,
     protein: 8.9,
     saturatedFat: 0.3,
@@ -401,6 +424,7 @@ const foodCatalog = {
     insolubleFiber: 5.6,
   },
   lobia: {
+    btype: "raw",
     label: "Black-Eyed Peas (Raw)",
     calories: 336,
     protein: 23.5,
@@ -409,8 +433,8 @@ const foodCatalog = {
     solubleFiber: 3.5,
     insolubleFiber: 15.0,
   },
-  boiled_lobia: {
-    label: "Boiled Lobia",
+  cooked_lobia: {
+    label: "Cooked Lobia",
     calories: 116,
     protein: 7.7,
     saturatedFat: 0.2,
@@ -419,6 +443,7 @@ const foodCatalog = {
     insolubleFiber: 5.0,
   },
   horse_gram: {
+    btype: "raw",
     label: "Horse Gram (Kulthi - Raw)",
     calories: 321,
     protein: 22.0,
@@ -427,8 +452,8 @@ const foodCatalog = {
     solubleFiber: 4.0,
     insolubleFiber: 15.5,
   },
-  boiled_horse_gram: {
-    label: "Boiled Horse Gram",
+  cooked_horse_gram: {
+    label: "Cooked Horse Gram",
     calories: 110,
     protein: 7.5,
     saturatedFat: 0.2,
@@ -437,6 +462,7 @@ const foodCatalog = {
     insolubleFiber: 5.2,
   },
   moth_beans: {
+    btype: "raw",
     label: "Moth Beans (Matki - Raw)",
     calories: 343,
     protein: 23.0,
@@ -445,8 +471,8 @@ const foodCatalog = {
     solubleFiber: 3.8,
     insolubleFiber: 14.0,
   },
-  boiled_moth_beans: {
-    label: "Boiled Moth Beans",
+  cooked_moth_beans: {
+    label: "Cooked Moth Beans",
     calories: 118,
     protein: 7.9,
     saturatedFat: 0.2,
@@ -455,6 +481,7 @@ const foodCatalog = {
     insolubleFiber: 4.8,
   },
   green_gram: {
+    btype: "raw",
     label: "Green Gram Whole (Raw)",
     calories: 347,
     protein: 24.0,
@@ -463,8 +490,8 @@ const foodCatalog = {
     solubleFiber: 3.5,
     insolubleFiber: 13.0,
   },
-  boiled_green_gram: {
-    label: "Boiled Green Gram Whole",
+  cooked_green_gram: {
+    label: "Cooked Green Gram Whole",
     calories: 105,
     protein: 7.0,
     saturatedFat: 0.1,
@@ -473,6 +500,7 @@ const foodCatalog = {
     insolubleFiber: 4.5,
   },
   matar: {
+    btype: "raw",
     label: "Dry Green Peas (Raw)",
     calories: 340,
     protein: 24.5,
@@ -481,8 +509,8 @@ const foodCatalog = {
     solubleFiber: 5.0,
     insolubleFiber: 20.0,
   },
-  boiled_matar: {
-    label: "Boiled Green Peas",
+  cooked_matar: {
+    label: "Cooked Green Peas",
     calories: 81,
     protein: 5.4,
     saturatedFat: 0.1,
@@ -491,6 +519,7 @@ const foodCatalog = {
     insolubleFiber: 3.0,
   },
   soyabean: {
+    btype: "raw",
     label: "Soybean (Raw)",
     calories: 446,
     protein: 36.5,
@@ -499,8 +528,8 @@ const foodCatalog = {
     solubleFiber: 3.5,
     insolubleFiber: 6.0,
   },
-  boiled_soyabean: {
-    label: "Boiled Soybean",
+  cooked_soyabean: {
+    label: "Cooked Soybean",
     calories: 172,
     protein: 16.6,
     saturatedFat: 1.1,
@@ -513,7 +542,8 @@ const foodCatalog = {
   // 3. VEGETABLES (Raw & Boiled)
   // ==========================================
   potato: {
-    label: "Potato",
+    btype: "raw",
+    label: "Potato (RAW)",
     calories: 77,
     protein: 2.0,
     saturatedFat: 0.0,
@@ -521,8 +551,8 @@ const foodCatalog = {
     solubleFiber: 0.3,
     insolubleFiber: 1.4,
   },
-  boiled_potato: {
-    label: "Boiled Potato",
+  cooked_potato: {
+    label: "Cooked Potato",
     calories: 87,
     protein: 1.9,
     saturatedFat: 0.0,
@@ -531,7 +561,8 @@ const foodCatalog = {
     insolubleFiber: 1.5,
   },
   carrot: {
-    label: "Carrot",
+    btype: "raw",
+    label: "Carrot (RAW)",
     calories: 41,
     protein: 0.9,
     saturatedFat: 0.0,
@@ -539,8 +570,8 @@ const foodCatalog = {
     solubleFiber: 0.9,
     insolubleFiber: 1.6,
   },
-  boiled_carrot: {
-    label: "Boiled Carrot",
+  cooked_carrot: {
+    label: "Cooked Carrot",
     calories: 35,
     protein: 0.8,
     saturatedFat: 0.0,
@@ -549,7 +580,8 @@ const foodCatalog = {
     insolubleFiber: 1.5,
   },
   spinach: {
-    label: "Spinach",
+    btype: "raw",
+    label: "Spinach (RAW)",
     calories: 23,
     protein: 2.9,
     saturatedFat: 0.1,
@@ -557,8 +589,8 @@ const foodCatalog = {
     solubleFiber: 0.6,
     insolubleFiber: 1.5,
   },
-  boiled_spinach: {
-    label: "Boiled Spinach",
+  cooked_spinach: {
+    label: "Cooked Spinach",
     calories: 23,
     protein: 3.0,
     saturatedFat: 0.1,
@@ -567,7 +599,8 @@ const foodCatalog = {
     insolubleFiber: 1.7,
   },
   tomato: {
-    label: "Tomato",
+    btype: "raw",
+    label: "Tomato (RAW)",
     calories: 18,
     protein: 0.9,
     saturatedFat: 0.0,
@@ -575,8 +608,8 @@ const foodCatalog = {
     solubleFiber: 0.2,
     insolubleFiber: 1.2,
   },
-  boiled_tomato: {
-    label: "Boiled Tomato",
+  cooked_tomato: {
+    label: "Cooked Tomato",
     calories: 24,
     protein: 1.1,
     saturatedFat: 0.0,
@@ -585,16 +618,17 @@ const foodCatalog = {
     insolubleFiber: 1.5,
   },
   onion: {
-    label: "Onion",
+    label: "Onion (RAW)",
     calories: 40,
     protein: 1.1,
     saturatedFat: 0.0,
     unsaturatedFat: 0.0,
     solubleFiber: 0.5,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
-  boiled_onion: {
-    label: "Boiled Onion",
+  cooked_onion: {
+    label: "Cooked Onion",
     calories: 39,
     protein: 1.0,
     saturatedFat: 0.0,
@@ -603,34 +637,37 @@ const foodCatalog = {
     insolubleFiber: 1.2,
   },
   cauliflower: {
-    label: "Cauliflower",
+    label: "Cauliflower (RAW)",
     calories: 25,
     protein: 1.9,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
-  boiled_cauliflower: {
-    label: "Boiled Cauliflower",
+  cooked_cauliflower: {
+    label: "Cooked Cauliflower",
     calories: 23,
     protein: 1.8,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 1.3,
+    btype: "raw",
   },
   cabbage: {
-    label: "Cabbage",
+    label: "Cabbage (RAW)",
     calories: 25,
     protein: 1.3,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.6,
     insolubleFiber: 1.9,
+    btype: "raw",
   },
-  boiled_cabbage: {
-    label: "Boiled Cabbage",
+  cooked_cabbage: {
+    label: "Cooked Cabbage",
     calories: 22,
     protein: 1.0,
     saturatedFat: 0.0,
@@ -639,16 +676,17 @@ const foodCatalog = {
     insolubleFiber: 1.7,
   },
   brinjal: {
-    label: "Brinjal (Eggplant)",
+    label: "Brinjal (Eggplant) (RAW)",
     calories: 25,
     protein: 1.0,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 1.3,
     insolubleFiber: 1.7,
+    btype: "raw",
   },
-  boiled_brinjal: {
-    label: "Boiled Brinjal",
+  cooked_brinjal: {
+    label: "Cooked Brinjal",
     calories: 35,
     protein: 0.8,
     saturatedFat: 0.0,
@@ -657,16 +695,17 @@ const foodCatalog = {
     insolubleFiber: 2.0,
   },
   bhindi: {
-    label: "Bhindi (Okra / Ladyfinger)",
+    label: "Bhindi (Okra / Ladyfinger) (RAW)",
     calories: 33,
     protein: 1.9,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 1.8,
     insolubleFiber: 1.4,
+    btype: "raw",
   },
-  boiled_bhindi: {
-    label: "Boiled Bhindi",
+  cooked_bhindi: {
+    label: "Cooked Bhindi",
     calories: 28,
     protein: 1.7,
     saturatedFat: 0.0,
@@ -675,16 +714,17 @@ const foodCatalog = {
     insolubleFiber: 1.2,
   },
   bottle_gourd: {
-    label: "Bottle Gourd (Lauki)",
+    label: "Bottle Gourd (Lauki) (RAW)",
     calories: 14,
     protein: 0.6,
     saturatedFat: 0.0,
     unsaturatedFat: 0.0,
     solubleFiber: 0.3,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
-  boiled_bottle_gourd: {
-    label: "Boiled Bottle Gourd",
+  cooked_bottle_gourd: {
+    label: "Cooked Bottle Gourd",
     calories: 15,
     protein: 0.6,
     saturatedFat: 0.0,
@@ -693,16 +733,17 @@ const foodCatalog = {
     insolubleFiber: 1.2,
   },
   bitter_gourd: {
-    label: "Bitter Gourd (Karela)",
+    label: "Bitter Gourd (Karela) (RAW)",
     calories: 17,
     protein: 1.0,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 2.0,
+    btype: "raw",
   },
-  boiled_bitter_gourd: {
-    label: "Boiled Bitter Gourd",
+  cooked_bitter_gourd: {
+    label: "Cooked Bitter Gourd",
     calories: 20,
     protein: 0.9,
     saturatedFat: 0.0,
@@ -711,16 +752,17 @@ const foodCatalog = {
     insolubleFiber: 2.0,
   },
   ridge_gourd: {
-    label: "Ridge Gourd (Turai)",
+    label: "Ridge Gourd (Turai) (RAW)",
     calories: 20,
     protein: 1.2,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.5,
     insolubleFiber: 2.0,
+    btype: "raw",
   },
-  boiled_ridge_gourd: {
-    label: "Boiled Ridge Gourd",
+  cooked_ridge_gourd: {
+    label: "Cooked Ridge Gourd",
     calories: 18,
     protein: 1.0,
     saturatedFat: 0.0,
@@ -729,16 +771,17 @@ const foodCatalog = {
     insolubleFiber: 1.8,
   },
   drumstick: {
-    label: "Drumstick (Moringa Pods)",
+    label: "Drumstick (Moringa Pods) (RAW)",
     calories: 37,
     protein: 2.1,
     saturatedFat: 0.1,
     unsaturatedFat: 0.1,
     solubleFiber: 1.1,
     insolubleFiber: 3.7,
+    btype: "raw",
   },
-  boiled_drumstick: {
-    label: "Boiled Drumstick",
+  cooked_drumstick: {
+    label: "Cooked Drumstick",
     calories: 30,
     protein: 2.0,
     saturatedFat: 0.1,
@@ -747,16 +790,17 @@ const foodCatalog = {
     insolubleFiber: 3.5,
   },
   capsicum: {
-    label: "Capsicum (Bell Pepper)",
+    label: "Capsicum (Bell Pepper) (RAW)",
     calories: 20,
     protein: 0.9,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.5,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
-  boiled_capsicum: {
-    label: "Boiled Capsicum",
+  cooked_capsicum: {
+    label: "Cooked Capsicum",
     calories: 24,
     protein: 0.9,
     saturatedFat: 0.0,
@@ -765,16 +809,17 @@ const foodCatalog = {
     insolubleFiber: 1.4,
   },
   beetroot: {
-    label: "Beetroot",
+    label: "Beetroot (RAW)",
     calories: 43,
     protein: 1.6,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 2.0,
+    btype: "raw",
   },
-  boiled_beetroot: {
-    label: "Boiled Beetroot",
+  cooked_beetroot: {
+    label: "Cooked Beetroot",
     calories: 44,
     protein: 1.7,
     saturatedFat: 0.0,
@@ -783,16 +828,17 @@ const foodCatalog = {
     insolubleFiber: 2.0,
   },
   radish: {
-    label: "Radish (Muli)",
+    label: "Radish (Muli) (RAW)",
     calories: 16,
     protein: 0.7,
     saturatedFat: 0.0,
     unsaturatedFat: 0.0,
     solubleFiber: 0.5,
     insolubleFiber: 1.1,
+    btype: "raw",
   },
-  boiled_radish: {
-    label: "Boiled Radish",
+  cooked_radish: {
+    label: "Cooked Radish",
     calories: 18,
     protein: 0.8,
     saturatedFat: 0.0,
@@ -801,16 +847,17 @@ const foodCatalog = {
     insolubleFiber: 1.2,
   },
   turnip: {
-    label: "Turnip",
+    label: "Turnip (RAW)",
     calories: 28,
     protein: 0.9,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.6,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
-  boiled_turnip: {
-    label: "Boiled Turnip",
+  cooked_turnip: {
+    label: "Cooked Turnip",
     calories: 24,
     protein: 0.8,
     saturatedFat: 0.0,
@@ -819,16 +866,17 @@ const foodCatalog = {
     insolubleFiber: 1.1,
   },
   sweet_potato: {
-    label: "Sweet Potato",
+    label: "Sweet Potato (RAW)",
     calories: 86,
     protein: 1.6,
     saturatedFat: 0.1,
     unsaturatedFat: 0.1,
     solubleFiber: 1.0,
     insolubleFiber: 2.0,
+    btype: "raw",
   },
-  boiled_sweet_potato: {
-    label: "Boiled Sweet Potato",
+  cooked_sweet_potato: {
+    label: "Cooked Sweet Potato",
     calories: 76,
     protein: 1.4,
     saturatedFat: 0.1,
@@ -837,16 +885,17 @@ const foodCatalog = {
     insolubleFiber: 1.9,
   },
   raw_banana: {
-    label: "Raw Banana (Plantain)",
+    label: "Banana (Plantain) (RAW)",
     calories: 122,
     protein: 1.3,
     saturatedFat: 0.1,
     unsaturatedFat: 0.1,
     solubleFiber: 1.2,
     insolubleFiber: 1.8,
+    btype: "raw",
   },
-  boiled_raw_banana: {
-    label: "Boiled Raw Banana",
+  ripe_banana: {
+    label: "Ripe Banana",
     calories: 116,
     protein: 1.2,
     saturatedFat: 0.1,
@@ -855,16 +904,17 @@ const foodCatalog = {
     insolubleFiber: 1.7,
   },
   raw_papaya: {
-    label: "Raw Papaya",
+    label: "Papaya (RAW)",
     calories: 29,
     protein: 2.0,
     saturatedFat: 0.0,
     unsaturatedFat: 0.0,
     solubleFiber: 0.5,
     insolubleFiber: 1.3,
+    btype: "raw",
   },
-  boiled_raw_papaya: {
-    label: "Boiled Raw Papaya",
+  ripe_papaya: {
+    label: "Ripe Papaya",
     calories: 26,
     protein: 1.8,
     saturatedFat: 0.0,
@@ -873,16 +923,17 @@ const foodCatalog = {
     insolubleFiber: 1.2,
   },
   pumpkin: {
-    label: "Pumpkin",
+    label: "Pumpkin (RAW)",
     calories: 26,
     protein: 1.0,
     saturatedFat: 0.1,
     unsaturatedFat: 0.1,
     solubleFiber: 0.5,
     insolubleFiber: 1.0,
+    btype: "raw",
   },
-  boiled_pumpkin: {
-    label: "Boiled Pumpkin",
+  cooked_pumpkin: {
+    label: "Cooked Pumpkin",
     calories: 20,
     protein: 0.7,
     saturatedFat: 0.0,
@@ -891,7 +942,7 @@ const foodCatalog = {
     insolubleFiber: 0.8,
   },
   cucumber: {
-    label: "Cucumber",
+    label: "Cucumber (RAW)",
     calories: 15,
     protein: 0.6,
     saturatedFat: 0.0,
@@ -900,16 +951,17 @@ const foodCatalog = {
     insolubleFiber: 0.4,
   },
   amaranth_leaves: {
-    label: "Amaranth Leaves (Chaulai)",
+    label: "Amaranth Leaves (Chaulai) (RAW)",
     calories: 23,
     protein: 2.5,
     saturatedFat: 0.1,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 2.1,
+    btype: "raw",
   },
-  boiled_amaranth_leaves: {
-    label: "Boiled Amaranth Leaves",
+  cooked_amaranth_leaves: {
+    label: "Cooked Amaranth Leaves",
     calories: 20,
     protein: 2.2,
     saturatedFat: 0.1,
@@ -918,16 +970,17 @@ const foodCatalog = {
     insolubleFiber: 1.9,
   },
   fenugreek_leaves: {
-    label: "Fenugreek Leaves (Methi)",
+    label: "Fenugreek Leaves (Methi) (RAW)",
     calories: 49,
     protein: 4.4,
     saturatedFat: 0.1,
     unsaturatedFat: 0.2,
     solubleFiber: 1.5,
     insolubleFiber: 3.5,
+    btype: "raw",
   },
-  boiled_fenugreek_leaves: {
-    label: "Boiled Fenugreek Leaves",
+  cooked_fenugreek_leaves: {
+    label: "Cooked Fenugreek Leaves",
     calories: 40,
     protein: 3.8,
     saturatedFat: 0.1,
@@ -936,7 +989,7 @@ const foodCatalog = {
     insolubleFiber: 3.0,
   },
   coriander_leaves: {
-    label: "Coriander Leaves",
+    label: "Coriander Leaves (RAW)",
     calories: 23,
     protein: 2.1,
     saturatedFat: 0.0,
@@ -945,7 +998,7 @@ const foodCatalog = {
     insolubleFiber: 2.3,
   },
   mint_leaves: {
-    label: "Mint Leaves (Pudina)",
+    label: "Mint Leaves (Pudina) (RAW)",
     calories: 70,
     protein: 3.8,
     saturatedFat: 0.2,
@@ -954,25 +1007,27 @@ const foodCatalog = {
     insolubleFiber: 6.0,
   },
   curry_leaves: {
-    label: "Curry Leaves",
+    label: "Curry Leaves (RAW)",
     calories: 108,
     protein: 6.1,
     saturatedFat: 0.2,
     unsaturatedFat: 0.8,
     solubleFiber: 2.5,
     insolubleFiber: 6.4,
+    btype: "raw",
   },
   jackfruit_raw: {
-    label: "Raw Jackfruit (Kathal)",
+    label: "Jackfruit (Kathal) (RAW)",
     calories: 95,
     protein: 1.7,
     saturatedFat: 0.3,
     unsaturatedFat: 0.2,
     solubleFiber: 1.5,
     insolubleFiber: 3.5,
+    btype: "raw",
   },
-  boiled_jackfruit: {
-    label: "Boiled Raw Jackfruit",
+  ripe_jackfruit: {
+    label: "Ripe Jackfruit",
     calories: 92,
     protein: 1.5,
     saturatedFat: 0.2,
@@ -981,16 +1036,17 @@ const foodCatalog = {
     insolubleFiber: 3.2,
   },
   colocasia: {
-    label: "Colocasia Root (Arbi)",
+    label: "Colocasia Root (Arbi) (RAW)",
     calories: 112,
     protein: 1.5,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 1.0,
     insolubleFiber: 3.1,
+    btype: "raw",
   },
-  boiled_colocasia: {
-    label: "Boiled Colocasia Root",
+  cooked_colocasia: {
+    label: "Cooked Colocasia Root",
     calories: 97,
     protein: 1.3,
     saturatedFat: 0.0,
@@ -999,16 +1055,17 @@ const foodCatalog = {
     insolubleFiber: 2.8,
   },
   yam: {
-    label: "Elephant Foot Yam (Suran)",
+    label: "Elephant Foot Yam (Suran) (RAW)",
     calories: 79,
     protein: 1.5,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 3.2,
+    btype: "raw",
   },
-  boiled_yam: {
-    label: "Boiled Elephant Foot Yam",
+  cooked_yam: {
+    label: "Cooked Elephant Foot Yam",
     calories: 74,
     protein: 1.4,
     saturatedFat: 0.0,
@@ -1017,16 +1074,17 @@ const foodCatalog = {
     insolubleFiber: 3.0,
   },
   cluster_beans: {
-    label: "Cluster Beans (Guar)",
+    label: "Cluster Beans (Guar) (RAW)",
     calories: 33,
     protein: 3.2,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 2.0,
     insolubleFiber: 3.4,
+    btype: "raw",
   },
-  boiled_cluster_beans: {
-    label: "Boiled Cluster Beans",
+  cooked_cluster_beans: {
+    label: "Cooked Cluster Beans",
     calories: 30,
     protein: 2.9,
     saturatedFat: 0.0,
@@ -1035,16 +1093,17 @@ const foodCatalog = {
     insolubleFiber: 3.1,
   },
   french_beans: {
-    label: "French Beans",
+    label: "French Beans (RAW)",
     calories: 31,
     protein: 1.8,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.9,
     insolubleFiber: 2.5,
+    btype: "raw",
   },
-  boiled_french_beans: {
-    label: "Boiled French Beans",
+  cooked_french_beans: {
+    label: "Cooked French Beans",
     calories: 35,
     protein: 1.9,
     saturatedFat: 0.0,
@@ -1053,16 +1112,17 @@ const foodCatalog = {
     insolubleFiber: 2.7,
   },
   ash_gourd: {
-    label: "Ash Gourd (Petha)",
+    label: "Ash Gourd (Petha) (RAW)",
     calories: 13,
     protein: 0.4,
     saturatedFat: 0.0,
     unsaturatedFat: 0.0,
     solubleFiber: 0.2,
     insolubleFiber: 0.8,
+    btype: "raw",
   },
-  boiled_ash_gourd: {
-    label: "Boiled Ash Gourd",
+  cooked_ash_gourd: {
+    label: "Cooked Ash Gourd",
     calories: 12,
     protein: 0.4,
     saturatedFat: 0.0,
@@ -1071,16 +1131,17 @@ const foodCatalog = {
     insolubleFiber: 0.8,
   },
   pointed_gourd: {
-    label: "Pointed Gourd (Parwal)",
+    label: "Pointed Gourd (Parwal) (RAW)",
     calories: 20,
     protein: 2.0,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.5,
     insolubleFiber: 2.5,
+    btype: "raw",
   },
-  boiled_pointed_gourd: {
-    label: "Boiled Pointed Gourd",
+  cooked_pointed_gourd: {
+    label: "Cooked Pointed Gourd",
     calories: 18,
     protein: 1.8,
     saturatedFat: 0.0,
@@ -1089,16 +1150,17 @@ const foodCatalog = {
     insolubleFiber: 2.2,
   },
   tinda: {
-    label: "Round Gourd (Tinda)",
+    label: "Round Gourd (Tinda) (RAW)",
     calories: 21,
     protein: 1.4,
     saturatedFat: 0.0,
     unsaturatedFat: 0.0,
     solubleFiber: 0.5,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
-  boiled_tinda: {
-    label: "Boiled Round Gourd",
+  cooked_tinda: {
+    label: "Cooked Round Gourd",
     calories: 19,
     protein: 1.2,
     saturatedFat: 0.0,
@@ -1107,7 +1169,7 @@ const foodCatalog = {
     insolubleFiber: 1.1,
   },
   raw_mango: {
-    label: "Raw Mango",
+    label: "Mango (RAW)",
     calories: 50,
     protein: 0.6,
     saturatedFat: 0.1,
@@ -1116,16 +1178,17 @@ const foodCatalog = {
     insolubleFiber: 1.3,
   },
   knol_khol: {
-    label: "Knol Khol (Kohlrabi)",
+    label: "Knol Khol (Kohlrabi) (RAW)",
     calories: 27,
     protein: 1.7,
     saturatedFat: 0.0,
     unsaturatedFat: 0.1,
     solubleFiber: 0.8,
     insolubleFiber: 2.8,
+    btype: "raw",
   },
-  boiled_knol_khol: {
-    label: "Boiled Knol Khol",
+  cooked_knol_khol: {
+    label: "Cooked Knol Khol",
     calories: 24,
     protein: 1.5,
     saturatedFat: 0.0,
@@ -1134,7 +1197,7 @@ const foodCatalog = {
     insolubleFiber: 2.5,
   },
   spring_onion: {
-    label: "Spring Onion",
+    label: "Spring Onion (RAW)",
     calories: 32,
     protein: 1.8,
     saturatedFat: 0.0,
@@ -1143,22 +1206,24 @@ const foodCatalog = {
     insolubleFiber: 2.0,
   },
   garlic_cloves: {
-    label: "Garlic",
+    label: "Garlic (RAW)",
     calories: 149,
     protein: 6.4,
     saturatedFat: 0.1,
     unsaturatedFat: 0.2,
     solubleFiber: 1.0,
     insolubleFiber: 1.1,
+    btype: "raw",
   },
   ginger: {
-    label: "Ginger Root",
+    label: "Ginger Root (RAW)",
     calories: 80,
     protein: 1.8,
     saturatedFat: 0.2,
     unsaturatedFat: 0.5,
     solubleFiber: 0.5,
     insolubleFiber: 1.5,
+    btype: "raw",
   },
   lemon: {
     label: "Lemon",
@@ -1170,16 +1235,17 @@ const foodCatalog = {
     insolubleFiber: 2.0,
   },
   raw_banana_flower: {
-    label: "Banana Flower (Kele ka Phool)",
+    label: "Banana Flower (Kele ka Phool) (RAW)",
     calories: 51,
     protein: 1.6,
     saturatedFat: 0.1,
     unsaturatedFat: 0.2,
     solubleFiber: 1.2,
     insolubleFiber: 4.5,
+    btype: "raw",
   },
-  boiled_banana_flower: {
-    label: "Boiled Banana Flower",
+  cooked_banana_flower: {
+    label: "Cooked Banana Flower",
     calories: 45,
     protein: 1.4,
     saturatedFat: 0.1,
@@ -1612,6 +1678,7 @@ const foodCatalog = {
     unsaturatedFat: 36.0,
     solubleFiber: 2.1,
     insolubleFiber: 6.0,
+    btype: "raw",
   },
   roasted_peanuts: {
     label: "Roasted Peanuts",
@@ -1630,6 +1697,7 @@ const foodCatalog = {
     unsaturatedFat: 44.0,
     solubleFiber: 2.9,
     insolubleFiber: 9.5,
+    btype: "raw",
   },
   roasted_almonds: {
     label: "Roasted Almonds",
@@ -1648,6 +1716,7 @@ const foodCatalog = {
     unsaturatedFat: 32.7,
     solubleFiber: 1.0,
     insolubleFiber: 2.3,
+    btype: "raw",
   },
   roasted_cashews: {
     label: "Roasted Cashews",
@@ -1666,6 +1735,7 @@ const foodCatalog = {
     unsaturatedFat: 39.0,
     solubleFiber: 3.0,
     insolubleFiber: 7.3,
+    btype: "raw",
   },
   roasted_pistachios: {
     label: "Roasted Pistachios",
@@ -1711,6 +1781,7 @@ const foodCatalog = {
     unsaturatedFat: 43.0,
     solubleFiber: 3.0,
     insolubleFiber: 5.5,
+    btype: "raw",
   },
   roasted_sunflower_seeds: {
     label: "Roasted Sunflower Seeds",
@@ -1729,6 +1800,7 @@ const foodCatalog = {
     unsaturatedFat: 39.0,
     solubleFiber: 2.0,
     insolubleFiber: 4.0,
+    btype: "raw",
   },
   roasted_pumpkin_seeds: {
     label: "Roasted Pumpkin Seeds",
@@ -1747,6 +1819,7 @@ const foodCatalog = {
     unsaturatedFat: 37.0,
     solubleFiber: 10.0,
     insolubleFiber: 17.3,
+    btype: "raw",
   },
   roasted_flax_seeds: {
     label: "Roasted Flax Seeds",
@@ -1765,6 +1838,7 @@ const foodCatalog = {
     unsaturatedFat: 38.8,
     solubleFiber: 2.0,
     insolubleFiber: 9.8,
+    btype: "raw",
   },
   roasted_sesame_seeds: {
     label: "Roasted Sesame Seeds",
@@ -1783,6 +1857,7 @@ const foodCatalog = {
     unsaturatedFat: 41.0,
     solubleFiber: 1.5,
     insolubleFiber: 3.5,
+    btype: "raw",
   },
   charoli: {
     label: "Charoli (Chironji)",
@@ -1805,6 +1880,7 @@ const foodCatalog = {
     unsaturatedFat: 5.4,
     solubleFiber: 0.0,
     insolubleFiber: 0.0,
+    btype: "raw",
   },
   boiled_egg: {
     label: "Boiled Egg",
@@ -1841,6 +1917,7 @@ const foodCatalog = {
     unsaturatedFat: 1.6,
     solubleFiber: 0.0,
     insolubleFiber: 0.0,
+    btype: "raw",
   },
   boiled_chicken: {
     label: "Boiled Chicken",
@@ -1877,6 +1954,7 @@ const foodCatalog = {
     unsaturatedFat: 1.5,
     solubleFiber: 0.0,
     insolubleFiber: 0.0,
+    btype: "raw",
   },
   boiled_mutton: {
     label: "Boiled Mutton",
@@ -1904,6 +1982,7 @@ const foodCatalog = {
     unsaturatedFat: 1.2,
     solubleFiber: 0.0,
     insolubleFiber: 0.0,
+    btype: "raw",
   },
   boiled_fish: {
     label: "Boiled Fish",
@@ -2007,6 +2086,7 @@ const foodCatalog = {
     unsaturatedFat: 0.5,
     solubleFiber: 0.5,
     insolubleFiber: 1.2,
+    btype: "raw",
   },
   cooked_poha: {
     label: "Cooked Poha (Kanda Poha)",
@@ -3341,7 +3421,7 @@ function getTodayMicronutrients(entries) {
 function getMicronutrientFoodSuggestions(key) {
   const labels = [];
   Object.values(foodCatalog)
-    .filter((food) => food[key] > 0)
+    .filter((food) => food.btype !== "raw" && food[key] > 0)
     .sort((first, second) => second[key] - first[key])
     .forEach((food) => {
       if (!labels.includes(food.label) && labels.length < 10) {
