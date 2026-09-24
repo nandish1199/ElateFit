@@ -157,9 +157,9 @@ function formValues() {
 }
 function fillForm(medicine = null) {
   editingId = medicine?.id || null;
-  document.getElementById("medicineFormTitle").textContent = medicine
-    ? "Update medicine"
-    : "Add medicine";
+  document.getElementById("medicineFormTitle").innerHTML = medicine
+    ? '<i class="fa-solid fa-prescription-bottle-medical"></i> Update medicine'
+    : '<i class="fa-solid fa-prescription-bottle-medical"></i> Add medicine';
   document.getElementById("saveMedicineBtn").innerHTML = medicine
     ? '<i class="fa-solid fa-floppy-disk"></i> Update medicine'
     : '<i class="fa-solid fa-plus"></i> Add medicine';
