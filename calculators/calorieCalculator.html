@@ -12,18 +12,19 @@
     <title>Calories Calculator, Elatefit</title>
     <style>
         :root {
-            --nutrition-ink: #24332f;
-            --nutrition-muted: #687873;
-            --nutrition-green: #1f6b5b;
-            --nutrition-dark: #174e44;
-            --nutrition-gold: #b58b45;
-            --nutrition-paper: #fbfaf6;
-            --nutrition-line: #dfe5df;
-            --nutrition-shadow: 0 12px 30px rgba(30, 58, 49, 0.09);
+            --nutrition-ink: #293a35;
+            --nutrition-muted: #6a7b73;
+            --nutrition-green: #39806a;
+            --nutrition-dark: #205847;
+            --nutrition-coral: #e9825e;
+            --nutrition-gold: #d49a4c;
+            --nutrition-paper: #fffdf8;
+            --nutrition-line: #dce8df;
+            --nutrition-shadow: 0 14px 32px rgba(44, 87, 67, 0.1);
         }
 
         body {
-            background: #f1f4f1;
+            background: linear-gradient(135deg, #f1f8f2 0%, #fff8ee 100%);
             color: var(--nutrition-ink);
         }
 
@@ -34,19 +35,46 @@
         }
 
         .nutritionHero {
+            position: relative;
+            overflow: hidden;
             margin-bottom: 24px;
             padding: 28px clamp(18px, 4vw, 48px);
-            background: linear-gradient(115deg, #e7f0eb, var(--nutrition-paper) 70%);
+            background: linear-gradient(115deg, #e1f1e6 0%, #fffdf8 64%, #fff0e2 100%);
             border: 1px solid var(--nutrition-line);
-            border-top: 4px solid var(--nutrition-gold);
+            border-top: 4px solid var(--nutrition-coral);
+            border-radius: 3px;
             box-shadow: var(--nutrition-shadow);
+        }
+
+        .nutritionHero::after {
+            position: absolute;
+            right: 6%;
+            bottom: -58px;
+            width: 175px;
+            height: 175px;
+            border: 1px solid rgba(57, 128, 106, .2);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .nutritionEyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 12px;
+            color: var(--nutrition-coral);
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
         }
 
         .nutritionHero h1 {
             margin: 0 0 8px;
             color: var(--nutrition-ink);
             font-size: clamp(1.5rem, 3vw, 2.25rem);
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
+            font-weight: 800;
         }
 
         .nutritionHero p {
@@ -66,7 +94,7 @@
             padding: 22px;
             background: var(--nutrition-paper);
             border: 1px solid var(--nutrition-line);
-            border-radius: 6px;
+            border-radius: 3px;
             box-shadow: var(--nutrition-shadow);
         }
 
@@ -76,6 +104,12 @@
             font-size: 1.05rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+        }
+
+        .nutritionPanel h2 i {
+            margin-right: 7px;
+            color: var(--nutrition-coral);
+            font-size: .9em;
         }
 
         .foodForm {
@@ -99,8 +133,8 @@
             min-height: 44px;
             margin-top: 6px;
             padding: 0 12px;
-            border: 1px solid #b9cbc4;
-            border-radius: 4px;
+            border: 1px solid #c7ddd0;
+            border-radius: 3px;
             background: #ffffff;
             color: var(--nutrition-ink);
             font: inherit;
@@ -108,7 +142,7 @@
 
         .foodForm input:focus {
             border-color: var(--nutrition-green);
-            box-shadow: 0 0 0 3px rgba(31, 107, 91, 0.12);
+            box-shadow: 0 0 0 3px rgba(57, 128, 106, .14);
             outline: none;
         }
 
@@ -121,7 +155,7 @@
             display: none;
             overflow: hidden;
             border: 1px solid var(--nutrition-line);
-            border-radius: 4px;
+            border-radius: 3px;
             background: #ffffff;
             box-shadow: 0 10px 22px rgba(30, 58, 49, 0.14);
         }
@@ -149,7 +183,7 @@
 
         .foodSuggestion:hover,
         .foodSuggestion:focus {
-            background: #eef5f0;
+            background: #e9f5ed;
             color: var(--nutrition-dark);
             outline: none;
         }
@@ -166,7 +200,7 @@
         .periodButton {
             min-height: 42px;
             border: 1px solid var(--nutrition-green);
-            border-radius: 4px;
+            border-radius: 3px;
             background: var(--nutrition-green);
             color: #ffffff;
             cursor: pointer;
@@ -178,7 +212,7 @@
         .foodForm button:hover,
         .periodButton:hover,
         .dangerButton:hover {
-            box-shadow: 0 8px 16px rgba(31, 107, 91, 0.18);
+            box-shadow: 0 8px 16px rgba(57, 128, 106, .2);
             transform: translateY(-2px);
         }
 
@@ -243,7 +277,8 @@
         .summaryCard {
             padding: 16px;
             border: 1px solid var(--nutrition-line);
-            border-top: 3px solid var(--nutrition-gold);
+            border-top: 3px solid var(--nutrition-coral);
+            border-radius: 3px;
             background: #ffffff;
         }
 
@@ -267,6 +302,7 @@
             padding: 10px;
             border: 1px solid var(--nutrition-line);
             border-top: 3px solid var(--nutrition-green);
+            border-radius: 3px;
             background: #ffffff;
         }
 
@@ -288,7 +324,7 @@
 
         .micronutrientPanel {
             grid-column: 1 / -1;
-            background: linear-gradient(135deg, #f7faf7, var(--nutrition-paper));
+            background: linear-gradient(135deg, #f3faf3, #fffaf1);
             border-top: 3px solid var(--nutrition-green);
         }
 
@@ -331,9 +367,9 @@
             min-width: 0;
             padding: 12px;
             border: 1px solid var(--nutrition-line);
-            border-top: 3px solid #a9c2b5;
-            border-radius: 5px;
-            background: linear-gradient(145deg, #ffffff, #f8fbf9);
+            border-top: 3px solid #83b79e;
+            border-radius: 3px;
+            background: linear-gradient(145deg, #ffffff, #f8fcf5);
             box-shadow: 0 3px 10px rgba(36, 67, 56, .045);
             transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
         }
@@ -345,7 +381,7 @@
             width: 34px;
             height: 34px;
             border-radius: 0 0 0 100%;
-            background: rgba(181, 139, 69, .08);
+            background: rgba(233, 130, 94, .1);
             content: "";
             pointer-events: none;
         }
@@ -436,6 +472,7 @@
             padding: 11px;
             border: 1px solid var(--nutrition-line);
             border-top: 3px solid var(--nutrition-green);
+            border-radius: 3px;
             background: #ffffff;
         }
 
@@ -521,6 +558,7 @@
             height: 290px;
             padding: 10px;
             border: 1px solid var(--nutrition-line);
+            border-radius: 3px;
             background: #ffffff;
         }
 
@@ -538,8 +576,9 @@
 
         .trendCard {
             padding: 14px;
-            border-left: 3px solid var(--nutrition-green);
-            background: #eef5f0;
+            border-left: 3px solid var(--nutrition-coral);
+            border-radius: 0 3px 3px 0;
+            background: linear-gradient(110deg, #fff0e4, #edf8f0);
         }
 
         .trendCard strong {
@@ -599,7 +638,7 @@
             width: 30px;
             height: 30px;
             border: 1px solid #e2c5bc;
-            border-radius: 4px;
+            border-radius: 2px;
             background: #fff8f5;
             color: #a45e4c;
             cursor: pointer;
@@ -778,13 +817,14 @@
 
     <main class="nutritionPage">
         <section class="nutritionHero">
+            <span class="nutritionEyebrow"><i class="fa-solid fa-leaf"></i> Nourish your routine</span>
             <h1>CALORIE INTAKE JOURNAL</h1>
             <p>Add foods by weight, keep a dated nutrition record, and review your calorie and protein pattern over
                 time.</p>
         </section>
         <div class="nutritionGrid">
             <section class="nutritionPanel">
-                <h2>Add Food</h2>
+                <h2><i class="fa-solid fa-bowl-food"></i> Add Food</h2>
                 <form class="foodForm" id="foodForm">
                     <label class="foodSearchField" for="foodSearch">Food
                         <input type="text" id="foodSearch" list="foodOptions" autocomplete="off"
@@ -802,7 +842,7 @@
                 </form>
             </section>
             <section class="nutritionPanel">
-                <h2>Today's Intake</h2>
+                <h2><i class="fa-solid fa-chart-pie"></i> Today's Intake</h2>
                 <div class="summaryGrid">
                     <div class="summaryCard"><span>Calories</span><strong id="todayCalories">0 kcal</strong></div>
                     <div class="summaryCard"><span>Protein</span><strong id="todayProtein">0 g</strong></div>
@@ -846,7 +886,7 @@
             </section>
             <section class="nutritionPanel">
                 <div class="chartTools">
-                    <h2>Progress</h2>
+                    <h2><i class="fa-solid fa-chart-line"></i> Progress</h2>
                     <div class="periodButtons">
                         <button type="button" class="periodButton active" data-period="7">7 days</button>
                         <button type="button" class="periodButton" data-period="15">15 days</button>
@@ -863,7 +903,7 @@
                 </div>
             </section>
             <section class="nutritionPanel micronutrientPanel">
-                <h2>Today's Micronutrients</h2>
+                <h2><i class="fa-solid fa-seedling"></i> Today's Micronutrients</h2>
                 <p>Totals are calculated from today's saved foods using the current food catalog values per 100 g.</p>
                 <div class="micronutrientList" id="micronutrientList"></div>
             </section>
