@@ -59,7 +59,7 @@
     color: var(--serum-ink);
     font-size: clamp(1.5rem, 3vw, 2.35rem);
     letter-spacing: .04em;
-    font-weight: 750;
+    font-weight: 800;
 }
 
 .serumHero p {
