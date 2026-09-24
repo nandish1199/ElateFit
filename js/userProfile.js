@@ -146,6 +146,66 @@ function calculateNutritionTargets(profile) {
   };
 }
 
+const MICRONUTRIENT_REFERENCES = [
+  { name: "Vitamin A", amount: "600", unit: "mcg RAE" },
+  { name: "Vitamin C", amount: "45", unit: "mg" },
+  { name: "Vitamin D", amount: "5", unit: "mcg" },
+  { name: "Vitamin E", amount: "10", unit: "mg" },
+  { name: "Vitamin K", amount: "55", unit: "mcg" },
+  { name: "Vitamin B1 (Thiamine)", amount: "1.1", unit: "mg" },
+  { name: "Vitamin B2 (Riboflavin)", amount: "1.1", unit: "mg" },
+  { name: "Vitamin B3 (Niacin)", amount: "14", unit: "mg NE" },
+  { name: "Vitamin B6", amount: "1.3", unit: "mg" },
+  { name: "Folate (Vitamin B9)", amount: "400", unit: "mcg DFE" },
+  { name: "Vitamin B12", amount: "2.4", unit: "mcg" },
+  { name: "Calcium", amount: "1000", unit: "mg" },
+  { name: "Iron", amount: "8", unit: "mg" },
+  { name: "Magnesium", amount: "310", unit: "mg" },
+  { name: "Zinc", amount: "8", unit: "mg" },
+  { name: "Iodine", amount: "150", unit: "mcg" },
+  { name: "Selenium", amount: "55", unit: "mcg" },
+  { name: "Copper", amount: "900", unit: "mcg" },
+  { name: "Potassium", amount: "3500", unit: "mg" },
+  { name: "Phosphorus", amount: "700", unit: "mg" },
+];
+
+function renderMicronutrientGuidance(profile) {
+  const rows = MICRONUTRIENT_REFERENCES.map(
+    (nutrient) => `
+        <tr>
+          <th scope="row">${nutrient.name}</th>
+          <td>${nutrient.amount} ${nutrient.unit}</td>
+        </tr>`,
+  ).join("");
+  const bmi = calculateBmi(profile.height, profile.weight);
+  const bmiText = bmi ? bmi.toFixed(1) : "Not available";
+
+  return `
+      <section class="micronutrientSection" aria-labelledby="micronutrientHeading">
+        <div class="micronutrientHeader">
+          <div>
+            <h3 id="micronutrientHeading">Daily micronutrient references</h3>
+            <p>20 essential vitamins and minerals for a general adult reference profile.</p>
+          </div>
+          <div class="micronutrientContext">
+            <span>${profile.height} cm</span>
+            <span>${profile.weight} kg</span>
+            <span>BMI ${bmiText}</span>
+          </div>
+        </div>
+        <div class="micronutrientTableWrap">
+          <table class="micronutrientTable">
+            <caption>Reference amount per day</caption>
+            <thead>
+              <tr><th scope="col">Nutrient</th><th scope="col">Daily amount</th></tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <p class="micronutrientDisclaimer">Values are general adult reference amounts based on WHO/FAO guidance where available and established international reference values. Height and weight are shown as profile context; these micronutrient amounts are not calculated by multiplying body weight or height. Sex, age, pregnancy, illness, medication, and deficiency can change requirements. Ask a qualified clinician before using supplements.</p>
+      </section>`;
+}
+
 function setProfileStatus(message, error = true) {
   const status = document.getElementById("profileStatus");
   if (!status) return;
@@ -253,6 +313,7 @@ function renderProfileSummary(profile) {
                 <div class="profileStat"><span>Insoluble fiber</span><strong>${nutrition.insolubleFiber} g</strong></div>
             </div>
             <div class="profileNote">${notesText}</div>
+            ${renderMicronutrientGuidance(profile)}
         </div>`;
 }
 

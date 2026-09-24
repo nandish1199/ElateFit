@@ -232,6 +232,113 @@
     line-height: 1.55;
 }
 
+.micronutrientSection {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--profile-line);
+}
+
+.micronutrientHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.micronutrientHeader h3 {
+    margin: 0;
+    color: var(--profile-dark);
+    font-size: 1rem;
+}
+
+.micronutrientHeader p {
+    margin: 5px 0 0;
+    color: var(--profile-muted);
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+.micronutrientContext {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 5px;
+    color: var(--profile-green);
+    font-size: .72rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.micronutrientContext span {
+    padding: 5px 7px;
+    border: 1px solid #d8e5dd;
+    border-radius: 4px;
+    background: #f4f8f5;
+}
+
+.micronutrientTableWrap {
+    max-height: 430px;
+    overflow: auto;
+    border: 1px solid #e3ebe6;
+    border-radius: 4px;
+}
+
+.micronutrientTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .82rem;
+}
+
+.micronutrientTable caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.micronutrientTable th,
+.micronutrientTable td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e8eee9;
+    text-align: left;
+}
+
+.micronutrientTable thead th {
+    position: sticky;
+    top: 0;
+    background: #eef5f0;
+    color: var(--profile-dark);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.micronutrientTable tbody tr:last-child th,
+.micronutrientTable tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.micronutrientTable tbody th {
+    color: var(--profile-ink);
+    font-weight: 600;
+}
+
+.micronutrientTable tbody td {
+    color: var(--profile-dark);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.micronutrientDisclaimer {
+    margin: 10px 0 0;
+    color: var(--profile-muted);
+    font-size: .75rem;
+    line-height: 1.5;
+}
+
 .profileEmpty {
     padding: 18px;
     color: var(--profile-muted);
@@ -331,5 +438,13 @@
 
     .profileSummaryHeader {
         flex-direction: column;
+    }
+
+    .micronutrientHeader {
+        flex-direction: column;
+    }
+
+    .micronutrientContext {
+        justify-content: flex-start;
     }
 }
