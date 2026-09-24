@@ -21,7 +21,7 @@
 
 .breathingShell { width: min(1120px, 100%); margin: auto; }
 .breathingHero { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 70px 0 22px; padding: 32px clamp(18px, 4vw, 48px); background: linear-gradient(115deg, #d8f1f3 0%, var(--breath-paper) 68%, #fff6df 100%); border: 1px solid var(--breath-line); border-top: 4px solid var(--breath-coral); box-shadow: var(--breath-shadow); }
-.breathingHero h1 { margin: 0 0 8px; color: var(--breath-ink); font-size: clamp(1.5rem, 3vw, 2.35rem); letter-spacing: .06em; line-height: 1.15; }
+.breathingHero h1 { margin: 0 0 8px; color: var(--breath-ink); font-size: clamp(1.5rem, 3vw, 2.35rem); letter-spacing: .06em; line-height: 1.15; font-weight: 800; }
 .breathingHero p:not(.breathingEyebrow) { max-width: 700px; margin: 0; color: var(--breath-muted); line-height: 1.55; }
 .breathingHeroIcon { color: var(--breath-teal); font-size: clamp(3rem, 7vw, 5rem); opacity: .72; filter: drop-shadow(0 10px 16px rgba(37, 138, 145, .14)); }
 .breathingPage h2 { margin: 0; font-size: 1.25rem; }
