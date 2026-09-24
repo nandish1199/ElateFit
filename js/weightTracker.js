@@ -117,7 +117,7 @@ function formatDate(value) {
 function setStatus(message, error = true) {
   const status = document.getElementById("weightStatus");
   status.textContent = message;
-  status.style.color = error ? "#a45e4c" : "#1f6b5b";
+  status.style.color = error ? "#8a6259" : "#536f7d";
 }
 
 function getSavedProfile() {
@@ -277,8 +277,8 @@ function drawChart(data) {
   const max = weights.length ? Math.ceil(Math.max(...weights) + 2) : 10;
   const span = Math.max(5, max - min);
   context.font = "11px Segoe UI, sans-serif";
-  context.strokeStyle = "#e3ebe6";
-  context.fillStyle = "#687873";
+  context.strokeStyle = "#e0e6e8";
+  context.fillStyle = "#657680";
   for (let tick = 0; tick <= 4; tick += 1) {
     const y = pad.top + chartHeight - (chartHeight * tick) / 4;
     context.beginPath();
@@ -307,10 +307,10 @@ function drawChart(data) {
         ? context.lineTo(point.x, point.y)
         : context.moveTo(point.x, point.y),
     );
-    context.strokeStyle = "#1f6b5b";
+    context.strokeStyle = "#536f7d";
     context.lineWidth = 2.5;
     context.stroke();
-    context.fillStyle = "#1f6b5b";
+    context.fillStyle = "#536f7d";
     points.forEach((point) => {
       context.beginPath();
       context.arc(point.x, point.y, 4, 0, Math.PI * 2);
@@ -318,7 +318,7 @@ function drawChart(data) {
     });
   }
   const labelStep = data.length > 20 ? 5 : data.length > 10 ? 3 : 1;
-  context.fillStyle = "#687873";
+  context.fillStyle = "#657680";
   data.forEach((item, index) => {
     if (index % labelStep === 0 || index === data.length - 1) {
       const x = pad.left + (chartWidth * index) / Math.max(1, data.length - 1);

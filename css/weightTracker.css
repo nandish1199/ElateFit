@@ -1,13 +1,13 @@
 :root {
-    --weight-ink: #263b40;
-    --weight-muted: #607477;
-    --weight-green: #0f8879;
-    --weight-dark: #075b59;
-    --weight-coral: #ef765f;
-    --weight-gold: #e0a04d;
-    --weight-paper: #fbfdfb;
-    --weight-line: #d6e7e2;
-    --weight-shadow: 0 14px 32px rgba(20, 78, 75, .1);
+    --weight-ink: #273944;
+    --weight-muted: #657680;
+    --weight-green: #536f7d;
+    --weight-dark: #344f5e;
+    --weight-coral: #8a7862;
+    --weight-gold: #8b8174;
+    --weight-paper: #fcfcfb;
+    --weight-line: #d9e0e3;
+    --weight-shadow: 0 14px 32px rgba(39, 57, 68, .08);
 }
 
 * {
@@ -16,7 +16,7 @@
 
 body {
     margin: 0;
-    background: linear-gradient(135deg, #f2f8f6 0%, #fff9f4 100%);
+    background: linear-gradient(135deg, #f3f6f7 0%, #faf9f6 100%);
     color: var(--weight-ink);
     font-family: Segoe UI, Tahoma, sans-serif;
 }
@@ -32,7 +32,7 @@ body {
     overflow: hidden;
     margin-bottom: 22px;
     padding: 30px clamp(18px, 4vw, 48px);
-    background: linear-gradient(115deg, #dff3ee 0%, #fffdf8 64%, #fff0e8 100%);
+    background: linear-gradient(115deg, #e8eef0 0%, #fcfcfb 64%, #f5f1ec 100%);
     border: 1px solid var(--weight-line);
     border-top: 4px solid var(--weight-coral);
     border-radius: 3px;
@@ -45,7 +45,7 @@ body {
     bottom: -62px;
     width: 190px;
     height: 190px;
-    border: 1px solid rgba(15, 136, 121, .18);
+    border: 1px solid rgba(83, 111, 125, .16);
     border-radius: 50%;
     content: "";
 }
@@ -126,7 +126,7 @@ body {
     min-height: 44px;
     margin-top: 6px;
     padding: 0 12px;
-    border: 1px solid #c5ddd7;
+    border: 1px solid #cbd6da;
     border-radius: 3px;
     background: #fff;
     color: var(--weight-ink);
@@ -142,7 +142,7 @@ body {
 .weightField input:focus,
 .weightField textarea:focus {
     border-color: var(--weight-green);
-    box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
+    box-shadow: 0 0 0 3px rgba(83, 111, 125, .14);
     outline: none;
 }
 
@@ -167,7 +167,7 @@ body {
 
 .weightActions button:hover,
 .periodButton:hover {
-    box-shadow: 0 8px 16px rgba(15, 136, 121, .2);
+    box-shadow: 0 8px 16px rgba(39, 57, 68, .12);
     transform: translateY(-1px);
 }
 
@@ -180,7 +180,7 @@ body {
 
 .weightStatus {
     min-height: 20px;
-    color: #a45e4c;
+    color: #8a6259;
     font-size: .86rem;
 }
 
@@ -223,7 +223,7 @@ body {
     border-top: 3px solid var(--weight-coral);
     border-radius: 3px;
     background: #fff;
-    box-shadow: 0 4px 12px rgba(20, 78, 75, .05);
+    box-shadow: 0 4px 12px rgba(39, 57, 68, .05);
 }
 
 .statCard span {
@@ -292,7 +292,7 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 18px 0 0;
-    background: linear-gradient(150deg, #eff9f5, #e3f1eb);
+    background: transparent;
     border: 1px solid var(--weight-line);
     border-radius: 3px;
 }
@@ -301,7 +301,7 @@ body {
     position: relative;
     min-width: 988px;
     height: 254px;
-    background: radial-gradient(circle at 18% 25%, rgba(255, 255, 255, .75), transparent 22%), linear-gradient(150deg, #f1fbf6, #d7eee4);
+    background: transparent;
 }
 
 .goalMapPath {
@@ -319,7 +319,7 @@ body {
 }
 
 .goalMapBasePath {
-    stroke: #26332f;
+    stroke: #6b7b84;
 }
 
 .goalMapProgressPath {
@@ -347,7 +347,7 @@ body {
 .goalFlagPole {
     width: 2px;
     height: 37px;
-    background: #71847a;
+    background: #89979d;
     box-shadow: 1px 0 0 rgba(255, 255, 255, .7);
 }
 
@@ -370,7 +370,7 @@ body {
     gap: 2px;
     min-width: 44px;
     padding: 2px;
-    border: 1px solid rgba(36, 51, 47, .14);
+    border: 1px solid rgba(39, 57, 68, .14);
     border-radius: 4px;
     background: rgba(255, 255, 255, .82);
     text-align: center;
@@ -412,7 +412,7 @@ body {
     width: 30px;
     height: 30px;
     place-items: center;
-    border: 2px solid #26332f;
+    border: 2px solid #6b7b84;
     border-radius: 50% 50% 50% 0;
     background: #fff;
     color: var(--weight-green);
@@ -458,7 +458,7 @@ body {
 
 .goalFlag.achieved .goalFlagLabel {
     border-color: var(--weight-coral);
-    box-shadow: 0 0 0 2px rgba(239, 118, 95, .14);
+    box-shadow: 0 0 0 2px rgba(138, 120, 98, .14);
 }
 
 .goalBatchLegend {
@@ -480,11 +480,11 @@ body {
     color: var(--batch-color);
 }
 
-.batch-copper { --batch-color: #9b7652; }
+.batch-copper { --batch-color: #897968; }
 .batch-silver { --batch-color: #7d8a8c; }
-.batch-gold { --batch-color: #b58b45; }
-.batch-titanium { --batch-color: #4d7180; }
-.batch-diamond { --batch-color: #2296a6; }
+.batch-gold { --batch-color: #918573; }
+.batch-titanium { --batch-color: #647b86; }
+.batch-diamond { --batch-color: #718994; }
 
 .goalMapEmpty,
 .goalMapComplete {
@@ -554,7 +554,7 @@ body {
     height: 32px;
     border: 1px solid var(--weight-line);
     border-radius: 2px;
-    background: #f8fbf9;
+    background: #f5f7f7;
     color: var(--weight-green);
     cursor: pointer;
 }
@@ -575,7 +575,7 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    background: #eef2ef;
+    background: #edf1f2;
 }
 
 .photoPreview {
@@ -583,7 +583,7 @@ body {
     width: 100%;
     padding: 0;
     border: 0;
-    background: #eef2ef;
+    background: #edf1f2;
     cursor: zoom-in;
 }
 
@@ -611,8 +611,8 @@ body {
     padding: 13px 14px;
     border-left: 3px solid var(--weight-coral);
     border-radius: 0 3px 3px 0;
-    background: #fff0e8;
-    color: #795548;
+    background: #f4f0eb;
+    color: #665b52;
     font-size: .84rem;
     line-height: 1.5;
 }
@@ -633,7 +633,7 @@ body {
 .photoViewerBackdrop {
     position: absolute;
     inset: 0;
-    background: rgba(20, 31, 28, .78);
+    background: rgba(39, 57, 68, .82);
 }
 
 .photoViewerPanel {
@@ -687,7 +687,7 @@ body {
     width: 100%;
     max-height: calc(100vh - 170px);
     object-fit: contain;
-    background: #e9eeeb;
+    background: #e8edef;
 }
 
 .photoViewerNote {
