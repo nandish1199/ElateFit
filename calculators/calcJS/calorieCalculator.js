@@ -3092,6 +3092,196 @@ function calculateNutrition(food, grams) {
   };
 }
 
+const MICRONUTRIENTS = [
+  [
+    "vitaminA",
+    "Vitamin A",
+    0.6,
+    "mg RAE",
+    "Sweet potatoes, carrots, tuna, butternut squash, spinach, cantaloupe, lettuce, red bell peppers, chicken liver, mango",
+  ],
+  [
+    "vitaminC",
+    "Vitamin C",
+    45,
+    "mg",
+    "Oranges, strawberries, kiwi, bell peppers, broccoli, Brussels sprouts, tomatoes, papaya, lemons, grapefruits",
+  ],
+  [
+    "vitaminD",
+    "Vitamin D",
+    0.005,
+    "mg",
+    "Salmon, sardines, herring, canned tuna, cod liver oil, egg yolks, mushrooms, fortified milk, fortified orange juice, fortified cereals",
+  ],
+  [
+    "vitaminE",
+    "Vitamin E",
+    10,
+    "mg",
+    "Sunflower seeds, almonds, peanuts, spinach, broccoli, hazelnuts, pine nuts, avocado, red bell peppers, mango",
+  ],
+  [
+    "vitaminK",
+    "Vitamin K",
+    0.055,
+    "mg",
+    "Kale, spinach, broccoli, Brussels sprouts, cabbage, Swiss chard, collard greens, green beans, prunes, kiwi",
+  ],
+  [
+    "vitaminB1",
+    "Vitamin B1 (Thiamine)",
+    1.1,
+    "mg",
+    "Sunflower seeds, brown rice, whole wheat, green peas, lentils, pecans, black beans, macadamia nuts, edamame",
+  ],
+  [
+    "vitaminB2",
+    "Vitamin B2 (Riboflavin)",
+    1.1,
+    "mg",
+    "Milk, yogurt, cheese, eggs, chicken breast, salmon, almonds, spinach",
+  ],
+  [
+    "vitaminB3",
+    "Vitamin B3 (Niacin)",
+    14,
+    "mg NE",
+    "Chicken breast, turkey breast, chicken liver, tuna, salmon, peanuts, avocado, brown rice, whole wheat, mushrooms",
+  ],
+  [
+    "vitaminB6",
+    "Vitamin B6",
+    1.3,
+    "mg",
+    "Chickpeas, chicken liver, tuna, salmon, chicken breast, fortified cereals, potatoes, turkey, bananas, marinara sauce",
+  ],
+  [
+    "folate",
+    "Folate (Vitamin B9)",
+    0.4,
+    "mg DFE",
+    "Spinach, black-eyed peas, asparagus, Brussels sprouts, romaine lettuce, avocado, broccoli, mustard greens, green peas, kidney beans",
+  ],
+  [
+    "vitaminB12",
+    "Vitamin B12",
+    0.0024,
+    "mg",
+    "Chicken liver, clams, sardines, fortified nutritional yeast, trout, salmon, milk, yogurt, eggs",
+  ],
+  [
+    "calcium",
+    "Calcium",
+    1000,
+    "mg",
+    "Milk, cheese, yogurt, fortified orange juice, winter squash, edamame, tofu, canned sardines, almonds, kale",
+  ],
+  [
+    "iron",
+    "Iron",
+    8,
+    "mg",
+    "Red meat, poultry, seafood, beans, spinach, raisins, fortified cereals, peas, lentils",
+  ],
+  [
+    "magnesium",
+    "Magnesium",
+    310,
+    "mg",
+    "Pumpkin seeds, chia seeds, almonds, spinach, cashews, peanuts, edamame, black beans, peanut butter, brown rice",
+  ],
+  [
+    "zinc",
+    "Zinc",
+    8,
+    "mg",
+    "Oysters, crab, pumpkin seeds, turkey, cheddar cheese, shrimp, lentils, chickpeas",
+  ],
+  [
+    "iodine",
+    "Iodine",
+    0.15,
+    "mg",
+    "Seaweed, cod, milk, yogurt, cheese, iodized salt, shrimp, tuna, eggs, prunes",
+  ],
+  [
+    "selenium",
+    "Selenium",
+    0.055,
+    "mg",
+    "Brazil nuts, halibut, tuna, brown rice, eggs, turkey, chicken, cottage cheese, baked beans",
+  ],
+  [
+    "copper",
+    "Copper",
+    0.9,
+    "mg",
+    "Oysters, shiitake mushrooms, tofu, sweet potatoes, sesame seeds, cashews, chickpeas, salmon, dark chocolate, turkey",
+  ],
+  [
+    "potassium",
+    "Potassium",
+    3500,
+    "mg",
+    "Bananas, sweet potatoes, spinach, avocados, potatoes, white beans, tomatoes, yogurt, salmon, mushrooms",
+  ],
+  [
+    "phosphorus",
+    "Phosphorus",
+    700,
+    "mg",
+    "Chicken, turkey, salmon, milk, yogurt, sunflower seeds, pumpkin seeds, almonds, whole grains",
+  ],
+];
+
+function calculateMicronutrients(food, grams) {
+  return Object.fromEntries(
+    MICRONUTRIENTS.map(([key]) => [key, ((food[key] || 0) * grams) / 100]),
+  );
+}
+
+function formatMicronutrientAmount(amount) {
+  return amount.toFixed(5);
+}
+
+function renderMicronutrients(entries) {
+  const container = document.getElementById("micronutrientList");
+  if (!container) return;
+  const totals = Object.fromEntries(MICRONUTRIENTS.map(([key]) => [key, 0]));
+
+  entries.forEach((entry) => {
+    const food = getFood(entry.foodKey || entry.foodLabel);
+    if (!food) return;
+    const values = calculateMicronutrients(food, entry.grams);
+    MICRONUTRIENTS.forEach(([key]) => {
+      totals[key] += values[key];
+    });
+  });
+
+  container.innerHTML = MICRONUTRIENTS.map(
+    ([key, label, reference, unit, foodSuggestions]) => {
+      const consumed = totals[key];
+      const percentage = Math.min(100, (consumed / reference) * 100);
+      const guidance =
+        consumed < reference
+          ? `<p class="micronutrientGuidance"><strong>Foods to consider:</strong> ${foodSuggestions}</p>`
+          : "";
+      return `
+      <div class="micronutrientCard">
+        <div class="micronutrientHeader">
+          <span>${label}</span>
+          <strong>${formatMicronutrientAmount(consumed)} / ${reference} ${unit}</strong>
+        </div>
+        <div class="micronutrientProgressTrack" role="progressbar" aria-label="${label} daily intake" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percentage.toFixed(1)}">
+          <span style="width: ${percentage.toFixed(1)}%"></span>
+        </div>
+        ${guidance}
+      </div>`;
+    },
+  ).join("");
+}
+
 function setStatus(message, isError = true) {
   const status = document.getElementById("statusMessage");
   status.textContent = message;
@@ -3153,6 +3343,7 @@ function renderEntries() {
     `${solubleFiber.toFixed(1)} g`;
   document.getElementById("todayInsolubleFiber").textContent =
     `${insolubleFiber.toFixed(1)} g`;
+  renderMicronutrients(entries);
 }
 
 function renderProfileTargets() {
