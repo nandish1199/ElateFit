@@ -1,17 +1,24 @@
 :root {
-    --weight-ink: #24332f;
-    --weight-muted: #687873;
-    --weight-green: #1f6b5b;
-    --weight-dark: #174e44;
-    --weight-gold: #b58b45;
-    --weight-paper: #fbfaf6;
-    --weight-line: #dfe5df;
-    --weight-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+    --weight-ink: #263b40;
+    --weight-muted: #607477;
+    --weight-green: #0f8879;
+    --weight-dark: #075b59;
+    --weight-coral: #ef765f;
+    --weight-gold: #e0a04d;
+    --weight-paper: #fbfdfb;
+    --weight-line: #d6e7e2;
+    --weight-shadow: 0 14px 32px rgba(20, 78, 75, .1);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    background: #f1f4f1;
+    margin: 0;
+    background: linear-gradient(135deg, #f2f8f6 0%, #fff9f4 100%);
     color: var(--weight-ink);
+    font-family: Segoe UI, Tahoma, sans-serif;
 }
 
 .weightPage {
@@ -21,19 +28,46 @@ body {
 }
 
 .weightHero {
+    position: relative;
+    overflow: hidden;
     margin-bottom: 22px;
-    padding: 28px clamp(18px, 4vw, 48px);
-    background: linear-gradient(115deg, #e7f0eb, var(--weight-paper) 70%);
+    padding: 30px clamp(18px, 4vw, 48px);
+    background: linear-gradient(115deg, #dff3ee 0%, #fffdf8 64%, #fff0e8 100%);
     border: 1px solid var(--weight-line);
-    border-top: 4px solid var(--weight-gold);
+    border-top: 4px solid var(--weight-coral);
+    border-radius: 3px;
     box-shadow: var(--weight-shadow);
+}
+
+.weightHero::after {
+    position: absolute;
+    right: 6%;
+    bottom: -62px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(15, 136, 121, .18);
+    border-radius: 50%;
+    content: "";
+}
+
+.weightEyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+    color: var(--weight-coral);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
 
 .weightHero h1 {
     margin: 0 0 8px;
     color: var(--weight-ink);
     font-size: clamp(1.5rem, 3vw, 2.35rem);
-    letter-spacing: .06em;
+    letter-spacing: .04em;
+    font-weight: 800;
 }
 
 .weightHero p {
@@ -54,7 +88,7 @@ body {
     padding: 22px;
     background: var(--weight-paper);
     border: 1px solid var(--weight-line);
-    border-radius: 6px;
+    border-radius: 3px;
     box-shadow: var(--weight-shadow);
 }
 
@@ -64,6 +98,12 @@ body {
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase;
+}
+
+.weightPanel h2 i {
+    margin-right: 7px;
+    color: var(--weight-coral);
+    font-size: .9em;
 }
 
 .weightForm {
@@ -86,8 +126,8 @@ body {
     min-height: 44px;
     margin-top: 6px;
     padding: 0 12px;
-    border: 1px solid #b9cbc4;
-    border-radius: 4px;
+    border: 1px solid #c5ddd7;
+    border-radius: 3px;
     background: #fff;
     color: var(--weight-ink);
     font: inherit;
@@ -102,7 +142,7 @@ body {
 .weightField input:focus,
 .weightField textarea:focus {
     border-color: var(--weight-green);
-    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
     outline: none;
 }
 
@@ -117,12 +157,18 @@ body {
     min-height: 42px;
     padding: 0 15px;
     border: 1px solid var(--weight-green);
-    border-radius: 4px;
+    border-radius: 3px;
     background: var(--weight-green);
     color: #fff;
     cursor: pointer;
     font: inherit;
     font-weight: 600;
+}
+
+.weightActions button:hover,
+.periodButton:hover {
+    box-shadow: 0 8px 16px rgba(15, 136, 121, .2);
+    transform: translateY(-1px);
 }
 
 .weightActions .secondaryButton,
@@ -174,8 +220,10 @@ body {
 .statCard {
     padding: 14px;
     border: 1px solid var(--weight-line);
-    border-top: 3px solid var(--weight-gold);
+    border-top: 3px solid var(--weight-coral);
+    border-radius: 3px;
     background: #fff;
+    box-shadow: 0 4px 12px rgba(20, 78, 75, .05);
 }
 
 .statCard span {
@@ -197,6 +245,7 @@ body {
     height: 300px;
     padding: 10px;
     border: 1px solid var(--weight-line);
+    border-radius: 3px;
     background: #fff;
 }
 
@@ -243,15 +292,16 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 18px 0 0;
-    background: linear-gradient(150deg, #f5f8f5, #e7eee9);
+    background: linear-gradient(150deg, #eff9f5, #e3f1eb);
     border: 1px solid var(--weight-line);
+    border-radius: 3px;
 }
 
 .goalMapTrack {
     position: relative;
     min-width: 988px;
     height: 254px;
-    background: radial-gradient(circle at 18% 25%, rgba(255, 255, 255, .75), transparent 22%), linear-gradient(150deg, #f5f8f5, #dce9e1);
+    background: radial-gradient(circle at 18% 25%, rgba(255, 255, 255, .75), transparent 22%), linear-gradient(150deg, #f1fbf6, #d7eee4);
 }
 
 .goalMapPath {
@@ -273,7 +323,7 @@ body {
 }
 
 .goalMapProgressPath {
-    stroke: var(--weight-green);
+    stroke: var(--weight-coral);
     stroke-width: 2.2;
     stroke-linecap: round;
     transition: stroke-dasharray 300ms ease;
@@ -403,12 +453,12 @@ body {
 }
 
 .goalFlag.achieved .goalFlagPole {
-    background: var(--weight-green);
+    background: var(--weight-coral);
 }
 
 .goalFlag.achieved .goalFlagLabel {
-    border-color: var(--weight-green);
-    box-shadow: 0 0 0 2px rgba(31, 107, 91, .12);
+    border-color: var(--weight-coral);
+    box-shadow: 0 0 0 2px rgba(239, 118, 95, .14);
 }
 
 .goalBatchLegend {
@@ -478,6 +528,7 @@ body {
     align-items: center;
     padding: 13px;
     border: 1px solid var(--weight-line);
+    border-radius: 3px;
     background: #fff;
 }
 
@@ -502,7 +553,7 @@ body {
     width: 32px;
     height: 32px;
     border: 1px solid var(--weight-line);
-    border-radius: 4px;
+    border-radius: 2px;
     background: #f8fbf9;
     color: var(--weight-green);
     cursor: pointer;
@@ -515,6 +566,7 @@ body {
 .photoCard {
     overflow: hidden;
     border: 1px solid var(--weight-line);
+    border-radius: 3px;
     background: #fff;
 }
 
@@ -557,9 +609,10 @@ body {
 .weightNote {
     margin-top: 14px;
     padding: 13px 14px;
-    border-left: 3px solid var(--weight-gold);
-    background: #f4f0e5;
-    color: #725b2e;
+    border-left: 3px solid var(--weight-coral);
+    border-radius: 0 3px 3px 0;
+    background: #fff0e8;
+    color: #795548;
     font-size: .84rem;
     line-height: 1.5;
 }

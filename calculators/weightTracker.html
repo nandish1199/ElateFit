@@ -20,13 +20,14 @@
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
     <main class="weightPage">
         <section class="weightHero">
+            <span class="weightEyebrow"><i class="fa-solid fa-bolt"></i> Progress starts today</span>
             <h1>WEIGHT TRACKER</h1>
             <p>Record your daily measurements, understand your trend, and keep monthly progress photos in one private
                 browser-based journal.</p>
         </section>
         <div class="weightLayout">
             <section class="weightPanel">
-                <h2>Daily measurement</h2>
+                <h2><i class="fa-solid fa-scale-balanced"></i> Daily measurement</h2>
                 <form class="weightForm" id="weightForm">
                     <label class="weightField" for="weightValue">Weight in kg<input type="number" id="weightValue"
                             min="1" max="500" step="0.1" placeholder="65.0" required /></label>
@@ -41,7 +42,7 @@
             </section>
             <section class="weightPanel">
                 <div class="weightToolbar">
-                    <h2>Weight trend</h2>
+                    <h2><i class="fa-solid fa-chart-line"></i> Weight trend</h2>
                     <div class="periodButtons"><button type="button" class="periodButton active" data-period="7">7
                             days</button><button type="button" class="periodButton" data-period="15">15
                             days</button><button type="button" class="periodButton" data-period="30">30 days</button>
@@ -57,7 +58,7 @@
             <section class="weightPanel goalMapPanel">
                 <div class="weightToolbar">
                     <div>
-                        <h2>Goal map</h2>
+                        <h2><i class="fa-solid fa-route"></i> Goal map</h2>
                         <p class="goalMapIntro">Reach each flagged weight to unlock the next batch.</p>
                     </div>
                     <span class="goalMapDirection" id="goalMapDirection">Set a target in your profile</span>
@@ -65,11 +66,11 @@
                 <div id="goalMap" class="goalMap" aria-live="polite"></div>
             </section>
             <section class="weightPanel">
-                <h2>Weight history</h2>
+                <h2><i class="fa-solid fa-list-check"></i> Weight history</h2>
                 <div class="entryList" id="weightEntryList"></div>
             </section>
             <section class="weightPanel">
-                <h2>Add progress photo</h2>
+                <h2><i class="fa-solid fa-camera"></i> Add progress photo</h2>
                 <form class="weightForm" id="photoForm"><label class="weightField" for="progressPhoto">Body photo<input
                             type="file" id="progressPhoto" accept="image/*" required /></label><label
                         class="weightField" for="photoNote">Photo note (optional)<input type="text" id="photoNote"
@@ -82,7 +83,8 @@
             </section>
             <section class="weightPanel">
                 <div class="weightToolbar">
-                    <h2>Monthly progress photos</h2><span class="weightNote" style="margin:0">Stored locally</span>
+                    <h2><i class="fa-solid fa-images"></i> Monthly progress photos</h2><span class="weightNote"
+                        style="margin:0">Stored locally</span>
                 </div>
                 <div class="photoGrid" id="photoGrid"></div>
             </section>
