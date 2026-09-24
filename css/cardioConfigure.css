@@ -348,6 +348,152 @@ body {
     font-size: .73rem
 }
 
+.cardioCalendarPanel {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    width: min(100%, 430px);
+    padding: 16px
+}
+
+.calendarTools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px
+}
+
+.calendarTools h2 {
+    margin-bottom: 5px
+}
+
+.calendarMonth {
+    color: var(--cardio-green);
+    font-size: .92rem;
+    font-weight: 800
+}
+
+.calendarNavigation {
+    display: flex;
+    gap: 6px
+}
+
+.calendarNavigation button {
+    width: 30px;
+    min-height: 30px;
+    padding: 0;
+    border: 1px solid var(--cardio-line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--cardio-green);
+    cursor: pointer
+}
+
+.calendarNavigation button:hover {
+    background: #eef5f0
+}
+
+.calendarWeekdays,
+.cardioCalendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px
+}
+
+.calendarWeekdays {
+    margin-bottom: 8px;
+    color: var(--cardio-muted);
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase
+}
+
+.cardioCalendarDay {
+    position: relative;
+    min-height: 40px;
+    padding: 6px;
+    border: 1px solid var(--cardio-line);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--cardio-ink)
+}
+
+.cardioCalendarDayEmpty {
+    border-color: transparent;
+    background: transparent
+}
+
+.cardioCalendarDate {
+    display: block;
+    font-size: .8rem;
+    font-weight: 700
+}
+
+.cardioCalendarDayToday {
+    border-color: var(--cardio-gold);
+    box-shadow: inset 0 0 0 1px rgba(181, 139, 69, .2)
+}
+
+.cardioCalendarDayComplete {
+    border-color: #a9c8ba;
+    background: #e7f1ec;
+    color: var(--cardio-dark)
+}
+
+.cardioCalendarIcon {
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+    color: var(--cardio-gold);
+    font-size: .85rem
+}
+
+.calendarLegend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    color: var(--cardio-muted);
+    font-size: .78rem
+}
+
+.calendarLegend i {
+    color: var(--cardio-gold)
+}
+
+.calendarFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px
+}
+
+.calendarFooter .calendarLegend {
+    margin-top: 0
+}
+
+.resetCalendarButton {
+    min-height: 32px;
+    padding: 0 10px;
+    border: 1px solid #d8c2ba;
+    border-radius: 4px;
+    background: #fffaf8;
+    color: #9a6254;
+    cursor: pointer;
+    font: inherit;
+    font-size: .74rem;
+    font-weight: 700
+}
+
+.resetCalendarButton:hover {
+    background: #f6e9e4;
+    border-color: #c9a99f
+}
+
 .hidden {
     display: none !important
 }
@@ -355,6 +501,41 @@ body {
 @media(max-width:900px) {
     .cardioLayout {
         grid-template-columns: 1fr
+    }
+
+    .cardioCalendarPanel {
+        grid-column: auto;
+        grid-row: auto;
+        width: 100%;
+        padding: 16px
+    }
+}
+
+@media(max-width:600px) {
+    .calendarTools {
+        align-items: flex-start;
+        flex-direction: column
+    }
+
+    .calendarWeekdays,
+    .cardioCalendarGrid {
+        gap: 4px
+    }
+
+    .cardioCalendarDay {
+        min-height: 52px;
+        padding: 6px
+    }
+
+    .calendarFooter {
+        align-items: flex-start;
+        flex-direction: column
+    }
+
+    .cardioCalendarIcon {
+        right: 6px;
+        bottom: 6px;
+        font-size: .72rem
     }
 }
 

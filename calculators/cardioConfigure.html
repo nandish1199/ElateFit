@@ -70,6 +70,32 @@
                 <h2 style="margin-top:24px">Saved sessions</h2>
                 <div class="savedPlanList" id="savedPlanList"></div>
             </section>
+            <section class="cardioPanel cardioCalendarPanel" aria-labelledby="cardioCalendarHeading">
+                <div class="calendarTools">
+                    <div>
+                        <h2 id="cardioCalendarHeading">Cardio calendar</h2>
+                        <span class="calendarMonth" id="cardioCalendarMonth"></span>
+                    </div>
+                    <div class="calendarNavigation" aria-label="Change cardio calendar month">
+                        <button type="button" id="previousCardioMonth" aria-label="Previous month"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" id="nextCardioMonth" aria-label="Next month"><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendarWeekdays" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="cardioCalendarGrid" id="cardioCalendarGrid" role="grid"
+                    aria-label="Monthly cardio calendar"></div>
+                <div class="calendarFooter">
+                    <div class="calendarLegend"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Completed
+                        cardio
+                    </div>
+                    <button type="button" class="resetCalendarButton" id="resetCardioCalendar"><i
+                            class="fa-solid fa-rotate-left"></i> Reset calendar data</button>
+                </div>
+            </section>
         </div>
     </main><iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
     <script src="https://code.jquery.com/jquery-3.6.1.js"

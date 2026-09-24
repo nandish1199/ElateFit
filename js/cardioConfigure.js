@@ -2,12 +2,18 @@ const CARDIO_DB = "elateFitCardioDB";
 const CARDIO_VERSION = 1;
 const PLAN_STORE = "plans";
 const PLAN_KEY = "current";
+const CARDIO_DAYS_KEY = "elateFitCardioCompletedDays";
 let db;
 let plan = [];
 let editingId = null;
 let timer = null;
 let timerState = null;
 let savedPlans = [];
+let cardioCalendarMonth = new Date(
+  new Date().getFullYear(),
+  new Date().getMonth(),
+  1,
+);
 const uid = () =>
   crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
 function openDb() {
@@ -55,6 +61,52 @@ function setStatus(text, error = true) {
   const el = document.getElementById("cardioStatus");
   el.textContent = text;
   el.style.color = error ? "#a45e4c" : "#1f6b5b";
+}
+function cardioDayKey(value) {
+  const date = new Date(value);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+function getCompletedCardioDays() {
+  try {
+    const days = JSON.parse(localStorage.getItem(CARDIO_DAYS_KEY) || "[]");
+    return new Set(Array.isArray(days) ? days : []);
+  } catch {
+    return new Set();
+  }
+}
+function markCardioDayComplete() {
+  const days = getCompletedCardioDays();
+  days.add(cardioDayKey(new Date()));
+  localStorage.setItem(CARDIO_DAYS_KEY, JSON.stringify([...days]));
+}
+function renderCardioCalendar() {
+  const monthLabel = document.getElementById("cardioCalendarMonth");
+  const grid = document.getElementById("cardioCalendarGrid");
+  if (!monthLabel || !grid) return;
+  const year = cardioCalendarMonth.getFullYear();
+  const month = cardioCalendarMonth.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const todayKey = cardioDayKey(new Date());
+  const completedDays = getCompletedCardioDays();
+  monthLabel.textContent = new Intl.DateTimeFormat(undefined, {
+    month: "long",
+    year: "numeric",
+  }).format(cardioCalendarMonth);
+  grid.innerHTML = [
+    ...Array.from(
+      { length: firstDay },
+      () =>
+        '<div class="cardioCalendarDay cardioCalendarDayEmpty" aria-hidden="true"></div>',
+    ),
+    ...Array.from({ length: daysInMonth }, (_, index) => {
+      const date = new Date(year, month, index + 1);
+      const key = cardioDayKey(date);
+      const complete = completedDays.has(key);
+      const today = key === todayKey;
+      return `<div class="cardioCalendarDay${complete ? " cardioCalendarDayComplete" : ""}${today ? " cardioCalendarDayToday" : ""}" role="gridcell" aria-label="${date.toLocaleDateString()}${complete ? ", cardio completed" : ""}"><span class="cardioCalendarDate">${index + 1}</span>${complete ? '<i class="fa-solid fa-heart-pulse cardioCalendarIcon" aria-hidden="true"></i>' : ""}</div>`;
+    }),
+  ].join("");
 }
 function formData() {
   const reps = Math.max(
@@ -263,10 +315,14 @@ function renderTimer() {
         : "Final block";
   document.getElementById("timerNext").textContent = next;
 }
-function finishSession() {
+function finishSession(completed = true) {
   clearInterval(timer);
   timer = null;
   timerState = null;
+  if (completed) {
+    markCardioDayComplete();
+    renderCardioCalendar();
+  }
   speechSynthesis?.cancel();
   document.getElementById("timerPhase").textContent = "Complete";
   document.getElementById("timerName").textContent = "Session finished";
@@ -290,6 +346,7 @@ function pauseSession() {
 function renderAll() {
   renderPlan();
   renderSaved();
+  renderCardioCalendar();
 }
 function bindTransitionRest() {
   document
@@ -411,9 +468,46 @@ document.addEventListener("DOMContentLoaded", async () => {
   document
     .getElementById("startSession")
     .addEventListener("click", beginSession);
+  document
+    .getElementById("previousCardioMonth")
+    .addEventListener("click", () => {
+      cardioCalendarMonth = new Date(
+        cardioCalendarMonth.getFullYear(),
+        cardioCalendarMonth.getMonth() - 1,
+        1,
+      );
+      renderCardioCalendar();
+    });
+  document
+    .getElementById("resetCardioCalendar")
+    .addEventListener("click", () => {
+      if (
+        !confirm(
+          "Reset all completed cardio days from the calendar? Your current and saved cardio plans will not be changed.",
+        )
+      )
+        return;
+      if (
+        !confirm(
+          "This permanently clears all calendar cardio history. Continue?",
+        )
+      )
+        return;
+      localStorage.removeItem(CARDIO_DAYS_KEY);
+      renderCardioCalendar();
+      setStatus("Cardio calendar data reset.", false);
+    });
+  document.getElementById("nextCardioMonth").addEventListener("click", () => {
+    cardioCalendarMonth = new Date(
+      cardioCalendarMonth.getFullYear(),
+      cardioCalendarMonth.getMonth() + 1,
+      1,
+    );
+    renderCardioCalendar();
+  });
   document.getElementById("pauseTimer").addEventListener("click", pauseSession);
   document.getElementById("resetTimer").addEventListener("click", () => {
-    finishSession();
+    finishSession(false);
     document.getElementById("timerPanel").classList.add("hidden");
   });
   document.getElementById("skipTimer").addEventListener("click", () => {
