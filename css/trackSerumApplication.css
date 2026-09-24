@@ -27,7 +27,7 @@
     background: linear-gradient(115deg, #f7e5eb, #fffaf9 62%, #f1e8f1);
     border: 1px solid var(--serum-line);
     border-top: 4px solid var(--serum-green);
-    border-radius: 14px;
+    border-radius: 3px;
     box-shadow: var(--serum-shadow);
 }
 
@@ -79,7 +79,7 @@
     padding: 22px;
     background: var(--serum-paper);
     border: 1px solid var(--serum-line);
-    border-radius: 12px;
+    border-radius: 3px;
     box-shadow: var(--serum-shadow);
 }
 
@@ -125,7 +125,7 @@
     margin-top: 6px;
     padding: 0 12px;
     border: 1px solid #decbd4;
-    border-radius: 8px;
+    border-radius: 3px;
     background: #fffefe;
     color: var(--serum-ink);
     font: inherit;
@@ -172,7 +172,7 @@
     justify-content: center;
     min-height: 38px;
     border: 1px solid #e0cfd7;
-    border-radius: 8px;
+    border-radius: 3px;
     background: #fff;
     color: var(--serum-muted);
     font-size: .78rem;
@@ -199,7 +199,7 @@
     min-height: 42px;
     padding: 0 16px;
     border: 1px solid var(--serum-green);
-    border-radius: 8px;
+    border-radius: 3px;
     background: var(--serum-green);
     color: #fff;
     cursor: pointer;
@@ -263,7 +263,7 @@
 .checklistItem {
     padding: 14px;
     border: 1px solid var(--serum-line);
-    border-radius: 10px;
+    border-radius: 3px;
     background: linear-gradient(145deg, #fff, #fff8fb);
     box-shadow: 0 4px 14px rgba(113, 61, 88, .05);
 }
@@ -314,7 +314,7 @@
     min-height: 34px;
     padding: 0 12px;
     border: 1px solid #e0cfd7;
-    border-radius: 7px;
+    border-radius: 2px;
     background: #fff;
     color: var(--serum-dark);
     cursor: pointer;
@@ -370,7 +370,7 @@
 .serumStatCard {
     padding: 14px;
     border: 1px solid var(--serum-line);
-    border-radius: 10px;
+    border-radius: 3px;
     background: #fff;
     box-shadow: 0 4px 14px rgba(113, 61, 88, .04);
 }
@@ -394,7 +394,7 @@
     height: 300px;
     padding: 10px;
     border: 1px solid var(--serum-line);
-    border-radius: 9px;
+    border-radius: 3px;
     background: #fff;
 }
 
@@ -407,7 +407,7 @@
     margin-top: 16px;
     padding: 13px 14px;
     border-left: 3px solid var(--serum-gold);
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 3px 3px 0;
     background: #fff2e9;
     color: #79584e;
     font-size: .86rem;
