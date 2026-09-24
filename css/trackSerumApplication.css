@@ -1,15 +1,18 @@
 :root {
-    --serum-ink: #24332f;
-    --serum-muted: #687873;
-    --serum-green: #1f6b5b;
-    --serum-dark: #174e44;
-    --serum-gold: #b58b45;
-    --serum-paper: #fbfaf6;
-    --serum-line: #dfe5df;
-    --serum-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+    --serum-ink: #443642;
+    --serum-muted: #806f7b;
+    --serum-green: #a15d78;
+    --serum-dark: #713d58;
+    --serum-gold: #c49368;
+    --serum-paper: #fffaf9;
+    --serum-line: #eddde4;
+    --serum-blush: #f9e9ef;
+    --serum-sage: #e6f0eb;
+    --serum-shadow: 0 14px 34px rgba(113, 61, 88, .1);
 }
 
 .serumPage {
+    position: relative;
     max-width: 1240px;
     margin: 70px auto 0;
     padding: 30px 24px 60px;
@@ -17,19 +20,46 @@
 }
 
 .serumHero {
+    position: relative;
+    overflow: hidden;
     margin-bottom: 22px;
     padding: 28px clamp(18px, 4vw, 48px);
-    background: linear-gradient(115deg, #e7f0eb, var(--serum-paper) 70%);
+    background: linear-gradient(115deg, #f7e5eb, #fffaf9 62%, #f1e8f1);
     border: 1px solid var(--serum-line);
-    border-top: 4px solid var(--serum-gold);
+    border-top: 4px solid var(--serum-green);
+    border-radius: 14px;
     box-shadow: var(--serum-shadow);
+}
+
+.serumHero::after {
+    position: absolute;
+    right: 5%;
+    bottom: -45px;
+    width: 170px;
+    height: 170px;
+    border: 1px solid rgba(161, 93, 120, .16);
+    border-radius: 50%;
+    content: "";
+}
+
+.serumEyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+    color: var(--serum-green);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
 
 .serumHero h1 {
     margin: 0 0 8px;
     color: var(--serum-ink);
     font-size: clamp(1.5rem, 3vw, 2.35rem);
-    letter-spacing: .06em;
+    letter-spacing: .04em;
+    font-weight: 750;
 }
 
 .serumHero p {
@@ -49,7 +79,7 @@
     padding: 22px;
     background: var(--serum-paper);
     border: 1px solid var(--serum-line);
-    border-radius: 6px;
+    border-radius: 12px;
     box-shadow: var(--serum-shadow);
 }
 
@@ -59,6 +89,12 @@
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase;
+}
+
+.serumPanel h2 i {
+    margin-right: 7px;
+    color: var(--serum-green);
+    font-size: .9em;
 }
 
 .serumForm {
@@ -88,9 +124,9 @@
     min-height: 44px;
     margin-top: 6px;
     padding: 0 12px;
-    border: 1px solid #b9cbc4;
-    border-radius: 4px;
-    background: #fff;
+    border: 1px solid #decbd4;
+    border-radius: 8px;
+    background: #fffefe;
     color: var(--serum-ink);
     font: inherit;
 }
@@ -105,7 +141,7 @@
 .serumField select:focus,
 .serumField textarea:focus {
     border-color: var(--serum-green);
-    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    box-shadow: 0 0 0 3px rgba(161, 93, 120, .14);
     outline: none;
 }
 
@@ -135,8 +171,8 @@
     align-items: center;
     justify-content: center;
     min-height: 38px;
-    border: 1px solid #c8d4cf;
-    border-radius: 4px;
+    border: 1px solid #e0cfd7;
+    border-radius: 8px;
     background: #fff;
     color: var(--serum-muted);
     font-size: .78rem;
@@ -147,7 +183,7 @@
 
 .serumDay input:checked+span {
     border-color: var(--serum-green);
-    background: #eef5f0;
+    background: var(--serum-blush);
     color: var(--serum-dark);
 }
 
@@ -163,7 +199,7 @@
     min-height: 42px;
     padding: 0 16px;
     border: 1px solid var(--serum-green);
-    border-radius: 4px;
+    border-radius: 8px;
     background: var(--serum-green);
     color: #fff;
     cursor: pointer;
@@ -174,13 +210,13 @@
 
 .serumActions button:hover,
 .serumFilterButton:hover {
-    box-shadow: 0 8px 16px rgba(31, 107, 91, .18);
+    box-shadow: 0 8px 16px rgba(161, 93, 120, .2);
     transform: translateY(-2px);
 }
 
 .serumActions .secondaryButton,
 .serumFilterButton {
-    background: transparent;
+    background: #fff;
     color: var(--serum-dark);
     border-color: var(--serum-line);
 }
@@ -227,8 +263,9 @@
 .checklistItem {
     padding: 14px;
     border: 1px solid var(--serum-line);
-    border-radius: 6px;
-    background: #fff;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #fff, #fff8fb);
+    box-shadow: 0 4px 14px rgba(113, 61, 88, .05);
 }
 
 .serumItemHeader,
@@ -258,7 +295,7 @@
     flex: 0 0 auto;
     padding: 6px 10px;
     border-radius: 999px;
-    background: #eef5f0;
+    background: var(--serum-blush);
     color: var(--serum-green);
     font-size: .72rem;
     font-weight: 700;
@@ -276,9 +313,9 @@
 .serumItemActions button {
     min-height: 34px;
     padding: 0 12px;
-    border: 1px solid #c8d4cf;
-    border-radius: 4px;
-    background: #f8fbf9;
+    border: 1px solid #e0cfd7;
+    border-radius: 7px;
+    background: #fff;
     color: var(--serum-dark);
     cursor: pointer;
     font: inherit;
@@ -312,8 +349,8 @@
 }
 
 .checklistItem.is-applied {
-    border-color: #bcd6c6;
-    background: #f4f9f5;
+    border-color: #c9ded4;
+    background: var(--serum-sage);
 }
 
 .checklistItem small {
@@ -333,8 +370,9 @@
 .serumStatCard {
     padding: 14px;
     border: 1px solid var(--serum-line);
-    border-radius: 6px;
+    border-radius: 10px;
     background: #fff;
+    box-shadow: 0 4px 14px rgba(113, 61, 88, .04);
 }
 
 .serumStatCard span {
@@ -356,6 +394,7 @@
     height: 300px;
     padding: 10px;
     border: 1px solid var(--serum-line);
+    border-radius: 9px;
     background: #fff;
 }
 
@@ -368,8 +407,9 @@
     margin-top: 16px;
     padding: 13px 14px;
     border-left: 3px solid var(--serum-gold);
-    background: #f4f0e5;
-    color: #725b2e;
+    border-radius: 0 8px 8px 0;
+    background: #fff2e9;
+    color: #79584e;
     font-size: .86rem;
     line-height: 1.55;
 }
