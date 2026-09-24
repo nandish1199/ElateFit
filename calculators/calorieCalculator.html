@@ -229,15 +229,15 @@
         .targetGrid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
         .nutrientGrid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
         .summaryCard {
@@ -263,7 +263,8 @@
         }
 
         .nutrientCard {
-            padding: 14px;
+            min-width: 0;
+            padding: 10px;
             border: 1px solid var(--nutrition-line);
             border-top: 3px solid var(--nutrition-green);
             background: #ffffff;
@@ -280,16 +281,19 @@
 
         .nutrientCard strong {
             display: block;
-            margin-top: 6px;
+            margin-top: 4px;
             color: var(--nutrition-dark);
             font-size: 1.15rem;
         }
 
         .micronutrientPanel {
             grid-column: 1 / -1;
+            background: linear-gradient(135deg, #f7faf7, var(--nutrition-paper));
+            border-top: 3px solid var(--nutrition-green);
         }
 
         .micronutrientPanel p {
+            max-width: 760px;
             margin: -8px 0 16px;
             color: var(--nutrition-muted);
             font-size: 0.84rem;
@@ -303,6 +307,7 @@
             max-height: 620px;
             overflow-y: auto;
             padding: 2px 8px 8px 2px;
+            border-top: 1px solid rgba(216, 225, 220, .72);
             scrollbar-color: var(--nutrition-green) #e5ece7;
             scrollbar-width: thin;
         }
@@ -321,11 +326,34 @@
         }
 
         .micronutrientCard {
+            position: relative;
+            overflow: hidden;
             min-width: 0;
             padding: 12px;
             border: 1px solid var(--nutrition-line);
-            border-top: 3px solid var(--nutrition-gold);
-            background: #ffffff;
+            border-top: 3px solid #a9c2b5;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #ffffff, #f8fbf9);
+            box-shadow: 0 3px 10px rgba(36, 67, 56, .045);
+            transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        }
+
+        .micronutrientCard::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 0 0 0 100%;
+            background: rgba(181, 139, 69, .08);
+            content: "";
+            pointer-events: none;
+        }
+
+        .micronutrientCard:hover {
+            border-color: #b9cec3;
+            box-shadow: 0 7px 16px rgba(36, 67, 56, .09);
+            transform: translateY(-1px);
         }
 
         .micronutrientHeader {
@@ -347,6 +375,7 @@
             margin-top: 6px;
             color: var(--nutrition-dark);
             font-size: 1rem;
+            letter-spacing: .01em;
         }
 
         .micronutrientHeader strong {
@@ -370,7 +399,7 @@
             display: block;
             height: 100%;
             border-radius: inherit;
-            background: var(--nutrition-green);
+            background: linear-gradient(90deg, #7fa793, var(--nutrition-green));
             transition: width 220ms ease;
         }
 
@@ -386,6 +415,7 @@
             margin-bottom: 5px;
             color: var(--nutrition-dark);
             font-size: inherit;
+            letter-spacing: .02em;
         }
 
         .micronutrientGuidance ul {
@@ -402,7 +432,8 @@
 
         .targetCard {
             position: relative;
-            padding: 16px;
+            min-width: 0;
+            padding: 11px;
             border: 1px solid var(--nutrition-line);
             border-top: 3px solid var(--nutrition-green);
             background: #ffffff;
@@ -418,14 +449,14 @@
 
         .targetCard strong {
             display: block;
-            margin-top: 7px;
+            margin-top: 4px;
             color: var(--nutrition-dark);
             font-size: 1.45rem;
         }
 
         .targetCard small {
             display: block;
-            margin-top: 6px;
+            margin-top: 4px;
             color: var(--nutrition-muted);
             font-size: 0.84rem;
             line-height: 1.45;
@@ -435,7 +466,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-top: 12px;
+            margin-top: 8px;
             padding: 5px 10px;
             border-radius: 999px;
             background: #eef5f0;
@@ -546,6 +577,18 @@
             font-size: 0.88rem;
         }
 
+        .entryFood {
+            min-width: 0;
+        }
+
+        .entryFood strong {
+            display: block;
+            font-size: inherit;
+            font-weight: 700;
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
         .entryRow small {
             display: block;
             margin-top: 3px;
@@ -597,11 +640,14 @@
                 padding: 22px 14px 42px;
             }
 
-            .targetGrid,
-            .nutrientGrid,
             .trendGrid,
             .micronutrientList {
                 grid-template-columns: 1fr;
+            }
+
+            .targetGrid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
             }
 
             .summaryGrid {
@@ -628,26 +674,31 @@
             }
 
             .nutrientGrid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 6px;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 4px;
             }
 
             .nutrientCard {
                 min-width: 0;
-                padding: 10px 8px;
+                padding: 8px 4px;
             }
 
             .nutrientCard span {
                 font-size: .62rem;
-                letter-spacing: .03em;
+                letter-spacing: 0;
                 line-height: 1.2;
                 overflow-wrap: anywhere;
+                word-break: break-word;
             }
 
             .nutrientCard strong {
-                margin-top: 5px;
+                margin-top: 4px;
                 font-size: .95rem;
                 white-space: nowrap;
+            }
+
+            .targetCard {
+                padding: 9px 7px;
             }
 
             .micronutrientList {
