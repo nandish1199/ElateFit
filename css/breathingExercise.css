@@ -31,9 +31,11 @@
 .breathingPanel { padding: 26px; border: 1px solid rgba(207, 227, 229, .95); border-radius: 10px; background: rgba(249, 253, 252, .9); box-shadow: var(--breath-shadow); }
 .breathingPanelHeading { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 20px; }
 .breathingPanelHeading h2 { color: #244847; }
+.breathingPanelHeading h2 i { margin-right: 7px; color: var(--breath-coral); font-size: .9em; }
 .breathingTechniqueRow { position: relative; padding: 17px 42px 17px 17px; border: 1px solid var(--breath-line); border-radius: 8px; background: rgba(255, 255, 255, .78); }
 .breathingTechniqueRow + .breathingTechniqueRow { margin-top: 12px; }
 .breathingPage label { display: block; margin-bottom: 7px; color: var(--breath-muted); font-size: .8rem; font-weight: 800; }
+.breathingPage label i { margin-right: 5px; color: var(--breath-coral); }
 .breathingPage select, .breathingPage input, .breathingPage button { min-height: 43px; border: 1px solid #b9cec8; border-radius: 4px; font: inherit; }
 .breathingPage select, .breathingPage input { width: 100%; padding: 0 11px; background: #fffefa; color: var(--breath-ink); transition: border-color 160ms ease, box-shadow 160ms ease; }
 .breathingPage select:focus, .breathingPage input:focus { border-color: var(--breath-teal); box-shadow: 0 0 0 3px rgba(22, 125, 120, .13); outline: none; }
@@ -55,6 +57,7 @@
 .breathingPractice { min-height: 550px; display: grid; place-items: center; text-align: center; overflow: hidden; background: linear-gradient(145deg, rgba(255, 253, 248, .92), rgba(232, 245, 239, .92)); }
 .breathingPracticeInner { width: 100%; }
 .breathingSessionLabel { min-height: 22px; color: var(--breath-teal); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.breathingSessionLabel i { margin-right: 5px; color: var(--breath-coral); }
 .breathingTechniqueName { margin: 8px 0 3px !important; font-size: clamp(1.4rem, 3vw, 2rem) !important; }
 .breathingPhase { min-height: 33px; margin: 0; color: var(--breath-muted); font-size: 1.1rem; }
 .breathingOrb { width: min(270px, 65vw); aspect-ratio: 1; display: grid; place-items: center; margin: 30px auto 26px; border: 12px solid rgba(75, 177, 184, .2); border-radius: 50%; background: radial-gradient(circle at 34% 27%, #ffffff 0%, #e9fbfa 44%, #c9edf0 78%, #b1dce3 100%); box-shadow: 0 0 0 12px rgba(135, 218, 217, .1), 0 0 0 20px rgba(37, 138, 145, .045), 0 18px 36px rgba(65, 127, 145, .1), inset 0 0 34px rgba(80, 185, 190, .08); transform: scale(.78); transition: transform 1s linear, border-color .3s ease, background .3s ease, box-shadow .3s ease; }

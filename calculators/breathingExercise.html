@@ -25,7 +25,7 @@
         <div class="breathingShell">
             <section class="breathingHero">
                 <div>
-                    <p class="breathingEyebrow">PERSONAL BREATHING PRACTICE</p>
+                    <p class="breathingEyebrow"><i class="fa-solid fa-wind"></i> PERSONAL BREATHING PRACTICE</p>
                     <h1>BE CALMER WITH BREATH</h1>
                     <p>Choose one or more techniques, give each one a short practice window, and let the guide carry the
                         count.</p>
@@ -36,16 +36,18 @@
             <div class="breathingLayout">
                 <section class="breathingPanel" aria-labelledby="setupHeading">
                     <div class="breathingPanelHeading">
-                        <h2 id="setupHeading">Session plan</h2>
+                        <h2 id="setupHeading"><i class="fa-solid fa-list-check"></i> Session plan</h2>
                         <span id="techniqueCount" class="breathingHelper">1 technique</span>
                     </div>
                     <div id="techniqueList"></div>
-                    <button type="button" class="breathingSecondary breathingFull" id="addTechniqueButton">+ Add another
-                        technique</button>
+                    <button type="button" class="breathingSecondary breathingFull" id="addTechniqueButton"><i
+                            class="fa-solid fa-plus"></i> Add another technique</button>
                     <div class="breathingOptions">
-                        <div><label for="gapMinutes">Gap between techniques (minutes)</label><input id="gapMinutes"
-                                type="number" min="0" max="30" step="1" value="1" /></div>
-                        <div><label for="voiceToggle">Audio guidance</label><select id="voiceToggle">
+                        <div><label for="gapMinutes"><i class="fa-solid fa-clock"></i> Gap between techniques
+                                (minutes)</label><input id="gapMinutes" type="number" min="0" max="30" step="1"
+                                value="1" /></div>
+                        <div><label for="voiceToggle"><i class="fa-solid fa-volume-high"></i> Audio
+                                guidance</label><select id="voiceToggle">
                                 <option value="voice-count">Voice, chimes, and count</option>
                                 <option value="on">Voice and chimes</option>
                                 <option value="off">Chimes only</option>
@@ -53,14 +55,17 @@
                     </div>
                     <p class="breathingHelper">Each technique can be repeated up to 10 times. Gap time is a quiet
                         transition.</p>
-                    <div class="breathingActions"><button type="button" id="startButton">Start session</button><button
-                            type="button" class="breathingSecondary" id="resetButton">Reset</button></div>
+                    <div class="breathingActions"><button type="button" id="startButton"><i
+                                class="fa-solid fa-play"></i> Start session</button><button type="button"
+                            class="breathingSecondary" id="resetButton"><i class="fa-solid fa-rotate-left"></i>
+                            Reset</button></div>
                     <div class="breathingSummary" id="planSummary">Your plan will appear here.</div>
                 </section>
 
                 <section class="breathingPanel breathingPractice" aria-live="polite">
                     <div class="breathingPracticeInner">
-                        <div class="breathingSessionLabel" id="sessionLabel">Ready when you are</div>
+                        <div class="breathingSessionLabel" id="sessionLabel"><i class="fa-solid fa-wind"></i> Ready when
+                            you are</div>
                         <h2 class="breathingTechniqueName" id="techniqueName">Choose your techniques</h2>
                         <p class="breathingPhase" id="phaseText">Your guided session will appear here.</p>
                         <div class="breathingOrb" id="breathOrb"><span class="breathingCount" id="countText">--</span>
