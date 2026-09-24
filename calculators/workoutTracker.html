@@ -12,18 +12,18 @@
     <title>Workout Tracker, Elatefit</title>
     <style>
         :root {
-            --work-ink: #24332f;
-            --work-muted: #687873;
-            --work-green: #1f6b5b;
-            --work-dark: #174e44;
-            --work-gold: #b58b45;
-            --work-paper: #fbfaf6;
-            --work-line: #dfe5df;
-            --work-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+            --work-ink: #263934;
+            --work-muted: #65756f;
+            --work-green: #356f61;
+            --work-dark: #234d43;
+            --work-gold: #a9824c;
+            --work-paper: #fcfbf8;
+            --work-line: #d8e1dc;
+            --work-shadow: 0 12px 30px rgba(40, 67, 58, .08);
         }
 
         body {
-            background: #f1f4f1;
+            background: #f0f3f1;
             color: var(--work-ink);
         }
 
@@ -36,9 +36,9 @@
         .workoutHero {
             margin-bottom: 22px;
             padding: 28px clamp(18px, 4vw, 48px);
-            background: linear-gradient(115deg, #e7f0eb, var(--work-paper) 70%);
+            background: linear-gradient(115deg, #e4eeea, var(--work-paper) 72%);
             border: 1px solid var(--work-line);
-            border-top: 4px solid var(--work-gold);
+            border-top: 4px solid var(--work-green);
             box-shadow: var(--work-shadow);
         }
 
@@ -55,6 +55,116 @@
             line-height: 1.55;
         }
 
+        .challengePanel {
+            display: grid;
+            grid-template-columns: minmax(220px, .8fr) minmax(0, 1.4fr);
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px 22px;
+            border: 1px solid #cbdad3;
+            border-left: 4px solid var(--work-gold);
+            background: linear-gradient(110deg, #e8f0ec, #fcfbf8 67%, #f7f1e5);
+            box-shadow: var(--work-shadow);
+        }
+
+        .challengeEyebrow {
+            margin: 0 0 5px;
+            color: var(--work-dark);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .challengePanel h2 {
+            margin: 0 0 5px;
+            color: var(--work-dark);
+            font-size: 1.25rem;
+        }
+
+        .challengePanel p {
+            margin: 0;
+            color: var(--work-muted);
+            font-size: .86rem;
+            line-height: 1.45;
+        }
+
+        .challengeStats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .challengeStat {
+            padding: 10px 12px;
+            border: 1px solid rgba(203, 218, 211, .95);
+            background: rgba(255, 255, 255, .78);
+        }
+
+        .challengeStat span {
+            display: block;
+            color: var(--work-muted);
+            font-size: .66rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .challengeStat strong {
+            display: block;
+            margin-top: 4px;
+            color: var(--work-dark);
+            font-size: 1.05rem;
+        }
+
+        .challengeProgressTrack {
+            height: 8px;
+            margin-top: 12px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #dce8e2;
+        }
+
+        .challengeProgressBar {
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #7da994, var(--work-green));
+            transition: width 240ms ease;
+        }
+
+        .challengeFooter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .challengeHelper {
+            color: var(--work-muted);
+            font-size: .76rem;
+            font-weight: 600;
+        }
+
+        .challengeAction {
+            min-height: 36px;
+            padding: 0 13px;
+            border: 1px solid var(--work-green);
+            border-radius: 4px;
+            background: var(--work-dark);
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        .challengeAction:hover {
+            background: var(--work-green);
+        }
+
         .workoutGrid {
             display: grid;
             grid-template-columns: minmax(280px, .75fr) minmax(0, 1.5fr);
@@ -66,6 +176,7 @@
             padding: 22px;
             background: var(--work-paper);
             border: 1px solid var(--work-line);
+            border-top: 3px solid var(--work-green);
             border-radius: 6px;
             box-shadow: var(--work-shadow);
         }
@@ -76,6 +187,121 @@
             font-size: 1.05rem;
             letter-spacing: .1em;
             text-transform: uppercase;
+        }
+
+        .calendarPanel {
+            grid-column: auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px;
+        }
+
+        .calendarTools {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .calendarTools h2 {
+            margin: 0;
+        }
+
+        .calendarMonth {
+            color: var(--work-green);
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .calendarNavigation {
+            display: flex;
+            gap: 6px;
+        }
+
+        .calendarNavigation button {
+            width: 30px;
+            min-height: 30px;
+            padding: 0;
+            border: 1px solid var(--work-line);
+            border-radius: 4px;
+            background: #fff;
+            color: var(--work-green);
+            cursor: pointer;
+        }
+
+        .calendarNavigation button:hover {
+            background: #eef5f0;
+        }
+
+        .calendarWeekdays,
+        .workoutCalendarGrid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        .calendarWeekdays {
+            margin-bottom: 8px;
+            color: var(--work-muted);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .calendarDay {
+            position: relative;
+            min-height: 46px;
+            padding: 6px;
+            border: 1px solid var(--work-line);
+            border-radius: 6px;
+            background: #fff;
+            color: var(--work-ink);
+        }
+
+        .calendarDayEmpty {
+            border-color: transparent;
+            background: transparent;
+        }
+
+        .calendarDate {
+            display: block;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .calendarDayToday {
+            border-color: var(--work-gold);
+            box-shadow: inset 0 0 0 1px rgba(169, 130, 76, .22);
+        }
+
+        .calendarDayWorkout {
+            background: #e7f1ec;
+            border-color: #a9c8ba;
+            color: var(--work-dark);
+        }
+
+        .calendarWorkoutIcon {
+            position: absolute;
+            right: 7px;
+            bottom: 7px;
+            color: var(--work-gold);
+            font-size: .78rem;
+        }
+
+        .calendarLegend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--work-muted);
+            font-size: .78rem;
+        }
+
+        .calendarLegend i {
+            color: var(--work-green);
         }
 
         .workoutForm {
@@ -209,6 +435,17 @@
             transform: translateY(-2px);
         }
 
+        .workoutForm #addingWorkoutButton {
+            background: var(--work-dark);
+            border-color: var(--work-dark);
+            letter-spacing: .03em;
+            text-transform: uppercase;
+        }
+
+        .workoutForm #addingWorkoutButton:hover {
+            background: var(--work-green);
+        }
+
         .statusMessage {
             min-height: 20px;
             color: #a45e4c;
@@ -225,7 +462,7 @@
         .summaryCard {
             padding: 16px;
             border: 1px solid var(--work-line);
-            border-top: 3px solid var(--work-gold);
+            border-top: 3px solid var(--work-green);
             background: #fff;
         }
 
@@ -267,8 +504,8 @@
         }
 
         .rangeButton.active {
-            background: var(--work-green);
-            border-color: var(--work-green);
+            background: var(--work-dark);
+            border-color: var(--work-dark);
             color: #fff;
         }
 
@@ -375,8 +612,8 @@
 
         .progressCard {
             padding: 14px;
-            border-left: 3px solid var(--work-green);
-            background: #eef5f0;
+            border-left: 3px solid var(--work-gold);
+            background: #f1f5f1;
         }
 
         .progressCard strong {
@@ -394,6 +631,14 @@
             .workoutGrid {
                 grid-template-columns: 1fr;
             }
+
+            .challengePanel {
+                grid-template-columns: 1fr;
+            }
+
+            .calendarPanel {
+                width: 100%;
+            }
         }
 
         @media(max-width:600px) {
@@ -404,6 +649,38 @@
             .summaryGrid,
             .progressCards {
                 grid-template-columns: 1fr;
+            }
+
+            .challengePanel {
+                gap: 14px;
+                padding: 17px;
+            }
+
+            .challengeStats {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 5px;
+            }
+
+            .challengeStat {
+                padding: 9px 7px;
+            }
+
+            .challengeStat span {
+                font-size: .58rem;
+                letter-spacing: .03em;
+            }
+
+            .challengeStat strong {
+                font-size: .9rem;
+            }
+
+            .challengeFooter {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .challengeAction {
+                width: 100%;
             }
 
             .workoutTableHeader {
@@ -427,6 +704,31 @@
                 align-items: flex-start;
                 flex-direction: column;
             }
+
+            .calendarTools {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .calendarWeekdays,
+            .workoutCalendarGrid {
+                gap: 4px;
+            }
+
+            .calendarDay {
+                min-height: 54px;
+                padding: 6px;
+            }
+
+            .calendarDate {
+                font-size: .76rem;
+            }
+
+            .calendarWorkoutIcon {
+                right: 6px;
+                bottom: 6px;
+                font-size: .7rem;
+            }
         }
     </style>
 </head>
@@ -440,8 +742,34 @@
     <main class="workoutPage">
         <section class="workoutHero">
             <h1>WORKOUT TRACKER</h1>
-            <p>Record your lifts, follow your weekly and monthly training, and see progressive overload build over time.
+            <p>Record the work, follow your training rhythm, and build measurable strength over time.
             </p>
+        </section>
+        <section class="challengePanel" aria-labelledby="challengeHeading">
+            <div>
+                <p class="challengeEyebrow">90-DAY CHALLENGE</p>
+                <h2 id="challengeHeading">A disciplined 90 days.</h2>
+                <p id="challengeMessage">Your first workout starts the 90-day clock. Make today count.
+                </p>
+            </div>
+            <div>
+                <div class="challengeStats">
+                    <div class="challengeStat"><span>Challenge</span><strong id="challengeDayValue">Ready</strong></div>
+                    <div class="challengeStat"><span>Streak</span><strong id="challengeStreakValue">0 days</strong>
+                    </div>
+                    <div class="challengeStat"><span>Workout days</span><strong id="challengeWorkoutsValue">0 /
+                            90</strong></div>
+                </div>
+                <div class="challengeProgressTrack" id="challengeProgressTrack" role="progressbar"
+                    aria-label="90-day challenge progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="challengeProgressBar" id="challengeProgressBar"></div>
+                </div>
+                <div class="challengeFooter">
+                    <span class="challengeHelper">Consistency builds capacity.</span>
+                    <button type="button" class="challengeAction" id="challengeAction" data-state="start">Start with a
+                        workout</button>
+                </div>
+            </div>
         </section>
         <div class="workoutGrid">
             <section class="workoutPanel">
@@ -483,6 +811,27 @@
                 <div id="workoutList"></div>
                 <button type="button" class="dangerButton" id="deleteAllWorkouts"><i class="fa-solid fa-trash"></i>
                     Delete all workouts</button>
+            </section>
+            <section class="workoutPanel calendarPanel" aria-labelledby="workoutCalendarHeading">
+                <div class="calendarTools">
+                    <div>
+                        <h2 id="workoutCalendarHeading">Workout Calendar</h2>
+                        <span class="calendarMonth" id="calendarMonth"></span>
+                    </div>
+                    <div class="calendarNavigation" aria-label="Change calendar month">
+                        <button type="button" id="previousCalendarMonth" aria-label="Previous month"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" id="nextCalendarMonth" aria-label="Next month"><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendarWeekdays" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="workoutCalendarGrid" id="workoutCalendarGrid" role="grid"
+                    aria-label="Monthly workout calendar"></div>
+                <div class="calendarLegend"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i> Workout completed
+                </div>
             </section>
             <section class="workoutPanel">
                 <div class="viewTools">
