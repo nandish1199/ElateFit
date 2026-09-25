@@ -1,3 +1,7 @@
+body {
+    background: #F8FAF8;
+}
+
 .indexfrontHead {
     max-width: 1180px;
     min-height: 390px;
@@ -8,8 +12,8 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background: linear-gradient(115deg, #eaf6f2 0%, #f8efe2 100%);
-    border: 1px solid #d9e6df;
+    background: #FFFFFF;
+    border: 1px solid #DCE9DF;
     border-radius: 28px;
     overflow: hidden;
     position: relative;
@@ -22,7 +26,7 @@
 }
 
 .eyebrow {
-    color: #16756d;
+    color: #16A34A;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -42,7 +46,7 @@
 }
 
 .indexfrontText {
-    color: #1d3835;
+    color: #24352A;
     font-size: clamp(2.8rem, 6vw, 5.2rem);
     font-weight: 800;
     line-height: 0.98;
@@ -50,16 +54,16 @@
 }
 
 .indexfrontText span {
-    color: #16756d;
+    color: #16A34A;
     font-size: inherit;
 }
 
 #ininFront {
-    color: #d27b45;
+    color: #16A34A;
 }
 
 #indexFrontPara {
-    color: #526461;
+    color: #64756A;
     font-size: 1.05rem;
     line-height: 1.7;
     margin: 22px 0 28px;
@@ -72,9 +76,21 @@
     gap: 12px;
 }
 
+.heroAction,
+.heroActionPrimary {
+    background: #FFFFFF;
+    border: 1px solid #16A34A;
+    color: #16A34A;
+}
+
+.heroAction:hover,
+.heroActionPrimary:hover {
+    background: #F0F8F1;
+}
+
 .quickNav a:hover,
 .sectionLink:hover {
-    box-shadow: 0 8px 18px rgba(39, 79, 70, 0.13);
+    box-shadow: 0 8px 18px rgba(22, 101, 52, 0.13);
     transform: translateY(-2px);
 }
 
@@ -88,10 +104,10 @@
 
 .quickNav a {
     align-items: center;
-    background: #fff;
-    border: 1px solid #dce5e1;
+    background: #FFFFFF;
+    border: 1px solid #16A34A;
     border-radius: 8px;
-    color: #25413d;
+    color: #166534;
     display: flex;
     gap: 12px;
     min-height: 54px;
@@ -101,7 +117,7 @@
 }
 
 .quickNav i {
-    color: #d27b45;
+    color: #16A34A;
     font-size: 1.1rem;
 }
 
@@ -122,13 +138,13 @@
 }
 
 .sectionHeading h2 {
-    color: #1d3835;
+    color: #24352A;
     font-size: 2rem;
     margin: 0;
 }
 
 .sectionLink {
-    color: #16756d;
+    color: #16A34A;
     font-weight: 700;
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
@@ -142,10 +158,10 @@
 }
 
 .indexcard {
-    background: #fff;
-    border: 1px solid #dce5e1;
+    background: #FFFFFF;
+    border: 1px solid #DCE9DF;
     border-radius: 12px;
-    box-shadow: 0 5px 18px rgba(35, 60, 55, 0.06);
+    box-shadow: 0 5px 18px rgba(22, 101, 52, 0.06);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -153,12 +169,12 @@
 }
 
 .indexcard:hover {
-    box-shadow: 0 14px 28px rgba(35, 60, 55, 0.12);
+    box-shadow: 0 14px 28px rgba(22, 101, 52, 0.12);
     transform: translateY(-4px);
 }
 
 .card-img-top {
-    background: #f5f8f6;
+    background: #F0F8F1;
     height: 145px;
     object-fit: contain;
     padding: 18px;
@@ -176,25 +192,25 @@
 .indexcard .card-title {
     font-size: 18px;
     font-weight: 600;
-    color: #1d3835;
+    color: #24352A;
     font-size: 1.1rem;
     margin: 0 0 9px;
 }
 
 .indexcard .card-text {
-    color: #64716e;
+    color: #64756A;
     line-height: 1.55;
     margin: 0 0 20px;
 }
 
 .indexcard .heroAction {
     align-self: flex-start;
-    background: #16756d;
-    border: 0;
+    background: #FFFFFF;
+    border: 1px solid #16A34A;
     border-radius: 8px !important;
     margin-top: auto;
     padding: 10px 14px;
-    color: #f8efe2;
+    color: #16A34A;
 }
 
 @media only screen and (max-width: 600px) {
