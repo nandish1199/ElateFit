@@ -25,6 +25,10 @@ body {
     z-index: 1;
 }
 
+#ininFront{
+    color: #526461;
+}
+
 .eyebrow {
     color: #16A34A;
     font-size: 0.78rem;
@@ -56,10 +60,6 @@ body {
 .indexfrontText span {
     color: #16A34A;
     font-size: inherit;
-}
-
-#ininFront {
-    color: #16A34A;
 }
 
 #indexFrontPara {
