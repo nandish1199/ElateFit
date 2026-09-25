@@ -30,7 +30,7 @@ body {
 }
 
 .eyebrow {
-    color: #47556992;
+    color: #16a34a81;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -231,6 +231,13 @@ body {
     border-radius: 8px !important;
     margin-top: auto;
     padding: 10px 14px;
+}
+.indexcard .heroAction i{
+    padding: 4px;
+    background: #16A34A;
+    color: white;
+    border-radius: 15px;
+    font-size: 0.7rem;
 }
 
 @media only screen and (max-width: 600px) {
