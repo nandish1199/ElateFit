@@ -92,8 +92,8 @@ body {
 }
 
 #sleepMusicBtn {
-    background: #e8e8e8;
-    color: #526461;
+    background: #757575;
+    color: #ffffff;
     border: none;
 }
 
@@ -113,10 +113,8 @@ body {
 
 .quickNav a {
     align-items: center;
-    background: #FFFFFF;
-    background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
     color: #526461;
     display: flex;
@@ -132,9 +130,9 @@ body {
 
 .quickNav i {
     align-items: center;
-    background: #EAF6ED;
-    border-radius: 6px;
-    color: #526461;
+    background: #16A34A;
+    border-radius: 4px;
+    color: #fbfdfc;
     display: inline-flex;
     font-size: 1.4rem;
     height: 36px;
