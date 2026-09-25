@@ -79,12 +79,12 @@ body {
 .heroAction,
 .heroActionPrimary {
     background: #FFFFFF;
-    color: #166534;
+    color: #26613c;
 }
 
 .heroAction:hover,
 .heroActionPrimary:hover {
-    background: #475569a7;
+    background: #bd7414a7;
     color: #ffffff;
 }
 
@@ -121,7 +121,7 @@ body {
 }
 
 .quickNav i {
-    color: #47556953;
+    color: #bd7414a7;
     font-size: 1.4rem;
 
 }
