@@ -385,7 +385,7 @@ function currentRangeEntries() {
 function setWorkoutStatus(message, error = true) {
   const status = document.getElementById("workoutStatus");
   status.textContent = message;
-  status.style.color = error ? "#a45e4c" : "#1f6b5b";
+  status.style.color = error ? "#B42318" : "#16A34A";
 }
 
 function renderExerciseOptions() {
@@ -535,8 +535,8 @@ function drawOverloadChart(data) {
     ...data.map((item) => Math.max(item.weight, item.volume / 10)),
   );
   context.font = "11px Segoe UI, sans-serif";
-  context.strokeStyle = "#e3ebe6";
-  context.fillStyle = "#687873";
+  context.strokeStyle = "#DCE9DF";
+  context.fillStyle = "#64756A";
   for (let tick = 0; tick <= 4; tick += 1) {
     const y = pad.top + chartHeight - (chartHeight * tick) / 4;
     context.beginPath();
@@ -563,13 +563,13 @@ function drawOverloadChart(data) {
     context.lineWidth = 2.5;
     context.stroke();
   }
-  line("weight", "#1f6b5b");
-  line("volume", "#b58b45", 0.1);
+  line("weight", "#16A34A");
+  line("volume", "#15803D", 0.1);
   data.forEach((item, index) => {
     const x = pad.left + (chartWidth * index) / Math.max(1, data.length - 1);
     if (item.weight !== null) {
       const y = pad.top + chartHeight - (chartHeight * item.weight) / maxValue;
-      context.fillStyle = "#1f6b5b";
+      context.fillStyle = "#16A34A";
       context.beginPath();
       context.arc(x, y, 3.5, 0, Math.PI * 2);
       context.fill();
@@ -577,7 +577,7 @@ function drawOverloadChart(data) {
     if (item.volume > 0) {
       const y =
         pad.top + chartHeight - (chartHeight * item.volume * 0.1) / maxValue;
-      context.fillStyle = "#b58b45";
+      context.fillStyle = "#15803D";
       context.beginPath();
       context.arc(x, y, 3, 0, Math.PI * 2);
       context.fill();
@@ -592,7 +592,7 @@ function drawOverloadChart(data) {
         : data.length > 8
           ? 2
           : 1;
-  context.fillStyle = "#687873";
+  context.fillStyle = "#64756A";
   let lastLabelRight = -Infinity;
   data.forEach((item, index) => {
     if (index % labelStep !== 0 && index !== data.length - 1) return;
@@ -608,13 +608,13 @@ function drawOverloadChart(data) {
     context.fillText(label, left, height - 12);
     lastLabelRight = right;
   });
-  context.fillStyle = "#1f6b5b";
+  context.fillStyle = "#16A34A";
   context.fillRect(width - 178, 12, 12, 3);
-  context.fillStyle = "#24332f";
+  context.fillStyle = "#24352A";
   context.fillText("Weight kg", width - 160, 16);
-  context.fillStyle = "#b58b45";
+  context.fillStyle = "#15803D";
   context.fillRect(width - 86, 12, 12, 3);
-  context.fillStyle = "#24332f";
+  context.fillStyle = "#24352A";
   context.fillText("Volume / 10", width - 68, 16);
 }
 
