@@ -12,7 +12,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background: #FFFFFF;
+    background: #F8FAF8;
     border: 1px solid #DCE9DF;
     border-radius: 28px;
     overflow: hidden;
@@ -79,18 +79,23 @@ body {
 .heroAction,
 .heroActionPrimary {
     background: #FFFFFF;
-    color: #26613c;
+    border: 1px solid #16A34A;
+    border-radius: 6px;
+    color: #166534;
+    font-weight: 600;
 }
 
 .heroAction:hover,
 .heroActionPrimary:hover {
-    background: #bd7414a7;
-    color: #ffffff;
+    background: #EAF6ED;
+    border-color: #15803D;
+    color: #166534;
 }
 
-#sleepMusicBtn{
-    background: #475569;
-    color: #FFFFFF;
+#sleepMusicBtn {
+    background: #FFFFFF;
+    border-color: #16A34A;
+    color: #166534;
 }
 
 .quickNav a:hover,
@@ -110,20 +115,32 @@ body {
 .quickNav a {
     align-items: center;
     background: #FFFFFF;
+    border: 1px solid #16A34A;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
     color: #166534;
     display: flex;
     gap: 12px;
-    min-height: 54px;
+    min-height: 62px;
     padding: 0 18px;
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 }
 
 .quickNav i {
+    align-items: center;
+    background: #EAF6ED;
+    border-radius: 6px;
     color: #166534;
+    display: inline-flex;
     font-size: 1.4rem;
-
+    height: 36px;
+    justify-content: center;
+    width: 36px;
+    flex: 0 0 36px;
 }
 
 .contentSection {
@@ -149,8 +166,12 @@ body {
 }
 
 .sectionLink {
+    background: #FFFFFF;
+    border: 1px solid #16A34A;
+    border-radius: 6px;
     color: #166534;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 10px 14px;
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
 }
@@ -163,7 +184,7 @@ body {
 }
 
 .indexcard {
-    background: #FFFFFF;
+    background: #F8FAF8;
     border: 1px solid #DCE9DF;
     border-radius: 12px;
     box-shadow: 0 5px 18px rgba(22, 101, 52, 0.06);
@@ -179,6 +200,7 @@ body {
 }
 
 .card-img-top {
+    background: #F8FAF8;
     height: 145px;
     object-fit: contain;
     padding: 18px;
@@ -209,11 +231,12 @@ body {
 
 .indexcard .heroAction {
     align-self: flex-start;
-    background: #475569;
+    background: #FFFFFF;
+    border: 1px solid #16A34A;
     border-radius: 8px !important;
     margin-top: auto;
     padding: 10px 14px;
-    color: #FFFFFF;
+    color: #166534;
 }
 
 @media only screen and (max-width: 600px) {
