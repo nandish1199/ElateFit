@@ -88,6 +88,11 @@ body {
     background: #F0F8F1;
 }
 
+#sleepMusicBtn{
+    background: #16A34A;
+    color: #FFFFFF;
+}
+
 .quickNav a:hover,
 .sectionLink:hover {
     box-shadow: 0 8px 18px rgba(22, 101, 52, 0.13);
