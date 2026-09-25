@@ -89,7 +89,7 @@ function dateLabel(value) {
 function status(message, error = true) {
   const element = document.getElementById("medicineStatus");
   element.textContent = message;
-  element.style.color = error ? "#d86d59" : "#167b78";
+  element.style.color = error ? "#B42318" : "#16A34A";
 }
 function daysLabel(days) {
   return days.length === 7
@@ -276,8 +276,8 @@ function drawChart(data) {
   const chartHeight = height - pad.top - pad.bottom;
   const max = Math.max(1, ...data.map((item) => item.count));
   context.font = "11px Segoe UI, sans-serif";
-  context.strokeStyle = "#e1ebe7";
-  context.fillStyle = "#68777a";
+  context.strokeStyle = "#DCE9DF";
+  context.fillStyle = "#64756A";
   context.textAlign = "center";
   for (let tick = 0; tick <= 4; tick += 1) {
     const y = pad.top + chartHeight - (chartHeight * tick) / 4;
@@ -291,7 +291,7 @@ function drawChart(data) {
     const x = pad.left + (chartWidth * index) / Math.max(1, data.length - 1);
     const barWidth = Math.max(10, chartWidth / Math.max(8, data.length * 2));
     const barHeight = (chartHeight * item.count) / max;
-    context.fillStyle = "#167b78";
+    context.fillStyle = "#16A34A";
     context.fillRect(
       x - barWidth / 2,
       pad.top + chartHeight - barHeight,
@@ -300,7 +300,7 @@ function drawChart(data) {
     );
     const step = data.length > 15 ? 4 : data.length > 8 ? 2 : 1;
     if (index % step === 0 || index === data.length - 1) {
-      context.fillStyle = "#68777a";
+      context.fillStyle = "#64756A";
       context.fillText(
         new Intl.DateTimeFormat(undefined, {
           month: "short",
