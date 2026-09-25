@@ -30,7 +30,7 @@ body {
 }
 
 .eyebrow {
-    color: #16A34A;
+    color: #475569;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -50,7 +50,7 @@ body {
 }
 
 .indexfrontText {
-    color: #24352A;
+    color: #47556953;
     font-size: clamp(2.8rem, 6vw, 5.2rem);
     font-weight: 800;
     line-height: 0.98;
@@ -58,7 +58,7 @@ body {
 }
 
 .indexfrontText span {
-    color: #16A34A;
+    color: #d27b45;
     font-size: inherit;
 }
 
@@ -79,17 +79,17 @@ body {
 .heroAction,
 .heroActionPrimary {
     background: #FFFFFF;
-    border: 1px solid #16A34A;
-    color: #16A34A;
+    color: #166534;
 }
 
 .heroAction:hover,
 .heroActionPrimary:hover {
-    background: #F0F8F1;
+    background: #475569a7;
+    color: #ffffff;
 }
 
 #sleepMusicBtn{
-    background: #16A34A;
+    background: #475569a7;
     color: #FFFFFF;
 }
 
@@ -110,8 +110,6 @@ body {
 .quickNav a {
     align-items: center;
     background: #FFFFFF;
-    border: 1px solid #16A34A;
-    border-radius: 8px;
     color: #166534;
     display: flex;
     gap: 12px;
@@ -119,11 +117,13 @@ body {
     padding: 0 18px;
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
+    font-weight: 500;
 }
 
 .quickNav i {
-    color: #16A34A;
-    font-size: 1.1rem;
+    color: #47556953;
+    font-size: 1.4rem;
+
 }
 
 .contentSection {
@@ -149,8 +149,8 @@ body {
 }
 
 .sectionLink {
-    color: #16A34A;
-    font-weight: 700;
+    color: #166534;
+    font-weight: 500;
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
 }
@@ -179,7 +179,6 @@ body {
 }
 
 .card-img-top {
-    background: #F0F8F1;
     height: 145px;
     object-fit: contain;
     padding: 18px;
@@ -210,12 +209,11 @@ body {
 
 .indexcard .heroAction {
     align-self: flex-start;
-    background: #FFFFFF;
-    border: 1px solid #16A34A;
+    background: #475569a7;
     border-radius: 8px !important;
     margin-top: auto;
     padding: 10px 14px;
-    color: #16A34A;
+    color: #FFFFFF;
 }
 
 @media only screen and (max-width: 600px) {
