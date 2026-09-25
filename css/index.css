@@ -30,7 +30,7 @@ body {
 }
 
 .eyebrow {
-    color: #475569;
+    color: #47556992;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -50,7 +50,7 @@ body {
 }
 
 .indexfrontText {
-    color: #47556953;
+    color: #24352A;
     font-size: clamp(2.8rem, 6vw, 5.2rem);
     font-weight: 800;
     line-height: 0.98;
