@@ -79,23 +79,22 @@ body {
 .heroAction,
 .heroActionPrimary {
     background: #FFFFFF;
-    border: 1px solid #16A34A;
+    border: 1px solid #DCE9DF;
     border-radius: 6px;
-    color: #166534;
+    color: #526461;
     font-weight: 600;
 }
 
 .heroAction:hover,
 .heroActionPrimary:hover {
     background: #EAF6ED;
-    border-color: #15803D;
     color: #166534;
 }
 
 #sleepMusicBtn {
-    background: #FFFFFF;
-    border-color: #16A34A;
-    color: #166534;
+    background: #cfcfcf;
+    color: #526461;
+    border: none;
 }
 
 .quickNav a:hover,
@@ -115,10 +114,10 @@ body {
 .quickNav a {
     align-items: center;
     background: #FFFFFF;
-    border: none;
+    border: 1px solid #DCE9DF;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
-    color: #166534;
+    color: #526461;
     display: flex;
     gap: 12px;
     min-height: 62px;
@@ -126,7 +125,7 @@ body {
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.01em;
 }
 
@@ -134,7 +133,7 @@ body {
     align-items: center;
     background: #EAF6ED;
     border-radius: 6px;
-    color: #166534;
+    color: #526461;
     display: inline-flex;
     font-size: 1.4rem;
     height: 36px;
@@ -167,7 +166,6 @@ body {
 
 .sectionLink {
     background: #FFFFFF;
-    border: 1px solid #16A34A;
     border-radius: 6px;
     color: #166534;
     font-weight: 600;
@@ -232,7 +230,6 @@ body {
 .indexcard .heroAction {
     align-self: flex-start;
     background: #FFFFFF;
-    border: 1px solid #16A34A;
     border-radius: 8px !important;
     margin-top: auto;
     padding: 10px 14px;
