@@ -6,7 +6,7 @@
     --serum-gold: #15803D;
     --serum-paper: #FFFFFF;
     --serum-line: #DCE9DF;
-    --serum-blush: #EAF6EC;
+    --serum-blush: #DCE9DF;
     --serum-sage: #EFF8F0;
     --serum-shadow: 0 14px 34px rgba(22, 101, 52, .08);
 }
@@ -89,7 +89,7 @@ body {
 
 .serumPanel h2 {
     margin: 0 0 18px;
-    color: var(--serum-dark);
+    color: var(--serum-ink);
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -188,7 +188,7 @@ body {
 .serumDay input:checked+span {
     border-color: var(--serum-green);
     background: var(--serum-blush);
-    color: var(--serum-dark);
+    color: var(--serum-ink);
 }
 
 .serumActions {
@@ -221,7 +221,7 @@ body {
 .serumActions .secondaryButton,
 .serumFilterButton {
     background: #fff;
-    color: var(--serum-dark);
+    color: var(--serum-ink);
     border-color: var(--serum-line);
 }
 
@@ -282,7 +282,7 @@ body {
 
 .serumItemName,
 .checklistName {
-    color: var(--serum-dark);
+    color: var(--serum-ink);
     font-size: 1rem;
     font-weight: 700;
 }
@@ -320,7 +320,7 @@ body {
     border: 1px solid #C8DBCD;
     border-radius: 2px;
     background: #fff;
-    color: var(--serum-dark);
+    color: var(--serum-ink);
     cursor: pointer;
     font: inherit;
     font-weight: 600;
@@ -390,7 +390,7 @@ body {
 .serumStatCard strong {
     display: block;
     margin-top: 6px;
-    color: var(--serum-dark);
+    color: var(--serum-ink);
     font-size: 1.2rem;
 }
 

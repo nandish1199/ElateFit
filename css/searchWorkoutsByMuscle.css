@@ -94,7 +94,7 @@ body {
 
 .exercisePanel h2 {
     margin: 0 0 18px;
-    color: var(--exercise-dark);
+    color: var(--exercise-ink);
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -160,7 +160,7 @@ body {
 .muscleTab:hover {
     border-color: var(--exercise-green);
     background: #EAF6EC;
-    color: var(--exercise-dark);
+    color: var(--exercise-ink);
 }
 
 .resultToolbar {
@@ -222,7 +222,7 @@ body {
 }
 
 .exerciseName {
-    color: var(--exercise-dark);
+    color: var(--exercise-ink);
     font-size: 1rem;
     font-weight: 700;
 }

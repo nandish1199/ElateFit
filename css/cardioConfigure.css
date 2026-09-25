@@ -93,7 +93,7 @@ body {
 
 .cardioPanel h2 {
     margin: 0 0 18px;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase
@@ -175,7 +175,7 @@ body {
 
 .cardioButton.secondary {
     background: #fff;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     border-color: var(--cardio-line)
 }
 
@@ -229,7 +229,7 @@ body {
 
 .cardioItem h3 {
     margin: 0;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font-size: 1rem
 }
 
@@ -261,7 +261,7 @@ body {
     border: 1px solid var(--cardio-line);
     border-radius: 3px;
     background: #EFF8F0;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font-size: .76rem;
     font-weight: 700;
 }
@@ -279,7 +279,7 @@ body {
     border: 1px solid #A8CFB0;
     border-radius: 2px;
     background: #fff;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font: inherit;
     font-variant-numeric: tabular-nums;
     text-align: center;
@@ -314,14 +314,14 @@ body {
 
 .timerName {
     margin: 8px 0;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font-size: 1.35rem;
     font-weight: 700
 }
 
 .timerClock {
     font-variant-numeric: tabular-nums;
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font-size: clamp(2.8rem, 7vw, 5.2rem);
     font-weight: 800;
     line-height: 1
@@ -379,7 +379,7 @@ body {
 }
 
 .savedPlan strong {
-    color: var(--cardio-dark);
+    color: var(--cardio-ink);
     font-size: .86rem
 }
 
@@ -482,7 +482,7 @@ body {
 .cardioCalendarDayComplete {
     border-color: #A8CFB0;
     background: #EAF6EC;
-    color: var(--cardio-dark)
+    color: var(--cardio-ink)
 }
 
 .cardioCalendarIcon {

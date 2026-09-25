@@ -20,7 +20,7 @@ body { background: #F8FAF8; }
 .heroIcon { position: relative; z-index: 1; color: var(--medicine-teal); font-size: clamp(3rem, 7vw, 5rem); opacity: .72; }
 .medicineLayout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: 20px; align-items: start; }
 .medicinePanel { padding: 22px; background: var(--medicine-paper); border: 1px solid var(--medicine-line); border-radius: 3px; box-shadow: var(--medicine-shadow); }
-.medicinePanel h2 { margin: 0 0 18px; color: var(--medicine-dark); font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase; }
+.medicinePanel h2 { margin: 0 0 18px; color: var(--medicine-ink); font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase; }
 .medicinePanel h2 i { margin-right: 7px; color: var(--medicine-coral); font-size: .9em; }
 .medicineForm, .medicineList, .medicineChecklist { display: grid; gap: 12px; }
 .medicineFormGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -31,7 +31,7 @@ body { background: #F8FAF8; }
 .reminderTimes { display: grid; gap: 8px; margin-top: 6px; }
 .reminderTimeRow { display: flex; gap: 8px; align-items: center; }
 .reminderTimeRow input { margin-top: 0; }
-.removeReminderButton, .addReminderButton { min-height: 36px; padding: 0 11px; border: 1px solid var(--medicine-line); border-radius: 3px; background: #EFF8F0; color: var(--medicine-dark); cursor: pointer; font: inherit; font-weight: 600; }
+.removeReminderButton, .addReminderButton { min-height: 36px; padding: 0 11px; border: 1px solid var(--medicine-line); border-radius: 3px; background: #EFF8F0; color: var(--medicine-ink); cursor: pointer; font: inherit; font-weight: 600; }
 .removeReminderButton:hover, .addReminderButton:hover { border-color: var(--medicine-teal); color: var(--medicine-teal); }
 .addReminderButton { align-self: flex-start; margin-top: 8px; }
 .medicineSpan2 { grid-column: 1 / -1; }
@@ -39,10 +39,10 @@ body { background: #F8FAF8; }
 .medicineDay { position: relative; }
 .medicineDay input { position: absolute; opacity: 0; pointer-events: none; }
 .medicineDay span { display: flex; align-items: center; justify-content: center; min-height: 38px; border: 1px solid #C8DBCD; border-radius: 3px; background: #FFFFFF; color: var(--medicine-muted); font-size: .78rem; cursor: pointer; }
-.medicineDay input:checked + span { border-color: var(--medicine-teal); background: #EAF6EC; color: var(--medicine-dark); }
+.medicineDay input:checked + span { border-color: var(--medicine-teal); background: #EAF6EC; color: var(--medicine-ink); }
 .medicineActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
 .medicineActions button, .periodButtons button { min-height: 42px; padding: 0 16px; border: 1px solid var(--medicine-teal); border-radius: 3px; background: var(--medicine-teal); color: #fff; cursor: pointer; font: inherit; font-weight: 600; }
-.medicineActions .secondaryButton, .periodButtons button { background: transparent; color: var(--medicine-dark); border-color: var(--medicine-line); }
+.medicineActions .secondaryButton, .periodButtons button { background: transparent; color: var(--medicine-ink); border-color: var(--medicine-line); }
 .medicineActions button:hover, .periodButtons button:hover { box-shadow: 0 8px 16px rgba(22, 163, 74, .16); transform: translateY(-2px); }
 .medicineStatus { min-height: 20px; color: #B42318; font-size: .86rem; }
 .medicineToolbar { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 14px; }
@@ -52,11 +52,11 @@ body { background: #F8FAF8; }
 .periodButtons button.active { background: var(--medicine-teal); border-color: var(--medicine-teal); color: #fff; }
 .medicineItem, .medicineChecklistItem { padding: 14px; border: 1px solid var(--medicine-line); border-radius: 3px; background: #FFFFFF; box-shadow: 0 4px 12px rgba(22, 101, 52, .05); }
 .medicineItemHeader, .medicineChecklistHeader { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
-.medicineItemName, .medicineChecklistName { color: var(--medicine-dark); font-size: 1rem; font-weight: 700; }
+.medicineItemName, .medicineChecklistName { color: var(--medicine-ink); font-size: 1rem; font-weight: 700; }
 .medicineItemMeta, .medicineChecklistMeta { margin-top: 4px; color: var(--medicine-muted); font-size: .84rem; line-height: 1.45; }
 .medicinePill { flex: 0 0 auto; padding: 6px 10px; border-radius: 999px; background: #EAF6EC; color: var(--medicine-teal); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .medicineItemActions { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-.medicineItemActions button { min-height: 34px; padding: 0 12px; border: 1px solid #c8d4d1; border-radius: 2px; background: #f8fbfa; color: var(--medicine-dark); cursor: pointer; font: inherit; font-weight: 600; }
+.medicineItemActions button { min-height: 34px; padding: 0 12px; border: 1px solid #c8d4d1; border-radius: 2px; background: #f8fbfa; color: var(--medicine-ink); cursor: pointer; font: inherit; font-weight: 600; }
 .medicineItemActions button:hover { background: var(--medicine-teal); color: #fff; }
 .medicineEmpty { padding: 18px; color: var(--medicine-muted); font-size: .9rem; line-height: 1.55; }
 .medicineChecklistItem { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
@@ -66,7 +66,7 @@ body { background: #F8FAF8; }
 .medicineStatsGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
 .medicineStatCard { padding: 14px; border: 1px solid var(--medicine-line); border-top: 3px solid var(--medicine-teal); border-radius: 3px; background: #FFFFFF; box-shadow: 0 4px 12px rgba(22, 101, 52, .04); }
 .medicineStatCard span { display: block; color: var(--medicine-muted); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; }
-.medicineStatCard strong { display: block; margin-top: 6px; color: var(--medicine-dark); font-size: 1.2rem; }
+.medicineStatCard strong { display: block; margin-top: 6px; color: var(--medicine-ink); font-size: 1.2rem; }
 .medicineChartWrap { height: 300px; padding: 10px; border: 1px solid var(--medicine-line); border-radius: 3px; background: #FFFFFF; }
 #medicineChart { width: 100%; height: 100%; }
 .medicineNote { margin-top: 16px; padding: 13px 14px; border-left: 3px solid var(--medicine-green); background: #F0F8F1; color: #356342; font-size: .86rem; line-height: 1.55; }

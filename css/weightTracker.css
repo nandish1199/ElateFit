@@ -94,7 +94,7 @@ body {
 
 .weightPanel h2 {
     margin: 0 0 18px;
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -174,7 +174,7 @@ body {
 .weightActions .secondaryButton,
 .periodButton {
     background: transparent;
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     border-color: var(--weight-line);
 }
 
@@ -237,7 +237,7 @@ body {
 .statCard strong {
     display: block;
     margin-top: 6px;
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: 1.2rem;
 }
 
@@ -283,7 +283,7 @@ body {
 }
 
 .goalMapSummary strong {
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: 1rem;
 }
 
@@ -383,7 +383,7 @@ body {
     display: grid;
     justify-items: center;
     gap: 2px;
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: .72rem;
     text-align: center;
     text-transform: uppercase;
@@ -436,7 +436,7 @@ body {
 }
 
 .goalFlagLabel strong {
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: .61rem;
 }
 
@@ -501,7 +501,7 @@ body {
 }
 
 .goalMapComplete strong {
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: 1.1rem;
 }
 
@@ -533,7 +533,7 @@ body {
 }
 
 .entryName {
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-weight: 700;
 }
 
@@ -658,7 +658,7 @@ body {
 
 .photoViewerHeader h2 {
     margin: 0;
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     font-size: 1rem;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -670,7 +670,7 @@ body {
     border: 1px solid var(--weight-line);
     border-radius: 4px;
     background: #fff;
-    color: var(--weight-dark);
+    color: var(--weight-ink);
     cursor: pointer;
     font-size: 1rem;
 }

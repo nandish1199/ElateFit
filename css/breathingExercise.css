@@ -30,7 +30,7 @@
 .breathingLayout { display: grid; grid-template-columns: minmax(320px, .88fr) minmax(380px, 1.12fr); gap: 24px; align-items: start; }
 .breathingPanel { padding: 26px; border: 1px solid rgba(220, 233, 223, .95); border-radius: 10px; background: #FFFFFF; box-shadow: var(--breath-shadow); }
 .breathingPanelHeading { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 20px; }
-.breathingPanelHeading h2 { color: var(--breath-teal-dark); }
+.breathingPanelHeading h2 { color: var(--breath-ink); }
 .breathingPanelHeading h2 i { margin-right: 7px; color: var(--breath-coral); font-size: .9em; }
 .breathingTechniqueRow { position: relative; padding: 17px 42px 17px 17px; border: 1px solid var(--breath-line); border-radius: 8px; background: #FFFFFF; }
 .breathingTechniqueRow + .breathingTechniqueRow { margin-top: 12px; }
