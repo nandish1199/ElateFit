@@ -1,28 +1,31 @@
 //Used to toggle navmenu
-$("#toggleBtn").each(function() {
-    const toggleButton = $(this);
-    const toggleIcon = toggleButton.find("i");
+$("#toggleBtn").each(function () {
+  const toggleButton = $(this);
+  const toggleIcon = toggleButton.find("i");
 
-    toggleButton.attr({
-        "aria-expanded": "false",
-        "aria-label": "Open navigation menu",
-        "title": "Open navigation menu"
+  toggleButton.attr({
+    "aria-expanded": "false",
+    "aria-label": "Open navigation menu",
+    title: "Open navigation menu",
+  });
+
+  toggleButton.on("click", function () {
+    const navigationFrame = $("#navframe");
+    const isOpening = !navigationFrame.is(":visible");
+
+    navigationFrame.toggle(isOpening);
+    toggleButton.toggleClass("is-open", isOpening).attr({
+      "aria-expanded": String(isOpening),
+      "aria-label": isOpening
+        ? "Close navigation menu"
+        : "Open navigation menu",
+      title: isOpening ? "Close navigation menu" : "Open navigation menu",
     });
-
-    toggleButton.on("click", function() {
-        const navigationFrame = $("#navframe");
-        const isOpening = !navigationFrame.is(":visible");
-
-        navigationFrame.toggle(isOpening);
-        toggleButton.toggleClass("is-open", isOpening).attr({
-            "aria-expanded": String(isOpening),
-            "aria-label": isOpening ? "Close navigation menu" : "Open navigation menu",
-            "title": isOpening ? "Close navigation menu" : "Open navigation menu"
-        });
-        toggleIcon.toggleClass("fa-bars", !isOpening).toggleClass("fa-xmark", isOpening);
-    });
+    toggleIcon
+      .toggleClass("fa-bars", !isOpening)
+      .toggleClass("fa-xmark", isOpening);
+  });
 });
-
 
 // ______________dynamic content_____________
 //______Beauty_______
@@ -153,36 +156,3 @@ $(".updatesSponsor").html("<b>NOT SPONSORED</b>");
 $(".defenceAuthor").html("NANDISH");
 $(".defenceDays").html("1 Month");
 $(".defenceSponsor").html("<b>NOT SPONSORED</b>");
-
-//_________AD-Beauty____________
-$(".adBeauty").html('<a href="https://neevsoaps.com/products/neev-almond-rose-handmade-soap-pure-elixir-of-youth-from-nature" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../../products/beauty/soap/images/neevmain.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Almond Rose Soap <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Neev Store</p></div></a>');
-
-//_________AD-Nutri_________
-$(".adNutri").html('<a href="https://www.amazon.in/Quaker-Oats-Plus-Multigrain-Advantage/dp/B00SWLE4VK/ref=sr_1_7_f3_0g_fs?crid=CFF1MD936CG9&keywords=oats&qid=1665248075&qu=eyJxc2MiOiI0Ljc4IiwicXNhIjoiNC41OCIsInFzcCI6IjQuMzcifQ%3D%3D&refinements=p_36%3A-10000&rnid=1318502031&s=grocery&sprefix=oats%2Cgrocery%2C2657&sr=1-7" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../products/food/oats/images/quakermain.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h5 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Oats <i class="fa-solid fa-star text-warning"></i></h5> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Quaker</p></div></a>');
-
-//_________AD-Ayurveda_________
-$(".adAyur").html('<a href="https://www.amazon.in/Quaker-Oats-Plus-Multigrain-Advantage/dp/B00SWLE4VK/ref=sr_1_7_f3_0g_fs?crid=CFF1MD936CG9&keywords=oats&qid=1665248075&qu=eyJxc2MiOiI0Ljc4IiwicXNhIjoiNC41OCIsInFzcCI6IjQuMzcifQ%3D%3D&refinements=p_36%3A-10000&rnid=1318502031&s=grocery&sprefix=oats%2Cgrocery%2C2657&sr=1-7" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../products/food/oats/images/quakermain.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Oats <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Quaker</p></div></a>');
-
-//_______AD-Diet_______
-$(".adDiet").html('<a href="https://www.amazon.in/Quaker-Oats-Plus-Multigrain-Advantage/dp/B00SWLE4VK/ref=sr_1_7_f3_0g_fs?crid=CFF1MD936CG9&keywords=oats&qid=1665248075&qu=eyJxc2MiOiI0Ljc4IiwicXNhIjoiNC41OCIsInFzcCI6IjQuMzcifQ%3D%3D&refinements=p_36%3A-10000&rnid=1318502031&s=grocery&sprefix=oats%2Cgrocery%2C2657&sr=1-7" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../products/food/oats/images/quakermain.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Oats <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Quaker</p></div></a>');
-
-//____________AD-Coding______________
-$(".adCoding").html('<a href="https://www.digitalocean.com/" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../coding/images/digitalOcean.jfif" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Hosting Service <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Digital Ocean</p></div></a>');
-
-//_________AD-Yoga__________
-$(".adYoga").html('<a href="https://www.amazon.in/Hatha-Yoga-Pradipika-Muktibodhananda-Swami/dp/8185787387/ref=sr_1_3?keywords=hatha+yoga+pradipika&qid=1666456208&qu=eyJxc2MiOiIzLjEyIiwicXNhIjoiMS42NiIsInFzcCI6IjEuNjUifQ%3D%3D&sr=8-3" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../people/images/hathayoga.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Yoga Book <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> HathaYoga Pradipika</p></div></a>');
-
-//_________AD-Vastu__________
-$(".adVastu").html('<a href="https://www.patanjaliayurved.net/product/herbal-home-care/agarbatti-and-dhoops/aastha-dhoop-loban/896" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../vastu/images/dhoop.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Dhoop <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Patanjali</p></div></a>');
-
-//_________AD-Tech__________
-$(".adTech").html('<a href="https://www.amazon.in/Redmi-Storage-Additional-Exchange-Available/dp/B09T2WPLS1/ref=sr_1_1?tag=8ap-21&th=1" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../../products/mobile/mobileunder20k/images/redmimain.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Mobile (Redmi Note 11 Pro + 5G) <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Amazon</p></div></a>');
-
-//_________AD-Camera & Bikes__________
-$(".adVehicle").html('<a href="https://www.heromotocorp.com/en-in/motorcycles/performance/xpulse-200t.html" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../products/bike/images/heromain.webp" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Bike (Hero Xpulse 200T) <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Hero Store</p></div></a>');
-
-//_________AD-Food__________
-$(".adFood").html('<a href="https://heygrain.in/products/ragi-oats-cookies?variant=42306839806120" target="_blank" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../../products/food/biscuit/images/heymain.jpg" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Biscuits <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Hey GrainStore</p></div></a>');
-
-//_________AD-Movie__________
-$(".adMovie").html('<a href="#" class="d-flex align-items-center border m-1 text-dark shadow" style="display:flex; align-items:center; gap:16px; box-sizing:border-box; width:100%; min-height:112px; margin:0; padding:14px 18px; border:1px solid #dfe5df; border-left:4px solid #b58b45; border-radius:4px; color:#24332f; text-decoration:none; background:#fbfaf6; box-shadow:0 8px 20px rgba(30,58,49,.09);"> <img src="../../../images/static/ayurveda.png" loading="lazy" style="width:100px; height:80px; flex:0 0 100px; object-fit:cover; border:1px solid #dfe5df; border-radius:3px;" /> <div style="flex:1; min-width:0;"><h4 style="margin:0 0 8px; color:#174e44; font-size:1rem; line-height:1.35;">Best Movie <i class="fa-solid fa-star text-warning"></i></h4> <p style="margin:0; color:#687873; font-size:.86rem; line-height:1.4;"><i class="fa-solid fa-store text-secondary"></i> Movie</p></div></a>');
