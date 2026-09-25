@@ -12,7 +12,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background: #F8FAF8;
+    background: #ffffff;
     border: 1px solid #DCE9DF;
     border-radius: 28px;
     overflow: hidden;
@@ -116,7 +116,7 @@ body {
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
-    color: #526461;
+    color: #526461c7;
     display: flex;
     gap: 12px;
     min-height: 62px;
@@ -124,17 +124,18 @@ body {
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
     font-size: 0.95rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.01em;
 }
 
 .quickNav i {
+    padding:4px;
     align-items: center;
     background: #16A34A;
-    border-radius: 4px;
+    border-radius: 8px;
     color: #fbfdfc;
     display: inline-flex;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     height: 36px;
     justify-content: center;
     width: 36px;
@@ -196,7 +197,7 @@ body {
 }
 
 .card-img-top {
-    background: #f3f3f3;
+    background: #f7f7f7;
     height: 145px;
     object-fit: contain;
     padding: 18px;
@@ -227,17 +228,11 @@ body {
 
 .indexcard .heroAction {
     align-self: flex-start;
-    background: #FFFFFF;
+    background: #757575;
+    color: #ffffff;
     border-radius: 8px !important;
     margin-top: auto;
     padding: 10px 14px;
-}
-.indexcard .heroAction i{
-    padding: 4px;
-    background: #16A34A;
-    color: white;
-    border-radius: 15px;
-    font-size: 0.7rem;
 }
 
 @media only screen and (max-width: 600px) {
