@@ -115,7 +115,7 @@ body {
 .quickNav a {
     align-items: center;
     background: #FFFFFF;
-    border: 1px solid #16A34A;
+    border: none;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
     color: #166534;
