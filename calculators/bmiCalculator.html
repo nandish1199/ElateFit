@@ -12,14 +12,13 @@
     <title>BMI Calculator, Elatefit</title>
     <style>
         :root {
-            --bmi-ink: #263b40;
-            --bmi-muted: #607477;
-            --bmi-green: #0f8879;
-            --bmi-dark: #075b59;
-            --bmi-coral: #ef765f;
-            --bmi-paper: #fbfdfb;
-            --bmi-line: #d6e7e2;
-            --bmi-shadow: 0 14px 32px rgba(20, 78, 75, .1);
+            --bmi-ink: #24352a;
+            --bmi-muted: #64756a;
+            --bmi-green: #16A34A;
+            --bmi-dark: #166534;
+            --bmi-paper: #FFFFFF;
+            --bmi-line: #DCE9DF;
+            --bmi-shadow: 0 14px 32px rgba(22, 101, 52, .08);
         }
 
         * {
@@ -28,7 +27,7 @@
 
         body {
             margin: 0;
-            background: linear-gradient(135deg, #f2f8f6 0%, #fff9f4 100%);
+            background: #F8FAF8;
             color: var(--bmi-ink);
             font-family: Segoe UI, Tahoma, sans-serif;
         }
@@ -40,9 +39,9 @@
             gap: 10px;
             margin: 70px 0 0;
             padding: 30px clamp(18px, 4vw, 48px);
-            background: linear-gradient(115deg, #dff3ee 0%, #fffdf8 64%, #fff0e8 100%);
+            background: #FFFFFF;
             border: 1px solid var(--bmi-line);
-            border-top: 4px solid var(--bmi-coral);
+            border-top: 4px solid var(--bmi-green);
             border-radius: 3px;
             box-shadow: var(--bmi-shadow);
             color: var(--bmi-ink);
@@ -56,13 +55,13 @@
             bottom: -62px;
             width: 190px;
             height: 190px;
-            border: 1px solid rgba(15, 136, 121, .18);
+            border: 1px solid rgba(22, 163, 74, .14);
             border-radius: 50%;
             content: "";
         }
 
         .bmiTitle span {
-            color: var(--bmi-coral);
+            color: var(--bmi-green);
             font-size: .75rem;
             font-weight: 800;
             letter-spacing: .14em;
@@ -86,7 +85,7 @@
             padding: 20px;
             background: var(--bmi-paper);
             border: 1px solid var(--bmi-line);
-            border-top: 3px solid var(--bmi-coral);
+            border-top: 3px solid var(--bmi-green);
             border-radius: 3px;
             box-shadow: var(--bmi-shadow);
         }
@@ -98,14 +97,14 @@
 
         .eachInputContainer label i {
             margin-right: 5px;
-            color: var(--bmi-coral);
+            color: var(--bmi-green);
         }
 
         .eachInputContainer input[type="number"] {
             width: 100%;
             min-height: 46px;
             padding: 0 14px;
-            border: 1px solid #c5ddd7;
+            border: 1px solid #C8DBCD;
             border-radius: 3px;
             color: var(--bmi-ink);
             font: inherit;
@@ -113,7 +112,7 @@
 
         .eachInputContainer input[type="number"]:focus {
             border-color: var(--bmi-green);
-            box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
             outline: none;
         }
 
@@ -128,7 +127,7 @@
             padding: 8px 10px;
             border: 1px solid var(--bmi-line);
             border-radius: 3px;
-            background: #f0f8f5;
+            background: #F0F8F1;
             color: var(--bmi-muted);
             cursor: pointer;
             font-weight: 500;
@@ -159,7 +158,7 @@
 
         #calcsubmit:hover,
         .bmiDietPlannDisplay .heroAction:hover {
-            box-shadow: 0 8px 16px rgba(15, 136, 121, .2);
+            box-shadow: 0 8px 16px rgba(22, 163, 74, .16);
             transform: translateY(-1px);
         }
 
@@ -167,10 +166,10 @@
             max-width: 960px;
             margin: 0 auto 26px;
             padding: 14px 18px;
-            border-left: 3px solid var(--bmi-coral);
+            border-left: 3px solid var(--bmi-green);
             border-radius: 0 3px 3px 0;
-            background: #fff0e8;
-            color: #795548;
+            background: #F0F8F1;
+            color: #356342;
             line-height: 1.55;
         }
 
@@ -194,14 +193,14 @@
         .progress {
             height: 12px;
             overflow: hidden;
-            background: #d8ece7;
+            background: #DCE9DF;
             border-radius: 999px;
         }
 
         .progress-bar {
             height: 100%;
             border-radius: inherit;
-            background: linear-gradient(90deg, var(--bmi-green), var(--bmi-coral));
+            background: var(--bmi-green);
             transition: width 500ms ease;
         }
 
