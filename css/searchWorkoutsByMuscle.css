@@ -1,13 +1,13 @@
 :root {
-    --exercise-ink: #263b40;
-    --exercise-muted: #607477;
-    --exercise-green: #0f8879;
-    --exercise-dark: #075b59;
-    --exercise-coral: #ef765f;
-    --exercise-gold: #e0a04d;
-    --exercise-paper: #fbfdfb;
-    --exercise-line: #d6e7e2;
-    --exercise-shadow: 0 14px 32px rgba(20, 78, 75, .1);
+    --exercise-ink: #24352a;
+    --exercise-muted: #64756a;
+    --exercise-green: #16A34A;
+    --exercise-dark: #166534;
+    --exercise-coral: #16A34A;
+    --exercise-gold: #15803D;
+    --exercise-paper: #FFFFFF;
+    --exercise-line: #DCE9DF;
+    --exercise-shadow: 0 14px 32px rgba(22, 101, 52, .08);
 }
 
 * {
@@ -16,7 +16,7 @@
 
 body {
     margin: 0;
-    background: linear-gradient(135deg, #f2f8f6 0%, #fff9f4 100%);
+    background: #F8FAF8;
     color: var(--exercise-ink);
     font-family: Segoe UI, Tahoma, sans-serif;
 }
@@ -32,9 +32,9 @@ body {
     overflow: hidden;
     margin-bottom: 22px;
     padding: 30px clamp(18px, 4vw, 48px);
-    background: linear-gradient(115deg, #dff3ee 0%, #fffdf8 64%, #fff0e8 100%);
+    background: #FFFFFF;
     border: 1px solid var(--exercise-line);
-    border-top: 4px solid var(--exercise-coral);
+    border-top: 4px solid var(--exercise-green);
     border-radius: 3px;
     box-shadow: var(--exercise-shadow);
 }
@@ -45,7 +45,7 @@ body {
     bottom: -62px;
     width: 190px;
     height: 190px;
-    border: 1px solid rgba(15, 136, 121, .18);
+    border: 1px solid rgba(22, 163, 74, .14);
     border-radius: 50%;
     content: "";
 }
@@ -125,7 +125,7 @@ body {
     width: 100%;
     min-height: 42px;
     padding: 0 11px;
-    border: 1px solid #c5ddd7;
+    border: 1px solid #C8DBCD;
     border-radius: 3px;
     background: #fff;
     color: var(--exercise-ink);
@@ -135,7 +135,7 @@ body {
 .filterLabel input:focus,
 .filterLabel select:focus {
     border-color: var(--exercise-green);
-    box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
     outline: none;
 }
 
@@ -159,7 +159,7 @@ body {
 .muscleTab.active,
 .muscleTab:hover {
     border-color: var(--exercise-green);
-    background: #e7f5f1;
+    background: #EAF6EC;
     color: var(--exercise-dark);
 }
 
@@ -187,13 +187,13 @@ body {
     border: 1px solid var(--exercise-line);
     border-radius: 3px;
     background: #fff;
-    box-shadow: 0 4px 12px rgba(20, 78, 75, .05);
+    box-shadow: 0 4px 12px rgba(22, 101, 52, .05);
     transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .exerciseCard:hover {
-    border-color: #8fcabc;
-    box-shadow: 0 10px 22px rgba(15, 136, 121, .14);
+    border-color: #A8CFB0;
+    box-shadow: 0 10px 22px rgba(22, 163, 74, .14);
     transform: translateY(-2px);
 }
 
@@ -203,7 +203,7 @@ body {
     justify-content: center;
     min-height: 150px;
     padding: 18px;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .85), transparent 24%), repeating-linear-gradient(135deg, #e7f5f1, #e7f5f1 10px, #dff0eb 10px, #dff0eb 20px);
+    background: #F0F8F1;
     color: var(--exercise-green);
     font-weight: 700;
     font-size: .8rem;
@@ -233,15 +233,15 @@ body {
     flex: 0 0 32px;
     border: 1px solid var(--exercise-line);
     border-radius: 3px;
-    background: #f0f8f5;
+    background: #EFF8F0;
     color: var(--exercise-green);
     cursor: pointer;
 }
 
 .favoriteExercise.is-favorite {
-    background: #fff0e8;
-    border-color: #f0b2a3;
-    color: var(--exercise-coral);
+    background: #EAF6EC;
+    border-color: #A8CFB0;
+    color: var(--exercise-green);
 }
 
 .exerciseMeta {
@@ -254,7 +254,7 @@ body {
 .metaPill {
     padding: 4px 7px;
     border-radius: 999px;
-    background: #e7f5f1;
+    background: #EAF6EC;
     color: var(--exercise-green);
     font-size: .68rem;
     font-weight: 700;
