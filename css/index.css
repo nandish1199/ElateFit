@@ -1,5 +1,5 @@
 body {
-    background: #F8FAF8;
+    background: #ffffff;
 }
 
 .indexfrontHead {
@@ -30,7 +30,7 @@ body {
 }
 
 .eyebrow {
-    color: #16a34a81;
+    color: #989898;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -196,7 +196,7 @@ body {
 }
 
 .card-img-top {
-    background: #F8FAF8;
+    background: #efefef;
     height: 145px;
     object-fit: contain;
     padding: 18px;
