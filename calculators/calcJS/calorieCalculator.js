@@ -3288,7 +3288,7 @@ function renderMicronutrients(entries) {
 function setStatus(message, isError = true) {
   const status = document.getElementById("statusMessage");
   status.textContent = message;
-  status.style.color = isError ? "#a45e4c" : "#1f6b5b";
+  status.style.color = isError ? "#B42318" : "#16A34A";
 }
 
 function getTodayEntries() {
@@ -3441,8 +3441,8 @@ function drawChart(data) {
     ...data.map((day) => Math.max(day.calories, day.protein * 10)),
   );
   context.font = "11px Segoe UI, sans-serif";
-  context.strokeStyle = "#e3ebe6";
-  context.fillStyle = "#687873";
+  context.strokeStyle = "#DCE9DF";
+  context.fillStyle = "#64756A";
   for (let tick = 0; tick <= 4; tick += 1) {
     const y = padding.top + chartHeight - (chartHeight * tick) / 4;
     context.beginPath();
@@ -3482,9 +3482,9 @@ function drawChart(data) {
       context.fill();
     });
   }
-  drawLine("calories", "#1f6b5b");
-  drawLine("protein", "#b58b45", 10);
-  context.fillStyle = "#687873";
+  drawLine("calories", "#16A34A");
+  drawLine("protein", "#15803D", 10);
+  context.fillStyle = "#64756A";
   data.forEach((day, index) => {
     if (
       data.length <= 10 ||
@@ -3496,13 +3496,13 @@ function drawChart(data) {
       context.fillText(day.label, x - 15, height - 12);
     }
   });
-  context.fillStyle = "#1f6b5b";
+  context.fillStyle = "#16A34A";
   context.fillRect(width - 154, 10, 12, 3);
-  context.fillStyle = "#24332f";
+  context.fillStyle = "#24352A";
   context.fillText("Calories", width - 136, 14);
-  context.fillStyle = "#b58b45";
+  context.fillStyle = "#15803D";
   context.fillRect(width - 76, 10, 12, 3);
-  context.fillStyle = "#24332f";
+  context.fillStyle = "#24352A";
   context.fillText("Protein", width - 58, 14);
 }
 

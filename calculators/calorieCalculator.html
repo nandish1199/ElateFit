@@ -12,19 +12,19 @@
     <title>Calories Calculator, Elatefit</title>
     <style>
         :root {
-            --nutrition-ink: #293a35;
-            --nutrition-muted: #6a7b73;
-            --nutrition-green: #39806a;
-            --nutrition-dark: #205847;
-            --nutrition-coral: #e9825e;
-            --nutrition-gold: #d49a4c;
-            --nutrition-paper: #fffdf8;
-            --nutrition-line: #dce8df;
-            --nutrition-shadow: 0 14px 32px rgba(44, 87, 67, 0.1);
+            --nutrition-ink: #24352a;
+            --nutrition-muted: #64756a;
+            --nutrition-green: #16A34A;
+            --nutrition-dark: #166534;
+            --nutrition-coral: #16A34A;
+            --nutrition-gold: #15803D;
+            --nutrition-paper: #FFFFFF;
+            --nutrition-line: #DCE9DF;
+            --nutrition-shadow: 0 14px 32px rgba(22, 101, 52, 0.08);
         }
 
         body {
-            background: linear-gradient(135deg, #f1f8f2 0%, #fff8ee 100%);
+            background: #F8FAF8;
             color: var(--nutrition-ink);
         }
 
@@ -39,9 +39,9 @@
             overflow: hidden;
             margin-bottom: 24px;
             padding: 28px clamp(18px, 4vw, 48px);
-            background: linear-gradient(115deg, #e1f1e6 0%, #fffdf8 64%, #fff0e2 100%);
+            background: #FFFFFF;
             border: 1px solid var(--nutrition-line);
-            border-top: 4px solid var(--nutrition-coral);
+            border-top: 4px solid var(--nutrition-green);
             border-radius: 3px;
             box-shadow: var(--nutrition-shadow);
         }
@@ -52,7 +52,7 @@
             bottom: -58px;
             width: 175px;
             height: 175px;
-            border: 1px solid rgba(57, 128, 106, .2);
+            border: 1px solid rgba(22, 163, 74, .14);
             border-radius: 50%;
             content: "";
         }
@@ -133,7 +133,7 @@
             min-height: 44px;
             margin-top: 6px;
             padding: 0 12px;
-            border: 1px solid #c7ddd0;
+            border: 1px solid #C8DBCD;
             border-radius: 3px;
             background: #ffffff;
             color: var(--nutrition-ink);
@@ -142,7 +142,7 @@
 
         .foodForm input:focus {
             border-color: var(--nutrition-green);
-            box-shadow: 0 0 0 3px rgba(57, 128, 106, .14);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
             outline: none;
         }
 
@@ -157,7 +157,7 @@
             border: 1px solid var(--nutrition-line);
             border-radius: 3px;
             background: #ffffff;
-            box-shadow: 0 10px 22px rgba(30, 58, 49, 0.14);
+            box-shadow: 0 10px 22px rgba(22, 101, 52, 0.12);
         }
 
         .foodSuggestions.is-visible {
@@ -169,7 +169,7 @@
             width: 100%;
             padding: 11px 12px;
             border: 0;
-            border-bottom: 1px solid #edf1ee;
+            border-bottom: 1px solid #E8F1EA;
             background: #ffffff;
             color: var(--nutrition-ink);
             cursor: pointer;
@@ -183,7 +183,7 @@
 
         .foodSuggestion:hover,
         .foodSuggestion:focus {
-            background: #e9f5ed;
+            background: #EAF6EC;
             color: var(--nutrition-dark);
             outline: none;
         }
@@ -212,7 +212,7 @@
         .foodForm button:hover,
         .periodButton:hover,
         .dangerButton:hover {
-            box-shadow: 0 8px 16px rgba(57, 128, 106, .2);
+            box-shadow: 0 8px 16px rgba(22, 163, 74, .16);
             transform: translateY(-2px);
         }
 
@@ -221,7 +221,7 @@
             margin: 0;
             padding: 11px 12px;
             border: 0;
-            border-bottom: 1px solid #e4ece7;
+            border-bottom: 1px solid #E2EEE4;
             border-radius: 0;
             background: var(--nutrition-paper);
             box-shadow: none;
@@ -234,7 +234,7 @@
 
         .foodForm .foodSuggestion:hover,
         .foodForm .foodSuggestion:focus {
-            background: #e7f0eb;
+            background: #EAF6EC;
             color: var(--nutrition-dark);
             box-shadow: inset 3px 0 0 var(--nutrition-gold);
             transform: none;
@@ -324,7 +324,7 @@
 
         .micronutrientPanel {
             grid-column: 1 / -1;
-            background: linear-gradient(135deg, #f3faf3, #fffaf1);
+            background: #FFFFFF;
             border-top: 3px solid var(--nutrition-green);
         }
 
@@ -343,8 +343,8 @@
             max-height: 620px;
             overflow-y: auto;
             padding: 2px 8px 8px 2px;
-            border-top: 1px solid rgba(216, 225, 220, .72);
-            scrollbar-color: var(--nutrition-green) #e5ece7;
+            border-top: 1px solid rgba(220, 233, 223, .72);
+            scrollbar-color: var(--nutrition-green) #E5F0E7;
             scrollbar-width: thin;
         }
 
@@ -353,7 +353,7 @@
         }
 
         .micronutrientList::-webkit-scrollbar-track {
-            background: #e5ece7;
+            background: #E5F0E7;
         }
 
         .micronutrientList::-webkit-scrollbar-thumb {
@@ -367,10 +367,10 @@
             min-width: 0;
             padding: 12px;
             border: 1px solid var(--nutrition-line);
-            border-top: 3px solid #83b79e;
+            border-top: 3px solid #86B98F;
             border-radius: 3px;
-            background: linear-gradient(145deg, #ffffff, #f8fcf5);
-            box-shadow: 0 3px 10px rgba(36, 67, 56, .045);
+            background: #FFFFFF;
+            box-shadow: 0 3px 10px rgba(22, 101, 52, .045);
             transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
         }
 
@@ -381,14 +381,14 @@
             width: 34px;
             height: 34px;
             border-radius: 0 0 0 100%;
-            background: rgba(233, 130, 94, .1);
+            background: rgba(22, 163, 74, .08);
             content: "";
             pointer-events: none;
         }
 
         .micronutrientCard:hover {
-            border-color: #b9cec3;
-            box-shadow: 0 7px 16px rgba(36, 67, 56, .09);
+            border-color: #B7D4BE;
+            box-shadow: 0 7px 16px rgba(22, 101, 52, .09);
             transform: translateY(-1px);
         }
 
@@ -428,14 +428,14 @@
             margin-top: 10px;
             overflow: hidden;
             border-radius: 999px;
-            background: #e5ece7;
+            background: #E5F0E7;
         }
 
         .micronutrientProgressTrack span {
             display: block;
             height: 100%;
             border-radius: inherit;
-            background: linear-gradient(90deg, #7fa793, var(--nutrition-green));
+            background: var(--nutrition-green);
             transition: width 220ms ease;
         }
 
@@ -506,7 +506,7 @@
             margin-top: 8px;
             padding: 5px 10px;
             border-radius: 999px;
-            background: #eef5f0;
+            background: #EFF8F0;
             color: var(--nutrition-green);
             font-size: 0.72rem;
             font-weight: 700;
@@ -516,12 +516,12 @@
 
         .targetCard.is-complete {
             border-top-color: var(--nutrition-gold);
-            box-shadow: inset 0 0 0 1px rgba(181, 139, 69, 0.08);
+            box-shadow: inset 0 0 0 1px rgba(21, 128, 61, 0.1);
         }
 
         .targetCard.is-complete .targetBadge {
-            background: #f7f1df;
-            color: #8c672c;
+            background: #EAF6EC;
+            color: #166534;
         }
 
         .chartTools {
@@ -578,7 +578,7 @@
             padding: 14px;
             border-left: 3px solid var(--nutrition-coral);
             border-radius: 0 3px 3px 0;
-            background: linear-gradient(110deg, #fff0e4, #edf8f0);
+            background: #F0F8F1;
         }
 
         .trendCard strong {
@@ -637,15 +637,15 @@
         .deleteEntry {
             width: 30px;
             height: 30px;
-            border: 1px solid #e2c5bc;
+            border: 1px solid #E2C9C4;
             border-radius: 2px;
-            background: #fff8f5;
-            color: #a45e4c;
+            background: #FFF8F7;
+            color: #B42318;
             cursor: pointer;
         }
 
         .deleteEntry:hover {
-            background: #a45e4c;
+            background: #B42318;
             color: #ffffff;
         }
 
@@ -659,13 +659,13 @@
             margin-top: 14px;
             padding: 0 14px;
             background: transparent;
-            border-color: #a45e4c;
-            color: #a45e4c;
+            border-color: #B42318;
+            color: #B42318;
             font-size: 0.84rem;
         }
 
         .statusMessage {
-            color: #a45e4c;
+            color: #B42318;
         }
 
         @media only screen and (max-width: 900px) {
