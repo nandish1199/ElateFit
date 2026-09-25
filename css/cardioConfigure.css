@@ -1,12 +1,12 @@
 :root {
-    --cardio-ink: #263b40;
-    --cardio-muted: #607477;
-    --cardio-green: #0f8879;
-    --cardio-dark: #075b59;
-    --cardio-coral: #ef765f;
-    --cardio-paper: #fbfdfb;
-    --cardio-line: #d6e7e2;
-    --cardio-shadow: 0 14px 32px rgba(20, 78, 75, .1)
+    --cardio-ink: #24352a;
+    --cardio-muted: #64756a;
+    --cardio-green: #16A34A;
+    --cardio-dark: #166534;
+    --cardio-coral: #16A34A;
+    --cardio-paper: #FFFFFF;
+    --cardio-line: #DCE9DF;
+    --cardio-shadow: 0 14px 32px rgba(22, 101, 52, .08)
 }
 
 * {
@@ -15,7 +15,7 @@
 
 body {
     margin: 0;
-    background: linear-gradient(135deg, #f2f8f6 0%, #fff9f4 100%);
+    background: #F8FAF8;
     color: var(--cardio-ink);
     font-family: Segoe UI, Tahoma, sans-serif
 }
@@ -31,9 +31,9 @@ body {
     overflow: hidden;
     margin-bottom: 22px;
     padding: 30px clamp(18px, 4vw, 48px);
-    background: linear-gradient(115deg, #dff3ee 0%, #fffdf8 64%, #fff0e8 100%);
+    background: #FFFFFF;
     border: 1px solid var(--cardio-line);
-    border-top: 4px solid var(--cardio-coral);
+    border-top: 4px solid var(--cardio-green);
     border-radius: 3px;
     box-shadow: var(--cardio-shadow)
 }
@@ -44,7 +44,7 @@ body {
     bottom: -62px;
     width: 190px;
     height: 190px;
-    border: 1px solid rgba(15, 136, 121, .18);
+    border: 1px solid rgba(22, 163, 74, .14);
     border-radius: 50%;
     content: "";
 }
@@ -128,7 +128,7 @@ body {
     min-height: 43px;
     margin-top: 6px;
     padding: 0 11px;
-    border: 1px solid #c5ddd7;
+    border: 1px solid #C8DBCD;
     border-radius: 3px;
     background: #fff;
     color: var(--cardio-ink);
@@ -144,7 +144,7 @@ body {
 .field input:focus,
 .field textarea:focus {
     border-color: var(--cardio-green);
-    box-shadow: 0 0 0 3px rgba(15, 136, 121, .14);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
     outline: none
 }
 
@@ -180,13 +180,13 @@ body {
 }
 
 .cardioButton:hover {
-    box-shadow: 0 8px 16px rgba(15, 136, 121, .2);
+    box-shadow: 0 8px 16px rgba(22, 163, 74, .16);
     transform: translateY(-1px)
 }
 
 .cardioStatus {
     min-height: 20px;
-    color: #a45e4c;
+    color: #B42318;
     font-size: .84rem
 }
 
@@ -204,7 +204,7 @@ body {
     border: 1px solid var(--cardio-line);
     border-radius: 3px;
     background: #fff;
-    box-shadow: 0 4px 12px rgba(20, 78, 75, .05)
+    box-shadow: 0 4px 12px rgba(22, 101, 52, .05)
 }
 
 .orderControls {
@@ -217,7 +217,7 @@ body {
     height: 30px;
     border: 1px solid var(--cardio-line);
     border-radius: 2px;
-    background: #e7f5f1;
+    background: #EAF6EC;
     color: var(--cardio-green);
     cursor: pointer
 }
@@ -260,7 +260,7 @@ body {
     padding: 6px 9px;
     border: 1px solid var(--cardio-line);
     border-radius: 3px;
-    background: #f0f8f5;
+    background: #EFF8F0;
     color: var(--cardio-dark);
     font-size: .76rem;
     font-weight: 700;
@@ -276,7 +276,7 @@ body {
     width: 58px;
     min-height: 30px;
     padding: 0 8px;
-    border: 1px solid #abc5b9;
+    border: 1px solid #A8CFB0;
     border-radius: 2px;
     background: #fff;
     color: var(--cardio-dark);
@@ -287,7 +287,7 @@ body {
 
 .transitionRestInput:focus {
     border-color: var(--cardio-green);
-    box-shadow: 0 0 0 3px rgba(31, 107, 91, .12);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
     outline: none;
 }
 
@@ -298,9 +298,9 @@ body {
 .timerDisplay {
     padding: 24px;
     text-align: center;
-    border: 1px solid #bfe2da;
+    border: 1px solid #B7D4BE;
     border-radius: 3px;
-    background: linear-gradient(145deg, #effbf8, #fff7f0);
+    background: #F0F8F1;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8)
 }
 
@@ -333,14 +333,14 @@ body {
     max-width: 500px;
     overflow: hidden;
     border-radius: 99px;
-    background: #d8ece7
+    background: #DCE9DF
 }
 
 .timerProgress span {
     display: block;
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg, var(--cardio-green), var(--cardio-coral));
+    background: var(--cardio-green);
     transition: width 300ms linear
 }
 
@@ -373,7 +373,7 @@ body {
     align-items: center;
     gap: 8px;
     padding: 10px;
-    border-left: 3px solid var(--cardio-coral);
+    border-left: 3px solid var(--cardio-green);
     border-radius: 0 3px 3px 0;
     background: #fff
 }
@@ -433,7 +433,7 @@ body {
 }
 
 .calendarNavigation button:hover {
-    background: #e7f5f1
+    background: #EAF6EC
 }
 
 .calendarWeekdays,
@@ -476,12 +476,12 @@ body {
 
 .cardioCalendarDayToday {
     border-color: var(--cardio-coral);
-    box-shadow: inset 0 0 0 1px rgba(239, 118, 95, .25)
+    box-shadow: inset 0 0 0 1px rgba(22, 163, 74, .2)
 }
 
 .cardioCalendarDayComplete {
-    border-color: #9ed1c4;
-    background: #e3f4ee;
+    border-color: #A8CFB0;
+    background: #EAF6EC;
     color: var(--cardio-dark)
 }
 
@@ -521,10 +521,10 @@ body {
 .resetCalendarButton {
     min-height: 32px;
     padding: 0 10px;
-    border: 1px solid #d8c2ba;
+    border: 1px solid #E2C9C4;
     border-radius: 2px;
-    background: #fffaf8;
-    color: #9a6254;
+    background: #FFF8F7;
+    color: #B42318;
     cursor: pointer;
     font: inherit;
     font-size: .74rem;
@@ -532,8 +532,8 @@ body {
 }
 
 .resetCalendarButton:hover {
-    background: #f6e9e4;
-    border-color: #c9a99f
+    background: #FDEDEC;
+    border-color: #D9A6A0
 }
 
 .hidden {

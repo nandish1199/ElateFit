@@ -60,7 +60,7 @@ function deletePlan(id) {
 function setStatus(text, error = true) {
   const el = document.getElementById("cardioStatus");
   el.textContent = text;
-  el.style.color = error ? "#a45e4c" : "#1f6b5b";
+  el.style.color = error ? "#B42318" : "#16A34A";
 }
 function cardioDayKey(value) {
   const date = new Date(value);
