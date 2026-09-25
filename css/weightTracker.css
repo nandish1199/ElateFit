@@ -1,9 +1,9 @@
 :root {
     --weight-ink: #24352a;
     --weight-muted: #64756a;
-    --weight-green: #16a34a;
+    --weight-green: #757575;
     --weight-dark: #166534;
-    --weight-coral: #16a34a;
+    --weight-coral: #757575;
     --weight-gold: #15803d;
     --weight-paper: #ffffff;
     --weight-line: #dce9df;
@@ -484,7 +484,7 @@ body {
 .batch-silver { --batch-color: #6f9279; }
 .batch-gold { --batch-color: #4f9964; }
 .batch-titanium { --batch-color: #2f8d50; }
-.batch-diamond { --batch-color: #16a34a; }
+.batch-diamond { --batch-color: #757575; }
 
 .goalMapEmpty,
 .goalMapComplete {

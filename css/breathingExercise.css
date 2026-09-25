@@ -1,10 +1,10 @@
 :root {
     --breath-ink: #24352a;
     --breath-muted: #64756a;
-    --breath-teal: #16A34A;
+    --breath-teal: #757575;
     --breath-teal-dark: #166534;
     --breath-mint: #EAF6EC;
-    --breath-coral: #16A34A;
+    --breath-coral: #757575;
     --breath-line: #DCE9DF;
     --breath-paper: #FFFFFF;
     --breath-shadow: 0 16px 40px rgba(22, 101, 52, .08);
@@ -43,11 +43,11 @@
 .breathingRemoveButton { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; min-height: 0 !important; display: inline-flex; align-items: center; justify-content: center; padding: 0; border-color: transparent !important; background: transparent !important; color: var(--breath-coral) !important; font-size: 1.25rem; line-height: 1; }
 .breathingRemoveButton:hover { background: #FDEDEC !important; }
 .breathingPage button { padding: 0 15px; border-color: var(--breath-teal); background: var(--breath-teal); color: #fff; cursor: pointer; font-weight: 800; transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease; }
-.breathingPage button:hover { background: var(--breath-teal-dark); }
+.breathingPage button:hover { background: #616161; }
 .breathingPage button:focus-visible { outline: 3px solid rgba(22, 163, 74, .3); outline-offset: 2px; }
 .breathingPage button:disabled { cursor: not-allowed; opacity: .5; }
-.breathingSecondary { border-color: #B7D4BE !important; background: var(--breath-mint) !important; color: var(--breath-teal-dark) !important; }
-.breathingSecondary:hover { background: #DDF1E1 !important; }
+.breathingSecondary { border-color: #757575 !important; background: #757575 !important; color: #FFFFFF !important; }
+.breathingSecondary:hover { background: #616161 !important; }
 .breathingFull { width: 100%; margin-top: 16px; }
 .breathingOptions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 35px; margin-top: 18px; align-items: end; }
 .breathingActions { display: flex; gap: 10px; margin-top: 18px; }

@@ -385,7 +385,7 @@ function currentRangeEntries() {
 function setWorkoutStatus(message, error = true) {
   const status = document.getElementById("workoutStatus");
   status.textContent = message;
-  status.style.color = error ? "#B42318" : "#16A34A";
+  status.style.color = error ? "#B42318" : "#757575";
 }
 
 function renderExerciseOptions() {
@@ -563,13 +563,13 @@ function drawOverloadChart(data) {
     context.lineWidth = 2.5;
     context.stroke();
   }
-  line("weight", "#16A34A");
+  line("weight", "#757575");
   line("volume", "#15803D", 0.1);
   data.forEach((item, index) => {
     const x = pad.left + (chartWidth * index) / Math.max(1, data.length - 1);
     if (item.weight !== null) {
       const y = pad.top + chartHeight - (chartHeight * item.weight) / maxValue;
-      context.fillStyle = "#16A34A";
+      context.fillStyle = "#757575";
       context.beginPath();
       context.arc(x, y, 3.5, 0, Math.PI * 2);
       context.fill();
@@ -608,7 +608,7 @@ function drawOverloadChart(data) {
     context.fillText(label, left, height - 12);
     lastLabelRight = right;
   });
-  context.fillStyle = "#16A34A";
+  context.fillStyle = "#757575";
   context.fillRect(width - 178, 12, 12, 3);
   context.fillStyle = "#24352A";
   context.fillText("Weight kg", width - 160, 16);

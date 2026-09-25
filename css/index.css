@@ -116,7 +116,7 @@ body {
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
-    color: #526461c7;
+    color: #526461ed;
     display: flex;
     gap: 12px;
     min-height: 62px;
@@ -131,9 +131,9 @@ body {
 .quickNav i {
     padding:4px;
     align-items: center;
-    background: #16A34A;
+    border: 1px solid #757575;
     border-radius: 8px;
-    color: #fbfdfc;
+    color: #757575;
     display: inline-flex;
     font-size: 1.2rem;
     height: 36px;

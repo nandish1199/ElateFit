@@ -3288,7 +3288,7 @@ function renderMicronutrients(entries) {
 function setStatus(message, isError = true) {
   const status = document.getElementById("statusMessage");
   status.textContent = message;
-  status.style.color = isError ? "#B42318" : "#16A34A";
+  status.style.color = isError ? "#B42318" : "#757575";
 }
 
 function getTodayEntries() {
@@ -3482,7 +3482,7 @@ function drawChart(data) {
       context.fill();
     });
   }
-  drawLine("calories", "#16A34A");
+  drawLine("calories", "#757575");
   drawLine("protein", "#15803D", 10);
   context.fillStyle = "#64756A";
   data.forEach((day, index) => {
@@ -3496,7 +3496,7 @@ function drawChart(data) {
       context.fillText(day.label, x - 15, height - 12);
     }
   });
-  context.fillStyle = "#16A34A";
+  context.fillStyle = "#757575";
   context.fillRect(width - 154, 10, 12, 3);
   context.fillStyle = "#24352A";
   context.fillText("Calories", width - 136, 14);
