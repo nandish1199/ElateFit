@@ -180,7 +180,7 @@ body {
 }
 
 .indexcard {
-    background: #F8FAF8;
+    background: #ffffff;
     border: 1px solid #DCE9DF;
     border-radius: 12px;
     box-shadow: 0 5px 18px rgba(22, 101, 52, 0.06);
@@ -196,7 +196,7 @@ body {
 }
 
 .card-img-top {
-    background: #efefef;
+    background: #f3f3f3;
     height: 145px;
     object-fit: contain;
     padding: 18px;
