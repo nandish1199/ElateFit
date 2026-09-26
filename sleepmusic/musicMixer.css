@@ -291,7 +291,7 @@ input {
     width: 100%;
     min-height: 28px;
     accent-color: var(--mixer-green);
-    touch-action: pan-x;
+    touch-action: none;
 }
 
 .soundVolume output {
