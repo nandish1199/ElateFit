@@ -132,7 +132,7 @@ function getPlan() {
     (row) => {
       const index = Number(row.querySelector(".technique-select").value);
       const repetitions = Math.min(
-        10,
+        70,
         Math.max(1, Number(row.querySelector(".repetitions-input").value) || 1),
       );
       row.querySelector(".repetitions-input").value = repetitions;
