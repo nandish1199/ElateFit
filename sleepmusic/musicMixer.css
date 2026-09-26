@@ -287,8 +287,11 @@ input {
 }
 
 .soundVolume input {
+    min-width: 0;
     width: 100%;
+    min-height: 28px;
     accent-color: var(--mixer-green);
+    touch-action: pan-x;
 }
 
 .soundVolume output {
@@ -648,6 +651,7 @@ input {
     }
 
     .soundVolume {
+        min-width: 0;
         grid-template-columns: 1fr 30px;
         gap: 5px;
         font-size: .64rem;
