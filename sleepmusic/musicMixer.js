@@ -118,17 +118,6 @@ function applyVolume(input) {
   if (audio) audio.volume = value;
 }
 
-function setVolumeFromPointer(input, clientX) {
-  const bounds = input.getBoundingClientRect();
-  const ratio = Math.min(
-    1,
-    Math.max(0, (clientX - bounds.left) / bounds.width),
-  );
-  const steps = Math.round(ratio * 100);
-  input.value = String(steps / 100);
-  applyVolume(input);
-}
-
 function renderCatalog() {
   const grid = document.getElementById("soundGrid");
   grid.innerHTML = soundCatalog
@@ -160,21 +149,6 @@ function renderCatalog() {
       return;
     }
     if (card && !event.target.closest(".soundVolume")) previewSound(card);
-  });
-
-  grid.addEventListener("pointerdown", (event) => {
-    const input = event.target.closest(".soundVolume input");
-    if (!input) return;
-    event.stopPropagation();
-    input.setPointerCapture?.(event.pointerId);
-    setVolumeFromPointer(input, event.clientX);
-  });
-
-  grid.addEventListener("pointermove", (event) => {
-    const input = event.target.closest(".soundVolume input");
-    if (!input || !input.hasPointerCapture?.(event.pointerId)) return;
-    event.preventDefault();
-    setVolumeFromPointer(input, event.clientX);
   });
 
   grid.addEventListener("input", (event) => {
