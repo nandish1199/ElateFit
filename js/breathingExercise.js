@@ -101,7 +101,6 @@ const progressBar = document.getElementById("progressBar");
 const liveStatus = document.getElementById("breathingLiveStatus");
 let timer = null;
 let session = null;
-let speechStartTimer = null;
 
 function techniqueOptions(selectedIndex) {
   return breathingTechniques
@@ -159,43 +158,17 @@ function updatePlan() {
   planSummary.textContent = `${plan.map((item) => `${item.name} (${item.repetitions} rep${item.repetitions === 1 ? "" : "s"})`).join(" -> ")} | About ${totalMinutes} minute${totalMinutes === 1 ? "" : "s"}`;
 }
 
-function speakAndWait(text) {
-  return new Promise((resolve) => {
-    if (
-      !session ||
-      voiceToggle.value === "off" ||
-      !("speechSynthesis" in window)
-    ) {
-      resolve();
-      return;
-    }
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      resolve();
-    };
-    utterance.onend = finish;
-    utterance.onerror = finish;
-    window.speechSynthesis.cancel();
-    clearTimeout(speechStartTimer);
-    speechStartTimer = setTimeout(() => {
-      speechStartTimer = null;
-      if (session) window.speechSynthesis.speak(utterance);
-      else finish();
-    }, 60);
-  });
-}
-
-function wait(milliseconds) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+function playUtterance(utterance) {
+  window.speechSynthesis.cancel();
+  // Mobile browsers can silently drop speak() called right after cancel(); a short delay lets the engine reset.
+  setTimeout(() => window.speechSynthesis.speak(utterance), 60);
 }
 
 function speak(text) {
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) return;
-  speakAndWait(text);
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 0.9;
+  playUtterance(utterance);
 }
 
 function speakPhase(phaseName) {
@@ -241,27 +214,19 @@ function announceTechnique(name) {
     session.waitingForAnnouncement = false;
     return;
   }
-  speakAndWait(name)
-    .then(() => wait(500))
-    .then(() => {
-      if (!session) return Promise.reject();
-      const firstPhase = session.plan[session.techniqueIndex].phases[0];
-      const phase = firstPhase[0].toLowerCase();
-      const cue = phase.includes("exhale")
-        ? "Exhale"
-        : phase.includes("inhale")
-          ? "Inhale"
-          : firstPhase[0];
-      const announcement =
-        voiceToggle.value === "voice-count" && isCountedPhase(firstPhase[0])
-          ? `${cue}, ${firstPhase[1]}`
-          : cue;
-      return speakAndWait(announcement);
-    })
-    .then(() => {
-      if (session) session.waitingForAnnouncement = false;
-    })
-    .catch(() => {});
+  const utterance = new SpeechSynthesisUtterance(name);
+  utterance.rate = 0.9;
+  let announcementFinished = false;
+  const continueBreathing = () => {
+    if (announcementFinished || !session) return;
+    announcementFinished = true;
+    session.waitingForAnnouncement = false;
+    const firstPhase = session.plan[session.techniqueIndex].phases[0];
+    speakPhaseStart(firstPhase[0], firstPhase[1]);
+  };
+  utterance.onend = continueBreathing;
+  utterance.onerror = continueBreathing;
+  playUtterance(utterance);
 }
 
 function announceSessionStart() {
@@ -272,15 +237,31 @@ function announceSessionStart() {
 
   session.waitingForAnnouncement = true;
   const announcements = ["Start", "5", "4", "3", "2", "1"];
-  announcements
-    .reduce(
-      (sequence, announcement) =>
-        sequence.then(() => speakAndWait(announcement)),
-      Promise.resolve(),
-    )
-    .then(() => {
-      if (session) announceTechnique(session.plan[0].name);
-    });
+  let announcementIndex = 0;
+
+  const speakNextAnnouncement = () => {
+    if (!session) return;
+    if (announcementIndex >= announcements.length) {
+      announceTechnique(session.plan[0].name);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(
+      announcements[announcementIndex++],
+    );
+    utterance.rate = 0.9;
+    let announcementFinished = false;
+    const continueCountdown = () => {
+      if (announcementFinished) return;
+      announcementFinished = true;
+      speakNextAnnouncement();
+    };
+    utterance.onend = continueCountdown;
+    utterance.onerror = continueCountdown;
+    playUtterance(utterance);
+  };
+
+  speakNextAnnouncement();
 }
 
 function chime() {
@@ -321,8 +302,6 @@ function renderSession() {
 function endSession(message = "Session complete. Notice how you feel.") {
   clearInterval(timer);
   timer = null;
-  clearTimeout(speechStartTimer);
-  speechStartTimer = null;
   if ("speechSynthesis" in window) window.speechSynthesis.cancel();
   session = null;
   breathOrb.className = "breathingOrb";
@@ -445,8 +424,6 @@ function tick() {
 function reset() {
   clearInterval(timer);
   timer = null;
-  clearTimeout(speechStartTimer);
-  speechStartTimer = null;
   session = null;
   techniqueList.innerHTML = "";
   addTechniqueRow(0);
