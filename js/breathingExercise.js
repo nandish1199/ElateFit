@@ -424,8 +424,8 @@ function reset() {
   session = null;
   techniqueList.innerHTML = "";
   addTechniqueRow(0);
-  sessionLabel.textContent = "Ready when you are";
-  techniqueName.textContent = "Choose your techniques";
+  sessionLabel.textContent = "READY WHEN YOU ARE";
+  techniqueName.textContent = "CHOOSE YOUR TECHNIQUES";
   phaseText.textContent = "Your guided session will appear here.";
   countText.textContent = "--";
   breathOrb.className = "breathingOrb";
