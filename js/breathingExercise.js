@@ -257,7 +257,11 @@ function announceSessionStart() {
     const continueCountdown = () => {
       if (announcementFinished) return;
       announcementFinished = true;
-      speakNextAnnouncement();
+      if (announcementIndex === 1) {
+        setTimeout(speakNextAnnouncement, 3000);
+      } else {
+        speakNextAnnouncement();
+      }
     };
     utterance.onend = continueCountdown;
     utterance.onerror = continueCountdown;
