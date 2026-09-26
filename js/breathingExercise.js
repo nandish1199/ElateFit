@@ -158,17 +158,11 @@ function updatePlan() {
   planSummary.textContent = `${plan.map((item) => `${item.name} (${item.repetitions} rep${item.repetitions === 1 ? "" : "s"})`).join(" -> ")} | About ${totalMinutes} minute${totalMinutes === 1 ? "" : "s"}`;
 }
 
-function playUtterance(utterance) {
-  window.speechSynthesis.cancel();
-  // Mobile browsers can silently drop speak() called right after cancel(); a short delay lets the engine reset.
-  setTimeout(() => window.speechSynthesis.speak(utterance), 60);
-}
-
 function speak(text) {
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) return;
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.rate = 0.9;
-  playUtterance(utterance);
+  window.speechSynthesis.speak(utterance);
 }
 
 function speakPhase(phaseName) {
@@ -226,7 +220,7 @@ function announceTechnique(name) {
   };
   utterance.onend = continueBreathing;
   utterance.onerror = continueBreathing;
-  playUtterance(utterance);
+  window.speechSynthesis.speak(utterance);
 }
 
 function announceSessionStart() {
@@ -258,7 +252,7 @@ function announceSessionStart() {
     };
     utterance.onend = continueCountdown;
     utterance.onerror = continueCountdown;
-    playUtterance(utterance);
+    window.speechSynthesis.speak(utterance);
   };
 
   speakNextAnnouncement();
