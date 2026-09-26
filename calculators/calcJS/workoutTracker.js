@@ -350,16 +350,16 @@ function renderChallenge() {
     action.dataset.state = "restart";
   } else if (challenge.todayComplete) {
     message.textContent = `${challenge.streak} day${challenge.streak === 1 ? "" : "s"} in a row. Today's work is complete.`;
-    action.textContent = "Log today's workout";
+    action.textContent = "LOG TODAY'S WORKOUT";
     action.dataset.state = "view";
   } else if (challenge.streak) {
     message.textContent = `Your ${challenge.streak}-day streak is ready for today's workout.`;
-    action.textContent = "Log today's workout";
+    action.textContent = "LOG TODAY'S WORKOUT";
     action.dataset.state = "log";
   } else {
     message.textContent =
       "A new day is a clear opportunity to keep the challenge moving.";
-    action.textContent = "Log today's workout";
+    action.textContent = "LOG TODAY'S WORKOUT";
     action.dataset.state = "log";
   }
 }

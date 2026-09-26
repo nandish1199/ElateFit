@@ -3265,7 +3265,7 @@ function renderMicronutrients(entries) {
       const percentage = Math.min(100, (consumed / reference) * 100);
       const guidance =
         consumed < reference
-          ? `<div class="micronutrientGuidance"><strong>Foods to consider</strong><ul>${foodSuggestions
+          ? `<div class="micronutrientGuidance"><strong>FOODS TO CONSIDER</strong><ul>${foodSuggestions
               .split(", ")
               .map((food) => `<li>${food}</li>`)
               .join("")}</ul></div>`
@@ -3620,7 +3620,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     document
       .getElementById("deleteAllButton")
       .addEventListener("click", async function () {
-        if (!allEntries.length || !confirm("Delete all saved food entries?"))
+        if (!allEntries.length || !confirm("DELETE ALL SAVED FOOD ENTRIES?"))
           return;
         if (
           !confirm(

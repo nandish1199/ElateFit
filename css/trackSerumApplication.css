@@ -210,6 +210,7 @@ body {
     font: inherit;
     font-weight: 600;
     transition: transform 160ms ease, box-shadow 160ms ease;
+    font-size: .8rem;
 }
 
 .serumActions button:hover,
@@ -324,6 +325,7 @@ body {
     cursor: pointer;
     font: inherit;
     font-weight: 600;
+    font-size: 0.8rem;
 }
 
 .serumItemActions button:hover {

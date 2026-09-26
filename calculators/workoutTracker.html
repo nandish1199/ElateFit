@@ -189,7 +189,8 @@
             cursor: pointer;
             font: inherit;
             font-size: .8rem;
-            font-weight: 700;
+            font-weight: 600;
+            letter-spacing: .04em;
         }
 
         .challengeAction:hover {
@@ -246,8 +247,8 @@
 
         .calendarMonth {
             color: var(--work-green);
-            font-size: 1rem;
-            font-weight: 800;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         .calendarNavigation {
@@ -462,6 +463,7 @@
             font: inherit;
             font-weight: 600;
             transition: transform 160ms ease, box-shadow 160ms ease;
+            letter-spacing: .04em;
         }
 
         .workoutForm #addingWorkoutButton:hover,
@@ -651,13 +653,16 @@
             padding: 14px;
             border-left: 3px solid var(--work-coral);
             border-radius: 0 3px 3px 0;
-            background: #F0F8F1;
+            background: #ffffff;
+            border: 1px solid #DCE9DF;
         }
 
         .progressCard strong {
             display: block;
             margin-bottom: 5px;
             color: var(--work-ink);
+            font-weight: 600;
+            letter-spacing: .04em;
         }
 
         .progressCard span {
@@ -849,7 +854,7 @@
                 </div>
                 <div id="workoutList"></div>
                 <button type="button" class="dangerButton" id="deleteAllWorkouts"><i class="fa-solid fa-trash"></i>
-                    Delete all workouts</button>
+                    DELETE ALL WORKOUTS</button>
             </section>
             <section class="workoutPanel calendarPanel" aria-labelledby="workoutCalendarHeading">
                 <div class="calendarTools">
@@ -887,9 +892,9 @@
                 <div class="chartWrap"><canvas id="overloadChart" aria-label="Progressive overload chart"></canvas>
                 </div>
                 <div class="progressCards">
-                    <div class="progressCard"><strong>Weight progression</strong><span id="weightProgress">Add workouts
+                    <div class="progressCard"><strong>WEIGHT PROGRESSION</strong><span id="weightProgress">Add workouts
                             to see your progress.</span></div>
-                    <div class="progressCard"><strong>Volume progression</strong><span id="volumeProgress">Add workouts
+                    <div class="progressCard"><strong>VOLUME PROGRESSION</strong><span id="volumeProgress">Add workouts
                             to see your progress.</span></div>
                 </div>
             </section>

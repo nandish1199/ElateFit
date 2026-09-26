@@ -233,9 +233,9 @@ function renderSerumList() {
                     </div>
                     <div class="serumItemMeta">${serum.notes || "No extra notes saved."}</div>
                     <div class="serumItemActions">
-                        <button type="button" class="editSerum" data-id="${serum.id}"><i class="fa-solid fa-pen"></i> Edit</button>
-                        <button type="button" class="toggleSerum" data-id="${serum.id}"><i class="fa-solid fa-power-off"></i> ${serum.active ? "Pause" : "Activate"}</button>
-                        <button type="button" class="deleteSerum" data-id="${serum.id}"><i class="fa-solid fa-trash"></i> Delete</button>
+                        <button type="button" class="editSerum" data-id="${serum.id}"><i class="fa-solid fa-pen"></i> EDIT</button>
+                        <button type="button" class="toggleSerum" data-id="${serum.id}"><i class="fa-solid fa-power-off"></i> ${serum.active ? "PAUSE" : "ACTIVATE"}</button>
+                        <button type="button" class="deleteSerum" data-id="${serum.id}"><i class="fa-solid fa-trash"></i> DELETE</button>
                     </div>
                 </div>`;
     })
