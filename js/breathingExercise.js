@@ -189,6 +189,10 @@ function speakAndWait(text) {
   });
 }
 
+function wait(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
 function speak(text) {
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) return;
   speakAndWait(text);
@@ -237,12 +241,27 @@ function announceTechnique(name) {
     session.waitingForAnnouncement = false;
     return;
   }
-  speakAndWait(name).then(() => {
-    if (!session) return;
-    session.waitingForAnnouncement = false;
-    const firstPhase = session.plan[session.techniqueIndex].phases[0];
-    speakPhaseStart(firstPhase[0], firstPhase[1]);
-  });
+  speakAndWait(name)
+    .then(() => wait(500))
+    .then(() => {
+      if (!session) return Promise.reject();
+      const firstPhase = session.plan[session.techniqueIndex].phases[0];
+      const phase = firstPhase[0].toLowerCase();
+      const cue = phase.includes("exhale")
+        ? "Exhale"
+        : phase.includes("inhale")
+          ? "Inhale"
+          : firstPhase[0];
+      const announcement =
+        voiceToggle.value === "voice-count" && isCountedPhase(firstPhase[0])
+          ? `${cue}, ${firstPhase[1]}`
+          : cue;
+      return speakAndWait(announcement);
+    })
+    .then(() => {
+      if (session) session.waitingForAnnouncement = false;
+    })
+    .catch(() => {});
 }
 
 function announceSessionStart() {
