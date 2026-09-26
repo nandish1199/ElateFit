@@ -47,6 +47,7 @@
 .breathingPage button:focus-visible { outline: 3px solid rgba(22, 163, 74, .3); outline-offset: 2px; }
 .breathingPage button:disabled { cursor: not-allowed; opacity: .5; }
 #addTechniqueButton{font-weight:600; letter-spacing: .02em; background: #ffffff; color: var(--breath-ink); font-size: .8rem;}
+#resetButton{background: white; color: var(--breath-ink); border: 1px solid var(--breath-line);}
 .breathingSecondary:hover { background: #eeeeee !important; }
 .breathingFull { width: 100%; margin-top: 16px;}
 .breathingOptions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 35px; margin-top: 18px; align-items: end; }
