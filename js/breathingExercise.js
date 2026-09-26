@@ -210,20 +210,35 @@ function speakPhaseCount(phaseName, count) {
 
 function announceTechnique(name) {
   session.waitingForAnnouncement = true;
+
+  // Pause the tick timer so it doesn't cut off the speech
+  clearInterval(timer);
+
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) {
     session.waitingForAnnouncement = false;
+    const firstPhase = session.plan[session.techniqueIndex].phases[0];
+    speakPhaseStart(firstPhase[0], firstPhase[1]);
+
+    // Restart the timer since there is no speech delay
+    timer = setInterval(tick, 1000);
     return;
   }
+
   const utterance = new SpeechSynthesisUtterance(name);
   utterance.rate = 0.9;
   let announcementFinished = false;
+
   const continueBreathing = () => {
     if (announcementFinished || !session) return;
     announcementFinished = true;
     session.waitingForAnnouncement = false;
     const firstPhase = session.plan[session.techniqueIndex].phases[0];
     speakPhaseStart(firstPhase[0], firstPhase[1]);
+
+    // Restart the tick timer exactly when the "Inhale" phase begins
+    timer = setInterval(tick, 1000);
   };
+
   utterance.onend = continueBreathing;
   utterance.onerror = continueBreathing;
   playUtterance(utterance);
@@ -239,6 +254,9 @@ function announceSessionStart() {
   const announcements = ["Start", "5", "4", "3", "2", "1"];
   let announcementIndex = 0;
 
+  // Clear any existing timer to prevent overlap
+  clearInterval(timer);
+
   const speakNextAnnouncement = () => {
     if (!session) return;
     if (announcementIndex >= announcements.length) {
@@ -246,19 +264,11 @@ function announceSessionStart() {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(
-      announcements[announcementIndex++],
-    );
-    utterance.rate = 0.9;
-    let announcementFinished = false;
-    const continueCountdown = () => {
-      if (announcementFinished) return;
-      announcementFinished = true;
-      speakNextAnnouncement();
-    };
-    utterance.onend = continueCountdown;
-    utterance.onerror = continueCountdown;
-    playUtterance(utterance);
+    speak(announcements[announcementIndex]);
+    announcementIndex++;
+
+    // Schedule the next number in exactly 1 second
+    timer = setTimeout(speakNextAnnouncement, 1000);
   };
 
   speakNextAnnouncement();
@@ -335,6 +345,7 @@ function startSession() {
         item.phases.reduce((phaseTotal, phase) => phaseTotal + phase[1], 0),
     0,
   );
+
   session = {
     plan,
     gapSeconds,
@@ -347,6 +358,7 @@ function startSession() {
     inGap: false,
     waitingForAnnouncement: false,
   };
+
   startButton.disabled = true;
   liveStatus.className = "";
   sessionLabel.textContent = "Get ready";
@@ -355,7 +367,9 @@ function startSession() {
   chime();
   announceSessionStart();
   renderSession();
-  timer = setInterval(tick, 1000);
+
+  // timer = setInterval(tick, 1000); <-- REMOVED.
+  // The timer is now automatically started inside announceTechnique().
 }
 
 function tick() {
