@@ -158,12 +158,17 @@ function updatePlan() {
   planSummary.textContent = `${plan.map((item) => `${item.name} (${item.repetitions} rep${item.repetitions === 1 ? "" : "s"})`).join(" -> ")} | About ${totalMinutes} minute${totalMinutes === 1 ? "" : "s"}`;
 }
 
+function playUtterance(utterance) {
+  window.speechSynthesis.cancel();
+  // Mobile browsers can silently drop speak() called right after cancel(); a short delay lets the engine reset.
+  setTimeout(() => window.speechSynthesis.speak(utterance), 60);
+}
+
 function speak(text) {
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.rate = 0.9;
-  window.speechSynthesis.speak(utterance);
+  playUtterance(utterance);
 }
 
 function speakPhase(phaseName) {
@@ -209,7 +214,6 @@ function announceTechnique(name) {
     session.waitingForAnnouncement = false;
     return;
   }
-  window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(name);
   utterance.rate = 0.9;
   let announcementFinished = false;
@@ -222,7 +226,7 @@ function announceTechnique(name) {
   };
   utterance.onend = continueBreathing;
   utterance.onerror = continueBreathing;
-  window.speechSynthesis.speak(utterance);
+  playUtterance(utterance);
 }
 
 function announceSessionStart() {
@@ -232,7 +236,6 @@ function announceSessionStart() {
   }
 
   session.waitingForAnnouncement = true;
-  window.speechSynthesis.cancel();
   const announcements = ["Start", "5", "4", "3", "2", "1"];
   let announcementIndex = 0;
 
@@ -255,7 +258,7 @@ function announceSessionStart() {
     };
     utterance.onend = continueCountdown;
     utterance.onerror = continueCountdown;
-    window.speechSynthesis.speak(utterance);
+    playUtterance(utterance);
   };
 
   speakNextAnnouncement();
