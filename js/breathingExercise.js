@@ -167,7 +167,7 @@ function playUtterance(utterance) {
 function speak(text) {
   if (voiceToggle.value === "off" || !("speechSynthesis" in window)) return;
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 0.9;
+  utterance.rate = 0.7;
   playUtterance(utterance);
 }
 
