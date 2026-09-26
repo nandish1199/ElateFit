@@ -220,9 +220,12 @@ function announceTechnique(name) {
   const continueBreathing = () => {
     if (announcementFinished || !session) return;
     announcementFinished = true;
-    session.waitingForAnnouncement = false;
-    const firstPhase = session.plan[session.techniqueIndex].phases[0];
-    speakPhaseStart(firstPhase[0], firstPhase[1]);
+    setTimeout(() => {
+      if (!session) return;
+      session.waitingForAnnouncement = false;
+      const firstPhase = session.plan[session.techniqueIndex].phases[0];
+      speakPhaseStart(firstPhase[0], firstPhase[1]);
+    }, 2000);
   };
   utterance.onend = continueBreathing;
   utterance.onerror = continueBreathing;
