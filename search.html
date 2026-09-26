@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/static/logo.png" />
+    <link rel="stylesheet" href="css/allcommon.css" />
+    <link rel="stylesheet" href="search.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Search ElateFit</title>
+    <meta name="description" content="Search all ElateFit pages." />
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" id="toggleBtn" aria-label="Open navigation">
+            <span aria-hidden="true">&#9776;</span>
+        </button>
+        <iframe id="searchbar" src="fragsearchbar.html" loading="lazy" title="ElateFit quick navigation"></iframe>
+    </div>
+    <iframe id="navframe" src="fragnav.html" loading="lazy" title="ElateFit navigation"></iframe>
+
+    <main class="searchPage">
+        <header class="searchHero">
+            <p class="searchEyebrow">ELATEFIT LIBRARY</p>
+            <h1>SEARCH EVERYTHING</h1>
+            <p>Find calculators, nutrition guides, products, yoga resources, and more from one place.</p>
+            <label class="searchInputWrap" for="searchInput">
+                <span aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input id="searchInput" type="search" autocomplete="off"
+                    placeholder="Search by page name or folder..." />
+                <button id="clearSearch" type="button" aria-label="Clear search">Clear</button>
+            </label>
+            <div class="searchMeta" aria-live="polite">
+                <span id="resultCount">Loading pages...</span>
+                <span id="searchStatus"></span>
+            </div>
+        </header>
+
+        <section class="searchResultsSection" aria-labelledby="resultsHeading">
+            <div class="resultsHeadingRow">
+                <h2 id="resultsHeading">All pages</h2>
+                <select id="folderFilter" aria-label="Filter pages by folder">
+                    <option value="">All folders</option>
+                </select>
+            </div>
+            <div id="searchResults" class="searchResults" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <iframe id="footer" src="fragfooter.html" loading="lazy" title="ElateFit footer"></iframe>
+    <script src="js/allcommon.js"></script>
+    <script src="search.js"></script>
+</body>
+
+</html>

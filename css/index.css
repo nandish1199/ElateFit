@@ -168,10 +168,11 @@ body {
 .sectionLink {
     background: #FFFFFF;
     border-radius: 6px;
-    font-weight: 600;
+    font-weight: 800;
     padding: 10px 14px;
     text-decoration: none;
     transition: transform 160ms ease, box-shadow 160ms ease;
+    letter-spacing: 0.09em;
 }
 
 #index-front-card-container {

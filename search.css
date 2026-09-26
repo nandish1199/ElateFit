@@ -1,0 +1,198 @@
+:root {
+  --search-ink: #20342e;
+  --search-muted: #687a74;
+  --search-green: #1f6b5b;
+  --search-deep: #174e44;
+  --search-gold: #b58b45;
+  --search-paper: #ffffff;
+  --search-line: #e2e7e4;
+  --search-shadow: 0 14px 34px rgba(30, 58, 49, 0.07);
+}
+
+body {
+  background: #ffffff;
+  color: var(--search-ink);
+}
+
+.searchPage {
+  margin: 70px auto 0;
+  max-width: 1240px;
+  padding: 34px 24px 70px;
+}
+
+.searchHero {
+  background: #ffffff;
+  border: 1px solid var(--search-line);
+  border-top: 4px solid var(--search-gold);
+  box-shadow: var(--search-shadow);
+  padding: clamp(26px, 5vw, 54px);
+}
+
+.searchEyebrow {
+  color: var(--search-green);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  margin: 0 0 10px;
+}
+
+.searchHero h1 {
+  color: var(--search-deep);
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  line-height: 1;
+  margin: 0 0 14px;
+}
+
+.searchHero p:not(.searchEyebrow) {
+  color: var(--search-muted);
+  line-height: 1.6;
+  margin: 0 0 24px;
+  max-width: 650px;
+}
+
+.searchInputWrap {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #b9cbc4;
+  box-shadow: 0 6px 18px rgba(30, 58, 49, .05);
+  display: flex;
+  gap: 12px;
+  max-width: 760px;
+  padding: 6px 10px 6px 16px;
+}
+
+.searchInputWrap > span {
+  color: var(--search-green);
+  font-size: 1.2rem;
+}
+
+#searchInput {
+  background: transparent;
+  border: 0;
+  color: var(--search-ink);
+  flex: 1;
+  font-size: 1rem;
+  min-width: 0;
+  outline: 0;
+  padding: 12px 0;
+}
+
+#clearSearch {
+  background: #ffffff;
+  border: 1px solid #cbd8d2;
+  color: var(--search-deep);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 9px 12px;
+}
+
+#clearSearch:hover,
+#clearSearch:focus-visible {
+  background: var(--search-green);
+  color: #fff;
+}
+
+.searchMeta {
+  color: var(--search-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: .82rem;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.searchResultsSection {
+  padding-top: 28px;
+}
+
+.resultsHeadingRow {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.resultsHeadingRow h2 {
+  color: var(--search-deep);
+  font-size: 1.2rem;
+  letter-spacing: .08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+#folderFilter {
+  background: #ffffff;
+  border: 1px solid var(--search-line);
+  color: var(--search-ink);
+  max-width: 220px;
+  padding: 10px 12px;
+}
+
+.searchResults {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.searchResult {
+  background: var(--search-paper);
+  border: 1px solid var(--search-line);
+  border-left: 3px solid var(--search-gold);
+  color: var(--search-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 64px;
+  padding: 11px 12px;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.searchResult:hover,
+.searchResult:focus-visible {
+  border-color: #a9c3b8;
+  box-shadow: 0 10px 22px rgba(30, 58, 49, .07);
+  color: var(--search-deep);
+  outline: 0;
+  transform: translateY(-2px);
+}
+
+.searchResultTitle {
+  font-size: .9rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.searchResultPath {
+  color: var(--search-muted);
+  font-size: .7rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.searchEmpty {
+  background: var(--search-paper);
+  border: 1px dashed #b9cbc4;
+  color: var(--search-muted);
+  padding: 30px;
+  text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .searchResults { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .searchPage { padding: 22px 16px 52px; }
+  .searchResults { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .searchPage { padding-inline: 12px; }
+  .searchInputWrap { align-items: stretch; }
+  #clearSearch { padding-inline: 9px; }
+  .resultsHeadingRow { align-items: stretch; flex-direction: column; }
+  #folderFilter { max-width: none; }
+  .searchResults { grid-template-columns: 1fr; }
+}
