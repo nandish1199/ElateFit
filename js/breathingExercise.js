@@ -116,7 +116,7 @@ function addTechniqueRow(selectedIndex = 0) {
   row.className = "breathingTechniqueRow";
   row.innerHTML = `<button type="button" class="breathingRemoveButton" aria-label="Remove technique">&times;</button>
         <div class="breathingRowFields"><div><label>Technique</label><select class="technique-select">${techniqueOptions(selectedIndex)}</select></div>
-        <div><label>Repetitions</label><input class="repetitions-input" type="number" min="1" max="10" step="1" value="3"></div></div>`;
+        <div><label>Repetitions</label><input class="repetitions-input" type="number" min="1" max="70" step="1" value="3"></div></div>`;
   row.querySelector(".breathingRemoveButton").addEventListener("click", () => {
     if (techniqueList.children.length > 1) row.remove();
     updatePlan();
