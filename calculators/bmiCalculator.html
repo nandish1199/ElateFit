@@ -30,6 +30,8 @@
             background: #F8FAF8;
             color: var(--bmi-ink);
             font-family: Segoe UI, Tahoma, sans-serif;
+            display: grid;
+            place-items: center;
         }
 
         .bmiTitle {
@@ -37,7 +39,8 @@
             overflow: hidden;
             display: grid;
             gap: 10px;
-            margin: 70px 0 0;
+            margin: 100px 0 0;
+            width: 95vw;
             padding: 30px clamp(18px, 4vw, 48px);
             background: #FFFFFF;
             border: 1px solid var(--bmi-line);
@@ -47,17 +50,6 @@
             color: var(--bmi-ink);
             font-size: clamp(1.4rem, 3vw, 2.15rem) !important;
             letter-spacing: .04em;
-        }
-
-        .bmiTitle::after {
-            position: absolute;
-            right: 6%;
-            bottom: -62px;
-            width: 190px;
-            height: 190px;
-            border: 1px solid rgba(22, 163, 74, .14);
-            border-radius: 50%;
-            content: "";
         }
 
         .bmiTitle span {
@@ -152,8 +144,9 @@
             background: var(--bmi-green);
             color: #fff;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
+            font-size: .8rem;
         }
 
         #calcsubmit:hover,
@@ -272,8 +265,6 @@
         </div>
         <a class="heroAction" id="calcsubmit"><i class="fa-solid fa-calculator"></i> CALCULATE BMI</a>
     </div>
-    <p id="disclaimer">Disclaimer: Please consult a Doctor before implementing any solutions for your problems on seeing
-        the following results.</p>
     <div class="weightResult" id="severeThinness">
         <h2>Underweight (Severe Thin)</h2>
         <div class="progress">

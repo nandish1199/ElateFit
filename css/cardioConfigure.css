@@ -38,17 +38,6 @@ body {
     box-shadow: var(--cardio-shadow)
 }
 
-.cardioHero::after {
-    position: absolute;
-    right: 6%;
-    bottom: -62px;
-    width: 190px;
-    height: 190px;
-    border: 1px solid rgba(22, 163, 74, .14);
-    border-radius: 50%;
-    content: "";
-}
-
 .cardioEyebrow {
     display: inline-flex;
     align-items: center;
