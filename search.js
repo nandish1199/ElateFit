@@ -15,14 +15,6 @@ ayurveda/pittaKapha.html
 ayurveda/tastes.html
 ayurveda/vata.html
 ayurveda/vataPitta.html
-bhagavadgeeta/bhagavadgeeta.html
-bhagavadgeeta/chapter1.html
-bhagavadgeeta/chapter2.html
-bhagavadgeeta/chapter3.html
-bhagavadgeeta/chapter4.html
-bhagavadgeeta/chapter5.html
-bhagavadgeeta/chapter6.html
-bhagavadgeeta/chapter7.html
 calculators/bmiCalculator.html
 calculators/breathingExercise.html
 calculators/calcCategories.html
@@ -39,8 +31,6 @@ calculators/weightTracker.html
 calculators/workoutTracker.html
 contact.html
 fragfooter.html
-fragments/fragrandNutri.html
-fragments/fragrandProduct.html
 fragnav.html
 fragsearchbar.html
 index.html
@@ -134,27 +124,6 @@ products/beauty/soap/soapCategory.html
 products/beauty/toothpaste/madyama.html
 products/beauty/toothpaste/patanjali.html
 products/beauty/toothpaste/toothpasteCategory.html
-products/gadget/earbud/boat.html
-products/gadget/earbud/earbudCat.html
-products/gadget/earbud/one.html
-products/gadget/earbud/realme.html
-products/gadget/earphone/boat.html
-products/gadget/earphone/earphoneCat.html
-products/gadget/earphone/noise.html
-products/gadget/earphone/one.html
-products/gadget/gadgetCategories.html
-products/gadget/headphone/boat.html
-products/gadget/headphone/hammer.html
-products/gadget/headphone/headphoneCat.html
-products/gadget/headphone/noise.html
-products/gadget/powerbank/mi.html
-products/gadget/powerbank/powerbankCat.html
-products/gadget/powerbank/ptron.html
-products/gadget/powerbank/real.html
-products/gadget/watch/boat.html
-products/gadget/watch/dizo.html
-products/gadget/watch/noise.html
-products/gadget/watch/watchCat.html
 products/pcategories.html
 search.html
 sleepmusic/musicMixer.html
@@ -251,8 +220,26 @@ function renderResults() {
   searchResults.appendChild(fragment);
 }
 
-function loadPages() {
-  pages = pagePaths
+async function loadPages() {
+  let availablePaths = pagePaths;
+  if (window.location.protocol !== "file:") {
+    const checks = await Promise.all(
+      pagePaths.map(async (path) => {
+        try {
+          const response = await fetch(path, {
+            method: "HEAD",
+            cache: "no-store",
+          });
+          return response.ok ? path : null;
+        } catch {
+          return path;
+        }
+      }),
+    );
+    availablePaths = checks.filter(Boolean);
+  }
+
+  pages = availablePaths
     .filter((path) => path && !path.endsWith("/"))
     .sort((first, second) => first.localeCompare(second))
     .map((path) => ({
@@ -260,7 +247,7 @@ function loadPages() {
       title: displayName(path),
       folder: folderName(path),
     }));
-  searchStatus.textContent = "All repository pages loaded";
+  searchStatus.textContent = "Current repository pages loaded";
   renderFolderOptions();
   renderResults();
 }
