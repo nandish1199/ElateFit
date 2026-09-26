@@ -16,7 +16,7 @@ body { background: #F8FAF8; }
 .medicineHero::after { position: absolute; right: 8%; bottom: -62px; width: 180px; height: 180px; border: 1px solid rgba(22, 163, 74, .14); border-radius: 50%; content: ""; }
 .medicineHero h1 { margin: 0 0 8px; font-size: clamp(1.5rem, 3vw, 2.35rem); letter-spacing: .06em; font-weight: 800; }
 .medicineHero p:not(.eyebrow) { max-width: 700px; margin: 0; color: var(--medicine-muted); line-height: 1.55; }
-.eyebrow { margin: 0 0 8px; color: var(--medicine-coral); font-size: .75rem; font-weight: 800; letter-spacing: .16em; }
+.eyebrow { margin: 0 0 8px; color: var(--medicine-coral); font-size: .75rem; font-weight: 700; letter-spacing: .16em; }
 .heroIcon { position: relative; z-index: 1; color: var(--medicine-teal); font-size: clamp(3rem, 7vw, 5rem); opacity: .72; }
 .medicineLayout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: 20px; align-items: start; }
 .medicinePanel { padding: 22px; background: var(--medicine-paper); border: 1px solid var(--medicine-line); border-radius: 3px; box-shadow: var(--medicine-shadow); }
@@ -41,7 +41,7 @@ body { background: #F8FAF8; }
 .medicineDay span { display: flex; align-items: center; justify-content: center; min-height: 38px; border: 1px solid #C8DBCD; border-radius: 3px; background: #FFFFFF; color: var(--medicine-muted); font-size: .78rem; cursor: pointer; }
 .medicineDay input:checked + span { border-color: var(--medicine-teal); background: #EAF6EC; color: var(--medicine-ink); }
 .medicineActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-.medicineActions button, .periodButtons button { min-height: 42px; padding: 0 16px; border: 1px solid var(--medicine-teal); border-radius: 3px; background: var(--medicine-teal); color: #fff; cursor: pointer; font: inherit; font-weight: 600; }
+.medicineActions button, .periodButtons button { min-height: 42px; padding: 0 16px; border: 1px solid var(--medicine-teal); border-radius: 3px; background: var(--medicine-teal); color: #fff; cursor: pointer; font: inherit; font-weight: 600; font-size: 0.8rem; }
 .medicineActions .secondaryButton, .periodButtons button { background: transparent; color: var(--medicine-ink); border-color: var(--medicine-line); }
 .medicineActions button:hover, .periodButtons button:hover { box-shadow: 0 8px 16px rgba(22, 163, 74, .16); transform: translateY(-2px); }
 .medicineStatus { min-height: 20px; color: #B42318; font-size: .86rem; }
@@ -56,7 +56,7 @@ body { background: #F8FAF8; }
 .medicineItemMeta, .medicineChecklistMeta { margin-top: 4px; color: var(--medicine-muted); font-size: .84rem; line-height: 1.45; }
 .medicinePill { flex: 0 0 auto; padding: 6px 10px; border-radius: 999px; background: #EAF6EC; color: var(--medicine-teal); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .medicineItemActions { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-.medicineItemActions button { min-height: 34px; padding: 0 12px; border: 1px solid #c8d4d1; border-radius: 2px; background: #f8fbfa; color: var(--medicine-ink); cursor: pointer; font: inherit; font-weight: 600; }
+.medicineItemActions button { min-height: 34px; padding: 0 12px; border: 1px solid #c8d4d1; border-radius: 2px; background: #f8fbfa; color: var(--medicine-ink); cursor: pointer; font: inherit; font-weight: 600; font-size: .8rem; letter-spacing: .04em; }
 .medicineItemActions button:hover { background: var(--medicine-teal); color: #fff; }
 .medicineEmpty { padding: 18px; color: var(--medicine-muted); font-size: .9rem; line-height: 1.55; }
 .medicineChecklistItem { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }

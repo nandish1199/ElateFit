@@ -326,6 +326,7 @@ body {
     font: inherit;
     font-weight: 600;
     font-size: 0.8rem;
+    letter-spacing: .04em;
 }
 
 .serumItemActions button:hover {

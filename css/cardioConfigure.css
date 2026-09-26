@@ -56,7 +56,7 @@ body {
     margin-bottom: 12px;
     color: var(--cardio-coral);
     font-size: .75rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: .14em;
     text-transform: uppercase;
 }
@@ -170,7 +170,9 @@ body {
     color: #fff;
     cursor: pointer;
     font: inherit;
-    font-weight: 700
+    font-weight: 600;
+    font-size: .8rem;
+    letter-spacing: .04em;
 }
 
 .cardioButton.secondary {
@@ -412,8 +414,8 @@ body {
 
 .calendarMonth {
     color: var(--cardio-green);
-    font-size: .92rem;
-    font-weight: 800
+    font-size: .8rem;
+    font-weight: 600;
 }
 
 .calendarNavigation {

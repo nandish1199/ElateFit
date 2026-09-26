@@ -158,11 +158,11 @@ function formValues() {
 function fillForm(medicine = null) {
   editingId = medicine?.id || null;
   document.getElementById("medicineFormTitle").innerHTML = medicine
-    ? '<i class="fa-solid fa-prescription-bottle-medical"></i> Update medicine'
-    : '<i class="fa-solid fa-prescription-bottle-medical"></i> Add medicine';
+    ? '<i class="fa-solid fa-prescription-bottle-medical"></i> UPDATE MEDICINE'
+    : '<i class="fa-solid fa-prescription-bottle-medical"></i> ADD MEDICINE';
   document.getElementById("saveMedicineBtn").innerHTML = medicine
-    ? '<i class="fa-solid fa-floppy-disk"></i> Update medicine'
-    : '<i class="fa-solid fa-plus"></i> Add medicine';
+    ? '<i class="fa-solid fa-floppy-disk"></i> UPDATE MEDICINE'
+    : '<i class="fa-solid fa-plus"></i> ADD MEDICINE';
   const values = {
     medicineName: medicine?.name || "",
     medicineDosage: medicine?.dosage || "",
@@ -211,7 +211,7 @@ function renderMedicines() {
     .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
     .map(
       (item) =>
-        `<div class="medicineItem"><div class="medicineItemHeader"><div><div class="medicineItemName">${item.name}</div><div class="medicineItemMeta">${item.dosage} · ${item.formType} · ${item.frequency}</div><div class="medicineItemMeta">${normalizedTimes(item).join(", ")} · ${item.meal} · ${daysLabel(item.days)}</div></div><div class="medicinePill">${item.active ? "Active" : "Paused"}</div></div><div class="medicineItemMeta">${item.notes || "No extra instructions saved."}</div><div class="medicineItemActions"><button type="button" class="editMedicine" data-id="${item.id}"><i class="fa-solid fa-pen"></i> Edit</button><button type="button" class="toggleMedicine" data-id="${item.id}"><i class="fa-solid fa-power-off"></i> ${item.active ? "Pause" : "Activate"}</button><button type="button" class="deleteMedicine" data-id="${item.id}"><i class="fa-solid fa-trash"></i> Delete</button></div></div>`,
+        `<div class="medicineItem"><div class="medicineItemHeader"><div><div class="medicineItemName">${item.name}</div><div class="medicineItemMeta">${item.dosage} · ${item.formType} · ${item.frequency}</div><div class="medicineItemMeta">${normalizedTimes(item).join(", ")} · ${item.meal} · ${daysLabel(item.days)}</div></div><div class="medicinePill">${item.active ? "Active" : "Paused"}</div></div><div class="medicineItemMeta">${item.notes || "No extra instructions saved."}</div><div class="medicineItemActions"><button type="button" class="editMedicine" data-id="${item.id}"><i class="fa-solid fa-pen"></i> EDIT</button><button type="button" class="toggleMedicine" data-id="${item.id}"><i class="fa-solid fa-power-off"></i> ${item.active ? "PAUSE" : "ACTIVATE"}</button><button type="button" class="deleteMedicine" data-id="${item.id}"><i class="fa-solid fa-trash"></i> DELETE</button></div></div>`,
     )
     .join("");
 }
