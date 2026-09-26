@@ -220,12 +220,9 @@ function announceTechnique(name) {
   const continueBreathing = () => {
     if (announcementFinished || !session) return;
     announcementFinished = true;
-    setTimeout(() => {
-      if (!session) return;
-      session.waitingForAnnouncement = false;
-      const firstPhase = session.plan[session.techniqueIndex].phases[0];
-      speakPhaseStart(firstPhase[0], firstPhase[1]);
-    }, 2000);
+    session.waitingForAnnouncement = false;
+    const firstPhase = session.plan[session.techniqueIndex].phases[0];
+    speakPhaseStart(firstPhase[0], firstPhase[1]);
   };
   utterance.onend = continueBreathing;
   utterance.onerror = continueBreathing;
@@ -257,11 +254,7 @@ function announceSessionStart() {
     const continueCountdown = () => {
       if (announcementFinished) return;
       announcementFinished = true;
-      if (announcementIndex === 1) {
-        setTimeout(speakNextAnnouncement, 3000);
-      } else {
-        speakNextAnnouncement();
-      }
+      speakNextAnnouncement();
     };
     utterance.onend = continueCountdown;
     utterance.onerror = continueCountdown;
