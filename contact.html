@@ -70,7 +70,7 @@
 
     .contactLayout {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 20px;
       align-items: start;
     }
@@ -172,19 +172,6 @@
       color: var(--contact-dark);
     }
 
-    .gmap_iframe {
-      width: 100%;
-      min-height: 420px;
-      border: 1px solid var(--contact-line);
-      border-radius: 6px;
-      box-shadow: var(--contact-shadow);
-    }
-
-    .contactAside {
-      display: grid;
-      gap: 12px;
-    }
-
     .contactNote {
       padding: 16px;
       border-left: 3px solid var(--contact-gold);
@@ -220,9 +207,6 @@
         justify-content: center;
       }
 
-      .gmap_iframe {
-        min-height: 320px;
-      }
     }
   </style>
 </head>
@@ -283,10 +267,6 @@
         </div>
       </section>
 
-      <aside class="contactAside">
-        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-          src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=hubli&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-      </aside>
     </div>
   </main>
 
