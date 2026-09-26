@@ -82,7 +82,8 @@ body {
     border: 1px solid #DCE9DF;
     border-radius: 6px;
     color: #526461;
-    font-weight: 600;
+    font-weight: 800;
+    letter-spacing: 0.12em;
 }
 
 .heroAction:hover,
