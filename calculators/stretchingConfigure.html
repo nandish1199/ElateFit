@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../images/static/logo.png" />
+    <link rel="stylesheet" href="../css/allcommon.css" />
+    <link rel="stylesheet" href="../css/stretchingConfigure.css" />
+    <title>Stretching Routine Builder, Elatefit</title>
+</head>
+
+<body>
+    <div id="navBarContainer">
+        <button type="button" class="btn-warning" id="toggleBtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+        <iframe id="searchbar" src="../fragsearchbar.html" loading="lazy"></iframe>
+    </div>
+    <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
+
+    <main class="stretchPage">
+        <section class="stretchHero">
+            <span class="stretchEyebrow"><i class="fa-solid fa-leaf"></i> Recover and Lengthen</span>
+            <h1>STRETCHING ROUTINE BUILDER</h1>
+            <p>Build an ordered flexibility routine, set the hold duration for each stretch, and follow a guided timer
+                for deep recovery.</p>
+        </section>
+
+        <div class="stretchLayout">
+            <section class="stretchPanel">
+                <h2 id="stretchFormTitle"><i class="fa-solid fa-person-running"></i> Add Stretch</h2>
+                <form class="planForm" id="stretchForm">
+                    <label class="field" for="stretchName">Stretch name
+                        <input id="stretchName" placeholder="Hamstring stretch" required />
+                    </label>
+                    <div class="roundGrid">
+                        <label class="field" for="stretchSets">Sets (Sides)
+                            <input type="number" id="stretchSets" min="1" value="2" required />
+                        </label>
+                        <label class="field" for="stretchDuration">Hold duration (sec)
+                            <input type="number" id="stretchDuration" min="5" value="30" required />
+                        </label>
+                        <label class="field" for="restSeconds">Rest between sets
+                            <input type="number" id="restSeconds" min="0" value="10" required />
+                        </label>
+                    </div>
+                    <label class="field" for="stretchNotes">Notes
+                        <input id="stretchNotes" placeholder="Breathe deeply, don't push into pain" />
+                    </label>
+                    <div class="formActions">
+                        <button class="stretchButton" id="saveStretch" type="submit"><i class="fa-solid fa-plus"></i>
+                            ADD STRETCH</button>
+                        <button class="stretchButton secondary" id="clearStretch" type="button"><i
+                                class="fa-solid fa-rotate-left"></i> CLEAR</button>
+                    </div>
+                    <div class="stretchStatus" id="stretchStatus" role="status" aria-live="polite"></div>
+                </form>
+
+                <div class="stretchPanel timerPanel hidden" id="timerPanel">
+                    <h2><i class="fa-solid fa-stopwatch"></i> Guided session</h2>
+                    <div class="timerDisplay">
+                        <div class="timerPhase" id="timerPhase">Ready</div>
+                        <div class="timerName" id="timerName">Build a plan</div>
+                        <div class="timerClock" id="timerClock">0:00</div>
+                        <div class="timerProgress"><span id="timerProgressBar"></span></div>
+                        <div class="timerNext" id="timerNext"></div>
+                        <div class="timerMessage" id="timerMessage">Voice cues announce holds, rests, changes, and
+                            completion.</div>
+                    </div>
+                    <div class="timerActions">
+                        <button class="stretchButton" id="pauseTimer" type="button"><i class="fa-solid fa-pause"></i>
+                            Pause</button>
+                        <button class="stretchButton secondary" id="skipTimer" type="button"><i
+                                class="fa-solid fa-forward"></i> Skip</button>
+                        <button class="stretchButton secondary" id="resetTimer" type="button"><i
+                                class="fa-solid fa-stop"></i> End</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stretchPanel">
+                <h2><i class="fa-solid fa-list-check"></i> Your routine order</h2>
+                <div class="stretchList" id="stretchList"></div>
+                <div class="formActions">
+                    <button class="stretchButton" id="startSession" type="button"><i class="fa-solid fa-play"></i> START
+                        SESSION</button>
+                    <button class="stretchButton secondary" id="savePlan" type="button"><i
+                            class="fa-solid fa-bookmark"></i> SAVE ROUTINE</button>
+                </div>
+                <div class="stretchStatus" id="stretchStatusMirror"></div>
+                <h2 class="savedSessionsHeading"><i class="fa-solid fa-bookmark"></i> Saved routines</h2>
+                <div class="savedPlanList" id="savedPlanList"></div>
+            </section>
+
+            <section class="stretchPanel stretchCalendarPanel" aria-labelledby="stretchCalendarHeading">
+                <div class="calendarTools">
+                    <div>
+                        <h2 id="stretchCalendarHeading"><i class="fa-solid fa-calendar-check"></i> Flexibility calendar
+                        </h2>
+                        <span class="calendarMonth" id="stretchCalendarMonth"></span>
+                    </div>
+                    <div class="calendarNavigation" aria-label="Change calendar month">
+                        <button type="button" id="previousStretchMonth" aria-label="Previous month"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" id="nextStretchMonth" aria-label="Next month"><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendarWeekdays" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="stretchCalendarGrid" id="stretchCalendarGrid" role="grid"
+                    aria-label="Monthly stretching calendar"></div>
+                <div class="calendarFooter">
+                    <div class="calendarLegend"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Completed routine
+                    </div>
+                    <button type="button" class="resetCalendarButton" id="resetStretchCalendar"><i
+                            class="fa-solid fa-rotate-left"></i> RESET CALENDAR DATA</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="../js/allcommon.js"></script>
+    <script src="../js/stretchingConfigure.js"></script>
+</body>
+
+</html>
