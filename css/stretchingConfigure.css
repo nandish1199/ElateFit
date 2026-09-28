@@ -1,9 +1,9 @@
 :root {
     --stretch-ink: #1e293b;
     --stretch-muted: #64748b;
-    --stretch-primary: #6366f1;
+    --stretch-primary: #757575;
     --stretch-dark: #4338ca;
-    --stretch-accent: #8b5cf6;
+    --stretch-accent: #757575;
     --stretch-paper: #FFFFFF;
     --stretch-line: #e2e8f0;
     --stretch-shadow: 0 14px 32px rgba(99, 102, 241, .08);
