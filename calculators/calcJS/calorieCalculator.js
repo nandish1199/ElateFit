@@ -916,25 +916,25 @@ const foodCatalog = {
     protein: 1.09,
     saturatedFat: 0.038,
     unsaturatedFat: 0.105, // Combined mono and poly
-    solubleFiber: 0.6,     // Estimated breakdown of 2.6g total fiber
-    insolubleFiber: 2.0,   // Estimated breakdown of 2.6g total fiber
-    vitaminA: 0.003,       // 3 mcg RAE converted to mg
+    solubleFiber: 0.6, // Estimated breakdown of 2.6g total fiber
+    insolubleFiber: 2.0, // Estimated breakdown of 2.6g total fiber
+    vitaminA: 0.003, // 3 mcg RAE converted to mg
     vitaminC: 8.7,
-    vitaminD: 0,           // Not present in plant foods
+    vitaminD: 0, // Not present in plant foods
     vitaminE: 0.1,
-    vitaminK: 0.0005,      // 0.5 mcg converted to mg
+    vitaminK: 0.0005, // 0.5 mcg converted to mg
     vitaminB1: 0.031,
     vitaminB2: 0.073,
     vitaminB3: 0.665,
     vitaminB6: 0.367,
-    folate: 0.02,          // 20 mcg converted to mg
-    vitaminB12: 0,         // Not naturally present in plant foods
+    folate: 0.02, // 20 mcg converted to mg
+    vitaminB12: 0, // Not naturally present in plant foods
     calcium: 5,
     iron: 0.26,
     magnesium: 27,
     zinc: 0.15,
     iodine: 0,
-    selenium: 0.001,       // 1 mcg converted to mg
+    selenium: 0.001, // 1 mcg converted to mg
     copper: 0.078,
     potassium: 358,
     phosphorus: 22,
@@ -946,18 +946,18 @@ const foodCatalog = {
     protein: 0.26,
     saturatedFat: 0.028,
     unsaturatedFat: 0.058, // Combined mono and poly
-    solubleFiber: 1.0,     // Estimated breakdown of 2.4g total fiber (mostly pectin)
-    insolubleFiber: 1.4,   // Estimated breakdown of 2.4g total fiber
-    vitaminA: 0.003,       // 3 mcg RAE converted to mg
+    solubleFiber: 1.0, // Estimated breakdown of 2.4g total fiber (mostly pectin)
+    insolubleFiber: 1.4, // Estimated breakdown of 2.4g total fiber
+    vitaminA: 0.003, // 3 mcg RAE converted to mg
     vitaminC: 4.6,
     vitaminD: 0,
     vitaminE: 0.18,
-    vitaminK: 0.0022,      // 2.2 mcg converted to mg
+    vitaminK: 0.0022, // 2.2 mcg converted to mg
     vitaminB1: 0.017,
     vitaminB2: 0.026,
     vitaminB3: 0.091,
     vitaminB6: 0.041,
-    folate: 0.003,         // 3 mcg converted to mg
+    folate: 0.003, // 3 mcg converted to mg
     vitaminB12: 0,
     calcium: 6,
     iron: 0.12,
@@ -975,10 +975,10 @@ const foodCatalog = {
     calories: 47,
     protein: 0.94,
     saturatedFat: 0.015,
-    unsaturatedFat: 0.048, 
-    solubleFiber: 1.4,     // Estimated breakdown of 2.4g total fiber
-    insolubleFiber: 1.0,   
-    vitaminA: 0.011,       // 11 mcg RAE converted to mg
+    unsaturatedFat: 0.048,
+    solubleFiber: 1.4, // Estimated breakdown of 2.4g total fiber
+    insolubleFiber: 1.0,
+    vitaminA: 0.011, // 11 mcg RAE converted to mg
     vitaminC: 53.2,
     vitaminD: 0,
     vitaminE: 0.18,
@@ -987,14 +987,14 @@ const foodCatalog = {
     vitaminB2: 0.04,
     vitaminB3: 0.282,
     vitaminB6: 0.06,
-    folate: 0.03,          // 30 mcg converted to mg
+    folate: 0.03, // 30 mcg converted to mg
     vitaminB12: 0,
     calcium: 40,
     iron: 0.1,
     magnesium: 10,
     zinc: 0.07,
     iodine: 0,
-    selenium: 0.0005,      // 0.5 mcg converted to mg
+    selenium: 0.0005, // 0.5 mcg converted to mg
     copper: 0.045,
     potassium: 181,
     phosphorus: 14,
@@ -1006,25 +1006,25 @@ const foodCatalog = {
     protein: 0.54,
     saturatedFat: 0.009,
     unsaturatedFat: 0.053,
-    solubleFiber: 0.4,     // Estimated breakdown of 1.4g total fiber
-    insolubleFiber: 1.0,   
-    vitaminA: 0.003,       
+    solubleFiber: 0.4, // Estimated breakdown of 1.4g total fiber
+    insolubleFiber: 1.0,
+    vitaminA: 0.003,
     vitaminC: 47.8,
     vitaminD: 0,
     vitaminE: 0.02,
-    vitaminK: 0.0007,      // 0.7 mcg converted to mg
+    vitaminK: 0.0007, // 0.7 mcg converted to mg
     vitaminB1: 0.079,
     vitaminB2: 0.032,
     vitaminB3: 0.5,
     vitaminB6: 0.112,
-    folate: 0.018,         // 18 mcg converted to mg
+    folate: 0.018, // 18 mcg converted to mg
     vitaminB12: 0,
     calcium: 13,
     iron: 0.29,
     magnesium: 12,
     zinc: 0.12,
     iodine: 0,
-    selenium: 0.0001,      // 0.1 mcg converted to mg
+    selenium: 0.0001, // 0.1 mcg converted to mg
     copper: 0.11,
     potassium: 109,
     phosphorus: 8,
@@ -1036,25 +1036,25 @@ const foodCatalog = {
     protein: 0.47,
     saturatedFat: 0.043,
     unsaturatedFat: 0.096,
-    solubleFiber: 0.7,     // Estimated breakdown of 1.7g total fiber
-    insolubleFiber: 1.0,   
-    vitaminA: 0.047,       // 47 mcg RAE converted to mg
+    solubleFiber: 0.7, // Estimated breakdown of 1.7g total fiber
+    insolubleFiber: 1.0,
+    vitaminA: 0.047, // 47 mcg RAE converted to mg
     vitaminC: 60.9,
     vitaminD: 0,
     vitaminE: 0.3,
-    vitaminK: 0.0026,      // 2.6 mcg converted to mg
+    vitaminK: 0.0026, // 2.6 mcg converted to mg
     vitaminB1: 0.023,
     vitaminB2: 0.027,
     vitaminB3: 0.357,
     vitaminB6: 0.038,
-    folate: 0.037,         // 37 mcg converted to mg
+    folate: 0.037, // 37 mcg converted to mg
     vitaminB12: 0,
     calcium: 20,
     iron: 0.25,
     magnesium: 21,
     zinc: 0.08,
     iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
+    selenium: 0.0006, // 0.6 mcg converted to mg
     copper: 0.045,
     potassium: 182,
     phosphorus: 10,
@@ -1066,25 +1066,25 @@ const foodCatalog = {
     protein: 2.55,
     saturatedFat: 0.272,
     unsaturatedFat: 0.489,
-    solubleFiber: 1.4,     // Estimated breakdown of 5.4g total fiber
-    insolubleFiber: 4.0,   
-    vitaminA: 0.031,       // 31 mcg RAE converted to mg
-    vitaminC: 228.3,       // Extremely rich source of Vitamin C
+    solubleFiber: 1.4, // Estimated breakdown of 5.4g total fiber
+    insolubleFiber: 4.0,
+    vitaminA: 0.031, // 31 mcg RAE converted to mg
+    vitaminC: 228.3, // Extremely rich source of Vitamin C
     vitaminD: 0,
     vitaminE: 0.73,
-    vitaminK: 0.0022,      // 2.2 mcg converted to mg
+    vitaminK: 0.0022, // 2.2 mcg converted to mg
     vitaminB1: 0.067,
     vitaminB2: 0.04,
     vitaminB3: 1.084,
     vitaminB6: 0.11,
-    folate: 0.049,         // 49 mcg converted to mg
+    folate: 0.049, // 49 mcg converted to mg
     vitaminB12: 0,
     calcium: 18,
     iron: 0.26,
     magnesium: 22,
     zinc: 0.23,
     iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
+    selenium: 0.0006, // 0.6 mcg converted to mg
     copper: 0.23,
     potassium: 417,
     phosphorus: 40,
@@ -1096,25 +1096,25 @@ const foodCatalog = {
     protein: 0.61,
     saturatedFat: 0.016,
     unsaturatedFat: 0.087,
-    solubleFiber: 0.1,     // Estimated breakdown of 0.4g total fiber
-    insolubleFiber: 0.3,   
-    vitaminA: 0.028,       // 28 mcg RAE converted to mg
+    solubleFiber: 0.1, // Estimated breakdown of 0.4g total fiber
+    insolubleFiber: 0.3,
+    vitaminA: 0.028, // 28 mcg RAE converted to mg
     vitaminC: 8.1,
     vitaminD: 0,
     vitaminE: 0.05,
-    vitaminK: 0.0001,      // 0.1 mcg converted to mg
+    vitaminK: 0.0001, // 0.1 mcg converted to mg
     vitaminB1: 0.033,
     vitaminB2: 0.021,
     vitaminB3: 0.178,
     vitaminB6: 0.045,
-    folate: 0.003,         // 3 mcg converted to mg
+    folate: 0.003, // 3 mcg converted to mg
     vitaminB12: 0,
     calcium: 7,
     iron: 0.24,
     magnesium: 10,
     zinc: 0.1,
     iodine: 0,
-    selenium: 0.0004,      // 0.4 mcg converted to mg
+    selenium: 0.0004, // 0.4 mcg converted to mg
     copper: 0.042,
     potassium: 112,
     phosphorus: 11,
@@ -1126,25 +1126,25 @@ const foodCatalog = {
     protein: 0.84,
     saturatedFat: 0.051,
     unsaturatedFat: 0.081,
-    solubleFiber: 0.2,     // Estimated breakdown of 0.9g total fiber
-    insolubleFiber: 0.7,   
-    vitaminA: 0.169,       // 169 mcg RAE converted to mg (very high in beta-carotene)
+    solubleFiber: 0.2, // Estimated breakdown of 0.9g total fiber
+    insolubleFiber: 0.7,
+    vitaminA: 0.169, // 169 mcg RAE converted to mg (very high in beta-carotene)
     vitaminC: 36.7,
     vitaminD: 0,
     vitaminE: 0.05,
-    vitaminK: 0.0025,      // 2.5 mcg converted to mg
+    vitaminK: 0.0025, // 2.5 mcg converted to mg
     vitaminB1: 0.041,
     vitaminB2: 0.019,
     vitaminB3: 0.734,
     vitaminB6: 0.072,
-    folate: 0.021,         // 21 mcg converted to mg
+    folate: 0.021, // 21 mcg converted to mg
     vitaminB12: 0,
     calcium: 9,
     iron: 0.21,
     magnesium: 12,
     zinc: 0.18,
     iodine: 0,
-    selenium: 0.0004,      // 0.4 mcg converted to mg
+    selenium: 0.0004, // 0.4 mcg converted to mg
     copper: 0.041,
     potassium: 267,
     phosphorus: 15,
@@ -1156,25 +1156,25 @@ const foodCatalog = {
     protein: 0.82,
     saturatedFat: 0.092,
     unsaturatedFat: 0.211,
-    solubleFiber: 0.6,     // Estimated breakdown of 1.6g total fiber
-    insolubleFiber: 1.0,   
-    vitaminA: 0.054,       // 54 mcg RAE converted to mg
+    solubleFiber: 0.6, // Estimated breakdown of 1.6g total fiber
+    insolubleFiber: 1.0,
+    vitaminA: 0.054, // 54 mcg RAE converted to mg
     vitaminC: 36.4,
     vitaminD: 0,
     vitaminE: 0.9,
-    vitaminK: 0.0042,      // 4.2 mcg converted to mg
+    vitaminK: 0.0042, // 4.2 mcg converted to mg
     vitaminB1: 0.028,
     vitaminB2: 0.038,
     vitaminB3: 0.669,
     vitaminB6: 0.119,
-    folate: 0.043,         // 43 mcg converted to mg
+    folate: 0.043, // 43 mcg converted to mg
     vitaminB12: 0,
     calcium: 11,
     iron: 0.16,
     magnesium: 10,
     zinc: 0.09,
     iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
+    selenium: 0.0006, // 0.6 mcg converted to mg
     copper: 0.111,
     potassium: 168,
     phosphorus: 14,
@@ -1186,25 +1186,25 @@ const foodCatalog = {
     protein: 0.36,
     saturatedFat: 0.009,
     unsaturatedFat: 0.078,
-    solubleFiber: 1.1,     // Estimated breakdown of 3.1g total fiber
-    insolubleFiber: 2.0,   
-    vitaminA: 0.001,       // 1 mcg RAE converted to mg
+    solubleFiber: 1.1, // Estimated breakdown of 3.1g total fiber
+    insolubleFiber: 2.0,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
     vitaminC: 4.3,
     vitaminD: 0,
     vitaminE: 0.12,
-    vitaminK: 0.0044,      // 4.4 mcg converted to mg
+    vitaminK: 0.0044, // 4.4 mcg converted to mg
     vitaminB1: 0.012,
     vitaminB2: 0.026,
     vitaminB3: 0.161,
     vitaminB6: 0.029,
-    folate: 0.007,         // 7 mcg converted to mg
+    folate: 0.007, // 7 mcg converted to mg
     vitaminB12: 0,
     calcium: 9,
     iron: 0.18,
     magnesium: 7,
     zinc: 0.1,
     iodine: 0,
-    selenium: 0.0001,      // 0.1 mcg converted to mg
+    selenium: 0.0001, // 0.1 mcg converted to mg
     copper: 0.082,
     potassium: 116,
     phosphorus: 12,
@@ -1216,25 +1216,25 @@ const foodCatalog = {
     protein: 0.67,
     saturatedFat: 0.015,
     unsaturatedFat: 0.198,
-    solubleFiber: 0.6,     // Estimated breakdown of 2.0g total fiber
-    insolubleFiber: 1.4,   
-    vitaminA: 0.001,       // 1 mcg RAE converted to mg
+    solubleFiber: 0.6, // Estimated breakdown of 2.0g total fiber
+    insolubleFiber: 1.4,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
     vitaminC: 58.8,
     vitaminD: 0,
     vitaminE: 0.29,
-    vitaminK: 0.0022,      // 2.2 mcg converted to mg
+    vitaminK: 0.0022, // 2.2 mcg converted to mg
     vitaminB1: 0.024,
     vitaminB2: 0.022,
     vitaminB3: 0.386,
     vitaminB6: 0.047,
-    folate: 0.024,         // 24 mcg converted to mg
+    folate: 0.024, // 24 mcg converted to mg
     vitaminB12: 0,
     calcium: 16,
     iron: 0.41,
     magnesium: 13,
     zinc: 0.14,
     iodine: 0,
-    selenium: 0.0004,      // 0.4 mcg converted to mg
+    selenium: 0.0004, // 0.4 mcg converted to mg
     copper: 0.048,
     potassium: 153,
     phosphorus: 24,
@@ -1246,25 +1246,25 @@ const foodCatalog = {
     protein: 0.72,
     saturatedFat: 0.054,
     unsaturatedFat: 0.093,
-    solubleFiber: 0.3,     // Estimated breakdown of 0.9g total fiber
-    insolubleFiber: 0.6,   
-    vitaminA: 0.003,       // 3 mcg RAE converted to mg
+    solubleFiber: 0.3, // Estimated breakdown of 0.9g total fiber
+    insolubleFiber: 0.6,
+    vitaminA: 0.003, // 3 mcg RAE converted to mg
     vitaminC: 3.2,
     vitaminD: 0,
     vitaminE: 0.19,
-    vitaminK: 0.0146,      // 14.6 mcg converted to mg
+    vitaminK: 0.0146, // 14.6 mcg converted to mg
     vitaminB1: 0.069,
     vitaminB2: 0.07,
     vitaminB3: 0.188,
     vitaminB6: 0.086,
-    folate: 0.002,         // 2 mcg converted to mg
+    folate: 0.002, // 2 mcg converted to mg
     vitaminB12: 0,
     calcium: 10,
     iron: 0.36,
     magnesium: 7,
     zinc: 0.07,
     iodine: 0,
-    selenium: 0.0001,      // 0.1 mcg converted to mg
+    selenium: 0.0001, // 0.1 mcg converted to mg
     copper: 0.127,
     potassium: 191,
     phosphorus: 20,
@@ -1276,25 +1276,25 @@ const foodCatalog = {
     protein: 0.72,
     saturatedFat: 0.054,
     unsaturatedFat: 0.093,
-    solubleFiber: 0.3,     // Estimated breakdown of 0.9g total fiber
-    insolubleFiber: 0.6,   
-    vitaminA: 0.003,       // Macroscopic profile identical to green grapes in USDA standard DB
+    solubleFiber: 0.3, // Estimated breakdown of 0.9g total fiber
+    insolubleFiber: 0.6,
+    vitaminA: 0.003, // Macroscopic profile identical to green grapes in USDA standard DB
     vitaminC: 3.2,
     vitaminD: 0,
     vitaminE: 0.19,
-    vitaminK: 0.0146,      // 14.6 mcg converted to mg
+    vitaminK: 0.0146, // 14.6 mcg converted to mg
     vitaminB1: 0.069,
     vitaminB2: 0.07,
     vitaminB3: 0.188,
     vitaminB6: 0.086,
-    folate: 0.002,         // 2 mcg converted to mg
+    folate: 0.002, // 2 mcg converted to mg
     vitaminB12: 0,
     calcium: 10,
     iron: 0.36,
     magnesium: 7,
     zinc: 0.07,
     iodine: 0,
-    selenium: 0.0001,      // 0.1 mcg converted to mg
+    selenium: 0.0001, // 0.1 mcg converted to mg
     copper: 0.127,
     potassium: 191,
     phosphorus: 20,
@@ -1306,25 +1306,25 @@ const foodCatalog = {
     protein: 0.44,
     saturatedFat: 0.19,
     unsaturatedFat: 0.81,
-    solubleFiber: 1.5,     // Estimated breakdown of 5.3g total fiber
-    insolubleFiber: 3.8,   
-    vitaminA: 0.003,       // 3 mcg RAE converted to mg
+    solubleFiber: 1.5, // Estimated breakdown of 5.3g total fiber
+    insolubleFiber: 3.8,
+    vitaminA: 0.003, // 3 mcg RAE converted to mg
     vitaminC: 14.7,
     vitaminD: 0,
     vitaminE: 0.1,
-    vitaminK: 0.001,       // ~1 mcg trace converted to mg
+    vitaminK: 0.001, // ~1 mcg trace converted to mg
     vitaminB1: 0.058,
     vitaminB2: 0.02,
     vitaminB3: 0.2,
     vitaminB6: 0.037,
-    folate: 0.014,         // 14 mcg converted to mg
+    folate: 0.014, // 14 mcg converted to mg
     vitaminB12: 0,
     calcium: 21,
     iron: 0.8,
     magnesium: 12,
     zinc: 0.1,
     iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
+    selenium: 0.0006, // 0.6 mcg converted to mg
     copper: 0.086,
     potassium: 193,
     phosphorus: 12,
@@ -1336,661 +1336,690 @@ const foodCatalog = {
     protein: 1.67,
     saturatedFat: 0.12,
     unsaturatedFat: 0.65,
-    solubleFiber: 1.0,     // Estimated breakdown of 4.0g total fiber
-    insolubleFiber: 3.0,   
-    vitaminA: 0,           
+    solubleFiber: 1.0, // Estimated breakdown of 4.0g total fiber
+    insolubleFiber: 3.0,
+    vitaminA: 0,
     vitaminC: 10.2,
     vitaminD: 0,
     vitaminE: 0.6,
-    vitaminK: 0.0164,      // 16.4 mcg converted to mg
+    vitaminK: 0.0164, // 16.4 mcg converted to mg
     vitaminB1: 0.067,
     vitaminB2: 0.053,
     vitaminB3: 0.293,
     vitaminB6: 0.075,
-    folate: 0.038,         // 38 mcg converted to mg
+    folate: 0.038, // 38 mcg converted to mg
     vitaminB12: 0,
     calcium: 10,
     iron: 0.3,
     magnesium: 12,
     zinc: 0.35,
     iodine: 0,
-    selenium: 0.0005,      // 0.5 mcg converted to mg
+    selenium: 0.0005, // 0.5 mcg converted to mg
     copper: 0.158,
     potassium: 236,
     phosphorus: 36,
   },
 
   //________________VEGETABLES_________________
-  carrot: {
-    label: "CARROT RAW",
-    calories: 41,
-    protein: 0.93,
-    saturatedFat: 0.037,
-    unsaturatedFat: 0.131, // Combined mono and poly
-    solubleFiber: 1.2,     // Estimated breakdown of 2.8g total fiber
-    insolubleFiber: 1.6,   
-    vitaminA: 0.835,       // 835 mcg RAE converted to mg (extremely high)
-    vitaminC: 5.9,
+  boiled_carrot: {
+    label: "CARROT BOILED",
+    calories: 35,
+    protein: 0.76,
+    saturatedFat: 0.028,
+    unsaturatedFat: 0.11,
+    solubleFiber: 1.3, // Estimated breakdown of 3.0g total fiber
+    insolubleFiber: 1.7,
+    vitaminA: 0.828, // 828 mcg RAE converted to mg
+    vitaminC: 3.6, // Reduced due to boiling
     vitaminD: 0,
-    vitaminE: 0.66,
-    vitaminK: 0.0132,      // 13.2 mcg converted to mg
-    vitaminB1: 0.066,
-    vitaminB2: 0.058,
-    vitaminB3: 0.983,
-    vitaminB6: 0.138,
-    folate: 0.019,         // 19 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 33,
-    iron: 0.3,
-    magnesium: 12,
-    zinc: 0.24,
-    iodine: 0,
-    selenium: 0.0001,      // 0.1 mcg converted to mg
-    copper: 0.045,
-    potassium: 320,
-    phosphorus: 35,
-  },
-
-  cabbage: {
-    label: "CABBAGE RAW",
-    calories: 25,
-    protein: 1.28,
-    saturatedFat: 0.034,
-    unsaturatedFat: 0.034,
-    solubleFiber: 1.0,     // Estimated breakdown of 2.5g total fiber
-    insolubleFiber: 1.5,
-    vitaminA: 0.005,       // 5 mcg RAE converted to mg
-    vitaminC: 36.6,
-    vitaminD: 0,
-    vitaminE: 0.15,
-    vitaminK: 0.076,       // 76 mcg converted to mg
-    vitaminB1: 0.061,
+    vitaminE: 0.6,
+    vitaminK: 0.0137, // 13.7 mcg converted to mg
+    vitaminB1: 0.046,
     vitaminB2: 0.04,
-    vitaminB3: 0.234,
-    vitaminB6: 0.124,
-    folate: 0.043,         // 43 mcg converted to mg
+    vitaminB3: 0.603,
+    vitaminB6: 0.129,
+    folate: 0.014, // 14 mcg converted to mg
     vitaminB12: 0,
-    calcium: 40,
-    iron: 0.47,
-    magnesium: 12,
-    zinc: 0.18,
+    calcium: 30,
+    iron: 0.34,
+    magnesium: 10,
+    zinc: 0.2,
     iodine: 0,
-    selenium: 0.0003,      // 0.3 mcg converted to mg
-    copper: 0.019,
-    potassium: 170,
-    phosphorus: 26,
+    selenium: 0.0006, // 0.6 mcg converted to mg
+    copper: 0.035,
+    potassium: 235, // Leached into water
+    phosphorus: 30,
   },
 
-  onion: {
-    label: "ONION RAW",
-    calories: 40,
-    protein: 1.1,
-    saturatedFat: 0.042,
-    unsaturatedFat: 0.045,
-    solubleFiber: 0.5,     // Estimated breakdown of 1.7g total fiber
-    insolubleFiber: 1.2,
+  boiled_cabbage: {
+    label: "CABBAGE BOILED",
+    calories: 23,
+    protein: 1.27,
+    saturatedFat: 0.015,
+    unsaturatedFat: 0.03,
+    solubleFiber: 0.8, // Estimated breakdown of 1.9g total fiber
+    insolubleFiber: 1.1,
+    vitaminA: 0.004, // 4 mcg RAE converted to mg
+    vitaminC: 37.5,
+    vitaminD: 0,
+    vitaminE: 0.1,
+    vitaminK: 0.109, // 109 mcg converted to mg
+    vitaminB1: 0.051,
+    vitaminB2: 0.038,
+    vitaminB3: 0.234,
+    vitaminB6: 0.111,
+    folate: 0.03, // 30 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 48,
+    iron: 0.17,
+    magnesium: 14,
+    zinc: 0.16,
+    iodine: 0,
+    selenium: 0.0008, // 0.8 mcg converted to mg
+    copper: 0.018,
+    potassium: 196,
+    phosphorus: 33,
+  },
+
+  boiled_onion: {
+    label: "ONION BOILED",
+    calories: 44,
+    protein: 1.36,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.1,
+    solubleFiber: 0.5, // Estimated breakdown of 1.4g total fiber
+    insolubleFiber: 0.9,
     vitaminA: 0,
-    vitaminC: 7.4,
+    vitaminC: 5.1,
+    vitaminD: 0,
+    vitaminE: 0.01,
+    vitaminK: 0.0004, // 0.4 mcg converted to mg
+    vitaminB1: 0.054,
+    vitaminB2: 0.018,
+    vitaminB3: 0.1,
+    vitaminB6: 0.11,
+    folate: 0.013, // 13 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 22,
+    iron: 0.22,
+    magnesium: 11,
+    zinc: 0.21,
+    iodine: 0,
+    selenium: 0.0006, // 0.6 mcg converted to mg
+    copper: 0.04,
+    potassium: 166,
+    phosphorus: 30,
+  },
+
+  boiled_brinjal: {
+    label: "BRINJAL / EGGPLANT BOILED",
+    calories: 35,
+    protein: 0.83,
+    saturatedFat: 0.04,
+    unsaturatedFat: 0.1,
+    solubleFiber: 1.0, // Estimated breakdown of 2.5g total fiber
+    insolubleFiber: 1.5,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
+    vitaminC: 1.3,
+    vitaminD: 0,
+    vitaminE: 0.41,
+    vitaminK: 0.0029, // 2.9 mcg converted to mg
+    vitaminB1: 0.075,
+    vitaminB2: 0.02,
+    vitaminB3: 0.6,
+    vitaminB6: 0.086,
+    folate: 0.014, // 14 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 6,
+    iron: 0.25,
+    magnesium: 11,
+    zinc: 0.12,
+    iodine: 0,
+    selenium: 0.0001, // 0.1 mcg converted to mg
+    copper: 0.06,
+    potassium: 123,
+    phosphorus: 15,
+  },
+
+  boiled_cucumber: {
+    label: "CUCUMBER BOILED",
+    calories: 14, // Very rarely boiled, nutrients leach heavily
+    protein: 0.6,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.03,
+    solubleFiber: 0.1, // Estimated breakdown of 0.4g total fiber
+    insolubleFiber: 0.3,
+    vitaminA: 0.003, // 3 mcg RAE converted to mg
+    vitaminC: 1.5,
     vitaminD: 0,
     vitaminE: 0.02,
-    vitaminK: 0.0004,      // 0.4 mcg converted to mg
-    vitaminB1: 0.046,
-    vitaminB2: 0.027,
-    vitaminB3: 0.116,
-    vitaminB6: 0.12,
-    folate: 0.019,         // 19 mcg converted to mg
+    vitaminK: 0.012, // 12 mcg converted to mg
+    vitaminB1: 0.02,
+    vitaminB2: 0.02,
+    vitaminB3: 0.06,
+    vitaminB6: 0.03,
+    folate: 0.004, // 4 mcg converted to mg
     vitaminB12: 0,
-    calcium: 23,
-    iron: 0.21,
+    calcium: 14,
+    iron: 0.2,
     magnesium: 10,
-    zinc: 0.17,
+    zinc: 0.15,
     iodine: 0,
-    selenium: 0.0005,      // 0.5 mcg converted to mg
-    copper: 0.039,
+    selenium: 0.0002, // 0.2 mcg converted to mg
+    copper: 0.03,
+    potassium: 110,
+    phosphorus: 18,
+  },
+
+  boiled_pumpkin: {
+    label: "PUMPKIN BOILED",
+    calories: 20,
+    protein: 0.72,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.02,
+    solubleFiber: 0.4, // Estimated breakdown of 1.1g total fiber
+    insolubleFiber: 0.7,
+    vitaminA: 0.288, // 288 mcg RAE converted to mg
+    vitaminC: 4.7,
+    vitaminD: 0,
+    vitaminE: 0.8,
+    vitaminK: 0.0008, // 0.8 mcg converted to mg
+    vitaminB1: 0.03,
+    vitaminB2: 0.08,
+    vitaminB3: 0.4,
+    vitaminB6: 0.04,
+    folate: 0.009, // 9 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 15,
+    iron: 0.57,
+    magnesium: 9,
+    zinc: 0.23,
+    iodine: 0,
+    selenium: 0.0002, // 0.2 mcg converted to mg
+    copper: 0.09,
+    potassium: 230,
+    phosphorus: 30,
+  },
+
+  boiled_spinach: {
+    label: "SPINACH BOILED",
+    calories: 23,
+    protein: 2.97,
+    saturatedFat: 0.04,
+    unsaturatedFat: 0.15,
+    solubleFiber: 0.7, // Estimated breakdown of 2.4g total fiber
+    insolubleFiber: 1.7,
+    vitaminA: 0.524, // 524 mcg RAE converted to mg
+    vitaminC: 9.8, // Significant loss from boiling
+    vitaminD: 0,
+    vitaminE: 2.08,
+    vitaminK: 0.493, // 493 mcg converted to mg
+    vitaminB1: 0.095,
+    vitaminB2: 0.236,
+    vitaminB3: 0.49,
+    vitaminB6: 0.242,
+    folate: 0.146, // 146 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 136,
+    iron: 3.57,
+    magnesium: 87,
+    zinc: 0.76,
+    iodine: 0,
+    selenium: 0.0015, // 1.5 mcg converted to mg
+    copper: 0.17,
+    potassium: 466,
+    phosphorus: 56,
+  },
+
+  boiled_okra: {
+    label: "OKRA / LADY FINGER BOILED",
+    calories: 22,
+    protein: 1.87,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.04,
+    solubleFiber: 1.2, // Estimated breakdown of 2.5g total fiber
+    insolubleFiber: 1.3,
+    vitaminA: 0.014, // 14 mcg RAE converted to mg
+    vitaminC: 16.3,
+    vitaminD: 0,
+    vitaminE: 0.2,
+    vitaminK: 0.04, // 40 mcg converted to mg
+    vitaminB1: 0.13,
+    vitaminB2: 0.05,
+    vitaminB3: 0.8,
+    vitaminB6: 0.15,
+    folate: 0.046, // 46 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 77,
+    iron: 0.4,
+    magnesium: 40,
+    zinc: 0.4,
+    iodine: 0,
+    selenium: 0.0005, // 0.5 mcg converted to mg
+    copper: 0.07,
+    potassium: 135,
+    phosphorus: 46,
+  },
+
+  boiled_tomato: {
+    label: "TOMATO BOILED",
+    calories: 18,
+    protein: 0.9,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.12,
+    solubleFiber: 0.3, // Estimated breakdown of 1.0g total fiber
+    insolubleFiber: 0.7,
+    vitaminA: 0.042, // 42 mcg RAE converted to mg
+    vitaminC: 11.6,
+    vitaminD: 0,
+    vitaminE: 0.5,
+    vitaminK: 0.007, // 7 mcg converted to mg
+    vitaminB1: 0.03,
+    vitaminB2: 0.015,
+    vitaminB3: 0.5,
+    vitaminB6: 0.07,
+    folate: 0.009, // 9 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 11,
+    iron: 0.3,
+    magnesium: 10,
+    zinc: 0.15,
+    iodine: 0,
+    selenium: 0,
+    copper: 0.05,
+    potassium: 218,
+    phosphorus: 24,
+  },
+
+  boiled_ridge_guard: {
+    label: "RIDGE GOURD / TURAII BOILED",
+    calories: 15,
+    protein: 0.7,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.05,
+    solubleFiber: 0.4, // Estimated breakdown of 1.2g total fiber
+    insolubleFiber: 0.8,
+    vitaminA: 0.015, // 15 mcg RAE converted to mg
+    vitaminC: 5.0,
+    vitaminD: 0,
+    vitaminE: 0.08,
+    vitaminK: 0,
+    vitaminB1: 0.03,
+    vitaminB2: 0.02,
+    vitaminB3: 0.2,
+    vitaminB6: 0.04,
+    folate: 0.007, // 7 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 12,
+    iron: 0.3,
+    magnesium: 11,
+    zinc: 0.12,
+    iodine: 0,
+    selenium: 0,
+    copper: 0.02,
+    potassium: 110,
+    phosphorus: 14,
+  },
+
+  boiled_potato: {
+    label: "POTATO BOILED (WITH SKIN)",
+    calories: 87,
+    protein: 1.87,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.04,
+    solubleFiber: 0.6, // Estimated breakdown of 1.8g total fiber
+    insolubleFiber: 1.2,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
+    vitaminC: 13.0,
+    vitaminD: 0,
+    vitaminE: 0.01,
+    vitaminK: 0.0019, // 1.9 mcg converted to mg
+    vitaminB1: 0.07,
+    vitaminB2: 0.02,
+    vitaminB3: 0.9,
+    vitaminB6: 0.2,
+    folate: 0.009, // 9 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 8,
+    iron: 0.31,
+    magnesium: 20,
+    zinc: 0.27,
+    iodine: 0,
+    selenium: 0.0002, // 0.2 mcg converted to mg
+    copper: 0.09,
+    potassium: 328,
+    phosphorus: 44,
+  },
+
+  boiled_beans: {
+    label: "BEANS / GREEN BEANS BOILED",
+    calories: 35,
+    protein: 1.9,
+    saturatedFat: 0.06,
+    unsaturatedFat: 0.14,
+    solubleFiber: 1.0, // Estimated breakdown of 3.2g total fiber
+    insolubleFiber: 2.2,
+    vitaminA: 0.032, // 32 mcg RAE converted to mg
+    vitaminC: 9.7,
+    vitaminD: 0,
+    vitaminE: 0.4,
+    vitaminK: 0.047, // 47 mcg converted to mg
+    vitaminB1: 0.07,
+    vitaminB2: 0.09,
+    vitaminB3: 0.6,
+    vitaminB6: 0.07,
+    folate: 0.029, // 29 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 44,
+    iron: 0.65,
+    magnesium: 22,
+    zinc: 0.2,
+    iodine: 0,
+    selenium: 0.0005, // 0.5 mcg converted to mg
+    copper: 0.06,
     potassium: 146,
     phosphorus: 29,
   },
 
-  brinjal: {
-    label: "BRINJAL / EGGPLANT RAW",
-    calories: 25,
-    protein: 0.98,
-    saturatedFat: 0.034,
-    unsaturatedFat: 0.092,
-    solubleFiber: 1.0,     // Estimated breakdown of 3.0g total fiber
-    insolubleFiber: 2.0,
-    vitaminA: 0.001,       // 1 mcg RAE converted to mg
-    vitaminC: 2.2,
-    vitaminD: 0,
-    vitaminE: 0.3,
-    vitaminK: 0.0035,      // 3.5 mcg converted to mg
-    vitaminB1: 0.039,
-    vitaminB2: 0.037,
-    vitaminB3: 0.649,
-    vitaminB6: 0.084,
-    folate: 0.022,         // 22 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 9,
-    iron: 0.23,
-    magnesium: 14,
-    zinc: 0.16,
-    iodine: 0,
-    selenium: 0.0003,      // 0.3 mcg converted to mg
-    copper: 0.081,
-    potassium: 229,
-    phosphorus: 24,
-  },
-
-  cucumber: {
-    label: "CUCUMBER RAW (WITH PEEL)",
-    calories: 15,
-    protein: 0.65,
-    saturatedFat: 0.037,
-    unsaturatedFat: 0.037,
-    solubleFiber: 0.2,     // Estimated breakdown of 0.5g total fiber
-    insolubleFiber: 0.3,
-    vitaminA: 0.005,       // 5 mcg RAE converted to mg
-    vitaminC: 2.8,
-    vitaminD: 0,
-    vitaminE: 0.03,
-    vitaminK: 0.0164,      // 16.4 mcg converted to mg
-    vitaminB1: 0.027,
-    vitaminB2: 0.033,
-    vitaminB3: 0.098,
-    vitaminB6: 0.04,
-    folate: 0.007,         // 7 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 16,
-    iron: 0.28,
-    magnesium: 13,
-    zinc: 0.2,
-    iodine: 0,
-    selenium: 0.0003,      // 0.3 mcg converted to mg
-    copper: 0.041,
-    potassium: 147,
-    phosphorus: 24,
-  },
-
-  pumpkin: {
-    label: "PUMPKIN RAW",
-    calories: 26,
-    protein: 1.0,
-    saturatedFat: 0.052,
-    unsaturatedFat: 0.015,
-    solubleFiber: 0.2,     // Estimated breakdown of 0.5g total fiber
-    insolubleFiber: 0.3,
-    vitaminA: 0.426,       // 426 mcg RAE converted to mg (very high)
-    vitaminC: 9.0,
-    vitaminD: 0,
-    vitaminE: 1.06,
-    vitaminK: 0.0011,      // 1.1 mcg converted to mg
-    vitaminB1: 0.05,
-    vitaminB2: 0.11,
-    vitaminB3: 0.6,
-    vitaminB6: 0.061,
-    folate: 0.016,         // 16 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 21,
-    iron: 0.8,
-    magnesium: 12,
-    zinc: 0.32,
-    iodine: 0,
-    selenium: 0.0003,      // 0.3 mcg converted to mg
-    copper: 0.127,
-    potassium: 340,
-    phosphorus: 44,
-  },
-
-  spinach: {
-    label: "SPINACH RAW",
-    calories: 23,
-    protein: 2.86,
-    saturatedFat: 0.063,
-    unsaturatedFat: 0.28,
-    solubleFiber: 0.6,     // Estimated breakdown of 2.2g total fiber
-    insolubleFiber: 1.6,
-    vitaminA: 0.469,       // 469 mcg RAE converted to mg
-    vitaminC: 28.1,
-    vitaminD: 0,
-    vitaminE: 2.03,
-    vitaminK: 0.4829,      // 482.9 mcg converted to mg (extremely high)
-    vitaminB1: 0.078,
-    vitaminB2: 0.189,
-    vitaminB3: 0.724,
-    vitaminB6: 0.195,
-    folate: 0.194,         // 194 mcg converted to mg (very high)
-    vitaminB12: 0,
-    calcium: 99,
-    iron: 2.71,
-    magnesium: 79,
-    zinc: 0.53,
-    iodine: 0,
-    selenium: 0.001,       // 1 mcg converted to mg
-    copper: 0.13,
-    potassium: 558,
-    phosphorus: 49,
-  },
-
-  okra: {
-    label: "OKRA / LADY FINGER RAW",
-    calories: 33,
-    protein: 1.93,
-    saturatedFat: 0.026,
-    unsaturatedFat: 0.044,
-    solubleFiber: 1.5,     // Estimated breakdown of 3.2g total fiber (high soluble)
-    insolubleFiber: 1.7,
-    vitaminA: 0.036,       // 36 mcg RAE converted to mg
-    vitaminC: 23.0,
-    vitaminD: 0,
-    vitaminE: 0.27,
-    vitaminK: 0.0313,      // 31.3 mcg converted to mg
-    vitaminB1: 0.2,
-    vitaminB2: 0.06,
-    vitaminB3: 1.0,
-    vitaminB6: 0.215,
-    folate: 0.06,          // 60 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 82,
-    iron: 0.62,
-    magnesium: 57,
-    zinc: 0.58,
-    iodine: 0,
-    selenium: 0.0007,      // 0.7 mcg converted to mg
-    copper: 0.094,
-    potassium: 299,
-    phosphorus: 61,
-  },
-
-  tomato: {
-    label: "TOMATO RAW",
+  boiled_pointed_guard: {
+    label: "POINTED GOURD / PARWAL BOILED",
     calories: 18,
-    protein: 0.88,
-    saturatedFat: 0.028,
-    unsaturatedFat: 0.11,
-    solubleFiber: 0.3,     // Estimated breakdown of 1.2g total fiber
-    insolubleFiber: 0.9,
-    vitaminA: 0.042,       // 42 mcg RAE converted to mg
-    vitaminC: 13.7,
-    vitaminD: 0,
-    vitaminE: 0.54,
-    vitaminK: 0.0079,      // 7.9 mcg converted to mg
-    vitaminB1: 0.037,
-    vitaminB2: 0.019,
-    vitaminB3: 0.594,
-    vitaminB6: 0.08,
-    folate: 0.015,         // 15 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 10,
-    iron: 0.27,
-    magnesium: 11,
-    zinc: 0.17,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.059,
-    potassium: 237,
-    phosphorus: 24,
-  },
-
-  ridge_guard: {
-    label: "RIDGE GOURD / TURAII RAW",
-    calories: 17,
-    protein: 0.8,
-    saturatedFat: 0.02,
-    unsaturatedFat: 0.06,
-    solubleFiber: 0.5,     // Estimated breakdown of 1.5g total fiber
-    insolubleFiber: 1.0,
-    vitaminA: 0.02,        // 20 mcg RAE converted to mg
-    vitaminC: 8.0,
-    vitaminD: 0,
-    vitaminE: 0.1,
-    vitaminK: 0,
-    vitaminB1: 0.04,
-    vitaminB2: 0.03,
-    vitaminB3: 0.3,
-    vitaminB6: 0.05,
-    folate: 0.01,          // 10 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 15,
-    iron: 0.4,
-    magnesium: 14,
-    zinc: 0.15,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.03,
-    potassium: 139,
-    phosphorus: 18,
-  },
-
-  beans: {
-    label: "BEANS / GREEN BEANS RAW",
-    calories: 31,
-    protein: 1.83,
-    saturatedFat: 0.05,
-    unsaturatedFat: 0.11,
-    solubleFiber: 0.8,     // Estimated breakdown of 2.7g total fiber
-    insolubleFiber: 1.9,
-    vitaminA: 0.035,       // 35 mcg RAE converted to mg
-    vitaminC: 12.2,
-    vitaminD: 0,
-    vitaminE: 0.41,
-    vitaminK: 0.043,       // 43 mcg converted to mg
-    vitaminB1: 0.082,
-    vitaminB2: 0.104,
-    vitaminB3: 0.734,
-    vitaminB6: 0.141,
-    folate: 0.033,         // 33 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 37,
-    iron: 1.03,
-    magnesium: 25,
-    zinc: 0.24,
-    iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
-    copper: 0.069,
-    potassium: 211,
-    phosphorus: 38,
-  },
-
-  pointed_guard: {
-    label: "POINTED GOURD / PARWAL RAW",
-    calories: 20,
-    protein: 2.0,
-    saturatedFat: 0.05,
-    unsaturatedFat: 0.15,
-    solubleFiber: 0.8,     // Estimated breakdown of 3.0g total fiber
-    insolubleFiber: 2.2,
-    vitaminA: 0.255,       // 255 mcg RAE converted to mg
-    vitaminC: 29.0,
-    vitaminD: 0,
-    vitaminE: 0.2,
-    vitaminK: 0,
-    vitaminB1: 0.05,
-    vitaminB2: 0.06,
-    vitaminB3: 0.5,
-    vitaminB6: 0.05,
-    folate: 0.015,         // 15 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 30,
-    iron: 1.7,
-    magnesium: 24,
-    zinc: 0.3,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.05,
-    potassium: 83,
-    phosphorus: 40,
-  },
-
-  beetroot: {
-    label: "BEETROOT RAW",
-    calories: 43,
-    protein: 1.61,
-    saturatedFat: 0.027,
-    unsaturatedFat: 0.092,
-    solubleFiber: 1.1,     // Estimated breakdown of 2.8g total fiber
-    insolubleFiber: 1.7,
-    vitaminA: 0.002,       // 2 mcg RAE converted to mg
-    vitaminC: 4.9,
-    vitaminD: 0,
-    vitaminE: 0.04,
-    vitaminK: 0.0002,      // 0.2 mcg converted to mg
-    vitaminB1: 0.031,
-    vitaminB2: 0.04,
-    vitaminB3: 0.334,
-    vitaminB6: 0.067,
-    folate: 0.109,         // 109 mcg converted to mg (very high)
-    vitaminB12: 0,
-    calcium: 16,
-    iron: 0.8,
-    magnesium: 23,
-    zinc: 0.35,
-    iodine: 0,
-    selenium: 0.0007,      // 0.7 mcg converted to mg
-    copper: 0.075,
-    potassium: 325,
-    phosphorus: 40,
-  },
-
-  fenugreek: {
-    label: "FENUGREEK LEAVES / METHI RAW",
-    calories: 49,
-    protein: 4.4,
-    saturatedFat: 0.1,
-    unsaturatedFat: 0.6,
-    solubleFiber: 1.0,     // Estimated breakdown of 4.5g total fiber
-    insolubleFiber: 3.5,
-    vitaminA: 0.48,        // 480 mcg RAE converted to mg
-    vitaminC: 52.0,
-    vitaminD: 0,
-    vitaminE: 0.5,
-    vitaminK: 0.25,        // 250 mcg converted to mg
-    vitaminB1: 0.12,
-    vitaminB2: 0.31,
-    vitaminB3: 0.8,
-    vitaminB6: 0.2,
-    folate: 0.076,         // 76 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 395,
-    iron: 1.93,
-    magnesium: 55,
-    zinc: 0.4,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.1,
-    potassium: 330,
-    phosphorus: 51,
-  },
-
-  drumstick: {
-    label: "DRUMSTICK / MORINGA PODS RAW",
-    calories: 37,
-    protein: 2.1,
+    protein: 1.8,
     saturatedFat: 0.04,
     unsaturatedFat: 0.12,
-    solubleFiber: 0.9,     // Estimated breakdown of 3.2g total fiber
-    insolubleFiber: 2.3,
-    vitaminA: 0.007,       // 7 mcg RAE converted to mg
-    vitaminC: 141.0,       // Extremely rich source of Vitamin C
-    vitaminD: 0,
-    vitaminE: 0.2,
-    vitaminK: 0,
-    vitaminB1: 0.05,
-    vitaminB2: 0.07,
-    vitaminB3: 0.6,
-    vitaminB6: 0.12,
-    folate: 0.044,         // 44 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 30,
-    iron: 0.36,
-    magnesium: 45,
-    zinc: 0.45,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.08,
-    potassium: 461,
-    phosphorus: 50,
-  },
-
-  cluster_beans: {
-    label: "CLUSTER BEANS / GAVAR RAW",
-    calories: 16,
-    protein: 3.2,
-    saturatedFat: 0.05,
-    unsaturatedFat: 0.25,
-    solubleFiber: 2.0,     // Estimated breakdown of 5.4g total fiber (high soluble/guar gum)
-    insolubleFiber: 3.4,
-    vitaminA: 0.02,        // 20 mcg RAE converted to mg
-    vitaminC: 49.0,
-    vitaminD: 0,
-    vitaminE: 0.3,
-    vitaminK: 0,
-    vitaminB1: 0.09,
-    vitaminB2: 0.03,
-    vitaminB3: 0.5,
-    vitaminB6: 0.06,
-    folate: 0.144,         // 144 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 130,
-    iron: 1.1,
-    magnesium: 54,
-    zinc: 0.6,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.12,
-    potassium: 210,
-    phosphorus: 57,
-  },
-
-  bitter_guard: {
-    label: "BITTER GOURD / KARELA RAW",
-    calories: 17,
-    protein: 1.0,
-    saturatedFat: 0.03,
-    unsaturatedFat: 0.1,
-    solubleFiber: 0.8,     // Estimated breakdown of 2.8g total fiber
+    solubleFiber: 0.8, // Estimated breakdown of 2.8g total fiber
     insolubleFiber: 2.0,
-    vitaminA: 0.006,       // 6 mcg RAE converted to mg
-    vitaminC: 84.0,
+    vitaminA: 0.2, // 200 mcg RAE converted to mg
+    vitaminC: 20.0,
     vitaminD: 0,
-    vitaminE: 0.14,
-    vitaminK: 0.0048,      // 4.8 mcg converted to mg
+    vitaminE: 0.15,
+    vitaminK: 0,
     vitaminB1: 0.04,
     vitaminB2: 0.04,
     vitaminB3: 0.4,
-    vitaminB6: 0.043,
-    folate: 0.072,         // 72 mcg converted to mg
+    vitaminB6: 0.04,
+    folate: 0.01, // 10 mcg converted to mg
     vitaminB12: 0,
-    calcium: 19,
-    iron: 0.43,
-    magnesium: 17,
-    zinc: 0.8,
-    iodine: 0,
-    selenium: 0.0002,      // 0.2 mcg converted to mg
-    copper: 0.034,
-    potassium: 296,
-    phosphorus: 31,
-  },
-
-  spring_onion: {
-    label: "SPRING ONION / SCALLIONS RAW",
-    calories: 32,
-    protein: 1.83,
-    saturatedFat: 0.032,
-    unsaturatedFat: 0.113,
-    solubleFiber: 0.8,     // Estimated breakdown of 2.6g total fiber
-    insolubleFiber: 1.8,
-    vitaminA: 0.05,        // 50 mcg RAE converted to mg
-    vitaminC: 18.8,
-    vitaminD: 0,
-    vitaminE: 0.55,
-    vitaminK: 0.207,       // 207 mcg converted to mg
-    vitaminB1: 0.055,
-    vitaminB2: 0.08,
-    vitaminB3: 0.525,
-    vitaminB6: 0.061,
-    folate: 0.064,         // 64 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 72,
-    iron: 1.48,
+    calcium: 25,
+    iron: 1.4,
     magnesium: 20,
-    zinc: 0.39,
+    zinc: 0.25,
     iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
-    copper: 0.083,
-    potassium: 276,
-    phosphorus: 37,
+    selenium: 0,
+    copper: 0.04,
+    potassium: 70,
+    phosphorus: 32,
   },
 
-  coriander_leaves: {
-    label: "CORIANDER LEAVES / CILANTRO RAW",
-    calories: 23,
-    protein: 2.13,
-    saturatedFat: 0.014,
-    unsaturatedFat: 0.316,
-    solubleFiber: 0.5,     // Estimated breakdown of 2.8g total fiber
-    insolubleFiber: 2.3,
-    vitaminA: 0.337,       // 337 mcg RAE converted to mg
-    vitaminC: 27.0,
+  boiled_beetroot: {
+    label: "BEETROOT BOILED",
+    calories: 44,
+    protein: 1.68,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.09,
+    solubleFiber: 0.8, // Estimated breakdown of 2.0g total fiber
+    insolubleFiber: 1.2,
+    vitaminA: 0.002, // 2 mcg RAE converted to mg
+    vitaminC: 3.6,
     vitaminD: 0,
-    vitaminE: 2.5,
-    vitaminK: 0.31,        // 310 mcg converted to mg
-    vitaminB1: 0.067,
-    vitaminB2: 0.162,
-    vitaminB3: 1.11,
-    vitaminB6: 0.149,
-    folate: 0.062,         // 62 mcg converted to mg
+    vitaminE: 0.04,
+    vitaminK: 0.0002, // 0.2 mcg converted to mg
+    vitaminB1: 0.027,
+    vitaminB2: 0.04,
+    vitaminB3: 0.331,
+    vitaminB6: 0.067,
+    folate: 0.08, // 80 mcg converted to mg
     vitaminB12: 0,
-    calcium: 67,
-    iron: 1.77,
-    magnesium: 26,
+    calcium: 16,
+    iron: 0.79,
+    magnesium: 23,
+    zinc: 0.35,
+    iodine: 0,
+    selenium: 0.0007, // 0.7 mcg converted to mg
+    copper: 0.074,
+    potassium: 305,
+    phosphorus: 38,
+  },
+
+  boiled_fenugreek: {
+    label: "FENUGREEK LEAVES / METHI BOILED",
+    calories: 42,
+    protein: 4.0,
+    saturatedFat: 0.08,
+    unsaturatedFat: 0.5,
+    solubleFiber: 0.8, // Estimated breakdown of 4.0g total fiber
+    insolubleFiber: 3.2,
+    vitaminA: 0.4, // 400 mcg RAE converted to mg
+    vitaminC: 30.0,
+    vitaminD: 0,
+    vitaminE: 0.4,
+    vitaminK: 0.2, // 200 mcg converted to mg
+    vitaminB1: 0.08,
+    vitaminB2: 0.2,
+    vitaminB3: 0.6,
+    vitaminB6: 0.15,
+    folate: 0.05, // 50 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 350,
+    iron: 1.5,
+    magnesium: 45,
+    zinc: 0.35,
+    iodine: 0,
+    selenium: 0,
+    copper: 0.08,
+    potassium: 280,
+    phosphorus: 40,
+  },
+
+  boiled_deumstick: {
+    label: "DRUMSTICK / MORINGA PODS BOILED",
+    calories: 32,
+    protein: 1.8,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.1,
+    solubleFiber: 0.8, // Estimated breakdown of 2.8g total fiber
+    insolubleFiber: 2.0,
+    vitaminA: 0.005, // 5 mcg RAE converted to mg
+    vitaminC: 100.0, // Still very rich after boiling
+    vitaminD: 0,
+    vitaminE: 0.15,
+    vitaminK: 0,
+    vitaminB1: 0.03,
+    vitaminB2: 0.05,
+    vitaminB3: 0.4,
+    vitaminB6: 0.09,
+    folate: 0.03, // 30 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 25,
+    iron: 0.3,
+    magnesium: 35,
+    zinc: 0.35,
+    iodine: 0,
+    selenium: 0,
+    copper: 0.06,
+    potassium: 400,
+    phosphorus: 42,
+  },
+
+  boiled_cluster_beans: {
+    label: "CLUSTER BEANS / GAVAR BOILED",
+    calories: 14,
+    protein: 2.8,
+    saturatedFat: 0.04,
+    unsaturatedFat: 0.2,
+    solubleFiber: 1.8, // Estimated breakdown of 4.8g total fiber
+    insolubleFiber: 3.0,
+    vitaminA: 0.015, // 15 mcg RAE converted to mg
+    vitaminC: 35.0,
+    vitaminD: 0,
+    vitaminE: 0.2,
+    vitaminK: 0,
+    vitaminB1: 0.06,
+    vitaminB2: 0.02,
+    vitaminB3: 0.3,
+    vitaminB6: 0.04,
+    folate: 0.1, // 100 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 110,
+    iron: 0.9,
+    magnesium: 45,
     zinc: 0.5,
     iodine: 0,
-    selenium: 0.0009,      // 0.9 mcg converted to mg
-    copper: 0.225,
-    potassium: 521,
+    selenium: 0,
+    copper: 0.1,
+    potassium: 180,
+    phosphorus: 45,
+  },
+
+  boiled_bitter_guard: {
+    label: "BITTER GOURD / KARELA BOILED",
+    calories: 15,
+    protein: 0.9,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.08,
+    solubleFiber: 0.7, // Estimated breakdown of 2.5g total fiber
+    insolubleFiber: 1.8,
+    vitaminA: 0.004, // 4 mcg RAE converted to mg
+    vitaminC: 45.0,
+    vitaminD: 0,
+    vitaminE: 0.1,
+    vitaminK: 0.003, // 3 mcg converted to mg
+    vitaminB1: 0.03,
+    vitaminB2: 0.03,
+    vitaminB3: 0.3,
+    vitaminB6: 0.03,
+    folate: 0.05, // 50 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 16,
+    iron: 0.35,
+    magnesium: 14,
+    zinc: 0.7,
+    iodine: 0,
+    selenium: 0.0001, // 0.1 mcg converted to mg
+    copper: 0.025,
+    potassium: 250,
+    phosphorus: 25,
+  },
+
+  boiled_spring_onion: {
+    label: "SPRING ONION / SCALLIONS BOILED",
+    calories: 28,
+    protein: 1.6,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.09,
+    solubleFiber: 0.6, // Estimated breakdown of 2.2g total fiber
+    insolubleFiber: 1.6,
+    vitaminA: 0.04, // 40 mcg RAE converted to mg
+    vitaminC: 10.0,
+    vitaminD: 0,
+    vitaminE: 0.4,
+    vitaminK: 0.15, // 150 mcg converted to mg
+    vitaminB1: 0.04,
+    vitaminB2: 0.06,
+    vitaminB3: 0.4,
+    vitaminB6: 0.05,
+    folate: 0.045, // 45 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 60,
+    iron: 1.1,
+    magnesium: 16,
+    zinc: 0.3,
+    iodine: 0,
+    selenium: 0.0004, // 0.4 mcg converted to mg
+    copper: 0.06,
+    potassium: 220,
+    phosphorus: 30,
+  },
+
+  boiled_coriander_leaves: {
+    label: "CORIANDER LEAVES / CILANTRO BOILED",
+    calories: 20,
+    protein: 1.8,
+    saturatedFat: 0.01,
+    unsaturatedFat: 0.25,
+    solubleFiber: 0.4, // Estimated breakdown of 2.0g total fiber
+    insolubleFiber: 1.6,
+    vitaminA: 0.28, // 280 mcg RAE converted to mg
+    vitaminC: 15.0,
+    vitaminD: 0,
+    vitaminE: 2.0,
+    vitaminK: 0.25, // 250 mcg converted to mg
+    vitaminB1: 0.04,
+    vitaminB2: 0.1,
+    vitaminB3: 0.8,
+    vitaminB6: 0.1,
+    folate: 0.04, // 40 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 55,
+    iron: 1.4,
+    magnesium: 20,
+    zinc: 0.4,
+    iodine: 0,
+    selenium: 0.0006, // 0.6 mcg converted to mg
+    copper: 0.18,
+    potassium: 420,
+    phosphorus: 38,
+  },
+
+  boiled_mint_leaves: {
+    label: "MINT LEAVES BOILED",
+    calories: 38,
+    protein: 2.8,
+    saturatedFat: 0.15,
+    unsaturatedFat: 0.28,
+    solubleFiber: 1.3, // Estimated breakdown of 6.0g total fiber
+    insolubleFiber: 4.7,
+    vitaminA: 0.18, // 180 mcg RAE converted to mg
+    vitaminC: 8.0,
+    vitaminD: 0,
+    vitaminE: 0.4,
+    vitaminK: 0,
+    vitaminB1: 0.06,
+    vitaminB2: 0.12,
+    vitaminB3: 0.7,
+    vitaminB6: 0.1,
+    folate: 0.07, // 70 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 160,
+    iron: 9.5,
+    magnesium: 50,
+    zinc: 0.9,
+    iodine: 0,
+    selenium: 0,
+    copper: 0.18,
+    potassium: 360,
     phosphorus: 48,
   },
 
-  mint_leaves: {
-    label: "MINT LEAVES RAW",
-    calories: 44,
-    protein: 3.29,
-    saturatedFat: 0.188,
-    unsaturatedFat: 0.347,
-    solubleFiber: 1.5,     // Estimated breakdown of 6.8g total fiber
-    insolubleFiber: 5.3,
-    vitaminA: 0.212,       // 212 mcg RAE converted to mg
-    vitaminC: 13.3,
-    vitaminD: 0,
-    vitaminE: 0.5,
-    vitaminK: 0,           // Trace amounts
-    vitaminB1: 0.08,
-    vitaminB2: 0.175,
-    vitaminB3: 0.948,
-    vitaminB6: 0.158,
-    folate: 0.105,         // 105 mcg converted to mg
-    vitaminB12: 0,
-    calcium: 199,
-    iron: 11.8,
-    magnesium: 63,
-    zinc: 1.09,
-    iodine: 0,
-    selenium: 0,
-    copper: 0.24,
-    potassium: 458,
-    phosphorus: 60,
-  },
-
-  cauliflower: {
-    label: "CAULIFLOWER RAW",
-    calories: 25,
-    protein: 1.92,
-    saturatedFat: 0.039,
-    unsaturatedFat: 0.046,
-    solubleFiber: 0.7,     // Estimated breakdown of 2.0g total fiber
-    insolubleFiber: 1.3,
+  boiled_flower: {
+    label: "CAULIFLOWER / FLOWER BOILED",
+    calories: 23,
+    protein: 1.84,
+    saturatedFat: 0.038,
+    unsaturatedFat: 0.042,
+    solubleFiber: 0.8, // Estimated breakdown of 2.3g total fiber
+    insolubleFiber: 1.5,
     vitaminA: 0,
-    vitaminC: 48.2,
+    vitaminC: 44.3,
     vitaminD: 0,
-    vitaminE: 0.08,
-    vitaminK: 0.0155,      // 15.5 mcg converted to mg
-    vitaminB1: 0.05,
-    vitaminB2: 0.06,
-    vitaminB3: 0.507,
-    vitaminB6: 0.184,
-    folate: 0.057,         // 57 mcg converted to mg
+    vitaminE: 0.07,
+    vitaminK: 0.0138, // 13.8 mcg converted to mg
+    vitaminB1: 0.042,
+    vitaminB2: 0.05,
+    vitaminB3: 0.407,
+    vitaminB6: 0.173,
+    folate: 0.044, // 44 mcg converted to mg
     vitaminB12: 0,
-    calcium: 22,
-    iron: 0.42,
-    magnesium: 15,
-    zinc: 0.27,
+    calcium: 16,
+    iron: 0.32,
+    magnesium: 12,
+    zinc: 0.22,
     iodine: 0,
-    selenium: 0.0006,      // 0.6 mcg converted to mg
-    copper: 0.039,
-    potassium: 299,
-    phosphorus: 44,
+    selenium: 0.0006, // 0.6 mcg converted to mg
+    copper: 0.033,
+    potassium: 142,
+    phosphorus: 32,
   },
-
   //________________MEAT_________________
 
   boiled_chicken: {
@@ -2510,7 +2539,7 @@ const foodCatalog = {
     iron: 0.9,
     magnesium: 20,
     zinc: 0.5,
-    iodine: 0.01,       // Trace from iodized salt
+    iodine: 0.01, // Trace from iodized salt
     selenium: 0.002,
     copper: 0.1,
     potassium: 110,
@@ -2525,7 +2554,7 @@ const foodCatalog = {
     unsaturatedFat: 2.4, // From added oil/tempering
     solubleFiber: 0.3,
     insolubleFiber: 0.7,
-    vitaminA: 0.015,     // Some carrots/curry leaves in tempering
+    vitaminA: 0.015, // Some carrots/curry leaves in tempering
     vitaminC: 0.5,
     vitaminD: 0,
     vitaminE: 0.3,
@@ -2535,7 +2564,7 @@ const foodCatalog = {
     vitaminB3: 0.9,
     vitaminB6: 0.05,
     folate: 0.02,
-    vitaminB12: 0,       // Zero assuming no yogurt, or trace if little yogurt used
+    vitaminB12: 0, // Zero assuming no yogurt, or trace if little yogurt used
     calcium: 30,
     iron: 1.2,
     magnesium: 22,
@@ -2556,7 +2585,7 @@ const foodCatalog = {
     solubleFiber: 0.4,
     insolubleFiber: 1.1,
     vitaminA: 0.01,
-    vitaminC: 2.5,       // Lemon juice added at end
+    vitaminC: 2.5, // Lemon juice added at end
     vitaminD: 0,
     vitaminE: 0.8,
     vitaminK: 0.005,
@@ -2567,7 +2596,7 @@ const foodCatalog = {
     folate: 0.015,
     vitaminB12: 0,
     calcium: 20,
-    iron: 2.5,           // Flattening process adds iron
+    iron: 2.5, // Flattening process adds iron
     magnesium: 35,
     zinc: 0.6,
     iodine: 0.015,
@@ -2585,7 +2614,7 @@ const foodCatalog = {
     unsaturatedFat: 3.2,
     solubleFiber: 0.4,
     insolubleFiber: 1.1,
-    vitaminA: 0.02,      // Veggies
+    vitaminA: 0.02, // Veggies
     vitaminC: 1.5,
     vitaminD: 0,
     vitaminE: 0.4,
@@ -2615,7 +2644,7 @@ const foodCatalog = {
     unsaturatedFat: 3.0,
     solubleFiber: 0.5,
     insolubleFiber: 1.5,
-    vitaminA: 0.08,      // High from carrots
+    vitaminA: 0.08, // High from carrots
     vitaminC: 4.0,
     vitaminD: 0,
     vitaminE: 0.5,
@@ -2706,7 +2735,7 @@ const foodCatalog = {
     solubleFiber: 0.5,
     insolubleFiber: 1.2,
     vitaminA: 0.01,
-    vitaminC: 3.5,       // From potato filling
+    vitaminC: 3.5, // From potato filling
     vitaminD: 0,
     vitaminE: 0.6,
     vitaminK: 0.003,
@@ -2791,13 +2820,13 @@ const foodCatalog = {
     label: "BUTTER DOSA",
     calories: 230,
     protein: 4.2,
-    saturatedFat: 5.5,   // High saturated fat from butter
+    saturatedFat: 5.5, // High saturated fat from butter
     unsaturatedFat: 4.0,
     solubleFiber: 0.3,
     insolubleFiber: 0.8,
-    vitaminA: 0.08,      // Vitamin A from dairy butter
+    vitaminA: 0.08, // Vitamin A from dairy butter
     vitaminC: 0,
-    vitaminD: 0.0001,    // Trace D from butter
+    vitaminD: 0.0001, // Trace D from butter
     vitaminE: 0.5,
     vitaminK: 0.003,
     vitaminB1: 0.08,
@@ -2805,7 +2834,7 @@ const foodCatalog = {
     vitaminB3: 0.9,
     vitaminB6: 0.06,
     folate: 0.025,
-    vitaminB12: 0.0001,  // Trace B12 from butter
+    vitaminB12: 0.0001, // Trace B12 from butter
     calcium: 25,
     iron: 0.8,
     magnesium: 25,
@@ -2849,7 +2878,7 @@ const foodCatalog = {
 
   wheat_roti: {
     label: "WHEAT ROTI / CHAPATI",
-    calories: 297,       // Dense, less water than rice
+    calories: 297, // Dense, less water than rice
     protein: 9.0,
     saturatedFat: 0.5,
     unsaturatedFat: 2.0,
@@ -2897,7 +2926,7 @@ const foodCatalog = {
     folate: 0.03,
     vitaminB12: 0,
     calcium: 25,
-    iron: 4.5,           // Rich in iron
+    iron: 4.5, // Rich in iron
     magnesium: 90,
     zinc: 1.8,
     iodine: 0.005,
@@ -2926,7 +2955,7 @@ const foodCatalog = {
     vitaminB6: 0.05,
     folate: 0.02,
     vitaminB12: 0,
-    calcium: 220,        // Extremely rich in calcium
+    calcium: 220, // Extremely rich in calcium
     iron: 2.8,
     magnesium: 95,
     zinc: 1.5,
@@ -2955,7 +2984,7 @@ const foodCatalog = {
     vitaminB3: 3.5,
     vitaminB6: 0.2,
     folate: 0.015,
-    vitaminB12: 0.0003,  // 0.3 mcg converted to mg
+    vitaminB12: 0.0003, // 0.3 mcg converted to mg
     calcium: 25,
     iron: 1.2,
     magnesium: 20,
@@ -2985,7 +3014,7 @@ const foodCatalog = {
     vitaminB3: 2.5,
     vitaminB6: 0.15,
     folate: 0.015,
-    vitaminB12: 0.0012,  // 1.2 mcg converted to mg
+    vitaminB12: 0.0012, // 1.2 mcg converted to mg
     calcium: 30,
     iron: 1.8,
     magnesium: 22,
@@ -3005,9 +3034,9 @@ const foodCatalog = {
     unsaturatedFat: 4.5,
     solubleFiber: 0.3,
     insolubleFiber: 0.7,
-    vitaminA: 0.045,     // From egg yolk
+    vitaminA: 0.045, // From egg yolk
     vitaminC: 1.5,
-    vitaminD: 0.0005,    // 0.5 mcg from egg
+    vitaminD: 0.0005, // 0.5 mcg from egg
     vitaminE: 0.8,
     vitaminK: 0.004,
     vitaminB1: 0.07,
@@ -3015,7 +3044,7 @@ const foodCatalog = {
     vitaminB3: 1.0,
     vitaminB6: 0.08,
     folate: 0.025,
-    vitaminB12: 0.0004,  // 0.4 mcg converted to mg
+    vitaminB12: 0.0004, // 0.4 mcg converted to mg
     calcium: 35,
     iron: 1.1,
     magnesium: 18,
@@ -3035,9 +3064,9 @@ const foodCatalog = {
     unsaturatedFat: 7.5,
     solubleFiber: 0.4,
     insolubleFiber: 0.6,
-    vitaminA: 0.075,     // From egg and tomato/onion gravy
+    vitaminA: 0.075, // From egg and tomato/onion gravy
     vitaminC: 6.0,
-    vitaminD: 0.0009,    // 0.9 mcg converted to mg
+    vitaminD: 0.0009, // 0.9 mcg converted to mg
     vitaminE: 1.2,
     vitaminK: 0.008,
     vitaminB1: 0.05,
@@ -3045,7 +3074,7 @@ const foodCatalog = {
     vitaminB3: 0.8,
     vitaminB6: 0.12,
     folate: 0.025,
-    vitaminB12: 0.0007,  // 0.7 mcg converted to mg
+    vitaminB12: 0.0007, // 0.7 mcg converted to mg
     calcium: 40,
     iron: 1.2,
     magnesium: 15,
@@ -3075,7 +3104,7 @@ const foodCatalog = {
     vitaminB3: 4.5,
     vitaminB6: 0.3,
     folate: 0.01,
-    vitaminB12: 0.0003,  // 0.3 mcg converted to mg
+    vitaminB12: 0.0003, // 0.3 mcg converted to mg
     calcium: 25,
     iron: 1.1,
     magnesium: 20,
@@ -3105,7 +3134,7 @@ const foodCatalog = {
     vitaminB3: 3.5,
     vitaminB6: 0.2,
     folate: 0.012,
-    vitaminB12: 0.0015,  // 1.5 mcg converted to mg
+    vitaminB12: 0.0015, // 1.5 mcg converted to mg
     calcium: 30,
     iron: 2.2,
     magnesium: 22,
@@ -3127,7 +3156,7 @@ const foodCatalog = {
     insolubleFiber: 0.3,
     vitaminA: 0.04,
     vitaminC: 5.0,
-    vitaminD: 0.0025,    // 2.5 mcg converted to mg (High from fish)
+    vitaminD: 0.0025, // 2.5 mcg converted to mg (High from fish)
     vitaminE: 1.1,
     vitaminK: 0.004,
     vitaminB1: 0.06,
@@ -3135,13 +3164,13 @@ const foodCatalog = {
     vitaminB3: 2.5,
     vitaminB6: 0.25,
     folate: 0.01,
-    vitaminB12: 0.002,   // 2 mcg converted to mg (High from fish)
-    calcium: 45,         // Higher if small fish with bones used
+    vitaminB12: 0.002, // 2 mcg converted to mg (High from fish)
+    calcium: 45, // Higher if small fish with bones used
     iron: 0.8,
     magnesium: 28,
     zinc: 0.6,
-    iodine: 0.045,       // High from marine fish
-    selenium: 0.03,      // High from fish
+    iodine: 0.045, // High from marine fish
+    selenium: 0.03, // High from fish
     copper: 0.08,
     potassium: 280,
     phosphorus: 180,
@@ -3155,18 +3184,18 @@ const foodCatalog = {
     unsaturatedFat: 5.5,
     solubleFiber: 0.6,
     insolubleFiber: 1.6,
-    vitaminA: 0.08,      // From cheese and tomato
+    vitaminA: 0.08, // From cheese and tomato
     vitaminC: 2.5,
     vitaminD: 0.0002,
     vitaminE: 0.6,
     vitaminK: 0.006,
-    vitaminB1: 0.35,     // Enriched crust
+    vitaminB1: 0.35, // Enriched crust
     vitaminB2: 0.25,
     vitaminB3: 2.8,
     vitaminB6: 0.1,
     folate: 0.08,
-    vitaminB12: 0.0004,  // 0.4 mcg from cheese
-    calcium: 180,        // High from cheese
+    vitaminB12: 0.0004, // 0.4 mcg from cheese
+    calcium: 180, // High from cheese
     iron: 2.5,
     magnesium: 24,
     zinc: 1.2,
@@ -3190,13 +3219,13 @@ const foodCatalog = {
     vitaminD: 0,
     vitaminE: 0.2,
     vitaminK: 0.0002,
-    vitaminB1: 0.4,      // Often fortified
-    vitaminB2: 0.25,     // Often fortified
-    vitaminB3: 3.8,      // Often fortified
+    vitaminB1: 0.4, // Often fortified
+    vitaminB2: 0.25, // Often fortified
+    vitaminB3: 3.8, // Often fortified
     vitaminB6: 0.08,
-    folate: 0.11,        // Often fortified
+    folate: 0.11, // Often fortified
     vitaminB12: 0,
-    calcium: 140,        // Often fortified / dough conditioners
+    calcium: 140, // Often fortified / dough conditioners
     iron: 3.6,
     magnesium: 25,
     zinc: 0.7,
