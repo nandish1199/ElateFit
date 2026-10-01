@@ -909,7 +909,7 @@ const foodCatalog = {
     potassium: 327.67,
     phosphorus: 126.33,
   },
-  ______________FRUITS_________________
+  // ______________FRUITS_________________
   banana: {
     label: "BANANA",
     calories: 89,
