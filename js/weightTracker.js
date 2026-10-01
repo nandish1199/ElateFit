@@ -372,7 +372,7 @@ function renderPhotos() {
     ? photos
         .map(
           (photo) =>
-            `<figure class="photoCard"><button type="button" class="photoPreview" data-id="${photo.id}" aria-label="View progress photo from ${formatDate(photo.capturedAt)}"><img src="${photo.photoUrl}" alt="Progress photo from ${formatDate(photo.capturedAt)}" /></button><figcaption>${formatDate(photo.capturedAt)}${photo.note ? `<br>${photo.note}` : ""}<button type="button" class="deletePhoto" data-id="${photo.id}" aria-label="Delete progress photo"><i class="fa-solid fa-trash"></i></button></figcaption></figure>`,
+            `<figure class="photoCard"><button type="button" class="photoPreview" data-id="${photo.id}" aria-label="View progress photo from ${formatDate(photo.capturedAt)}"><img src="${photo.photoUrl}" alt="Progress photo from ${formatDate(photo.capturedAt)}" /></button><figcaption><div class="photoCaptionText"><span>${formatDate(photo.capturedAt)}</span>${photo.note ? `<span class="photoCaptionNote">${photo.note}</span>` : ""}</div><button type="button" class="deletePhoto" data-id="${photo.id}" aria-label="Delete progress photo"><i class="fa-solid fa-trash"></i></button></figcaption></figure>`,
         )
         .join("")
     : '<div class="emptyState">No progress photos yet. Add one each month to compare your journey.</div>';

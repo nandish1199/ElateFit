@@ -622,10 +622,49 @@ body {
 }
 
 .photoCard figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     padding: 9px;
     color: var(--weight-muted);
     font-size: .78rem;
     line-height: 1.35;
+}
+
+.photoCaptionText {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+}
+
+.photoCaptionNote {
+    overflow-wrap: anywhere;
+}
+
+.deletePhoto {
+    display: inline-grid;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid #e2c9c4;
+    border-radius: 2px;
+    background: #fff8f7;
+    color: #b42318;
+    cursor: pointer;
+}
+
+.deletePhoto:hover,
+.deletePhoto:focus-visible {
+    background: #b42318;
+    color: #fff;
+}
+
+.deletePhoto:focus-visible {
+    outline: 3px solid rgba(180, 35, 24, .2);
+    outline-offset: 2px;
 }
 
 .emptyState {

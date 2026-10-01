@@ -1,12 +1,12 @@
 :root {
-    --profile-ink: #24332f;
-    --profile-muted: #687873;
-    --profile-green: #1f6b5b;
-    --profile-dark: #174e44;
-    --profile-gold: #b58b45;
-    --profile-paper: #fbfaf6;
-    --profile-line: #dfe5df;
-    --profile-shadow: 0 12px 30px rgba(30, 58, 49, .09);
+    --profile-ink: #24352a;
+    --profile-muted: #64756a;
+    --profile-green: #757575;
+    --profile-dark: #166534;
+    --profile-gold: #15803d;
+    --profile-paper: #ffffff;
+    --profile-line: #dce9df;
+    --profile-shadow: 0 14px 32px rgba(22, 101, 52, .08);
 }
 
 .profilePage {
@@ -17,11 +17,14 @@
 }
 
 .profileHero {
+    position: relative;
+    overflow: hidden;
     margin-bottom: 22px;
     padding: 28px clamp(18px, 4vw, 48px);
-    background: linear-gradient(115deg, #e7f0eb, var(--profile-paper) 70%);
+    background: #ffffff;
     border: 1px solid var(--profile-line);
-    border-top: 4px solid var(--profile-gold);
+    border-top: 4px solid var(--profile-green);
+    border-radius: 3px;
     box-shadow: var(--profile-shadow);
 }
 
@@ -29,7 +32,24 @@
     margin: 0 0 8px;
     color: var(--profile-ink);
     font-size: clamp(1.5rem, 3vw, 2.25rem);
-    letter-spacing: .06em;
+    letter-spacing: .04em;
+    font-weight: 800;
+}
+
+.profileEyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+    color: var(--profile-green);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.profileEyebrow i {
+    font-size: .9em;
 }
 
 .profileHero p {
@@ -49,13 +69,13 @@
     padding: 22px;
     background: var(--profile-paper);
     border: 1px solid var(--profile-line);
-    border-radius: 6px;
+    border-radius: 3px;
     box-shadow: var(--profile-shadow);
 }
 
 .profilePanel h2 {
     margin: 0 0 18px;
-    color: var(--profile-dark);
+    color: var(--profile-ink);
     font-size: 1.05rem;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -89,7 +109,7 @@
     margin-top: 6px;
     padding: 0 12px;
     border: 1px solid #b9cbc4;
-    border-radius: 4px;
+    border-radius: 3px;
     background: #fff;
     color: var(--profile-ink);
     font: inherit;
@@ -124,7 +144,7 @@
     min-height: 42px;
     padding: 0 16px;
     border: 1px solid var(--profile-green);
-    border-radius: 4px;
+    border-radius: 3px;
     background: var(--profile-green);
     color: #fff;
     cursor: pointer;
@@ -158,7 +178,7 @@
 .profileSummaryCard {
     padding: 18px;
     border: 1px solid var(--profile-line);
-    border-radius: 6px;
+    border-radius: 3px;
     background: #fff;
 }
 
@@ -203,8 +223,8 @@
 .profileStat {
     padding: 12px;
     border: 1px solid #e3ebe6;
-    border-radius: 4px;
-    background: #f8fbf9;
+    border-radius: 3px;
+    background: #ffffff;
 }
 
 .profileStat span {
@@ -226,8 +246,8 @@
     margin-top: 12px;
     padding: 13px 14px;
     border-left: 3px solid var(--profile-gold);
-    background: #f4f0e5;
-    color: #725b2e;
+    background: #f0f8f1;
+    color: #356342;
     font-size: .86rem;
     line-height: 1.55;
 }
@@ -281,7 +301,7 @@
     max-height: 430px;
     overflow: auto;
     border: 1px solid #e3ebe6;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .micronutrientTable {
@@ -309,8 +329,8 @@
 .micronutrientTable thead th {
     position: sticky;
     top: 0;
-    background: #eef5f0;
-    color: var(--profile-dark);
+    background: #eff8f0;
+    color: var(--profile-ink);
     font-size: .72rem;
     letter-spacing: .08em;
     text-transform: uppercase;
