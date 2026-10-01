@@ -122,7 +122,9 @@ function addTechniqueRow(selectedIndex = 0) {
     updatePlan();
   });
   row.querySelector(".technique-select").addEventListener("change", updatePlan);
-  row.querySelector(".repetitions-input").addEventListener("input", updatePlan);
+  row
+    .querySelector(".repetitions-input")
+    .addEventListener("change", updatePlan);
   techniqueList.appendChild(row);
   updatePlan();
 }
