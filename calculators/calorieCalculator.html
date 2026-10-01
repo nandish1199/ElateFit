@@ -92,6 +92,20 @@
             box-shadow: var(--nutrition-shadow);
         }
 
+        .nutritionAccuracyNote {
+            margin: 0 0 16px;
+            padding: 11px 13px;
+            border-left: 3px solid var(--nutrition-gold);
+            background: #F0F8F1;
+            color: var(--nutrition-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .nutritionAccuracyNote strong {
+            color: var(--nutrition-ink);
+        }
+
         .nutritionPanel h2 {
             margin: 0 0 18px;
             color: var(--nutrition-ink);
@@ -825,6 +839,10 @@
                 </form>
             </section>
             <section class="nutritionPanel">
+                <p class="nutritionAccuracyNote" role="note"><strong>A practical estimate for your daily
+                        routine.</strong> Food values can vary by variety, preparation, and serving size, so these
+                    numbers are not 100% exact. Use them as a helpful estimate of your macro and micronutrient intake,
+                    and focus on your overall pattern rather than a single entry.</p>
                 <h2><i class="fa-solid fa-chart-pie"></i> Today's Intake</h2>
                 <div class="summaryGrid">
                     <div class="summaryCard"><span>Calories</span><strong id="todayCalories">0 kcal</strong></div>
