@@ -5,6 +5,39 @@ body {
     margin: 0;
 }
 
+.howToUseButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 38px;
+    margin-top: 16px;
+    padding: 0 13px;
+    border: 1px solid #757575;
+    border-radius: 3px;
+    background: #757575;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+    white-space: nowrap;
+}
+
+.howToUseButton:hover,
+.howToUseButton:focus-visible {
+    background: #166534;
+    box-shadow: 0 8px 16px rgba(22, 163, 74, .16);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.howToUseButton:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, .22);
+    outline-offset: 2px;
+}
+
 
 /*______________NavMenuCSS______________*/
 

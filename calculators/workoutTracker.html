@@ -75,6 +75,38 @@
             line-height: 1.55;
         }
 
+        .howToUseButton {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 38px;
+            margin-top: 16px;
+            padding: 0 13px;
+            border: 1px solid var(--work-green);
+            border-radius: 3px;
+            background: var(--work-green);
+            color: #fff;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .howToUseButton:hover,
+        .howToUseButton:focus-visible {
+            background: var(--work-dark);
+            box-shadow: 0 8px 16px rgba(22, 163, 74, .16);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .howToUseButton:focus-visible {
+            outline: 3px solid rgba(22, 163, 74, .22);
+            outline-offset: 2px;
+        }
+
         .challengePanel {
             position: relative;
             overflow: hidden;
@@ -781,6 +813,8 @@
             <h1>WORKOUT TRACKER</h1>
             <p>Record the work, follow your training rhythm, and build measurable strength over time.
             </p>
+            <a class="howToUseButton" href="https://youtu.be/92J-JPChaeI?si=28IJamqiw_YD3UmQ" target="_blank"
+                rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i> HOW TO USE?</a>
         </section>
         <section class="challengePanel" aria-labelledby="challengeHeading">
             <div>
