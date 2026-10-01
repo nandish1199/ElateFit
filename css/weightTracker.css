@@ -135,6 +135,44 @@ body {
     outline: none;
 }
 
+#progressPhoto {
+    min-height: 48px;
+    padding: 6px;
+    border: 1px dashed #b7d4be;
+    background: #f8fcf8;
+    color: var(--weight-muted);
+    cursor: pointer;
+}
+
+#progressPhoto::file-selector-button {
+    margin-right: 10px;
+    padding: 9px 12px;
+    border: 1px solid var(--weight-green);
+    border-radius: 3px;
+    background: var(--weight-green);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#progressPhoto:hover {
+    border-color: var(--weight-green);
+    background: #f0f8f1;
+}
+
+#progressPhoto:hover::file-selector-button {
+    background: var(--weight-dark);
+}
+
+#progressPhoto:focus {
+    border-color: var(--weight-green);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
+    outline: none;
+}
+
 .weightActions {
     display: flex;
     flex-wrap: wrap;

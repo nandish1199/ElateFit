@@ -298,7 +298,8 @@ function drawChart(data) {
       barWidth,
       barHeight,
     );
-    const step = data.length > 15 ? 4 : data.length > 8 ? 2 : 1;
+    const labelCapacity = Math.max(2, Math.floor(chartWidth / 58));
+    const step = Math.max(1, Math.ceil(data.length / labelCapacity));
     if (index % step === 0 || index === data.length - 1) {
       context.fillStyle = "#64756A";
       context.fillText(
