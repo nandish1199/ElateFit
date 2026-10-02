@@ -100,6 +100,14 @@ body {
     gap: 14px;
 }
 
+.exerciseImage{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
 .filterLabel {
     display: grid;
     gap: 6px;
@@ -192,7 +200,7 @@ body {
     justify-content: center;
     min-height: 150px;
     padding: 18px;
-    background: #F0F8F1;
+    background: #ffffff;
     color: var(--exercise-green);
     font-weight: 700;
     font-size: .8rem;
