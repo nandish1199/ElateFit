@@ -33,7 +33,7 @@
 }
 
 .imgdev {
-    background: #f5f8f6;
+    background: #ffffff;
     height: 190px;
     width: 100%;
 }
@@ -51,6 +51,7 @@
     flex: 1;
     gap: 10px;
     padding: 18px;
+    background: #f4f4f4;
 }
 
 .catcontent>b {
