@@ -909,6 +909,125 @@ const foodCatalog = {
     potassium: 327.67,
     phosphorus: 126.33,
   },
+  boiled_red_lentils: {
+    label: "RED LENTILS / MASOOR DAL BOILED",
+    calories: 116,
+    protein: 9.02,
+    saturatedFat: 0.05,
+    unsaturatedFat: 0.28,
+    solubleFiber: 1.5, // Estimated breakdown of 7.9g total fiber
+    insolubleFiber: 6.4,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
+    vitaminC: 1.5,
+    vitaminD: 0,
+    vitaminE: 0.11,
+    vitaminK: 0.0017, // 1.7 mcg converted to mg
+    vitaminB1: 0.169,
+    vitaminB2: 0.073,
+    vitaminB3: 1.06,
+    vitaminB6: 0.178,
+    folate: 0.181, // 181 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 19,
+    iron: 3.33,
+    magnesium: 36,
+    zinc: 1.27,
+    iodine: 0,
+    selenium: 0.0028, // 2.8 mcg converted to mg
+    copper: 0.251,
+    potassium: 369,
+    phosphorus: 180,
+  },
+
+  boiled_kidney_beans: {
+    label: "KIDNEY BEANS / RAJMA BOILED",
+    calories: 127,
+    protein: 8.67,
+    saturatedFat: 0.07,
+    unsaturatedFat: 0.35,
+    solubleFiber: 1.4, // Estimated breakdown of 6.4g total fiber
+    insolubleFiber: 5.0,
+    vitaminA: 0,
+    vitaminC: 1.2,
+    vitaminD: 0,
+    vitaminE: 0.03,
+    vitaminK: 0.0084, // 8.4 mcg converted to mg
+    vitaminB1: 0.16,
+    vitaminB2: 0.058,
+    vitaminB3: 0.578,
+    vitaminB6: 0.12,
+    folate: 0.13, // 130 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 28,
+    iron: 2.94,
+    magnesium: 42,
+    zinc: 1.07,
+    iodine: 0,
+    selenium: 0.0012, // 1.2 mcg converted to mg
+    copper: 0.218,
+    potassium: 405,
+    phosphorus: 142,
+  },
+
+  boiled_horse_gram: {
+    label: "HORSE GRAM / KULTHI BOILED",
+    calories: 110,
+    protein: 7.5,
+    saturatedFat: 0.05,
+    unsaturatedFat: 0.3,
+    solubleFiber: 1.0, // Estimated breakdown of 5.5g total fiber
+    insolubleFiber: 4.5,
+    vitaminA: 0,
+    vitaminC: 1.0,
+    vitaminD: 0,
+    vitaminE: 0.05,
+    vitaminK: 0.002, // 2.0 mcg converted to mg
+    vitaminB1: 0.15,
+    vitaminB2: 0.07,
+    vitaminB3: 0.5,
+    vitaminB6: 0.1,
+    folate: 0.1, // 100 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 95, // Notably high calcium for a legume
+    iron: 2.5,
+    magnesium: 50,
+    zinc: 1.1,
+    iodine: 0,
+    selenium: 0.001, // 1.0 mcg converted to mg
+    copper: 0.3,
+    potassium: 300,
+    phosphorus: 130,
+  },
+
+  boiled_black_eyed_peas: {
+    label: "BLACK EYED PEAS / LOBIA BOILED",
+    calories: 116,
+    protein: 7.73,
+    saturatedFat: 0.13,
+    unsaturatedFat: 0.35,
+    solubleFiber: 1.5, // Estimated breakdown of 6.5g total fiber
+    insolubleFiber: 5.0,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
+    vitaminC: 0.4,
+    vitaminD: 0,
+    vitaminE: 0.04,
+    vitaminK: 0.0017, // 1.7 mcg converted to mg
+    vitaminB1: 0.205,
+    vitaminB2: 0.055,
+    vitaminB3: 0.495,
+    vitaminB6: 0.116,
+    folate: 0.208, // 208 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 24,
+    iron: 2.39,
+    magnesium: 53,
+    zinc: 1.29,
+    iodine: 0,
+    selenium: 0.0015, // 1.5 mcg converted to mg
+    copper: 0.264,
+    potassium: 278,
+    phosphorus: 156,
+  },
   // ______________FRUITS_________________
   banana: {
     label: "BANANA",
@@ -2020,6 +2139,245 @@ const foodCatalog = {
     potassium: 142,
     phosphorus: 32,
   },
+  raw_raddish: {
+    label: "RADISH RAW",
+    calories: 16,
+    protein: 0.68,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.04,
+    solubleFiber: 0.5, // Estimated breakdown of 1.6g total fiber
+    insolubleFiber: 1.1,
+    vitaminA: 0,
+    vitaminC: 14.8,
+    vitaminD: 0,
+    vitaminE: 0,
+    vitaminK: 0.0013, // 1.3 mcg converted to mg
+    vitaminB1: 0.012,
+    vitaminB2: 0.039,
+    vitaminB3: 0.254,
+    vitaminB6: 0.071,
+    folate: 0.025, // 25 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 25,
+    iron: 0.34,
+    magnesium: 10,
+    zinc: 0.28,
+    iodine: 0,
+    selenium: 0.0006, // 0.6 mcg converted to mg
+    copper: 0.05,
+    potassium: 233,
+    phosphorus: 20,
+  },
+
+  boiled_green_beans: {
+    label: "GREEN BEANS / SNAP BEANS BOILED",
+    calories: 35,
+    protein: 1.9,
+    saturatedFat: 0.06,
+    unsaturatedFat: 0.14,
+    solubleFiber: 1.0, // Estimated breakdown of 3.2g total fiber
+    insolubleFiber: 2.2,
+    vitaminA: 0.032, // 32 mcg RAE converted to mg
+    vitaminC: 9.7,
+    vitaminD: 0,
+    vitaminE: 0.4,
+    vitaminK: 0.047, // 47 mcg converted to mg
+    vitaminB1: 0.07,
+    vitaminB2: 0.09,
+    vitaminB3: 0.6,
+    vitaminB6: 0.07,
+    folate: 0.029, // 29 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 44,
+    iron: 0.65,
+    magnesium: 22,
+    zinc: 0.2,
+    iodine: 0,
+    selenium: 0.0005, // 0.5 mcg converted to mg
+    copper: 0.06,
+    potassium: 146,
+    phosphorus: 29,
+  },
+
+  boiled_broad_beans: {
+    label: "BROAD BEANS / FAVA BEANS BOILED",
+    calories: 110,
+    protein: 7.6,
+    saturatedFat: 0.06,
+    unsaturatedFat: 0.2,
+    solubleFiber: 1.4, // Estimated breakdown of 5.4g total fiber
+    insolubleFiber: 4.0,
+    vitaminA: 0.001, // 1 mcg RAE converted to mg
+    vitaminC: 0.3,
+    vitaminD: 0,
+    vitaminE: 0.05,
+    vitaminK: 0.002, // 2 mcg converted to mg
+    vitaminB1: 0.097,
+    vitaminB2: 0.089,
+    vitaminB3: 0.713,
+    vitaminB6: 0.072,
+    folate: 0.104, // 104 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 37,
+    iron: 1.5,
+    magnesium: 43,
+    zinc: 1.0,
+    iodine: 0,
+    selenium: 0.001, // 1 mcg converted to mg
+    copper: 0.25,
+    potassium: 268,
+    phosphorus: 125,
+  },
+
+  boiled_bell_pepper: {
+    label: "BELL PEPPER / CAPSICUM BOILED",
+    calories: 28,
+    protein: 0.9,
+    saturatedFat: 0.03,
+    unsaturatedFat: 0.12,
+    solubleFiber: 0.4, // Estimated breakdown of 1.2g total fiber
+    insolubleFiber: 0.8,
+    vitaminA: 0.046, // 46 mcg RAE converted to mg
+    vitaminC: 74.4, // Reduced due to boiling
+    vitaminD: 0,
+    vitaminE: 0.45,
+    vitaminK: 0.004, // 4 mcg converted to mg
+    vitaminB1: 0.05,
+    vitaminB2: 0.03,
+    vitaminB3: 0.4,
+    vitaminB6: 0.17,
+    folate: 0.012, // 12 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 9,
+    iron: 0.34,
+    magnesium: 10,
+    zinc: 0.13,
+    iodine: 0,
+    selenium: 0.0001, // 0.1 mcg converted to mg
+    copper: 0.06,
+    potassium: 166,
+    phosphorus: 19,
+  },
+
+  boiled_snake_guard: {
+    label: "SNAKE GOURD BOILED",
+    calories: 18,
+    protein: 0.6,
+    saturatedFat: 0.02,
+    unsaturatedFat: 0.1,
+    solubleFiber: 0.2, // Estimated breakdown of 0.8g total fiber
+    insolubleFiber: 0.6,
+    vitaminA: 0.01, // 10 mcg RAE converted to mg
+    vitaminC: 5.0,
+    vitaminD: 0,
+    vitaminE: 0.1,
+    vitaminK: 0,
+    vitaminB1: 0.04,
+    vitaminB2: 0.03,
+    vitaminB3: 0.3,
+    vitaminB6: 0.04,
+    folate: 0.015, // 15 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 20,
+    iron: 0.4,
+    magnesium: 12,
+    zinc: 0.15,
+    iodine: 0,
+    selenium: 0,
+    copper: 0.03,
+    potassium: 115,
+    phosphorus: 25,
+  },
+
+  boiled_sweet_corn: {
+    label: "SWEET CORN BOILED",
+    calories: 96,
+    protein: 3.4,
+    saturatedFat: 0.2,
+    unsaturatedFat: 0.9,
+    solubleFiber: 0.4, // Estimated breakdown of 2.4g total fiber
+    insolubleFiber: 2.0,
+    vitaminA: 0.013, // 13 mcg RAE converted to mg
+    vitaminC: 5.5,
+    vitaminD: 0,
+    vitaminE: 0.07,
+    vitaminK: 0.0003, // 0.3 mcg converted to mg
+    vitaminB1: 0.093,
+    vitaminB2: 0.057,
+    vitaminB3: 1.683,
+    vitaminB6: 0.137,
+    folate: 0.023, // 23 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 3,
+    iron: 0.45,
+    magnesium: 26,
+    zinc: 0.62,
+    iodine: 0,
+    selenium: 0.0002, // 0.2 mcg converted to mg
+    copper: 0.04,
+    potassium: 218,
+    phosphorus: 77,
+  },
+
+  mushroom: {
+    label: "WHITE BUTTON MUSHROOM RAW",
+    calories: 22,
+    protein: 3.09,
+    saturatedFat: 0.05,
+    unsaturatedFat: 0.16,
+    solubleFiber: 0.4, // Estimated breakdown of 1.0g total fiber
+    insolubleFiber: 0.6,
+    vitaminA: 0,
+    vitaminC: 2.1,
+    vitaminD: 0.0002, // 0.2 mcg converted to mg (Mushrooms contain trace Vitamin D)
+    vitaminE: 0.01,
+    vitaminK: 0,
+    vitaminB1: 0.081,
+    vitaminB2: 0.402,
+    vitaminB3: 3.607,
+    vitaminB6: 0.104,
+    folate: 0.017, // 17 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 3,
+    iron: 0.5,
+    magnesium: 9,
+    zinc: 0.52,
+    iodine: 0,
+    selenium: 0.0093, // 9.3 mcg converted to mg
+    copper: 0.318,
+    potassium: 318,
+    phosphorus: 86,
+  },
+
+  boiled_malbar_spinach: {
+    label: "MALABAR SPINACH / BASELLA BOILED",
+    calories: 23,
+    protein: 2.0,
+    saturatedFat: 0.04,
+    unsaturatedFat: 0.15,
+    solubleFiber: 0.6, // Estimated breakdown of 1.8g total fiber
+    insolubleFiber: 1.2,
+    vitaminA: 0.4, // 400 mcg RAE converted to mg
+    vitaminC: 52.0, // Retains high Vitamin C even after boiling
+    vitaminD: 0,
+    vitaminE: 1.5,
+    vitaminK: 0.3, // 300 mcg converted to mg
+    vitaminB1: 0.04,
+    vitaminB2: 0.11,
+    vitaminB3: 0.4,
+    vitaminB6: 0.18,
+    folate: 0.09, // 90 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 109,
+    iron: 1.2,
+    magnesium: 65,
+    zinc: 0.45,
+    iodine: 0,
+    selenium: 0.0009, // 0.9 mcg converted to mg
+    copper: 0.1,
+    potassium: 510,
+    phosphorus: 50,
+  },
   //________________MEAT_________________
 
   boiled_chicken: {
@@ -2514,6 +2872,155 @@ const foodCatalog = {
     copper: 0,
     potassium: 5,
     phosphorus: 3,
+  },
+  boiled_soya_chunks: {
+    label: "SOYA CHUNKS / TVP BOILED (HYDRATED)",
+    calories: 115,
+    protein: 17.0,
+    saturatedFat: 0.1,
+    unsaturatedFat: 0.3,
+    solubleFiber: 1.5, // Estimated breakdown of 6.0g total hydrated fiber
+    insolubleFiber: 4.5,
+    vitaminA: 0,
+    vitaminC: 0,
+    vitaminD: 0,
+    vitaminE: 0.1,
+    vitaminK: 0,
+    vitaminB1: 0.1,
+    vitaminB2: 0.05,
+    vitaminB3: 0.8,
+    vitaminB6: 0.1,
+    folate: 0.055, // 55 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 80,
+    iron: 3.0,
+    magnesium: 90,
+    zinc: 1.5,
+    iodine: 0,
+    selenium: 0.005, // 5 mcg converted to mg
+    copper: 0.3,
+    potassium: 600,
+    phosphorus: 200,
+  },
+
+  boiled_tofu: {
+    label: "TOFU (FIRM) BOILED",
+    calories: 144,
+    protein: 15.8,
+    saturatedFat: 1.3,
+    unsaturatedFat: 7.4, // Rich in healthy polyunsaturated fats
+    solubleFiber: 0.5, // Estimated breakdown of 2.3g total fiber
+    insolubleFiber: 1.8,
+    vitaminA: 0.008, // 8 mcg RAE converted to mg
+    vitaminC: 0.2,
+    vitaminD: 0,
+    vitaminE: 0.04,
+    vitaminK: 0.0024, // 2.4 mcg converted to mg
+    vitaminB1: 0.16,
+    vitaminB2: 0.1,
+    vitaminB3: 0.38,
+    vitaminB6: 0.09,
+    folate: 0.015, // 15 mcg converted to mg
+    vitaminB12: 0,
+    calcium: 350, // Can be higher if calcium-set
+    iron: 2.7,
+    magnesium: 58,
+    zinc: 1.6,
+    iodine: 0,
+    selenium: 0.0174, // 17.4 mcg converted to mg
+    copper: 0.38,
+    potassium: 237,
+    phosphorus: 190,
+  },
+
+  boiled_tempeh: {
+    label: "TEMPEH BOILED",
+    calories: 195,
+    protein: 19.3,
+    saturatedFat: 2.2,
+    unsaturatedFat: 8.6,
+    solubleFiber: 2.0, // Estimated breakdown of 9.0g total fiber
+    insolubleFiber: 7.0,
+    vitaminA: 0.003, // 3 mcg RAE converted to mg
+    vitaminC: 0,
+    vitaminD: 0,
+    vitaminE: 0.22,
+    vitaminK: 0.0003, // 0.3 mcg converted to mg
+    vitaminB1: 0.08,
+    vitaminB2: 0.35,
+    vitaminB3: 2.6,
+    vitaminB6: 0.22,
+    folate: 0.024, // 24 mcg converted to mg
+    vitaminB12: 0.0001, // 0.1 mcg converted to mg (trace amounts from fermentation)
+    calcium: 111,
+    iron: 2.7,
+    magnesium: 81,
+    zinc: 1.1,
+    iodine: 0,
+    selenium: 0.0088, // 8.8 mcg converted to mg
+    copper: 0.56,
+    potassium: 412,
+    phosphorus: 266,
+  },
+
+  low_fat_paneer: {
+    label: "PANEER (LOW FAT / COTTAGE CHEESE)",
+    calories: 120,
+    protein: 15.0,
+    saturatedFat: 3.5,
+    unsaturatedFat: 1.5,
+    solubleFiber: 0, // Dairy contains no fiber
+    insolubleFiber: 0,
+    vitaminA: 0.05, // 50 mcg RAE converted to mg
+    vitaminC: 0,
+    vitaminD: 0.0002, // 0.2 mcg converted to mg
+    vitaminE: 0.05,
+    vitaminK: 0.001, // 1 mcg converted to mg
+    vitaminB1: 0.03,
+    vitaminB2: 0.2,
+    vitaminB3: 0.1,
+    vitaminB6: 0.05,
+    folate: 0.012, // 12 mcg converted to mg
+    vitaminB12: 0.0012, // 1.2 mcg converted to mg
+    calcium: 400, // Excellent source of calcium
+    iron: 0.2,
+    magnesium: 25,
+    zinc: 1.2,
+    iodine: 0.02, // 20 mcg converted to mg
+    selenium: 0.01, // 10 mcg converted to mg
+    copper: 0.02,
+    potassium: 120,
+    phosphorus: 300,
+  },
+
+  milk_powder: {
+    label: "MILK POWDER (NON-FAT / SKIM DRY)",
+    calories: 362,
+    protein: 36.2,
+    saturatedFat: 0.5,
+    unsaturatedFat: 0.3,
+    solubleFiber: 0, // Dairy contains no fiber
+    insolubleFiber: 0,
+    vitaminA: 0.007, // 7 mcg RAE converted to mg (unfortified)
+    vitaminC: 6.8,
+    vitaminD: 0,
+    vitaminE: 0.01,
+    vitaminK: 0,
+    vitaminB1: 0.4,
+    vitaminB2: 1.55, // Very rich in Riboflavin
+    vitaminB3: 0.9,
+    vitaminB6: 0.36,
+    folate: 0.05, // 50 mcg converted to mg
+    vitaminB12: 0.004, // 4 mcg converted to mg (excellent source)
+    calcium: 1257, // Extremely dense source of calcium
+    iron: 0.3,
+    magnesium: 110,
+    zinc: 4.1,
+    iodine: 0.15, // 150 mcg converted to mg
+    selenium: 0.027, // 27 mcg converted to mg
+    copper: 0.04,
+    potassium: 1794,
+    phosphorus: 968,
   },
   //_____________PREPARED FOODS________
   idli: {
