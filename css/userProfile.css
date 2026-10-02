@@ -191,7 +191,7 @@
 }
 
 .profileSummaryName {
-    color: var(--profile-dark);
+    color: var(--profile-ink);
     font-size: 1.2rem;
     font-weight: 700;
 }
@@ -238,7 +238,7 @@
 .profileStat strong {
     display: block;
     margin-top: 6px;
-    color: var(--profile-dark);
+    color: var(--profile-ink);
     font-size: 1rem;
 }
 
@@ -268,7 +268,7 @@
 
 .micronutrientHeader h3 {
     margin: 0;
-    color: var(--profile-dark);
+    color: var(--profile-ink);
     font-size: 1rem;
 }
 
