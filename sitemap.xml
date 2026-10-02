@@ -4,7 +4,7 @@
 
 <url>
   <loc>https://www.elatefit.com/</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
+  <lastmod>2026-10-02</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
@@ -19,8 +19,8 @@
 </url>
 <url>
   <loc>https://www.elatefit.com/calculators/calcCategories.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2026-10-02</lastmod>
+  <priority>0.95</priority>
 </url>
 <url>
   <loc>https://www.elatefit.com/nutrition/nutcategories.html</loc>
@@ -147,36 +147,20 @@
   <lastmod>2022-10-25T05:56:51+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-<url>
-  <loc>https://www.elatefit.com/calculators/healthcalculator.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.elatefit.com/calculators/bmiCalculator.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.elatefit.com/calculators/hwcalculator.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.elatefit.com/calculators/caloriesCalculator.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.elatefit.com/calculators/bpCalculator.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.elatefit.com/calculators/customDietPlan.html</loc>
-  <lastmod>2022-10-25T05:56:51+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
+<url><loc>https://www.elatefit.com/calculators/bmiCalculator.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/hwcalculator.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/calorieCalculator.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/dietplanmaker.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/cardioConfigure.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/medicineIntake.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/searchWorkoutsByMuscle.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/testNotification.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/trackSerumApplication.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/userProfile.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/weightTracker.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/workoutTracker.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/breathingExercise.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
+<url><loc>https://www.elatefit.com/calculators/stretchingConfigure.html</loc><lastmod>2026-10-02</lastmod><priority>0.90</priority></url>
 <url>
   <loc>https://www.elatefit.com/nutrition/millets/milletCategories.html</loc>
   <lastmod>2022-10-25T05:56:51+00:00</lastmod>
