@@ -619,10 +619,13 @@
 
         .entryFood strong {
             display: block;
-            font-size: inherit;
+            min-width: 0;
+            overflow: hidden;
+            font-size: 0.88rem;
             font-weight: 700;
             line-height: 1.3;
-            overflow-wrap: anywhere;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .entryRow small {
