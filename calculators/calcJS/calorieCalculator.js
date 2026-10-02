@@ -4408,16 +4408,43 @@ function proteinFactor(profile) {
 }
 
 function calculateNutritionTargets(profile) {
+  const isFemale = profile.gender === "Female";
   const baseCalories =
-    10 * profile.weight + 6.25 * profile.height - 5 * profile.age + 5;
-  const calories = Math.round(
+    10 * profile.weight +
+    6.25 * profile.height -
+    5 * profile.age +
+    (isFemale ? -161 : 5);
+  const calculatedCalories = Math.round(
     baseCalories *
       activityFactor(profile.activityLevel) *
       bodyTypeFactor(profile.bodyType) *
       targetFactor(profile.target),
   );
-  const protein = Math.round(profile.weight * proteinFactor(profile));
-  return { calories, protein };
+  const calories =
+    profile.calorieTarget > 0
+      ? Math.round(profile.calorieTarget)
+      : calculatedCalories;
+  const proteinRate = Math.max(
+    isFemale ? 1.3 : 1.4,
+    proteinFactor(profile) - (isFemale ? 0.1 : 0),
+  );
+  const protein = Math.round(profile.weight * proteinRate);
+  const saturatedFat = Math.round((calories * 0.07) / 9);
+  const unsaturatedFat = Math.round((calories * 0.17) / 9);
+  const totalFiber = Math.max(
+    isFemale ? 25 : 38,
+    Math.round((calories / 1000) * 14),
+  );
+  const solubleFiber = Math.round(totalFiber * 0.25);
+  const insolubleFiber = Math.max(1, totalFiber - solubleFiber);
+  return {
+    calories,
+    protein,
+    saturatedFat,
+    unsaturatedFat,
+    solubleFiber,
+    insolubleFiber,
+  };
 }
 
 function calculateNutrition(food, grams) {
@@ -4574,6 +4601,37 @@ const MICRONUTRIENTS = [
   ],
 ];
 
+const GENDER_MICRONUTRIENT_REFERENCES = {
+  Male: {
+    vitaminA: 0.9,
+    vitaminC: 90,
+    vitaminK: 0.12,
+    vitaminB1: 1.2,
+    vitaminB2: 1.3,
+    vitaminB3: 16,
+    iron: 8,
+    magnesium: 400,
+    zinc: 11,
+    potassium: 3400,
+  },
+  Female: {
+    vitaminA: 0.7,
+    vitaminC: 75,
+    vitaminK: 0.09,
+    vitaminB1: 1.1,
+    vitaminB2: 1.1,
+    vitaminB3: 14,
+    iron: 18,
+    magnesium: 310,
+    zinc: 8,
+    potassium: 2600,
+  },
+};
+
+function getGenderMicronutrientReference(key, reference, gender) {
+  return GENDER_MICRONUTRIENT_REFERENCES[gender]?.[key] ?? reference;
+}
+
 function calculateMicronutrients(food, grams) {
   return Object.fromEntries(
     MICRONUTRIENTS.map(([key]) => [key, ((food[key] || 0) * grams) / 100]),
@@ -4600,10 +4658,15 @@ function renderMicronutrients(entries) {
 
   container.innerHTML = MICRONUTRIENTS.map(
     ([key, label, reference, unit, foodSuggestions]) => {
+      const adjustedReference = getGenderMicronutrientReference(
+        key,
+        reference,
+        userProfile?.gender,
+      );
       const consumed = totals[key];
-      const percentage = Math.min(100, (consumed / reference) * 100);
+      const percentage = Math.min(100, (consumed / adjustedReference) * 100);
       const guidance =
-        consumed < reference
+        consumed < adjustedReference
           ? `<div class="micronutrientGuidance"><strong>FOODS TO CONSIDER</strong><ul>${foodSuggestions
               .split(", ")
               .map((food) => `<li>${food}</li>`)
@@ -4613,7 +4676,7 @@ function renderMicronutrients(entries) {
       <div class="micronutrientCard">
         <div class="micronutrientHeader">
           <span>${label}</span>
-          <strong>${formatMicronutrientAmount(consumed)} / ${reference} ${unit}</strong>
+          <strong>${formatMicronutrientAmount(consumed)} / ${adjustedReference} ${unit}</strong>
         </div>
         <div class="micronutrientProgressTrack" role="progressbar" aria-label="${label} daily intake" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percentage.toFixed(1)}">
           <span style="width: ${percentage.toFixed(1)}%"></span>

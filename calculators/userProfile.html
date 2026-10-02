@@ -41,6 +41,18 @@
                         <label class="profileField profileSpan2" for="username">Username
                             <input type="text" id="username" placeholder="Enter your name" required />
                         </label>
+                        <label class="profileField" for="gender">Gender
+                            <select id="gender" required>
+                                <option value="">Choose a gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                        </label>
+                        <label class="profileField" for="calorieTarget">Set calorie target (optional)
+                            <input type="number" id="calorieTarget" min="1" step="1"
+                                placeholder="Use calculated target" />
+                        </label>
                         <label class="profileField" for="userAge">Age
                             <input type="number" id="userAge" min="1" step="1" placeholder="25" required />
                         </label>

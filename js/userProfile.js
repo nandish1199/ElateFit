@@ -122,22 +122,38 @@ function proteinFactor(profile) {
 }
 
 function calculateNutritionTargets(profile) {
+  const isFemale = profile.gender === "Female";
   const baseCalories =
-    10 * profile.weight + 6.25 * profile.height - 5 * profile.age + 5;
-  const calories = Math.round(
+    10 * profile.weight +
+    6.25 * profile.height -
+    5 * profile.age +
+    (isFemale ? -161 : 5);
+  const calculatedCalories = Math.round(
     baseCalories *
       activityFactor(profile.activityLevel) *
       bodyTypeFactor(profile.bodyType) *
       targetFactor(profile.target),
   );
-  const protein = Math.round(profile.weight * proteinFactor(profile));
+  const calories =
+    profile.calorieTarget > 0
+      ? Math.round(profile.calorieTarget)
+      : calculatedCalories;
+  const proteinRate = Math.max(
+    isFemale ? 1.3 : 1.4,
+    proteinFactor(profile) - (isFemale ? 0.1 : 0),
+  );
+  const protein = Math.round(profile.weight * proteinRate);
   const saturatedFat = Math.round((calories * 0.07) / 9);
   const unsaturatedFat = Math.round((calories * 0.17) / 9);
-  const totalFiber = Math.round((calories / 1000) * 14);
+  const totalFiber = Math.max(
+    isFemale ? 25 : 38,
+    Math.round((calories / 1000) * 14),
+  );
   const solubleFiber = Math.round(totalFiber * 0.25);
   const insolubleFiber = Math.max(1, totalFiber - solubleFiber);
   return {
     calories,
+    calculatedCalories,
     protein,
     saturatedFat,
     unsaturatedFat,
@@ -169,14 +185,51 @@ const MICRONUTRIENT_REFERENCES = [
   { name: "Phosphorus", amount: "700", unit: "mg" },
 ];
 
+const GENDER_MICRONUTRIENT_ADJUSTMENTS = {
+  Male: {
+    "Vitamin A": "0.9",
+    "Vitamin C": "90",
+    "Vitamin K": "0.12",
+    "Vitamin B1 (Thiamine)": "1.2",
+    "Vitamin B2 (Riboflavin)": "1.3",
+    "Vitamin B3 (Niacin)": "16",
+    Iron: "8",
+    Magnesium: "400",
+    Zinc: "11",
+    Potassium: "3400",
+  },
+  Female: {
+    "Vitamin A": "0.7",
+    "Vitamin C": "75",
+    "Vitamin K": "0.09",
+    "Vitamin B1 (Thiamine)": "1.1",
+    "Vitamin B2 (Riboflavin)": "1.1",
+    "Vitamin B3 (Niacin)": "14",
+    Iron: "18",
+    Magnesium: "310",
+    Zinc: "8",
+    Potassium: "2600",
+  },
+};
+
+function getMicronutrientReferences(gender) {
+  const adjustments = GENDER_MICRONUTRIENT_ADJUSTMENTS[gender] || {};
+  return MICRONUTRIENT_REFERENCES.map((nutrient) => ({
+    ...nutrient,
+    amount: adjustments[nutrient.name] || nutrient.amount,
+  }));
+}
+
 function renderMicronutrientGuidance(profile) {
-  const rows = MICRONUTRIENT_REFERENCES.map(
-    (nutrient) => `
+  const rows = getMicronutrientReferences(profile.gender)
+    .map(
+      (nutrient) => `
         <tr>
           <th scope="row">${nutrient.name}</th>
           <td>${nutrient.amount} ${nutrient.unit}</td>
         </tr>`,
-  ).join("");
+    )
+    .join("");
   const bmi = calculateBmi(profile.height, profile.weight);
   const bmiText = bmi ? bmi.toFixed(1) : "Not available";
 
@@ -185,7 +238,7 @@ function renderMicronutrientGuidance(profile) {
         <div class="micronutrientHeader">
           <div>
             <h3 id="micronutrientHeading">Daily micronutrient references</h3>
-            <p>20 essential vitamins and minerals for a general adult reference profile.</p>
+            <p>20 essential vitamins and minerals for a general adult ${profile.gender || "neutral"} reference profile.</p>
           </div>
           <div class="micronutrientContext">
             <span>${profile.height} cm</span>
@@ -202,7 +255,7 @@ function renderMicronutrientGuidance(profile) {
             <tbody>${rows}</tbody>
           </table>
         </div>
-        <p class="micronutrientDisclaimer">Values are general adult reference amounts based on WHO/FAO guidance where available and established international reference values. Height and weight are shown as profile context; these micronutrient amounts are not calculated by multiplying body weight or height. Sex, age, pregnancy, illness, medication, and deficiency can change requirements. Ask a qualified clinician before using supplements.</p>
+        <p class="micronutrientDisclaimer">Values are general adult reference amounts based on established international reference values. Gender, age, pregnancy, illness, medication, and deficiency can change requirements. Ask a qualified doctor/dietitian before using supplements.</p>
       </section>`;
 }
 
@@ -234,6 +287,8 @@ function populateProfileForm(profile) {
   if (!profile) return;
   const fieldMap = {
     username: profile.username || "",
+    gender: profile.gender || "",
+    calorieTarget: profile.calorieTarget || "",
     userAge: profile.age || "",
     userHeight: profile.height || "",
     userWeight: profile.weight || "",
@@ -254,6 +309,8 @@ function populateProfileForm(profile) {
 function readProfileForm() {
   return {
     username: document.getElementById("username").value.trim(),
+    gender: document.getElementById("gender").value,
+    calorieTarget: Number(document.getElementById("calorieTarget").value),
     age: Number(document.getElementById("userAge").value),
     height: Number(document.getElementById("userHeight").value),
     weight: Number(document.getElementById("userWeight").value),
@@ -296,6 +353,7 @@ function renderProfileSummary(profile) {
                 <div class="profilePill">${profile.target}</div>
             </div>
             <div class="profileStatGrid">
+              <div class="profileStat"><span>Gender</span><strong>${profile.gender || "Not specified"}</strong></div>
                 <div class="profileStat"><span>Age</span><strong>${profile.age} years</strong></div>
                 <div class="profileStat"><span>Height</span><strong>${profile.height} cm</strong></div>
                 <div class="profileStat"><span>Weight</span><strong>${profile.weight} kg</strong></div>
@@ -305,7 +363,8 @@ function renderProfileSummary(profile) {
                 <div class="profileStat"><span>Body type</span><strong>${profile.bodyType}</strong></div>
                 <div class="profileStat"><span>Lactose</span><strong>${profile.lactoseIntolerant}</strong></div>
                 <div class="profileStat"><span>Activity</span><strong>${profile.activityLevel}</strong></div>
-                <div class="profileStat"><span>Daily calories</span><strong>${nutrition.calories} kcal</strong></div>
+                <div class="profileStat"><span>Calculated calorie target</span><strong>${nutrition.calculatedCalories} kcal</strong></div>
+                <div class="profileStat"><span>Daily calorie target</span><strong>${nutrition.calories} kcal</strong></div>
                 <div class="profileStat"><span>Daily protein</span><strong>${nutrition.protein} g</strong></div>
                 <div class="profileStat"><span>Saturated fat limit</span><strong>${nutrition.saturatedFat} g</strong></div>
                 <div class="profileStat"><span>Unsaturated fat</span><strong>${nutrition.unsaturatedFat} g</strong></div>
@@ -336,6 +395,7 @@ async function loadProfileState() {
 function validateProfile(profile) {
   if (
     !profile.username ||
+    !profile.gender ||
     !profile.age ||
     profile.age <= 0 ||
     !profile.height ||
@@ -346,7 +406,10 @@ function validateProfile(profile) {
     profile.targetWeight <= 0 ||
     !Number.isInteger(profile.targetWeight)
   ) {
-    return "Please complete the username, age, height, weight, and whole-number target weight fields.";
+    return "Please complete the username, gender, age, height, weight, and whole-number target weight fields.";
+  }
+  if (profile.calorieTarget < 0 || !Number.isInteger(profile.calorieTarget)) {
+    return "Set a whole-number calorie target or leave it blank to use the calculated target.";
   }
   if (
     !profile.target ||
