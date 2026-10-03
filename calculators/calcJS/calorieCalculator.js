@@ -3115,8 +3115,8 @@ const foodCatalog = {
 
   upma: {
     label: "UPMA",
-    calories: 165,
-    protein: 4.0,
+    calories: 145,
+    protein: 3.0,
     saturatedFat: 0.8,
     unsaturatedFat: 3.2,
     solubleFiber: 0.4,
