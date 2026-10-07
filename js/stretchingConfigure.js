@@ -128,7 +128,7 @@ function renderStretchCalendar() {
       const key = stretchDayKey(date);
       const complete = completedDays.has(key);
       const today = key === todayKey;
-      return `<div class="stretchCalendarDay${complete ? " cardioCalendarDayComplete" : ""}${today ? " stretchCalendarDayToday" : ""}" role="gridcell" aria-label="${date.toLocaleDateString()}${complete ? ", stretching completed" : ""}"><span class="stretchCalendarDate">${index + 1}</span>${complete ? '<i class="fa-solid fa-leaf stretchCalendarIcon" aria-hidden="true"></i>' : ""}</div>`;
+      return `<div class="stretchCalendarDay${complete ? " cardioCalendarDayComplete" : ""}${today ? " stretchCalendarDayToday" : ""}" role="gridcell" aria-label="${date.toLocaleDateString()}${complete ? ", stretching completed" : ""}"><span class="stretchCalendarDate">${index + 1}</span>${complete ? '<i class="fa-solid fa-person-walking stretchCalendarIcon" aria-hidden="true"></i>' : ""}</div>`;
     }),
   ].join("");
 }
