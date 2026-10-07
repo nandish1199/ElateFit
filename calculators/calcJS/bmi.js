@@ -1,6 +1,6 @@
 
         $(document).ready(function() {
-            $("#calcsubmit").click(function(event) {
+            $("#bmiForm").submit(function(event) {
                 event.preventDefault();
 
                 var height = $("#height").val();

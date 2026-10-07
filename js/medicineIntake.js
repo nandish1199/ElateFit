@@ -158,8 +158,8 @@ function formValues() {
 function fillForm(medicine = null) {
   editingId = medicine?.id || null;
   document.getElementById("medicineFormTitle").innerHTML = medicine
-    ? '<i class="fa-solid fa-prescription-bottle-medical"></i> UPDATE MEDICINE'
-    : '<i class="fa-solid fa-prescription-bottle-medical"></i> ADD MEDICINE';
+    ? '<i class="fa-solid fa-pills"></i> UPDATE MEDICINE'
+    : '<i class="fa-solid fa-pills"></i> ADD MEDICINE';
   document.getElementById("saveMedicineBtn").innerHTML = medicine
     ? '<i class="fa-solid fa-floppy-disk"></i> UPDATE MEDICINE'
     : '<i class="fa-solid fa-plus"></i> ADD MEDICINE';

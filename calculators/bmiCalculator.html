@@ -35,29 +35,33 @@
             background: #F8FAF8;
             color: var(--bmi-ink);
             font-family: Segoe UI, Tahoma, sans-serif;
-            display: grid;
-            place-items: center;
         }
 
-        .bmiTitle {
+        .bmiPage {
+            max-width: 1240px;
+            margin: 70px auto 0;
+            padding: 30px 24px 60px;
+            color: var(--bmi-ink);
+        }
+
+        .bmiHero {
             position: relative;
             overflow: hidden;
-            display: grid;
-            gap: 10px;
-            margin: 100px 0 0;
-            width: 95vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 22px;
             padding: 30px clamp(18px, 4vw, 48px);
             background: #FFFFFF;
             border: 1px solid var(--bmi-line);
             border-top: 4px solid var(--bmi-green);
             border-radius: 3px;
             box-shadow: var(--bmi-shadow);
-            color: var(--bmi-ink);
-            font-size: clamp(1.4rem, 3vw, 2.15rem) !important;
-            letter-spacing: .04em;
         }
 
-        .bmiTitle span {
+        .bmiEyebrow {
+            margin: 0 0 8px;
             color: var(--bmi-green);
             font-size: .75rem;
             font-weight: 800;
@@ -65,62 +69,128 @@
             text-transform: uppercase;
         }
 
-        .allInputContainer {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-            max-width: 960px;
-            margin: 22px auto 30px;
-            padding: 0 24px;
+        .bmiHero h1 {
+            margin: 0 0 8px;
+            color: var(--bmi-ink);
+            font-size: clamp(1.5rem, 3vw, 2.35rem);
+            font-weight: 800;
+            letter-spacing: .06em;
         }
 
-        .eachInputContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
+        .bmiHero p:not(.bmiEyebrow) {
+            max-width: 700px;
             margin: 0;
-            padding: 20px;
+            color: var(--bmi-muted);
+            line-height: 1.55;
+        }
+
+        .bmiHeroIcon {
+            position: relative;
+            z-index: 1;
+            flex: 0 0 auto;
+            color: var(--bmi-green);
+            font-size: clamp(3rem, 7vw, 5rem);
+            opacity: .72;
+        }
+
+        .bmiPanel {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 22px;
             background: var(--bmi-paper);
             border: 1px solid var(--bmi-line);
-            border-top: 3px solid var(--bmi-green);
             border-radius: 3px;
             box-shadow: var(--bmi-shadow);
         }
 
-        .eachInputContainer label {
+        .bmiPanel h2 {
+            margin: 0 0 18px;
             color: var(--bmi-ink);
-            line-height: 1.4;
+            font-size: 1.05rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
         }
 
-        .eachInputContainer label i {
+        .bmiPanel h2 i {
+            margin-right: 7px;
+            color: var(--bmi-green);
+            font-size: .9em;
+        }
+
+        .bmiForm {
+            display: grid;
+            gap: 14px;
+        }
+
+        .bmiFormGrid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .bmiField {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            color: var(--bmi-muted);
+            font-size: .86rem;
+            font-weight: 600;
+        }
+
+        .bmiField > span,
+        .bmiField legend {
+            color: var(--bmi-muted);
+            font-size: .86rem;
+            font-weight: 600;
+        }
+
+        .bmiField > span i,
+        .bmiField legend i {
             margin-right: 5px;
             color: var(--bmi-green);
         }
 
-        .eachInputContainer input[type="number"] {
+        .bmiField input[type="number"] {
             width: 100%;
-            min-height: 46px;
-            padding: 0 14px;
+            min-height: 44px;
+            margin-top: 6px;
+            padding: 0 12px;
             border: 1px solid #C8DBCD;
             border-radius: 3px;
+            background: #FFFFFF;
             color: var(--bmi-ink);
             font: inherit;
         }
 
-        .eachInputContainer input[type="number"]:focus {
+        .bmiField input[type="number"]:focus {
             border-color: var(--bmi-green);
             box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
             outline: none;
+        }
+
+        .bmiGenderField {
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .bmiGenderField legend {
+            padding: 0;
         }
 
         .genderOptions {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: 6px;
             color: var(--bmi-muted);
         }
 
         .genderOptions label {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
             padding: 8px 10px;
             border: 1px solid var(--bmi-line);
             border-radius: 3px;
@@ -136,21 +206,21 @@
         }
 
         #calcsubmit {
-            grid-column: 1/-1;
+            grid-column: 1 / -1;
             justify-self: start;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             min-height: 42px;
-            margin: 6px 0 0;
+            margin: 4px 0 0;
             padding: 0 15px;
             border: 1px solid var(--bmi-green);
             border-radius: 3px;
             background: var(--bmi-green);
             color: #fff;
             cursor: pointer;
+            font: inherit;
             font-weight: 600;
-            text-decoration: none;
             font-size: .8rem;
         }
 
@@ -223,14 +293,29 @@
         }
 
         @media only screen and (max-width:650px) {
-            .allInputContainer {
+            .bmiFormGrid {
                 grid-template-columns: 1fr;
-                padding: 0 14px;
             }
 
             #calcsubmit {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .bmiPage {
+                padding: 22px 14px 42px;
+            }
+
+            .bmiHero {
+                align-items: flex-start;
+            }
+
+            .bmiHeroIcon {
+                display: none;
+            }
+
+            .bmiPanel {
+                padding: 18px;
             }
 
             .weightResult,
@@ -251,25 +336,47 @@
                 class="fa-sharp fa-solid fa-bars"></i></button><iframe id="searchbar" src="../fragsearchbar.html"
             loading="lazy"></iframe></div>
     <iframe id="navframe" src="../fragnav.html" loading="lazy"></iframe>
-    <h1 class="bmiTitle"><span><i class="fa-solid fa-bolt"></i> Know your baseline</span><b>BODY MASS INDEX CALCULATOR
-            FOR ADULTS</b></h1>
-    <div class="allInputContainer">
-        <div class="eachInputContainer"><label for="height" class="form-label"><i
-                    class="fa-solid fa-ruler-vertical"></i> <b>Enter your Height in Centimeters</b></label><input
-                type="number" class="form-control" id="height" placeholder="Enter Your Height in Centimeters" /></div>
-        <div class="eachInputContainer"><label for="weight" class="form-label"><i
-                    class="fa-solid fa-scale-balanced"></i> <b>Enter your Weight in Kg</b></label><input type="number"
-                class="form-control" id="weight" placeholder="Enter Your Weight in Kg" /></div>
-        <div class="eachInputContainer"><label for="age" class="form-label"><i class="fa-solid fa-cake-candles"></i>
-                <b>Enter your Age</b></label><input type="number" class="form-control" id="age"
-                placeholder="Enter Your Age" /></div>
-        <div class="eachInputContainer"><label class="form-label"><i class="fa-solid fa-venus-mars"></i> <b>Choose your
-                    Gender</b></label>
-            <div class="genderOptions"><label><input type="radio" name="gender" value="male" />
-                    Male</label><label><input type="radio" name="gender" value="female" /> Female</label></div>
-        </div>
-        <a class="heroAction" id="calcsubmit"><i class="fa-solid fa-calculator"></i> CALCULATE BMI</a>
-    </div>
+    <main class="bmiPage">
+        <section class="bmiHero">
+            <div>
+                <p class="bmiEyebrow"><i class="fa-solid fa-heart-pulse"></i> Know your baseline</p>
+                <h1>BODY MASS INDEX CALCULATOR</h1>
+                <p>Estimate your BMI using your height and weight. BMI is a general screening measure, not a diagnosis,
+                    and may not reflect differences in muscle mass or body composition. This calculator is intended for
+                    adults aged 20 and over.</p>
+            </div>
+            <div class="bmiHeroIcon" aria-hidden="true"><i class="fa-solid fa-weight-scale"></i></div>
+        </section>
+        <section class="bmiPanel" aria-labelledby="bmiFormHeading">
+            <h2 id="bmiFormHeading"><i class="fa-solid fa-calculator"></i> Add your details</h2>
+            <form class="bmiForm" id="bmiForm" novalidate>
+                <div class="bmiFormGrid">
+                    <label class="bmiField" for="height">
+                        <span><i class="fa-solid fa-ruler-vertical"></i> Height in centimeters</span>
+                        <input type="number" id="height" min="1" inputmode="decimal"
+                            placeholder="e.g. 170" />
+                    </label>
+                    <label class="bmiField" for="weight">
+                        <span><i class="fa-solid fa-scale-balanced"></i> Weight in kilograms</span>
+                        <input type="number" id="weight" min="1" inputmode="decimal"
+                            placeholder="e.g. 65" />
+                    </label>
+                    <label class="bmiField" for="age">
+                        <span><i class="fa-solid fa-cake-candles"></i> Age in years</span>
+                        <input type="number" id="age" min="1" inputmode="numeric"
+                            placeholder="e.g. 25" />
+                    </label>
+                    <fieldset class="bmiField bmiGenderField">
+                        <legend><i class="fa-solid fa-venus-mars"></i> Gender</legend>
+                        <div class="genderOptions">
+                            <label><input type="radio" name="gender" value="male" /> Male</label>
+                            <label><input type="radio" name="gender" value="female" /> Female</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <button type="submit" id="calcsubmit"><i class="fa-solid fa-calculator"></i> CALCULATE BMI</button>
+            </form>
+        </section>
     <div class="weightResult" id="severeThinness">
         <h2>Underweight (Severe Thin)</h2>
         <div class="progress">
@@ -326,6 +433,7 @@
                 aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
+    </main>
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
