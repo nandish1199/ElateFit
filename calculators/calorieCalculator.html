@@ -463,6 +463,137 @@
             padding-left: 2px;
         }
 
+        .foodCalendarTools {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .foodCalendarTools h2 {
+            margin: 0;
+        }
+
+        .foodCalendarPanel {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: 100%;
+            max-width: 480px;
+            box-sizing: border-box;
+            padding: 16px;
+        }
+
+        .foodCalendarMonth {
+            color: var(--nutrition-green);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .foodCalendarNavigation {
+            display: flex;
+            gap: 6px;
+        }
+
+        .foodCalendarNavigation button {
+            width: 30px;
+            min-height: 30px;
+            padding: 0;
+            border: 1px solid var(--nutrition-line);
+            border-radius: 3px;
+            background: #fff;
+            color: var(--nutrition-green);
+            cursor: pointer;
+        }
+
+        .foodCalendarNavigation button:hover {
+            background: #EAF6EC;
+        }
+
+        .foodCalendarWeekdays,
+        .foodCalendarGrid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        .foodCalendarWeekdays {
+            margin-bottom: 8px;
+            color: var(--nutrition-muted);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .foodCalendarDay {
+            position: relative;
+            min-height: 64px;
+            padding: 6px;
+            border: 1px solid var(--nutrition-line);
+            border-radius: 3px;
+            background: #fff;
+            color: var(--nutrition-ink);
+        }
+
+        .foodCalendarDayEmpty {
+            border-color: transparent;
+            background: transparent;
+        }
+
+        .foodCalendarDate {
+            display: block;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .foodCalendarDayToday {
+            border-color: var(--nutrition-coral);
+            box-shadow: inset 0 0 0 1px rgba(22, 163, 74, .2);
+        }
+
+        .foodCalendarDayLogged {
+            background: #EAF6EC;
+            border-color: #A8CFB0;
+        }
+
+        .foodCalendarTotals {
+            position: absolute;
+            right: 3px;
+            bottom: 4px;
+            left: 4px;
+            display: grid;
+            gap: 2px;
+            color: var(--nutrition-green);
+            font-size: .58rem;
+            font-weight: 700;
+            line-height: 1.05;
+        }
+
+        .foodCalendarTotals span {
+            overflow: hidden;
+            text-overflow: clip;
+            white-space: nowrap;
+        }
+
+        .foodCalendarProtein {
+            color: var(--nutrition-muted);
+        }
+
+        .foodCalendarLegend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--nutrition-muted);
+            font-size: .78rem;
+        }
+
+        .foodCalendarLegend i {
+            color: var(--nutrition-green);
+        }
+
         .targetCard {
             position: relative;
             min-width: 0;
@@ -668,6 +799,19 @@
             color: #B42318;
         }
 
+        @media only screen and (min-width: 901px) {
+
+            .micronutrientPanel,
+            .foodCalendarPanel {
+                grid-column: auto;
+            }
+
+            .foodCalendarPanel {
+                justify-self: stretch;
+                max-width: none;
+            }
+        }
+
         @media only screen and (max-width: 900px) {
             .nutritionGrid {
                 grid-template-columns: 1fr;
@@ -682,6 +826,27 @@
             .trendGrid,
             .micronutrientList {
                 grid-template-columns: 1fr;
+            }
+
+            .foodCalendarTools {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .foodCalendarWeekdays,
+            .foodCalendarGrid {
+                gap: 4px;
+            }
+
+            .foodCalendarDay {
+                min-height: 54px;
+                padding: 6px;
+            }
+
+            .foodCalendarTotals {
+                right: 2px;
+                left: 3px;
+                font-size: .5rem;
             }
 
             .targetGrid {
@@ -809,7 +974,7 @@
 
     <main class="nutritionPage">
         <section class="nutritionHero">
-            <span class="nutritionEyebrow"><i class="fa-solid fa-leaf"></i> Nourish your routine</span>
+            <span class="nutritionEyebrow"><i class="fa-solid fa-bowl-food"></i> Nourish your routine</span>
             <h1>CALORIE INTAKE JOURNAL</h1>
             <p>Add foods by weight, keep a dated nutrition record, and review your calorie and protein pattern over
                 time.</p>
@@ -818,7 +983,7 @@
         </section>
         <div class="nutritionGrid">
             <section class="nutritionPanel">
-                <h2><i class="fa-solid fa-bowl-food"></i> Add Food</h2>
+                <h2><i class="fa-solid fa-bowl-rice"></i> Add Food</h2>
                 <form class="foodForm" id="foodForm">
                     <label class="foodSearchField" for="foodSearch">Food
                         <input type="text" id="foodSearch" list="foodOptions" autocomplete="off"
@@ -904,6 +1069,29 @@
                 <h2><i class="fa-solid fa-seedling"></i> Today's Micronutrients</h2>
                 <p>Totals are calculated from today's saved foods using the current food catalog values per 100 g.</p>
                 <div class="micronutrientList" id="micronutrientList"></div>
+            </section>
+            <section class="nutritionPanel foodCalendarPanel" aria-labelledby="foodCalendarHeading">
+                <div class="foodCalendarTools">
+                    <div>
+                        <h2 id="foodCalendarHeading"><i class="fa-solid fa-calendar-days"></i> Food Journal Calendar
+                        </h2>
+                        <span class="foodCalendarMonth" id="foodCalendarMonth"></span>
+                    </div>
+                    <div class="foodCalendarNavigation" aria-label="Change calendar month">
+                        <button type="button" id="previousFoodCalendarMonth" aria-label="Previous month"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" id="nextFoodCalendarMonth" aria-label="Next month"><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="foodCalendarWeekdays" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="foodCalendarGrid" id="foodCalendarGrid" role="grid"
+                    aria-label="Monthly food journal calendar"></div>
+                <div class="foodCalendarLegend"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Food logged
+                    · C = kcal · P = protein (g)
+                </div>
             </section>
         </div>
     </main>

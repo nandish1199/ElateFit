@@ -4258,6 +4258,7 @@ let nutritionDb;
 let selectedPeriod = 7;
 let allEntries = [];
 let userProfile = null;
+let foodCalendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
 function openNutritionDatabase() {
   return new Promise((resolve, reject) => {
@@ -4728,6 +4729,65 @@ function getTodayEntries() {
   return allEntries.filter((entry) => dayKey(entry.createdAt) === today);
 }
 
+function renderFoodCalendar() {
+  const monthLabel = document.getElementById("foodCalendarMonth");
+  const grid = document.getElementById("foodCalendarGrid");
+  if (!monthLabel || !grid) return;
+
+  const year = foodCalendarMonth.getFullYear();
+  const month = foodCalendarMonth.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const todayKey = dayKey(new Date());
+  const foodDays = new Map();
+  const compactNumber = new Intl.NumberFormat(undefined, {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  });
+
+  allEntries.forEach((entry) => {
+    const key = dayKey(entry.createdAt);
+    const totals = foodDays.get(key) || {
+      entries: 0,
+      calories: 0,
+      protein: 0,
+    };
+    totals.entries += 1;
+    totals.calories += entry.calories;
+    totals.protein += entry.protein;
+    foodDays.set(key, totals);
+  });
+
+  monthLabel.textContent = new Intl.DateTimeFormat(undefined, {
+    month: "long",
+    year: "numeric",
+  }).format(foodCalendarMonth);
+
+  const cells = [];
+  for (let index = 0; index < firstDay; index += 1) {
+    cells.push(
+      '<div class="foodCalendarDay foodCalendarDayEmpty" aria-hidden="true"></div>',
+    );
+  }
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(year, month, day);
+    const key = dayKey(date);
+    const totals = foodDays.get(key);
+    const classes = ["foodCalendarDay"];
+    if (key === todayKey) classes.push("foodCalendarDayToday");
+    if (totals) classes.push("foodCalendarDayLogged");
+    const summary = totals
+      ? `${totals.entries} food ${totals.entries === 1 ? "entry" : "entries"}, ${Math.round(totals.calories).toLocaleString()} kcal, ${totals.protein.toFixed(1)} g protein`
+      : "No food logged";
+    cells.push(`
+      <div class="${classes.join(" ")}" role="gridcell" aria-label="${day}, ${monthLabel.textContent}, ${summary}"${totals ? ` title="${summary}"` : ""}>
+        <span class="foodCalendarDate">${day}</span>
+        ${totals ? `<span class="foodCalendarTotals" aria-hidden="true"><span>C ${compactNumber.format(totals.calories)}</span><span class="foodCalendarProtein">P ${compactNumber.format(totals.protein)}g</span></span>` : ""}
+      </div>`);
+  }
+  grid.innerHTML = cells.join("");
+}
+
 function renderEntries() {
   const entries = getTodayEntries().sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
@@ -4966,6 +5026,7 @@ function renderProgress() {
 async function refreshDashboard() {
   allEntries = await getAllEntries();
   renderEntries();
+  renderFoodCalendar();
   renderProfileTargets();
   renderProgress();
 }
@@ -5063,6 +5124,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         await deleteAllEntries();
         setStatus("All saved food entries were deleted.", false);
         await refreshDashboard();
+      });
+    document
+      .getElementById("previousFoodCalendarMonth")
+      .addEventListener("click", function () {
+        foodCalendarMonth = new Date(
+          foodCalendarMonth.getFullYear(),
+          foodCalendarMonth.getMonth() - 1,
+          1,
+        );
+        renderFoodCalendar();
+      });
+    document
+      .getElementById("nextFoodCalendarMonth")
+      .addEventListener("click", function () {
+        foodCalendarMonth = new Date(
+          foodCalendarMonth.getFullYear(),
+          foodCalendarMonth.getMonth() + 1,
+          1,
+        );
+        renderFoodCalendar();
       });
     document.querySelectorAll(".periodButton").forEach((button) =>
       button.addEventListener("click", function () {
