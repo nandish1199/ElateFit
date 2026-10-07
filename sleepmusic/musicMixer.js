@@ -27,10 +27,82 @@ const soundCatalog = [
 ].map(([file, name, category, icon]) => ({ file, name, category, icon }));
 
 const FAVORITES_KEY = "elateFitMusicMixerFavorites";
+const USER_TRACK_DB_NAME = "elateFitMusicMixerDB";
+const USER_TRACK_DB_VERSION = 1;
+const USER_TRACK_STORE = "userTracks";
 const audioMap = new Map();
 let favorites = loadFavorites();
 let activeCategory = "All sounds";
 let statusTimer;
+let userTrackDb;
+
+function openUserTrackDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(USER_TRACK_DB_NAME, USER_TRACK_DB_VERSION);
+    request.onupgradeneeded = () => {
+      const database = request.result;
+      if (!database.objectStoreNames.contains(USER_TRACK_STORE)) {
+        database.createObjectStore(USER_TRACK_STORE, { keyPath: "id" });
+      }
+    };
+    request.onsuccess = () => {
+      request.result.onversionchange = () => request.result.close();
+      resolve(request.result);
+    };
+    request.onerror = () =>
+      reject(request.error || new Error("Unable to open saved audio storage."));
+    request.onblocked = () =>
+      reject(new Error("Saved audio storage is blocked by another page."));
+  });
+}
+
+function getUserTracks() {
+  return new Promise((resolve, reject) => {
+    const request = userTrackDb
+      .transaction(USER_TRACK_STORE, "readonly")
+      .objectStore(USER_TRACK_STORE)
+      .getAll();
+    request.onsuccess = () => resolve(request.result || []);
+    request.onerror = () =>
+      reject(request.error || new Error("Unable to read saved audio."));
+  });
+}
+
+function saveUserTrack(track) {
+  if (!userTrackDb) {
+    return Promise.reject(new Error("Saved audio storage is unavailable."));
+  }
+  return new Promise((resolve, reject) => {
+    const transaction = userTrackDb.transaction(
+      USER_TRACK_STORE,
+      "readwrite",
+    );
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () =>
+      reject(transaction.error || new Error("Unable to save audio file."));
+    transaction.onabort = () =>
+      reject(transaction.error || new Error("Audio file save was cancelled."));
+    transaction.objectStore(USER_TRACK_STORE).put(track);
+  });
+}
+
+function deleteSavedUserTrack(id) {
+  if (!userTrackDb) {
+    return Promise.reject(new Error("Saved audio storage is unavailable."));
+  }
+  return new Promise((resolve, reject) => {
+    const transaction = userTrackDb.transaction(
+      USER_TRACK_STORE,
+      "readwrite",
+    );
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () =>
+      reject(transaction.error || new Error("Unable to delete saved audio."));
+    transaction.onabort = () =>
+      reject(transaction.error || new Error("Audio file deletion was cancelled."));
+    transaction.objectStore(USER_TRACK_STORE).delete(id);
+  });
+}
 
 function loadFavorites() {
   try {
@@ -111,15 +183,16 @@ function registerSoundCard(card) {
   });
 }
 
-function createUserSoundCard(file) {
-  const fileKey = `user-${crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`}`;
-  const objectUrl = URL.createObjectURL(file);
+function createUserSoundCard(track) {
+  const fileKey = `user:${track.id}`;
+  const objectUrl = URL.createObjectURL(track.blob);
   const card = document.createElement("article");
   card.className = "soundCard userSoundCard";
   card.dataset.file = fileKey;
-  card.dataset.name = file.name;
+  card.dataset.name = track.name;
   card.dataset.category = "Your music";
   card.dataset.userUpload = "true";
+  card.dataset.trackId = track.id;
   card.dataset.objectUrl = objectUrl;
 
   const top = document.createElement("div");
@@ -133,7 +206,7 @@ function createUserSoundCard(file) {
   const description = document.createElement("div");
   const name = document.createElement("span");
   name.className = "soundName";
-  name.textContent = file.name;
+  name.textContent = track.name;
   const category = document.createElement("span");
   category.className = "soundCategory";
   category.textContent = "Your music";
@@ -142,14 +215,14 @@ function createUserSoundCard(file) {
   const selectButton = document.createElement("button");
   selectButton.type = "button";
   selectButton.className = "soundSelect";
-  selectButton.setAttribute("aria-label", `Add ${file.name} to mix`);
+  selectButton.setAttribute("aria-label", `Add ${track.name} to mix`);
   selectButton.setAttribute("aria-pressed", "false");
   selectButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
 
   const removeButton = document.createElement("button");
   removeButton.type = "button";
   removeButton.className = "removeUserSound";
-  removeButton.setAttribute("aria-label", `Remove ${file.name}`);
+  removeButton.setAttribute("aria-label", `Remove ${track.name}`);
   removeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
   top.append(orb, description, selectButton, removeButton);
 
@@ -181,11 +254,39 @@ function createUserSoundCard(file) {
   return card;
 }
 
-function removeUserSound(card) {
+async function removeUserSound(card) {
   const name = card.dataset.name;
-  if (!confirm(`Remove ${name} from your sound library?`)) return;
+  if (
+    !confirm(
+      `Remove ${name} from this device and any saved favourites that use it?`,
+    )
+  ) {
+    return;
+  }
 
   const fileKey = card.dataset.file;
+  try {
+    await deleteSavedUserTrack(card.dataset.trackId);
+  } catch (error) {
+    console.error(`Unable to remove ${name} from saved audio:`, error);
+    setStatus(`Unable to remove ${name} from your sound library.`, true);
+    return;
+  }
+
+  let affectedFavorites = 0;
+  const updatedFavorites = [];
+  favorites.forEach((favorite) => {
+    const sounds = favorite.sounds || favorite.tracks || [];
+    const remainingSounds = sounds.filter((sound) => sound.file !== fileKey);
+    if (remainingSounds.length !== sounds.length) affectedFavorites += 1;
+    if (remainingSounds.length) {
+      updatedFavorites.push({ ...favorite, sounds: remainingSounds });
+    }
+  });
+  favorites = updatedFavorites;
+  const favoritesSaved = !affectedFavorites || saveFavorites();
+  if (affectedFavorites) renderFavorites();
+
   stopSound(card);
   audioMap.delete(fileKey);
   URL.revokeObjectURL(card.dataset.objectUrl);
@@ -200,7 +301,18 @@ function removeUserSound(card) {
   renderCategories();
   filterSounds();
   updateMixCount();
-  setStatus(`Removed ${name} from your sound library.`);
+  if (!favoritesSaved) {
+    setStatus(
+      `Removed ${name}, but browser storage could not update saved favourites.`,
+      true,
+    );
+    return;
+  }
+  setStatus(
+    affectedFavorites
+      ? `Removed ${name} and updated ${affectedFavorites} saved favourite${affectedFavorites === 1 ? "" : "s"}.`
+      : `Removed ${name} from your sound library.`,
+  );
 }
 
 function filterSounds() {
@@ -386,8 +498,28 @@ function loadMix(sounds) {
   updateMixCount();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   renderCatalog();
+  try {
+    userTrackDb = await openUserTrackDatabase();
+    const tracks = await getUserTracks();
+    const grid = document.getElementById("soundGrid");
+    tracks.forEach((track) => {
+      if (
+        !track ||
+        typeof track.id !== "string" ||
+        typeof track.name !== "string" ||
+        !(track.blob instanceof Blob)
+      ) {
+        console.error("Skipping an invalid saved audio record:", track);
+        return;
+      }
+      grid.append(createUserSoundCard(track));
+    });
+  } catch (error) {
+    console.error("Unable to restore saved audio files:", error);
+    setStatus("Saved audio could not be loaded from this device.", true);
+  }
   renderCategories();
   renderFavorites();
   document
@@ -402,7 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("playMix").addEventListener("click", () => playMix());
   document
     .getElementById("userMusicFiles")
-    .addEventListener("change", function () {
+    .addEventListener("change", async function () {
       const files = Array.from(this.files || []);
       this.value = "";
       if (!files.length) return;
@@ -413,23 +545,41 @@ document.addEventListener("DOMContentLoaded", function () {
       let added = 0;
       const grid = document.getElementById("soundGrid");
 
-      files.forEach((file) => {
+      for (const file of files) {
         if (
           !file.size ||
           (!file.type.startsWith("audio/") &&
             !supportedAudioExtension.test(file.name))
         ) {
           errors.push(file.name);
-          return;
+          continue;
         }
+
+        const track = {
+          id: crypto.randomUUID
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random()}`,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          blob: file,
+          createdAt: new Date().toISOString(),
+        };
+        let card;
         try {
-          grid.append(createUserSoundCard(file));
+          card = createUserSoundCard(track);
+          await saveUserTrack(track);
+          grid.append(card);
           added += 1;
         } catch (error) {
           console.error(`Unable to add ${file.name} to the music mixer:`, error);
+          if (card) {
+            audioMap.delete(card.dataset.file);
+            URL.revokeObjectURL(card.dataset.objectUrl);
+          }
           errors.push(file.name);
         }
-      });
+      }
 
       renderCategories();
       filterSounds();
@@ -471,17 +621,9 @@ document.addEventListener("DOMContentLoaded", function () {
         '<i class="fa-regular fa-bookmark" aria-hidden="true"></i>';
     });
   document.getElementById("saveFavorite").addEventListener("click", () => {
-    const selected = selectedSounds();
-    if (!selected.length) {
-      setStatus("Choose at least one sound before saving a favourite.", true);
-      return;
-    }
-    const sounds = selected.filter((sound) => !sound.isUserUpload);
+    const sounds = selectedSounds();
     if (!sounds.length) {
-      setStatus(
-        "Select a built-in sound to save a favourite. Uploaded music is only available while this page is open.",
-        true,
-      );
+      setStatus("Choose at least one sound before saving a favourite.", true);
       return;
     }
     const defaultName = `Sleep mix ${favorites.length + 1}`;
@@ -499,13 +641,10 @@ document.addEventListener("DOMContentLoaded", function () {
     favorites.push({ name, sounds: savedSounds });
     const stored = saveFavorites();
     renderFavorites();
-    const uploadNote = sounds.length < selected.length
-      ? " Uploaded music is only available while this page is open and was not saved."
-      : "";
     setStatus(
       stored
-        ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${name}.${uploadNote}`
-        : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.${uploadNote}`,
+        ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${name}.`
+        : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.`,
       !stored,
     );
   });
