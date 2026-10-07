@@ -44,6 +44,31 @@
           <a href="calculators/calcCategories.html" class="heroAction"><i class="fa-solid fa-chart-line"></i> FITNESS
             TRACKERS</a>
         </div>
+        <div class="dailyActivityTracker" role="group" aria-label="Today's logged activities">
+          <div class="dailyActivityItem" data-tracker="calorie" role="img"
+            aria-label="Calorie tracker, no food logged today">
+            <i class="fa-solid fa-bowl-food dailyActivityIcon" aria-hidden="true"></i>
+            <span class="dailyActivityCheck" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+          </div>
+          <div class="dailyActivityItem" data-tracker="workout" role="img"
+            aria-label="Workout tracker, no workout logged today">
+            <i class="fa-solid fa-dumbbell dailyActivityIcon" aria-hidden="true"></i>
+            <span class="dailyActivityCheck" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+          </div>
+          <div class="dailyActivityItem" data-tracker="cardio" role="img"
+            aria-label="Cardio tracker, no session completed today">
+            <i class="fa-solid fa-person-running dailyActivityIcon" aria-hidden="true"></i>
+            <span class="dailyActivityCheck" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+          </div>
+          <div class="dailyActivityItem" data-tracker="stretch" role="img"
+            aria-label="Stretch tracker, no session completed today">
+            <i class="fa-solid fa-person-walking dailyActivityIcon" aria-hidden="true"></i>
+            <span class="dailyActivityCheck" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+          </div>
+        </div>
+        <p class="dailyActivityLegend" id="dailyActivityStatus" role="status" aria-live="polite">
+          A check marks an activity logged today.
+        </p>
       </div>
       <div class="indexfrontHeadRight">
         <img src="images/static/wllogo.png" id="front-index-img" class="card-img-top" alt="yoga" loading="lazy" />
@@ -278,6 +303,7 @@
   <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
     crossorigin="anonymous"></script>
   <script src="js/allcommon.js"></script>
+  <script src="js/dailyActivityTracker.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
       $("#kamasutra").on("click", function (e) {
