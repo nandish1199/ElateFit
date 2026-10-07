@@ -7,8 +7,6 @@ const STRETCH_DAYS_KEY = "elateFitStretchCompletedDays";
 let db;
 let plan = [];
 let editingId = null;
-let timer = null;
-let timerState = null;
 let savedPlans = [];
 let stretchCalendarMonth = new Date(
   new Date().getFullYear(),
@@ -16,9 +14,17 @@ let stretchCalendarMonth = new Date(
   1,
 );
 
+let sessionId = 0;
+let isPaused = false;
+let skipRequested = false;
+let timerState = null;
+
 const uid = () =>
   crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
 
+/* ==========================================================================
+   IndexedDB Storage Helpers
+   ========================================================================== */
 function openDb() {
   return new Promise((resolve, reject) => {
     const r = indexedDB.open(STRETCH_DB, STRETCH_VERSION);
@@ -66,10 +72,14 @@ function deletePlan(id) {
 
 function setStatus(text, error = true) {
   const el = document.getElementById("stretchStatus");
+  if (!el) return;
   el.textContent = text;
   el.style.color = error ? "#b91c1c" : "#4f46e5";
 }
 
+/* ==========================================================================
+   Calendar & Completion Tracking
+   ========================================================================== */
 function stretchDayKey(value) {
   const date = new Date(value);
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -118,11 +128,325 @@ function renderStretchCalendar() {
       const key = stretchDayKey(date);
       const complete = completedDays.has(key);
       const today = key === todayKey;
-      return `<div class="stretchCalendarDay${complete ? " stretchCalendarDayComplete" : ""}${today ? " stretchCalendarDayToday" : ""}" role="gridcell" aria-label="${date.toLocaleDateString()}${complete ? ", stretching completed" : ""}"><span class="stretchCalendarDate">${index + 1}</span>${complete ? '<i class="fa-solid fa-leaf stretchCalendarIcon" aria-hidden="true"></i>' : ""}</div>`;
+      return `<div class="stretchCalendarDay${complete ? " cardioCalendarDayComplete" : ""}${today ? " stretchCalendarDayToday" : ""}" role="gridcell" aria-label="${date.toLocaleDateString()}${complete ? ", stretching completed" : ""}"><span class="stretchCalendarDate">${index + 1}</span>${complete ? '<i class="fa-solid fa-leaf stretchCalendarIcon" aria-hidden="true"></i>' : ""}</div>`;
     }),
   ].join("");
 }
 
+/* ==========================================================================
+   Speech Synthesis Engine (Ported from Flutter TTS async handling)
+   ========================================================================== */
+function speakPhrase(text) {
+  return new Promise((resolve) => {
+    if (!("speechSynthesis" in window)) {
+      resolve();
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+
+    let finished = false;
+    const done = () => {
+      if (!finished) {
+        finished = true;
+        resolve();
+      }
+    };
+
+    utterance.onend = done;
+    utterance.onerror = done;
+    setTimeout(done, 4000); // 4-second safety fallback timeout
+    window.speechSynthesis.speak(utterance);
+  });
+}
+
+function speakDigit(number) {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(String(number));
+  utterance.rate = 1.0;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+}
+
+/* ==========================================================================
+   Asynchronous Session Execution & Timer Loop
+   ========================================================================== */
+function isValidSession(currentSession) {
+  return timerState !== null && sessionId === currentSession;
+}
+
+function waitDelay(ms, currentSession) {
+  return new Promise((resolve) => {
+    let elapsedMs = 0;
+    const interval = setInterval(() => {
+      if (!isValidSession(currentSession)) {
+        clearInterval(interval);
+        resolve();
+        return;
+      }
+      if (skipRequested) {
+        clearInterval(interval);
+        resolve();
+        return;
+      }
+      if (!isPaused) {
+        elapsedMs += 100;
+        if (elapsedMs >= ms) {
+          clearInterval(interval);
+          resolve();
+        }
+      }
+    }, 100);
+  });
+}
+
+function formatTime(seconds) {
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+}
+
+function renderTimer() {
+  if (!timerState) return;
+  const item = plan[timerState.itemIndex];
+  if (!item) return;
+
+  const phaseEl = document.getElementById("timerPhase");
+  const nameEl = document.getElementById("timerName");
+  const clockEl = document.getElementById("timerClock");
+  const progressEl = document.getElementById("timerProgressBar");
+  const nextEl = document.getElementById("timerNext");
+
+  if (phaseEl) {
+    phaseEl.textContent =
+      timerState.phase === "prepare"
+        ? "Get ready"
+        : timerState.phase === "work"
+          ? `Set ${timerState.setNumber} of ${item.sets}`
+          : timerState.phase === "transition"
+            ? "Between stretches"
+            : "Rest";
+  }
+
+  if (nameEl) {
+    nameEl.textContent =
+      timerState.phase === "prepare"
+        ? item.name
+        : timerState.phase === "work"
+          ? item.name
+          : timerState.phase === "transition"
+            ? `Next: ${plan[timerState.nextIndex]?.name || ""}`
+            : "Recover";
+  }
+
+  if (clockEl) {
+    clockEl.textContent = formatTime(timerState.remaining);
+  }
+
+  if (progressEl) {
+    const progress =
+      timerState.total > 0
+        ? Math.max(
+            0,
+            Math.min(100, (1 - timerState.remaining / timerState.total) * 100),
+          )
+        : 0;
+    progressEl.style.width = `${progress}%`;
+  }
+
+  if (nextEl) {
+    const nextText =
+      timerState.phase === "prepare"
+        ? `Next: ${item.name} · Set 1`
+        : timerState.phase === "work" && timerState.setNumber < item.sets
+          ? `Next: ${item.rest}s rest`
+          : plan[timerState.itemIndex + 1]
+            ? `Next: ${plan[timerState.itemIndex + 1].name}`
+            : "Final stretch";
+    nextEl.textContent = nextText;
+  }
+}
+
+async function runSession() {
+  const currentSession = ++sessionId;
+  isPaused = false;
+  skipRequested = false;
+
+  timerState = {
+    itemIndex: 0,
+    setNumber: 1,
+    phase: "prepare",
+    remaining: 5,
+    total: 5,
+  };
+
+  const timerPanel = document.getElementById("timerPanel");
+  if (timerPanel) {
+    timerPanel.classList.remove("hidden");
+    timerPanel.scrollIntoView({ behavior: "smooth" });
+  }
+
+  renderTimer();
+
+  // 1. "Get ready", then 5 - 1s gap - 4 - 3 - 2 - 1
+  await speakPhrase("Get ready");
+  if (!isValidSession(currentSession)) return;
+
+  await waitDelay(250, currentSession);
+  if (!isValidSession(currentSession)) return;
+
+  for (let i = 5; i >= 1; i--) {
+    if (!isValidSession(currentSession)) return;
+    if (skipRequested) {
+      skipRequested = false;
+      break;
+    }
+    timerState.remaining = i;
+    timerState.total = 5;
+    renderTimer();
+    speakDigit(i);
+    await waitDelay(1000, currentSession);
+    if (!isValidSession(currentSession)) return;
+  }
+
+  // 2. Loop through configured stretch blocks
+  for (let bIdx = 0; bIdx < plan.length; bIdx++) {
+    timerState.itemIndex = bIdx;
+    const block = plan[bIdx];
+
+    for (let set = 1; set <= block.sets; set++) {
+      timerState.setNumber = set;
+      timerState.phase = "work";
+      timerState.remaining = block.duration;
+      timerState.total = block.duration;
+      renderTimer();
+
+      // Say stretch name followed by set number and await completion
+      await speakPhrase(`${block.name}. Set ${set}`);
+      if (!isValidSession(currentSession)) return;
+
+      await waitDelay(300, currentSession);
+      if (!isValidSession(currentSession)) return;
+
+      // Count down the hold duration second by second
+      for (let sec = block.duration; sec >= 1; sec--) {
+        if (!isValidSession(currentSession)) return;
+        if (skipRequested) {
+          skipRequested = false;
+          break;
+        }
+        timerState.remaining = sec;
+        renderTimer();
+        speakDigit(sec);
+        await waitDelay(1000, currentSession);
+        if (!isValidSession(currentSession)) return;
+      }
+
+      timerState.remaining = 0;
+      renderTimer();
+
+      // Rest interval between sets
+      if (set < block.sets && block.rest > 0) {
+        timerState.phase = "rest";
+        timerState.remaining = block.rest;
+        timerState.total = block.rest;
+        renderTimer();
+
+        await speakPhrase("Rest");
+        if (!isValidSession(currentSession)) return;
+
+        for (let sec = block.rest; sec >= 1; sec--) {
+          if (!isValidSession(currentSession)) return;
+          if (skipRequested) {
+            skipRequested = false;
+            break;
+          }
+          timerState.remaining = sec;
+          renderTimer();
+          if (sec <= 5) {
+            speakDigit(sec);
+          }
+          await waitDelay(1000, currentSession);
+          if (!isValidSession(currentSession)) return;
+        }
+      }
+    }
+
+    // Transition rest between stretches
+    if (bIdx + 1 < plan.length && block.transitionRest > 0) {
+      timerState.nextIndex = bIdx + 1;
+      timerState.phase = "transition";
+      timerState.remaining = block.transitionRest;
+      timerState.total = block.transitionRest;
+      renderTimer();
+
+      await speakPhrase(`Rest before ${plan[timerState.nextIndex].name}`);
+      if (!isValidSession(currentSession)) return;
+
+      for (let sec = block.transitionRest; sec >= 1; sec--) {
+        if (!isValidSession(currentSession)) return;
+        if (skipRequested) {
+          skipRequested = false;
+          break;
+        }
+        timerState.remaining = sec;
+        renderTimer();
+        if (sec <= 5) {
+          speakDigit(sec);
+        }
+        await waitDelay(1000, currentSession);
+        if (!isValidSession(currentSession)) return;
+      }
+    }
+  }
+
+  finishSession(true);
+}
+
+function finishSession(completed = true) {
+  sessionId++;
+  isPaused = false;
+  skipRequested = false;
+  timerState = null;
+
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
+
+  const pauseBtn = document.getElementById("pauseTimer");
+  if (pauseBtn) {
+    pauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  }
+
+  if (completed) {
+    markStretchDayComplete();
+    renderStretchCalendar();
+    document.getElementById("timerPhase").textContent = "Complete";
+    document.getElementById("timerName").textContent = "Routine finished";
+    document.getElementById("timerClock").textContent = "0:00";
+    document.getElementById("timerProgressBar").style.width = "100%";
+    document.getElementById("timerMessage").textContent =
+      "Great work. Your stretching session is complete.";
+    speakPhrase("Session complete. Great work.");
+  }
+}
+
+function pauseSession() {
+  if (!timerState) return;
+  isPaused = !isPaused;
+  const btn = document.getElementById("pauseTimer");
+  if (isPaused) {
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Resume';
+  } else {
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  }
+}
+
+/* ==========================================================================
+   Form and Routine List Management
+   ========================================================================== */
 function formData() {
   const existing = plan.find((x) => x.id === editingId);
   return {
@@ -215,166 +539,6 @@ function renderSaved() {
     : "<div class='planEmpty'>No saved routines yet.</div>";
 }
 
-function speak(text) {
-  if (!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.rate = 0.95;
-  u.pitch = 1;
-  speechSynthesis.speak(u);
-}
-
-function formatTime(seconds) {
-  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
-}
-
-function nextBlock(index) {
-  return plan[index + 1] || null;
-}
-
-function startWork(item) {
-  timerState.phase = "work";
-  timerState.remaining = item.duration;
-  timerState.total = item.duration;
-}
-
-function beginSession() {
-  if (!plan.length) {
-    setStatus("Add at least one stretch first.");
-    return;
-  }
-  clearInterval(timer);
-  timerState = { itemIndex: 0, set: 1, phase: "work" };
-  startWork(plan[0]);
-  document.getElementById("timerPanel").classList.remove("hidden");
-  speak(`Get ready. ${plan[0].name}, Set 1.`);
-  renderTimer();
-  timer = setInterval(tick, 1000);
-  document.getElementById("timerPanel").scrollIntoView({ behavior: "smooth" });
-}
-
-function tick() {
-  if (!timerState) return;
-  timerState.remaining--;
-  const item = plan[timerState.itemIndex];
-
-  if (timerState.phase === "rest" || timerState.phase === "transition") {
-    if (timerState.remaining > 0 && timerState.remaining <= 5)
-      speak(String(timerState.remaining));
-  } else if (timerState.phase === "work") {
-    if (timerState.remaining === Math.floor(item.duration / 2))
-      speak("Halfway there.");
-    if (timerState.remaining > 0 && timerState.remaining <= 3)
-      speak(String(timerState.remaining));
-  }
-
-  if (timerState.remaining <= 0) {
-    if (timerState.phase === "work") {
-      if (timerState.set < item.sets && item.rest > 0) {
-        timerState.phase = "rest";
-        timerState.remaining = item.rest;
-        timerState.total = item.rest;
-        speak("Rest");
-      } else if (timerState.set < item.sets) {
-        timerState.set++;
-        startWork(item);
-        speak(`${item.name}. Set ${timerState.set}`);
-      } else {
-        const next = nextBlock(timerState.itemIndex);
-        if (next && item.transitionRest > 0) {
-          timerState.phase = "transition";
-          timerState.nextIndex = timerState.itemIndex + 1;
-          timerState.remaining = item.transitionRest;
-          timerState.total = item.transitionRest;
-          speak(`Rest before ${next.name}`);
-        } else if (next) {
-          timerState.itemIndex++;
-          timerState.set = 1;
-          startWork(next);
-          speak(`Change. ${[...next.name].join(", ")}`);
-        } else {
-          finishSession();
-          return;
-        }
-      }
-    } else if (timerState.phase === "transition") {
-      const next = plan[timerState.nextIndex];
-      timerState.itemIndex = timerState.nextIndex;
-      timerState.set = 1;
-      startWork(next);
-      speak(`Change. ${[...next.name].join(", ")}`);
-    } else {
-      timerState.set++;
-      startWork(item);
-      speak(`${item.name}. Set ${timerState.set}`);
-    }
-  }
-  renderTimer();
-}
-
-function renderTimer() {
-  if (!timerState) return;
-  const item = plan[timerState.itemIndex];
-
-  document.getElementById("timerPhase").textContent =
-    timerState.phase === "work"
-      ? `Set ${timerState.set} of ${item.sets}`
-      : timerState.phase === "transition"
-        ? "Between stretches"
-        : "Rest";
-
-  document.getElementById("timerName").textContent =
-    timerState.phase === "work"
-      ? item.name
-      : timerState.phase === "transition"
-        ? `Next: ${plan[timerState.nextIndex].name}`
-        : "Recover";
-
-  document.getElementById("timerClock").textContent = formatTime(
-    timerState.remaining,
-  );
-  document.getElementById("timerProgressBar").style.width =
-    `${Math.max(0, Math.min(100, (1 - timerState.remaining / timerState.total) * 100))}%`;
-
-  const next =
-    timerState.phase === "work" && timerState.set < item.sets
-      ? `Next: ${item.rest}s rest`
-      : nextBlock(timerState.itemIndex)
-        ? `Next: ${nextBlock(timerState.itemIndex).name}`
-        : "Final stretch";
-  document.getElementById("timerNext").textContent = next;
-}
-
-function finishSession(completed = true) {
-  clearInterval(timer);
-  timer = null;
-  timerState = null;
-  if (completed) {
-    markStretchDayComplete();
-    renderStretchCalendar();
-  }
-  speechSynthesis?.cancel();
-  document.getElementById("timerPhase").textContent = "Complete";
-  document.getElementById("timerName").textContent = "Routine finished";
-  document.getElementById("timerClock").textContent = "0:00";
-  document.getElementById("timerMessage").textContent =
-    "Great work. Your stretching session is complete.";
-  speak("Session complete. Great work.");
-}
-
-function pauseSession() {
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-    document.getElementById("pauseTimer").innerHTML =
-      '<i class="fa-solid fa-play"></i> Resume';
-  } else if (timerState) {
-    timer = setInterval(tick, 1000);
-    document.getElementById("pauseTimer").innerHTML =
-      '<i class="fa-solid fa-pause"></i> Pause';
-  }
-}
-
 function renderAll() {
   renderPlan();
   renderSaved();
@@ -399,6 +563,9 @@ function bindTransitionRest() {
     });
 }
 
+/* ==========================================================================
+   Initialization and Event Listeners
+   ========================================================================== */
 document.addEventListener("DOMContentLoaded", bindTransitionRest);
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -509,9 +676,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-  document
-    .getElementById("startSession")
-    .addEventListener("click", beginSession);
+  document.getElementById("startSession").addEventListener("click", () => {
+    if (!plan.length) {
+      setStatus("Add at least one stretch first.");
+      return;
+    }
+    runSession();
+  });
 
   document
     .getElementById("previousStretchMonth")
@@ -543,16 +714,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
   document.getElementById("pauseTimer").addEventListener("click", pauseSession);
+
   document.getElementById("resetTimer").addEventListener("click", () => {
     finishSession(false);
     document.getElementById("timerPanel").classList.add("hidden");
   });
+
   document.getElementById("skipTimer").addEventListener("click", () => {
     if (timerState) {
-      timerState.remaining = 0;
-      tick();
+      skipRequested = true;
     }
   });
+
   document.getElementById("clearStretch").addEventListener("click", () => {
     resetForm();
     setStatus("Form cleared.", false);

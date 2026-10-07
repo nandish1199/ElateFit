@@ -3,19 +3,30 @@ const CARDIO_VERSION = 1;
 const PLAN_STORE = "plans";
 const PLAN_KEY = "current";
 const CARDIO_DAYS_KEY = "elateFitCardioCompletedDays";
+
 let db;
 let plan = [];
 let editingId = null;
-let timer = null;
-let timerState = null;
 let savedPlans = [];
 let cardioCalendarMonth = new Date(
   new Date().getFullYear(),
   new Date().getMonth(),
   1,
 );
+
+let sessionId = 0;
+let isPaused = false;
+let skipRequested = false;
+let timerState = null;
+
 const uid = () =>
   crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/* ==========================================================================
+   IndexedDB Storage Helpers
+   ========================================================================== */
 function openDb() {
   return new Promise((resolve, reject) => {
     const r = indexedDB.open(CARDIO_DB, CARDIO_VERSION);
@@ -27,6 +38,7 @@ function openDb() {
     r.onerror = () => reject(r.error);
   });
 }
+
 function readPlans() {
   return new Promise((resolve, reject) => {
     const r = db
@@ -37,6 +49,7 @@ function readPlans() {
     r.onerror = () => reject(r.error);
   });
 }
+
 function putPlan(value) {
   return new Promise((resolve, reject) => {
     const r = db
@@ -47,6 +60,7 @@ function putPlan(value) {
     r.onerror = () => reject(r.error);
   });
 }
+
 function deletePlan(id) {
   return new Promise((resolve, reject) => {
     const r = db
@@ -57,15 +71,22 @@ function deletePlan(id) {
     r.onerror = () => reject(r.error);
   });
 }
+
 function setStatus(text, error = true) {
   const el = document.getElementById("cardioStatus");
+  if (!el) return;
   el.textContent = text;
   el.style.color = error ? "#B42318" : "#16A34A";
 }
+
+/* ==========================================================================
+   Calendar & Completion Tracking
+   ========================================================================== */
 function cardioDayKey(value) {
   const date = new Date(value);
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
+
 function getCompletedCardioDays() {
   try {
     const days = JSON.parse(localStorage.getItem(CARDIO_DAYS_KEY) || "[]");
@@ -74,25 +95,30 @@ function getCompletedCardioDays() {
     return new Set();
   }
 }
+
 function markCardioDayComplete() {
   const days = getCompletedCardioDays();
   days.add(cardioDayKey(new Date()));
   localStorage.setItem(CARDIO_DAYS_KEY, JSON.stringify([...days]));
 }
+
 function renderCardioCalendar() {
   const monthLabel = document.getElementById("cardioCalendarMonth");
   const grid = document.getElementById("cardioCalendarGrid");
   if (!monthLabel || !grid) return;
+
   const year = cardioCalendarMonth.getFullYear();
   const month = cardioCalendarMonth.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const todayKey = cardioDayKey(new Date());
   const completedDays = getCompletedCardioDays();
+
   monthLabel.textContent = new Intl.DateTimeFormat(undefined, {
     month: "long",
     year: "numeric",
   }).format(cardioCalendarMonth);
+
   grid.innerHTML = [
     ...Array.from(
       { length: firstDay },
@@ -108,6 +134,346 @@ function renderCardioCalendar() {
     }),
   ].join("");
 }
+
+/* ==========================================================================
+   Speech Synthesis Engine
+   ========================================================================== */
+function speakPhrase(text) {
+  return new Promise((resolve) => {
+    if (!("speechSynthesis" in window)) {
+      resolve();
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+
+    let finished = false;
+    const done = () => {
+      if (!finished) {
+        finished = true;
+        resolve();
+      }
+    };
+
+    utterance.onend = done;
+    utterance.onerror = done;
+    setTimeout(done, 4000);
+    window.speechSynthesis.speak(utterance);
+  });
+}
+
+function speakDigit(number) {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(String(number));
+  utterance.rate = 1.0;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+}
+
+/* ==========================================================================
+   Asynchronous Session Runner & Timers
+   ========================================================================== */
+function isValidSession(currentSession) {
+  return timerState !== null && sessionId === currentSession;
+}
+
+function waitDelay(ms, currentSession) {
+  return new Promise((resolve) => {
+    let elapsedMs = 0;
+    const interval = setInterval(() => {
+      if (!isValidSession(currentSession) || skipRequested) {
+        clearInterval(interval);
+        resolve();
+        return;
+      }
+      if (!isPaused) {
+        elapsedMs += 100;
+        if (elapsedMs >= ms) {
+          clearInterval(interval);
+          resolve();
+        }
+      }
+    }, 100);
+  });
+}
+
+function formatTime(seconds) {
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+}
+
+function renderTimer() {
+  if (!timerState) return;
+  const item = plan[timerState.itemIndex];
+  if (!item) return;
+
+  const phaseEl = document.getElementById("timerPhase");
+  const nameEl = document.getElementById("timerName");
+  const clockEl = document.getElementById("timerClock");
+  const progressEl = document.getElementById("timerProgressBar");
+  const nextEl = document.getElementById("timerNext");
+
+  if (phaseEl) {
+    phaseEl.textContent =
+      timerState.phase === "prepare"
+        ? "GET READY"
+        : timerState.phase === "work"
+          ? `Round ${timerState.round} of ${item.rounds}  •  Rep ${timerState.currentRep || item.reps} of ${item.reps}`
+          : timerState.phase === "transition"
+            ? "Between cardio"
+            : "Rest";
+  }
+
+  if (nameEl) {
+    nameEl.textContent =
+      timerState.phase === "prepare"
+        ? "Get ready"
+        : timerState.phase === "work"
+          ? item.name
+          : timerState.phase === "transition"
+            ? `Next: ${plan[timerState.nextIndex]?.name || ""}`
+            : "Recover";
+  }
+
+  if (clockEl) {
+    clockEl.textContent = formatTime(timerState.remaining);
+  }
+
+  if (progressEl) {
+    const progress =
+      timerState.total > 0
+        ? Math.max(
+            0,
+            Math.min(100, (1 - timerState.remaining / timerState.total) * 100),
+          )
+        : 0;
+    progressEl.style.width = `${progress}%`;
+  }
+
+  if (nextEl) {
+    const nextText =
+      timerState.phase === "prepare"
+        ? `Next: ${item.name} · Round 1`
+        : timerState.phase === "work" && timerState.round < item.rounds
+          ? `Next: ${item.rest}s rest`
+          : plan[timerState.itemIndex + 1]
+            ? `Next: ${plan[timerState.itemIndex + 1].name}`
+            : "Final block";
+    nextEl.textContent = nextText;
+  }
+}
+
+async function runSession() {
+  const currentSession = ++sessionId;
+  isPaused = false;
+  skipRequested = false;
+
+  const firstItem = plan[0];
+  timerState = {
+    itemIndex: 0,
+    round: 1,
+    phase: "prepare",
+    remaining: 5,
+    total: 5,
+    reps: firstItem.reps,
+    secondsPerRep: firstItem.secondsPerRep,
+    currentRep: firstItem.reps,
+  };
+
+  const timerPanel = document.getElementById("timerPanel");
+  if (timerPanel) {
+    timerPanel.classList.remove("hidden");
+    timerPanel.scrollIntoView({ behavior: "smooth" });
+  }
+
+  renderTimer();
+
+  // 1. "Get ready", then 5 - 1s gap - 4 - 3 - 2 - 1
+  await speakPhrase("Get ready");
+  if (!isValidSession(currentSession)) return;
+
+  await waitDelay(250, currentSession);
+  if (!isValidSession(currentSession)) return;
+
+  for (let i = 5; i >= 1; i--) {
+    if (!isValidSession(currentSession)) return;
+    if (skipRequested) {
+      skipRequested = false;
+      break;
+    }
+    timerState.remaining = i;
+    timerState.total = 5;
+    renderTimer();
+    speakDigit(i);
+    await waitDelay(1000, currentSession);
+    if (!isValidSession(currentSession)) return;
+  }
+
+  // 2. Loop through cardio blocks
+  for (let bIdx = 0; bIdx < plan.length; bIdx++) {
+    timerState.itemIndex = bIdx;
+    const block = plan[bIdx];
+
+    for (let round = 1; round <= block.rounds; round++) {
+      timerState.round = round;
+      timerState.phase = "work";
+      timerState.remaining = block.work;
+      timerState.total = block.work;
+      timerState.reps = block.reps;
+      timerState.secondsPerRep = block.secondsPerRep;
+      timerState.currentRep = block.reps;
+      renderTimer();
+
+      // Announce cardio name and round
+      await speakPhrase(`${block.name}. Round ${round}`);
+      if (!isValidSession(currentSession)) return;
+
+      await waitDelay(300, currentSession);
+      if (!isValidSession(currentSession)) return;
+
+      // Count down reps from total reps down to 1
+      const repMs = Math.round(block.secondsPerRep * 1000);
+      for (let rep = block.reps; rep >= 1; rep--) {
+        if (!isValidSession(currentSession)) return;
+        if (skipRequested) {
+          skipRequested = false;
+          break;
+        }
+        timerState.currentRep = rep;
+        renderTimer();
+        speakDigit(rep);
+
+        let repElapsed = 0;
+        let lastSecTicked = 0;
+        while (repElapsed < repMs) {
+          if (!isValidSession(currentSession)) return;
+          if (skipRequested) break;
+          while (isPaused) {
+            if (!isValidSession(currentSession)) return;
+            await delay(100);
+          }
+          const step = repMs - repElapsed > 100 ? 100 : repMs - repElapsed;
+          await delay(step);
+          if (!isPaused) {
+            repElapsed += step;
+            const secNow = Math.floor(repElapsed / 1000);
+            if (secNow > lastSecTicked) {
+              lastSecTicked = secNow;
+              if (timerState.remaining > 0) {
+                timerState.remaining--;
+                renderTimer();
+              }
+            }
+          }
+        }
+      }
+
+      timerState.remaining = 0;
+      renderTimer();
+
+      // Rest interval between rounds
+      if (round < block.rounds && block.rest > 0) {
+        timerState.phase = "rest";
+        timerState.remaining = block.rest;
+        timerState.total = block.rest;
+        renderTimer();
+
+        await speakPhrase("Rest");
+        if (!isValidSession(currentSession)) return;
+
+        for (let sec = block.rest; sec >= 1; sec--) {
+          if (!isValidSession(currentSession)) return;
+          if (skipRequested) {
+            skipRequested = false;
+            break;
+          }
+          timerState.remaining = sec;
+          renderTimer();
+          if (sec <= 5) {
+            speakDigit(sec);
+          }
+          await waitDelay(1000, currentSession);
+          if (!isValidSession(currentSession)) return;
+        }
+      }
+    }
+
+    // Transition rest between different cardio blocks
+    if (bIdx + 1 < plan.length && block.transitionRest > 0) {
+      timerState.nextIndex = bIdx + 1;
+      timerState.phase = "transition";
+      timerState.remaining = block.transitionRest;
+      timerState.total = block.transitionRest;
+      renderTimer();
+
+      await speakPhrase(`Rest before ${plan[timerState.nextIndex].name}`);
+      if (!isValidSession(currentSession)) return;
+
+      for (let sec = block.transitionRest; sec >= 1; sec--) {
+        if (!isValidSession(currentSession)) return;
+        if (skipRequested) {
+          skipRequested = false;
+          break;
+        }
+        timerState.remaining = sec;
+        renderTimer();
+        if (sec <= 5) {
+          speakDigit(sec);
+        }
+        await waitDelay(1000, currentSession);
+        if (!isValidSession(currentSession)) return;
+      }
+    }
+  }
+
+  finishSession(true);
+}
+
+function finishSession(completed = true) {
+  sessionId++;
+  isPaused = false;
+  skipRequested = false;
+  timerState = null;
+
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
+
+  const pauseBtn = document.getElementById("pauseTimer");
+  if (pauseBtn) {
+    pauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  }
+
+  if (completed) {
+    markCardioDayComplete();
+    renderCardioCalendar();
+    document.getElementById("timerPhase").textContent = "Complete";
+    document.getElementById("timerName").textContent = "Session finished";
+    document.getElementById("timerClock").textContent = "0:00";
+    document.getElementById("timerProgressBar").style.width = "100%";
+    document.getElementById("timerMessage").textContent =
+      "Great work. Your cardio session is complete.";
+    speakPhrase("Session complete. Great work.");
+  }
+}
+
+function pauseSession() {
+  if (!timerState) return;
+  isPaused = !isPaused;
+  const btn = document.getElementById("pauseTimer");
+  if (isPaused) {
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> Resume';
+  } else {
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  }
+}
+
+/* ==========================================================================
+   Form and Routine List Management
+   ========================================================================== */
 function formData() {
   const reps = Math.max(
     1,
@@ -126,15 +492,16 @@ function formData() {
     ),
     reps,
     secondsPerRep,
-    work: reps * secondsPerRep + 1,
+    work: Math.ceil(reps * secondsPerRep),
     rest: Math.max(
       0,
-      (Number(document.getElementById("restSeconds").value) || 0) + 1,
+      Number(document.getElementById("restSeconds").value) || 0,
     ),
     transitionRest: existing?.transitionRest || 0,
     notes: document.getElementById("cardioNotes").value.trim(),
   };
 }
+
 function resetForm() {
   editingId = null;
   document.getElementById("cardioForm").reset();
@@ -143,24 +510,24 @@ function resetForm() {
   document.getElementById("secondsPerRep").value = 3;
   document.getElementById("restSeconds").value = 10;
   document.getElementById("saveCardio").innerHTML =
-    '<i class="fa-solid fa-plus"></i> Add cardio';
+    '<i class="fa-solid fa-plus"></i> ADD CARDIO';
   document.getElementById("cardioFormTitle").textContent = "Add cardio";
 }
+
 function fillForm(item) {
   editingId = item.id;
   document.getElementById("cardioName").value = item.name;
   document.getElementById("cardioRounds").value = item.rounds;
-  document.getElementById("repCount").value =
-    item.reps ||
-    Math.max(1, Math.round((item.work || 1) / (item.secondsPerRep || 1)));
-  document.getElementById("secondsPerRep").value = item.secondsPerRep || 1;
+  document.getElementById("repCount").value = item.reps;
+  document.getElementById("secondsPerRep").value = item.secondsPerRep;
   document.getElementById("restSeconds").value = item.rest;
   document.getElementById("cardioNotes").value = item.notes || "";
   document.getElementById("saveCardio").innerHTML =
-    '<i class="fa-solid fa-floppy-disk"></i> Update cardio';
+    '<i class="fa-solid fa-floppy-disk"></i> UPDATE CARDIO';
   document.getElementById("cardioFormTitle").textContent = "Update cardio";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 function renderPlan() {
   const list = document.getElementById("cardioList");
   list.innerHTML = plan.length
@@ -172,6 +539,7 @@ function renderPlan() {
         .join("")
     : '<div class="planEmpty">No cardio added. Create your first block to build the session.</div>';
 }
+
 function renderSaved() {
   const list = document.getElementById("savedPlanList");
   list.innerHTML = savedPlans.length
@@ -183,171 +551,13 @@ function renderSaved() {
         .join("")
     : "<div class='planEmpty'>No saved sessions yet.</div>";
 }
-function speak(text) {
-  if (!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.rate = 0.95;
-  u.pitch = 1;
-  speechSynthesis.speak(u);
-}
-function formatTime(seconds) {
-  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
-}
-function nextBlock(index) {
-  return plan[index + 1] || null;
-}
-function startWork(item) {
-  timerState.phase = "work";
-  timerState.remaining = item.work;
-  timerState.total = item.work;
-  timerState.reps =
-    item.reps || Math.max(1, Math.round(item.work / (item.secondsPerRep || 1)));
-  timerState.secondsPerRep = item.secondsPerRep || item.work / timerState.reps;
-  timerState.completedReps = 0;
-  timerState.nextRepAt = timerState.secondsPerRep;
-}
-function beginSession() {
-  if (!plan.length) {
-    setStatus("Add at least one cardio first.");
-    return;
-  }
-  clearInterval(timer);
-  timerState = { itemIndex: 0, round: 1, phase: "work" };
-  startWork(plan[0]);
-  document.getElementById("timerPanel").classList.remove("hidden");
-  speak(`Get ready. ${plan[0].name}`);
-  renderTimer();
-  timer = setInterval(tick, 1000);
-  document.getElementById("timerPanel").scrollIntoView({ behavior: "smooth" });
-}
-function tick() {
-  if (!timerState) return;
-  timerState.remaining--;
-  const item = plan[timerState.itemIndex];
-  if (timerState.phase === "work") {
-    const elapsed = timerState.total - timerState.remaining;
-    while (
-      timerState.completedReps < timerState.reps &&
-      elapsed >= timerState.nextRepAt
-    ) {
-      timerState.completedReps++;
-      speak(String(timerState.completedReps));
-      timerState.nextRepAt += timerState.secondsPerRep;
-    }
-  }
-  if (timerState.phase === "rest" || timerState.phase === "transition") {
-    if (timerState.remaining > 0 && timerState.remaining <= 7)
-      speak(String(timerState.remaining));
-  }
-  if (timerState.remaining <= 0) {
-    if (timerState.phase === "work") {
-      if (timerState.completedReps < timerState.reps) {
-        timerState.completedReps = timerState.reps;
-        speak(String(timerState.completedReps));
-      }
-      if (timerState.round < item.rounds && item.rest > 0) {
-        timerState.phase = "rest";
-        timerState.remaining = item.rest;
-        timerState.total = item.rest;
-        speak("Rest");
-      } else if (timerState.round < item.rounds) {
-        timerState.round++;
-        startWork(item);
-        speak(`${item.name}. Round ${timerState.round}`);
-      } else {
-        const next = nextBlock(timerState.itemIndex);
-        if (next && item.transitionRest > 0) {
-          timerState.phase = "transition";
-          timerState.nextIndex = timerState.itemIndex + 1;
-          timerState.remaining = item.transitionRest;
-          timerState.total = item.transitionRest;
-          speak(`Rest before ${next.name}`);
-        } else if (next) {
-          timerState.itemIndex++;
-          timerState.round = 1;
-          startWork(next);
-          speak(`Change. ${[...next.name].join(", ")}`);
-        } else {
-          finishSession();
-          return;
-        }
-      }
-    } else if (timerState.phase === "transition") {
-      const next = plan[timerState.nextIndex];
-      timerState.itemIndex = timerState.nextIndex;
-      timerState.round = 1;
-      startWork(next);
-      speak(`Change. ${[...next.name].join(", ")}`);
-    } else {
-      timerState.round++;
-      startWork(item);
-      speak(`${item.name}. Round ${timerState.round}`);
-    }
-  }
-  renderTimer();
-}
-function renderTimer() {
-  if (!timerState) return;
-  const item = plan[timerState.itemIndex];
-  document.getElementById("timerPhase").textContent =
-    timerState.phase === "work"
-      ? `Round ${timerState.round} of ${item.rounds}`
-      : timerState.phase === "transition"
-        ? "Between cardio"
-        : "Rest";
-  document.getElementById("timerName").textContent =
-    timerState.phase === "work"
-      ? item.name
-      : timerState.phase === "transition"
-        ? `Next: ${plan[timerState.nextIndex].name}`
-        : "Recover";
-  document.getElementById("timerClock").textContent = formatTime(
-    timerState.remaining,
-  );
-  document.getElementById("timerProgressBar").style.width =
-    `${Math.max(0, Math.min(100, (1 - timerState.remaining / timerState.total) * 100))}%`;
-  const next =
-    timerState.phase === "work" && timerState.round < item.rounds
-      ? `Next: ${item.rest}s rest`
-      : nextBlock(timerState.itemIndex)
-        ? `Next: ${nextBlock(timerState.itemIndex).name}`
-        : "Final block";
-  document.getElementById("timerNext").textContent = next;
-}
-function finishSession(completed = true) {
-  clearInterval(timer);
-  timer = null;
-  timerState = null;
-  if (completed) {
-    markCardioDayComplete();
-    renderCardioCalendar();
-  }
-  speechSynthesis?.cancel();
-  document.getElementById("timerPhase").textContent = "Complete";
-  document.getElementById("timerName").textContent = "Session finished";
-  document.getElementById("timerClock").textContent = "0:00";
-  document.getElementById("timerMessage").textContent =
-    "Great work. Your cardio session is complete.";
-  speak("Session complete. Great work.");
-}
-function pauseSession() {
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-    document.getElementById("pauseTimer").innerHTML =
-      '<i class="fa-solid fa-play"></i> Resume';
-  } else if (timerState) {
-    timer = setInterval(tick, 1000);
-    document.getElementById("pauseTimer").innerHTML =
-      '<i class="fa-solid fa-pause"></i> Pause';
-  }
-}
+
 function renderAll() {
   renderPlan();
   renderSaved();
   renderCardioCalendar();
 }
+
 function bindTransitionRest() {
   document
     .getElementById("cardioList")
@@ -365,6 +575,10 @@ function bindTransitionRest() {
       setStatus("Transition rest updated.", false);
     });
 }
+
+/* ==========================================================================
+   Initialization and Listeners
+   ========================================================================== */
 document.addEventListener("DOMContentLoaded", bindTransitionRest);
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -377,6 +591,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (e) {
     setStatus("Cardio storage is unavailable.");
   }
+
   document
     .getElementById("cardioForm")
     .addEventListener("submit", async (e) => {
@@ -390,6 +605,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const at = editingId ? plan.findIndex((x) => x.id === editingId) : -1;
       if (at >= 0) plan[at] = item;
       else plan.push(item);
+
       await putPlan({
         id: PLAN_KEY,
         items: plan,
@@ -399,21 +615,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       renderPlan();
       setStatus("Cardio saved.", false);
     });
+
   document.getElementById("cardioList").addEventListener("click", async (e) => {
     const id = e.target.closest("button")?.dataset.id;
     if (!id) return;
     const index = plan.findIndex((x) => x.id === id);
+
     if (e.target.closest(".editCardio")) {
       fillForm(plan[index]);
       return;
     }
-    if (e.target.closest(".deleteCardio")) {
-      plan.splice(index, 1);
-    }
+    if (e.target.closest(".deleteCardio")) plan.splice(index, 1);
     if (e.target.closest(".moveUp") && index > 0)
       [plan[index - 1], plan[index]] = [plan[index], plan[index - 1]];
     if (e.target.closest(".moveDown") && index < plan.length - 1)
       [plan[index + 1], plan[index]] = [plan[index], plan[index + 1]];
+
     await putPlan({
       id: PLAN_KEY,
       items: plan,
@@ -421,6 +638,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     renderPlan();
   });
+
   document.getElementById("savePlan").addEventListener("click", async () => {
     if (!plan.length) {
       setStatus("Add cardio before saving the session.");
@@ -431,6 +649,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       `Cardio plan ${savedPlans.length + 1}`,
     );
     if (!name?.trim()) return;
+
     const saved = {
       id: uid(),
       name: name.trim(),
@@ -442,12 +661,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderSaved();
     setStatus("Session saved.", false);
   });
+
   document
     .getElementById("savedPlanList")
     .addEventListener("click", async (e) => {
       const id = e.target.closest("button")?.dataset.id;
       if (!id) return;
       const p = savedPlans.find((x) => x.id === id);
+
       if (e.target.closest(".loadPlan")) {
         plan = p.items.map((x) => ({ ...x, id: uid() }));
         await putPlan({
@@ -465,9 +686,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderSaved();
       }
     });
-  document
-    .getElementById("startSession")
-    .addEventListener("click", beginSession);
+
+  document.getElementById("startSession").addEventListener("click", () => {
+    if (!plan.length) {
+      setStatus("Add at least one cardio first.");
+      return;
+    }
+    runSession();
+  });
+
   document
     .getElementById("previousCardioMonth")
     .addEventListener("click", () => {
@@ -478,25 +705,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
       renderCardioCalendar();
     });
-  document
-    .getElementById("resetCardioCalendar")
-    .addEventListener("click", () => {
-      if (
-        !confirm(
-          "Reset all completed cardio days from the calendar? Your current and saved cardio plans will not be changed.",
-        )
-      )
-        return;
-      if (
-        !confirm(
-          "This permanently clears all calendar cardio history. Continue?",
-        )
-      )
-        return;
-      localStorage.removeItem(CARDIO_DAYS_KEY);
-      renderCardioCalendar();
-      setStatus("Cardio calendar data reset.", false);
-    });
+
   document.getElementById("nextCardioMonth").addEventListener("click", () => {
     cardioCalendarMonth = new Date(
       cardioCalendarMonth.getFullYear(),
@@ -505,19 +714,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
     renderCardioCalendar();
   });
+
+  document
+    .getElementById("resetCardioCalendar")
+    .addEventListener("click", () => {
+      if (!confirm("Reset all completed cardio days from the calendar?"))
+        return;
+      localStorage.removeItem(CARDIO_DAYS_KEY);
+      renderCardioCalendar();
+      setStatus("Cardio calendar data reset.", false);
+    });
+
   document.getElementById("pauseTimer").addEventListener("click", pauseSession);
+
   document.getElementById("resetTimer").addEventListener("click", () => {
     finishSession(false);
     document.getElementById("timerPanel").classList.add("hidden");
   });
+
   document.getElementById("skipTimer").addEventListener("click", () => {
     if (timerState) {
-      timerState.remaining = 0;
-      tick();
+      skipRequested = true;
     }
   });
-});
-document.getElementById("clearCardio").addEventListener("click", () => {
-  resetForm();
-  setStatus("Cardio form cleared.", false);
+
+  document.getElementById("clearCardio").addEventListener("click", () => {
+    resetForm();
+    setStatus("Cardio form cleared.", false);
+  });
 });
