@@ -139,6 +139,77 @@ input {
     margin-bottom: 16px;
 }
 
+.userMusicUpload {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 12px;
+    background: var(--mixer-sage);
+}
+
+.userMusicUploadCopy {
+    min-width: 0;
+}
+
+.userMusicUpload h3 {
+    margin: 0;
+    color: var(--mixer-deep);
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+.userMusicUpload h3 i {
+    margin-right: 6px;
+    color: var(--mixer-green);
+}
+
+.userMusicUpload p {
+    margin: 5px 0 0;
+    color: var(--mixer-muted);
+    font-family: "Segoe UI", sans-serif;
+    font-size: .78rem;
+    line-height: 1.45;
+}
+
+.userMusicPicker {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 14px;
+    border: 1px solid var(--mixer-green);
+    border-radius: 999px;
+    background: #FFFFFF;
+    color: var(--mixer-deep);
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.userMusicPicker:hover,
+.userMusicPicker:focus-within {
+    background: var(--mixer-green);
+    color: #FFFFFF;
+}
+
+.userMusicPicker input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
 .mixerSearch {
     flex: 1 1 220px;
     min-height: 42px;
@@ -260,6 +331,33 @@ input {
     background: #f8fcfa;
     color: var(--mixer-green);
     cursor: pointer;
+}
+
+.removeUserSound {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    border: 1px solid var(--mixer-line);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--mixer-muted);
+    cursor: pointer;
+}
+
+.removeUserSound:hover {
+    border-color: #c98370;
+    color: #a45e4c;
+}
+
+.userSoundCard .soundTop > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.userSoundCard .soundName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .soundCard.is-selected .soundSelect {
@@ -469,6 +567,18 @@ input {
 
     .mixerPanel {
         padding: 14px;
+    }
+
+    .userMusicUpload {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .userMusicPicker {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .mixerStatus {

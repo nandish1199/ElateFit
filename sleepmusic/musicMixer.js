@@ -71,6 +71,7 @@ function selectedSounds() {
       file: card.dataset.file,
       name: card.dataset.name,
       volume: Number(card.querySelector(".soundVolume input").value),
+      isUserUpload: card.dataset.userUpload === "true",
     }),
   );
 }
@@ -80,12 +81,126 @@ function renderCategories() {
     "All sounds",
     ...new Set(soundCatalog.map((sound) => sound.category)),
   ];
+  if (document.querySelector(".userSoundCard")) categories.push("Your music");
   document.getElementById("categoryTabs").innerHTML = categories
     .map(
       (category) =>
         `<button type="button" class="categoryTab ${category === activeCategory ? "active" : ""}" data-category="${category}">${category}</button>`,
     )
     .join("");
+}
+
+function registerSoundCard(card) {
+  const audio = card.querySelector("audio");
+  if (!audio) return;
+
+  audioMap.set(card.dataset.file, audio);
+  audio.addEventListener("play", () => {
+    card.classList.add("is-playing");
+    card.querySelector(".soundStatus").textContent = "Playing now";
+  });
+  audio.addEventListener("pause", () => {
+    card.classList.remove("is-playing");
+    card.querySelector(".soundStatus").textContent = "Paused";
+  });
+  audio.addEventListener("error", () => {
+    setStatus(
+      `Unable to play ${card.dataset.name}. Choose a browser-supported audio file.`,
+      true,
+    );
+  });
+}
+
+function createUserSoundCard(file) {
+  const fileKey = `user-${crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`}`;
+  const objectUrl = URL.createObjectURL(file);
+  const card = document.createElement("article");
+  card.className = "soundCard userSoundCard";
+  card.dataset.file = fileKey;
+  card.dataset.name = file.name;
+  card.dataset.category = "Your music";
+  card.dataset.userUpload = "true";
+  card.dataset.objectUrl = objectUrl;
+
+  const top = document.createElement("div");
+  top.className = "soundTop";
+  const orb = document.createElement("span");
+  orb.className = "soundOrb";
+  const icon = document.createElement("i");
+  icon.className = "fa-solid fa-music";
+  orb.append(icon);
+
+  const description = document.createElement("div");
+  const name = document.createElement("span");
+  name.className = "soundName";
+  name.textContent = file.name;
+  const category = document.createElement("span");
+  category.className = "soundCategory";
+  category.textContent = "Your music";
+  description.append(name, category);
+
+  const selectButton = document.createElement("button");
+  selectButton.type = "button";
+  selectButton.className = "soundSelect";
+  selectButton.setAttribute("aria-label", `Add ${file.name} to mix`);
+  selectButton.setAttribute("aria-pressed", "false");
+  selectButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
+
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.className = "removeUserSound";
+  removeButton.setAttribute("aria-label", `Remove ${file.name}`);
+  removeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  top.append(orb, description, selectButton, removeButton);
+
+  const status = document.createElement("span");
+  status.className = "soundStatus";
+  status.textContent = "Ready to preview";
+
+  const volumeLabel = document.createElement("label");
+  volumeLabel.className = "soundVolume";
+  const volumeText = document.createElement("span");
+  volumeText.textContent = "Volume";
+  const volume = document.createElement("input");
+  volume.type = "range";
+  volume.min = "0";
+  volume.max = "1";
+  volume.step = "0.01";
+  volume.value = "0.35";
+  const volumeOutput = document.createElement("output");
+  volumeOutput.textContent = "35%";
+  volumeLabel.append(volumeText, volume, volumeOutput);
+
+  const audio = document.createElement("audio");
+  audio.preload = "metadata";
+  audio.loop = true;
+  audio.src = objectUrl;
+
+  card.append(top, status, volumeLabel, audio);
+  registerSoundCard(card);
+  return card;
+}
+
+function removeUserSound(card) {
+  const name = card.dataset.name;
+  if (!confirm(`Remove ${name} from your sound library?`)) return;
+
+  const fileKey = card.dataset.file;
+  stopSound(card);
+  audioMap.delete(fileKey);
+  URL.revokeObjectURL(card.dataset.objectUrl);
+  card.remove();
+
+  if (
+    activeCategory === "Your music" &&
+    !document.querySelector(".userSoundCard")
+  ) {
+    activeCategory = "All sounds";
+  }
+  renderCategories();
+  filterSounds();
+  updateMixCount();
+  setStatus(`Removed ${name} from your sound library.`);
 }
 
 function filterSounds() {
@@ -137,8 +252,13 @@ function renderCatalog() {
     .join("");
 
   grid.addEventListener("click", (event) => {
-    const toggle = event.target.closest(".soundSelect");
+    const removeButton = event.target.closest(".removeUserSound");
     const card = event.target.closest(".soundCard");
+    if (removeButton && card) {
+      removeUserSound(card);
+      return;
+    }
+    const toggle = event.target.closest(".soundSelect");
     if (toggle && card) {
       const selected = card.classList.toggle("is-selected");
       toggle.setAttribute("aria-pressed", String(selected));
@@ -158,18 +278,7 @@ function renderCatalog() {
     if (event.target.matches(".soundVolume input")) applyVolume(event.target);
   });
 
-  grid.querySelectorAll("audio").forEach((audio) => {
-    const card = audio.closest(".soundCard");
-    audioMap.set(card.dataset.file, audio);
-    audio.addEventListener("play", () => {
-      card.classList.add("is-playing");
-      card.querySelector(".soundStatus").textContent = "Playing now";
-    });
-    audio.addEventListener("pause", () => {
-      card.classList.remove("is-playing");
-      card.querySelector(".soundStatus").textContent = "Paused";
-    });
-  });
+  grid.querySelectorAll(".soundCard").forEach(registerSoundCard);
   filterSounds();
 }
 
@@ -291,6 +400,51 @@ document.addEventListener("DOMContentLoaded", function () {
     filterSounds();
   });
   document.getElementById("playMix").addEventListener("click", () => playMix());
+  document
+    .getElementById("userMusicFiles")
+    .addEventListener("change", function () {
+      const files = Array.from(this.files || []);
+      this.value = "";
+      if (!files.length) return;
+
+      const supportedAudioExtension =
+        /\.(aac|aif|aiff|flac|m4a|mp3|oga|ogg|opus|wav|weba|webm)$/i;
+      const errors = [];
+      let added = 0;
+      const grid = document.getElementById("soundGrid");
+
+      files.forEach((file) => {
+        if (
+          !file.size ||
+          (!file.type.startsWith("audio/") &&
+            !supportedAudioExtension.test(file.name))
+        ) {
+          errors.push(file.name);
+          return;
+        }
+        try {
+          grid.append(createUserSoundCard(file));
+          added += 1;
+        } catch (error) {
+          console.error(`Unable to add ${file.name} to the music mixer:`, error);
+          errors.push(file.name);
+        }
+      });
+
+      renderCategories();
+      filterSounds();
+      updateMixCount();
+      if (errors.length) {
+        setStatus(
+          `${added} file${added === 1 ? "" : "s"} added; unable to add: ${errors.join(", ")}.`,
+          true,
+        );
+      } else {
+        setStatus(
+          `${added} file${added === 1 ? "" : "s"} added. Select each track to layer it into your mix.`,
+        );
+      }
+    });
   const stopButton = document.getElementById("stopMix");
   if (stopButton)
     stopButton.addEventListener("click", () => {
@@ -317,9 +471,17 @@ document.addEventListener("DOMContentLoaded", function () {
         '<i class="fa-regular fa-bookmark" aria-hidden="true"></i>';
     });
   document.getElementById("saveFavorite").addEventListener("click", () => {
-    const sounds = selectedSounds();
-    if (!sounds.length) {
+    const selected = selectedSounds();
+    if (!selected.length) {
       setStatus("Choose at least one sound before saving a favourite.", true);
+      return;
+    }
+    const sounds = selected.filter((sound) => !sound.isUserUpload);
+    if (!sounds.length) {
+      setStatus(
+        "Select a built-in sound to save a favourite. Uploaded music is only available while this page is open.",
+        true,
+      );
       return;
     }
     const defaultName = `Sleep mix ${favorites.length + 1}`;
@@ -337,10 +499,13 @@ document.addEventListener("DOMContentLoaded", function () {
     favorites.push({ name, sounds: savedSounds });
     const stored = saveFavorites();
     renderFavorites();
+    const uploadNote = sounds.length < selected.length
+      ? " Uploaded music is only available while this page is open and was not saved."
+      : "";
     setStatus(
       stored
-        ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${name}.`
-        : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.`,
+        ? `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} to ${name}.${uploadNote}`
+        : `Saved ${sounds.length} sound${sounds.length === 1 ? "" : "s"} for this session, but browser storage is unavailable.${uploadNote}`,
       !stored,
     );
   });
@@ -366,4 +531,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   updateMixCount();
+});
+
+window.addEventListener("beforeunload", () => {
+  document.querySelectorAll(".userSoundCard").forEach((card) => {
+    stopSound(card);
+    URL.revokeObjectURL(card.dataset.objectUrl);
+  });
 });

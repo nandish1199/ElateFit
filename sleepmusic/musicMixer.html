@@ -42,6 +42,19 @@
                         placeholder="Search rain, wind, campfire..." autocomplete="off" />
                     <div class="categoryTabs" id="categoryTabs" aria-label="Sound categories"></div>
                 </div>
+                <section class="userMusicUpload" aria-labelledby="userMusicHeading">
+                    <div class="userMusicUploadCopy">
+                        <h3 id="userMusicHeading"><i class="fa-solid fa-music" aria-hidden="true"></i> Add your own
+                            music</h3>
+                        <p>Choose audio files to layer into your mix. Files stay on this device and are available only
+                            while this page is open.</p>
+                    </div>
+                    <label class="userMusicPicker" for="userMusicFiles">
+                        <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                        <span>Select audio files</span>
+                        <input id="userMusicFiles" type="file" accept="audio/*" multiple />
+                    </label>
+                </section>
                 <div class="soundGrid" id="soundGrid"></div>
             </section>
             <aside class="mixerPanel favoritesPanel">
