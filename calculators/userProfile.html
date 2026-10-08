@@ -29,8 +29,13 @@
             <h1>USER PROFILE</h1>
             <p>Store your body measurements, target, and diet preferences so the site can keep your details ready for
                 future health tools and recommendations.</p>
-            <a class="howToUseButton" href="https://youtu.be/92J-JPChaeI?si=28IJamqiw_YD3UmQ" target="_blank"
-                rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i> HOW TO USE?</a>
+            <div class="profileHeroActions">
+                <button class="whatsTodayButton" id="whatsTodayButton" type="button"
+                    aria-controls="whatsTodayOverlay"><i class="fa-solid fa-sun" aria-hidden="true"></i> WHAT'S
+                    TODAY?</button>
+                <a class="howToUseButton" href="https://youtu.be/92J-JPChaeI?si=28IJamqiw_YD3UmQ" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i> HOW TO USE?</a>
+            </div>
         </section>
 
         <div class="profileLayout">
@@ -106,6 +111,14 @@
                                 <option value="Very active">Very active</option>
                             </select>
                         </label>
+                        <label class="profileField profileSpan2" for="workStyle">Work style (optional)
+                            <select id="workStyle">
+                                <option value="">Choose a work style</option>
+                                <option value="Desk or sitting job">Desk or sitting job</option>
+                                <option value="Mixed movement job">Mixed movement job</option>
+                                <option value="Physically active job">Physically active job</option>
+                            </select>
+                        </label>
                         <label class="profileField profileSpan2" for="profileNotes">Health notes or allergies (optional)
                             <textarea id="profileNotes"
                                 placeholder="Add any food preferences, allergies, or fitness notes."></textarea>
@@ -124,6 +137,24 @@
             </section>
         </div>
     </main>
+
+    <div class="whatsTodayOverlay" id="whatsTodayOverlay" hidden>
+        <section class="whatsTodayDialog" role="dialog" aria-modal="true" aria-labelledby="whatsTodayHeading"
+            tabindex="-1">
+            <div class="whatsTodayHeader">
+                <div>
+                    <span class="profileEyebrow"><i class="fa-solid fa-sun" aria-hidden="true"></i> Your daily
+                        guide</span>
+                    <h2 id="whatsTodayHeading">What's today?</h2>
+                    <p id="whatsTodayDate"></p>
+                </div>
+                <button class="whatsTodayCancel" id="whatsTodayCancel" type="button">Cancel</button>
+            </div>
+            <div class="whatsTodayContent" id="whatsTodayContent" aria-live="polite">
+                <p class="whatsTodayLoading">Loading your daily guidance...</p>
+            </div>
+        </section>
+    </div>
 
     <iframe id="footer" src="../fragfooter.html" loading="lazy"></iframe>
     <script src="https://code.jquery.com/jquery-3.6.1.js"

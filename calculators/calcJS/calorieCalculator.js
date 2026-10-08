@@ -4486,6 +4486,12 @@ function calculateNutrition(food, grams) {
     unsaturatedFat: (food.unsaturatedFat * grams) / 100,
     solubleFiber: (food.solubleFiber * grams) / 100,
     insolubleFiber: (food.insolubleFiber * grams) / 100,
+    ...Object.fromEntries(
+      MICRONUTRIENTS.map(([key]) => [
+        key,
+        ((food[key] || 0) * grams) / 100,
+      ]),
+    ),
   };
 }
 
@@ -5092,6 +5098,9 @@ document.addEventListener("DOMContentLoaded", async function () {
           unsaturatedFat: nutrition.unsaturatedFat,
           solubleFiber: nutrition.solubleFiber,
           insolubleFiber: nutrition.insolubleFiber,
+          ...Object.fromEntries(
+            MICRONUTRIENTS.map(([key]) => [key, nutrition[key]]),
+          ),
           createdAt: new Date().toISOString(),
         });
         this.reset();

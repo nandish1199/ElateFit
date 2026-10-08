@@ -298,6 +298,7 @@ function populateProfileForm(profile) {
     lactoseIntolerant: profile.lactoseIntolerant || "",
     bodyType: profile.bodyType || "",
     activityLevel: profile.activityLevel || "",
+    workStyle: profile.workStyle || "",
     profileNotes: profile.notes || "",
   };
   Object.entries(fieldMap).forEach(([id, value]) => {
@@ -320,6 +321,7 @@ function readProfileForm() {
     lactoseIntolerant: document.getElementById("lactoseIntolerant").value,
     bodyType: document.getElementById("bodyType").value,
     activityLevel: document.getElementById("activityLevel").value,
+    workStyle: document.getElementById("workStyle").value,
     notes: document.getElementById("profileNotes").value.trim(),
   };
 }
@@ -363,6 +365,7 @@ function renderProfileSummary(profile) {
                 <div class="profileStat"><span>Body type</span><strong>${profile.bodyType}</strong></div>
                 <div class="profileStat"><span>Lactose</span><strong>${profile.lactoseIntolerant}</strong></div>
                 <div class="profileStat"><span>Activity</span><strong>${profile.activityLevel}</strong></div>
+                <div class="profileStat"><span>Work style</span><strong>${profile.workStyle || "Not specified"}</strong></div>
                 <div class="profileStat"><span>Calculated calorie target</span><strong>${nutrition.calculatedCalories} kcal</strong></div>
                 <div class="profileStat"><span>Daily calorie target</span><strong>${nutrition.calories} kcal</strong></div>
                 <div class="profileStat"><span>Daily protein</span><strong>${nutrition.protein} g</strong></div>
@@ -423,7 +426,583 @@ function validateProfile(profile) {
   return "";
 }
 
+const DAILY_GUIDANCE_TARGETS = {
+  Sedentary: { steps: 6000, cardio: 20, strength: 15, stretching: 10 },
+  Light: { steps: 7500, cardio: 25, strength: 20, stretching: 10 },
+  Moderate: { steps: 9000, cardio: 30, strength: 25, stretching: 15 },
+  Active: { steps: 10000, cardio: 35, strength: 30, stretching: 15 },
+  "Very active": { steps: 11000, cardio: 40, strength: 35, stretching: 20 },
+};
+const BODY_TYPE_STEP_RANGES = {
+  Ectomorphic: { minimum: 2000, maximum: 4000, activityStep: 500 },
+  Mesomorphic: { minimum: 4000, maximum: 6000, activityStep: 500 },
+  Endomorphic: { minimum: 8000, maximum: 11000, activityStep: 750 },
+};
+const ACTIVITY_LEVEL_INDEX = {
+  Sedentary: 0,
+  Light: 1,
+  Moderate: 2,
+  Active: 3,
+  "Very active": 4,
+};
+const GUIDANCE_NUTRITION_DB = "elateFitNutritionDB";
+const GUIDANCE_NUTRITION_STORE = "foodEntries";
+const GUIDANCE_WORKOUT_DB = "elateFitWorkoutDB";
+const GUIDANCE_WORKOUT_STORE = "workouts";
+const GUIDANCE_MICRONUTRIENT_KEYS = [
+  "vitaminA",
+  "vitaminC",
+  "vitaminD",
+  "vitaminE",
+  "vitaminK",
+  "vitaminB1",
+  "vitaminB2",
+  "vitaminB3",
+  "vitaminB6",
+  "folate",
+  "vitaminB12",
+  "calcium",
+  "iron",
+  "magnesium",
+  "zinc",
+  "iodine",
+  "selenium",
+  "copper",
+  "potassium",
+  "phosphorus",
+];
+const GUIDANCE_MICRONUTRIENT_SOURCES = {
+  vitaminA: "orange vegetables, spinach, eggs, or mango",
+  vitaminC: "citrus, berries, peppers, or broccoli",
+  vitaminD: "safe sunlight, fortified foods, or oily fish",
+  vitaminE: "nuts, seeds, spinach, or avocado",
+  vitaminK: "leafy greens, broccoli, or green beans",
+  vitaminB1: "whole grains, lentils, peas, or seeds",
+  vitaminB2: "milk, yogurt, eggs, almonds, or spinach",
+  vitaminB3: "poultry, fish, peanuts, avocado, or whole grains",
+  vitaminB6: "chickpeas, potatoes, bananas, or fish",
+  folate: "leafy greens, beans, peas, or avocado",
+  vitaminB12: "eggs, dairy, fish, or fortified foods",
+  calcium: "dairy, tofu, almonds, or leafy greens",
+  iron: "beans, lentils, spinach, poultry, or seafood",
+  magnesium: "seeds, almonds, spinach, beans, or brown rice",
+  zinc: "lentils, chickpeas, pumpkin seeds, or dairy",
+  iodine: "iodized salt, dairy, eggs, or seafood",
+  selenium: "eggs, fish, poultry, brown rice, or beans",
+  copper: "beans, cashews, seeds, or dark chocolate",
+  potassium: "bananas, potatoes, beans, tomatoes, or yogurt",
+  phosphorus: "dairy, poultry, fish, seeds, or whole grains",
+};
+
+function getTodayStepTarget(profile) {
+  const range =
+    BODY_TYPE_STEP_RANGES[profile?.bodyType] ||
+    BODY_TYPE_STEP_RANGES.Mesomorphic;
+  const activityIndex = ACTIVITY_LEVEL_INDEX[profile?.activityLevel] || 0;
+  const goalAdjustment =
+    profile?.target === "Lose weight"
+      ? range.activityStep
+      : profile?.target === "Gain weight"
+        ? -range.activityStep
+        : 0;
+  return Math.min(
+    range.maximum,
+    Math.max(
+      range.minimum,
+      range.minimum + activityIndex * range.activityStep + goalAdjustment,
+    ),
+  );
+}
+
+function guidanceDayKey(value) {
+  const date = new Date(value);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function escapeGuidanceText(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function openExistingGuidanceDatabase(databaseName) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(databaseName);
+    let missingDatabase = false;
+    request.onupgradeneeded = (event) => {
+      if (event.oldVersion !== 0) return;
+      missingDatabase = true;
+      event.target.transaction.abort();
+    };
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => {
+      if (missingDatabase && request.error?.name === "AbortError") {
+        resolve(null);
+        return;
+      }
+      reject(request.error || new Error(`Unable to open ${databaseName}.`));
+    };
+  });
+}
+
+async function readGuidanceStore(databaseName, storeName) {
+  const database = await openExistingGuidanceDatabase(databaseName);
+  if (!database) return { entries: [], available: true };
+  if (!database.objectStoreNames.contains(storeName)) {
+    database.close();
+    return { entries: [], available: true };
+  }
+
+  return new Promise((resolve, reject) => {
+    const request = database
+      .transaction(storeName, "readonly")
+      .objectStore(storeName)
+      .getAll();
+    request.onsuccess = () => {
+      database.close();
+      resolve({ entries: request.result || [], available: true });
+    };
+    request.onerror = () => {
+      database.close();
+      reject(request.error || new Error(`Unable to read ${storeName}.`));
+    };
+  });
+}
+
+function readGuidanceDays(storageKey) {
+  const stored = localStorage.getItem(storageKey);
+  if (!stored) return new Set();
+  try {
+    const days = JSON.parse(stored);
+    if (!Array.isArray(days)) throw new TypeError("Completion data is invalid.");
+    return new Set(days);
+  } catch (error) {
+    throw new TypeError(`Unable to read ${storageKey}: ${error.message}`);
+  }
+}
+
+function isPreviousGuidanceWeek(value, todayStart) {
+  const date = new Date(value);
+  const weekStart = new Date(todayStart);
+  weekStart.setDate(weekStart.getDate() - 7);
+  return date >= weekStart && date < todayStart;
+}
+
+function getPreviousNutritionSummary(entries) {
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+  const previousEntries = entries.filter((entry) =>
+    isPreviousGuidanceWeek(entry.createdAt, todayStart),
+  );
+  const dailyTotals = new Map();
+  previousEntries.forEach((entry) => {
+    const key = guidanceDayKey(entry.createdAt);
+    const totals = dailyTotals.get(key) || {};
+    [
+      "calories",
+      "protein",
+      "solubleFiber",
+      "insolubleFiber",
+      ...GUIDANCE_MICRONUTRIENT_KEYS,
+    ].forEach((field) => {
+      if (Number.isFinite(Number(entry[field]))) {
+        totals[field] = (totals[field] || 0) + Number(entry[field]);
+      }
+    });
+    dailyTotals.set(key, totals);
+  });
+
+  const days = [...dailyTotals.values()];
+  const average = {};
+  [
+    "calories",
+    "protein",
+    "solubleFiber",
+    "insolubleFiber",
+    ...GUIDANCE_MICRONUTRIENT_KEYS,
+  ].forEach((field) => {
+    average[field] = days.length
+      ? days.reduce((sum, day) => sum + (day[field] || 0), 0) / days.length
+      : 0;
+  });
+  return {
+    entries: previousEntries,
+    days: days.length,
+    average,
+    micronutrientsStored:
+      previousEntries.length > 0 &&
+      previousEntries.every((entry) =>
+        GUIDANCE_MICRONUTRIENT_KEYS.every((key) =>
+          Object.prototype.hasOwnProperty.call(entry, key),
+        ),
+      ),
+  };
+}
+
+function formatGuidanceAmount(value, decimals = 0) {
+  return Number(value).toFixed(decimals).replace(/\.0+$/, "");
+}
+
+function getGuidanceNutrientKey(name) {
+  const normalizedName = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return GUIDANCE_MICRONUTRIENT_KEYS.find((key) =>
+    normalizedName.startsWith(key.toLowerCase()),
+  );
+}
+
+function renderNutritionMetricAdvice(label, average, target, unit) {
+  const icons = {
+    Calories: "🔥",
+    Protein: "💪",
+    "Soluble fiber": "🌾",
+    "Insoluble fiber": "🥦",
+  };
+  const progress = Math.min(
+    100,
+    Math.max(0, Math.round((average / Math.max(target, 1)) * 100)),
+  );
+  let advice;
+  if (average < target * 0.9) {
+    advice = `About ${formatGuidanceAmount(target - average)} ${unit} below target. Add balanced portions gradually.`;
+  } else if (average > target * 1.1) {
+    advice = `About ${formatGuidanceAmount(average - target)} ${unit} above target. Reduce portions gradually if this does not match your goal.`;
+  } else {
+    advice = `Close to your ${formatGuidanceAmount(target)} ${unit} target.`;
+  }
+  return `
+    <li class="whatsTodayAdviceItem">
+      <div class="whatsTodayAdviceHeader">
+        <span>${icons[label] || "📌"} <strong>${label}</strong></span>
+        <strong>${formatGuidanceAmount(average)} / ${formatGuidanceAmount(target)} ${unit}</strong>
+      </div>
+      <div class="whatsTodayProgressTrack" role="progressbar" aria-label="${label} progress"
+        aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}">
+        <span class="whatsTodayProgressFill" style="width: ${progress}%"></span>
+      </div>
+      <p>${advice}</p>
+    </li>`;
+}
+
+function renderNutritionGuidance(profile, summary, available = true) {
+  if (!profile) {
+    return `
+      <section class="whatsTodaySection is-warning">
+        <h3>🍽️ Food guidance</h3>
+        <p>Save your profile first so calorie, protein, fiber, vitamin, and mineral advice can be compared with personalized targets.</p>
+      </section>`;
+  }
+  if (!available) {
+    return `
+      <section class="whatsTodaySection is-error">
+        <h3>🍽️ Food guidance</h3>
+        <p>Nutrition history is temporarily unavailable. Open the calorie tracker to check your saved entries and try this guide again.</p>
+      </section>`;
+  }
+  if (!summary.days) {
+    return `
+      <section class="whatsTodaySection is-warning">
+        <h3>🍽️ Food guidance</h3>
+        <p>No food was logged in the previous seven days. Add meals in the calorie tracker so tomorrow's guidance can compare your calories, protein, fiber, vitamins, and minerals with your profile targets.</p>
+      </section>`;
+  }
+
+  const targets = calculateNutritionTargets(profile);
+  const fiberAdvice = [
+    renderNutritionMetricAdvice(
+      "Soluble fiber",
+      summary.average.solubleFiber,
+      targets.solubleFiber,
+      "g",
+    ),
+    renderNutritionMetricAdvice(
+      "Insoluble fiber",
+      summary.average.insolubleFiber,
+      targets.insolubleFiber,
+      "g",
+    ),
+  ].join("");
+  const references = getMicronutrientReferences(profile.gender);
+  const deficiencies = references
+    .filter((nutrient) => {
+      const key = getGuidanceNutrientKey(nutrient.name);
+      return key && summary.average[key] < Number(nutrient.amount) * 0.8;
+    })
+    .map((nutrient) => {
+      const key = getGuidanceNutrientKey(nutrient.name);
+      return `${nutrient.name}: try ${GUIDANCE_MICRONUTRIENT_SOURCES[key]}.`;
+    })
+    .slice(0, 5);
+
+  const micronutrientAdvice = !summary.micronutrientsStored
+    ? "Vitamin and mineral values are not stored for some older food entries. Keep adding new foods to build a complete micronutrient history."
+    : deficiencies.length
+      ? `Your logged average looks low in: ${deficiencies.join(" ")}`
+      : "Your logged vitamin and mineral averages are not showing a clear deficiency.";
+
+  return `
+    <section class="whatsTodaySection">
+      <h3>🍽️ Food guidance · previous seven days</h3>
+      <ul class="whatsTodayList whatsTodayAdviceList">
+        ${renderNutritionMetricAdvice("Calories", summary.average.calories, targets.calories, "kcal")}
+        ${renderNutritionMetricAdvice("Protein", summary.average.protein, targets.protein, "g")}
+        ${fiberAdvice}
+      </ul>
+      <p>${micronutrientAdvice}</p>
+    </section>`;
+}
+
+function recentGuidanceDayCount(days, todayKey) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const start = new Date(today);
+  start.setDate(start.getDate() - 6);
+  return [...days].filter((day) => {
+    const date = new Date(`${day}T00:00:00`);
+    return date >= start && date <= today;
+  }).length;
+}
+
+function renderConsistencyLine(
+  label,
+  available,
+  recentDays,
+  completedToday,
+  todayTarget,
+) {
+  if (!available) {
+    return `<li><strong>${label}:</strong> status is unavailable right now. Open its tracker to check and record progress.</li>`;
+  }
+  if (!recentDays) {
+    return `<li><strong>${label}:</strong> no progress data yet. Add a session so your consistency can be measured.</li>`;
+  }
+  const consistency =
+    recentDays >= 4
+      ? "You are consistent - great work."
+      : "You have some progress; keep building the routine.";
+  const todayMessage = completedToday
+    ? "Today's session is marked complete."
+    : `Today's ${todayTarget}-minute goal is still open.`;
+  const progress = Math.round((recentDays / 7) * 100);
+  const icon = {
+    Cardio: "🏃",
+    "Strength training": "🏋️",
+    Stretching: "🧘",
+  }[label];
+  return `
+    <li class="whatsTodayConsistency ${completedToday ? "is-complete" : "is-pending"}">
+      <div class="whatsTodayConsistencyHeader">
+        <span>${icon} <strong>${label}</strong></span>
+        <strong>${recentDays} / 7 days</strong>
+      </div>
+      <div class="whatsTodayProgressTrack" role="progressbar" aria-label="${label} consistency"
+        aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}">
+        <span class="whatsTodayProgressFill" style="width: ${progress}%"></span>
+      </div>
+      <p>${consistency} ${todayMessage}</p>
+    </li>`;
+}
+
+function renderTodayGuidance(profile, nutritionSummary, activity) {
+  const activityLevel = profile?.activityLevel || "Sedentary";
+  const targets = {
+    ...(DAILY_GUIDANCE_TARGETS[activityLevel] ||
+      DAILY_GUIDANCE_TARGETS.Sedentary),
+    steps: getTodayStepTarget(profile),
+  };
+  const profileMessage = profile
+    ? ""
+    : `<section class="whatsTodaySection is-warning"><h3>🎯 Personalize this guide</h3><p>Complete and save your profile to tailor today's targets to your age, weight, target, and activity level. Starter targets below use a sedentary baseline.</p></section>`;
+  const sedentaryAdvice =
+    !profile ||
+    activityLevel === "Sedentary" ||
+    profile.workStyle === "Desk or sitting job"
+      ? `<section class="whatsTodaySection is-warning">
+          <h3>⚠️ Break up sitting time</h3>
+          <p>Long uninterrupted sitting can harm health even when you exercise later. Stand, walk, or move for 2-5 minutes every 30-60 minutes, and use the home routine below as a gentle starting point.</p>
+        </section>
+        <section class="whatsTodaySection">
+          <h3>🏠 Basic home strength routine</h3>
+          <ul class="whatsTodayList">
+            <li>March in place - 2 minutes</li>
+            <li>Chair squats - 2 sets of 8-12</li>
+            <li>Wall push-ups - 2 sets of 8-12</li>
+            <li>Glute bridges - 2 sets of 10-15</li>
+            <li>Bird-dog or dead-bug - 2 sets of 6-10 per side</li>
+            <li>Calf raises - 2 sets of 12-15</li>
+          </ul>
+          <p>Start comfortably, rest as needed, and stop for pain, dizziness, or unusual shortness of breath.</p>
+        </section>`
+      : "";
+  const completedToday = [
+    activity.today.cardio,
+    activity.today.strength,
+    activity.today.stretching,
+  ].filter(Boolean).length;
+  const profileLabel = profile
+    ? `${profile.bodyType} · ${profile.target} · ${activityLevel}`
+    : "Starter plan · save your profile for precision";
+
+  return `
+    ${profileMessage}
+    <section class="whatsTodayDashboard">
+      <div class="whatsTodayDashboardIntro">
+        <div>
+          <span class="whatsTodayOverline">📊 Daily plan</span>
+          <h3>Today's movement targets</h3>
+          <p>${profileLabel}</p>
+        </div>
+        <div class="whatsTodayScore"><strong>${completedToday} / 3</strong><span>activities complete</span></div>
+      </div>
+      <div class="whatsTodayMetricGrid">
+        <article class="whatsTodayMetric">
+          <span class="whatsTodayMetricLabel">🚶 Steps</span>
+          <strong>${targets.steps.toLocaleString()}<small>steps</small></strong>
+          <p>Use a phone or watch to track them.</p>
+        </article>
+        <article class="whatsTodayMetric">
+          <span class="whatsTodayMetricLabel">🏃 Cardio</span>
+          <strong>${targets.cardio}<small>minutes</small></strong>
+          <p>Comfortable-to-moderate effort.</p>
+        </article>
+        <article class="whatsTodayMetric">
+          <span class="whatsTodayMetricLabel">🏋️ Strength</span>
+          <strong>${targets.strength}<small>minutes</small></strong>
+          <p>Controlled full-body exercises.</p>
+        </article>
+        <article class="whatsTodayMetric">
+          <span class="whatsTodayMetricLabel">🧘 Stretching</span>
+          <strong>${targets.stretching}<small>minutes</small></strong>
+          <p>Move gently; do not bounce.</p>
+        </article>
+      </div>
+    </section>
+    <section class="whatsTodaySection ${completedToday === 3 ? "is-success" : ""}">
+      <h3>📈 Consistency dashboard</h3>
+      <ul class="whatsTodayList">
+        ${renderConsistencyLine("Cardio", activity.cardioAvailable, activity.recent.cardio, activity.today.cardio, targets.cardio)}
+        ${renderConsistencyLine("Strength training", activity.workoutAvailable, activity.recent.strength, activity.today.strength, targets.strength)}
+        ${renderConsistencyLine("Stretching", activity.stretchAvailable, activity.recent.stretching, activity.today.stretching, targets.stretching)}
+      </ul>
+    </section>
+    ${renderNutritionGuidance(
+      profile,
+      nutritionSummary,
+      activity.nutritionAvailable,
+    )}
+    ${sedentaryAdvice}
+    <section class="whatsTodaySection">
+      <h3>💧 One more useful habit</h3>
+      <p>Drink water regularly, sleep consistently, and adjust these suggestions for medical conditions, pregnancy, medication, or pain with advice from a qualified clinician.</p>
+    </section>`;
+}
+
+async function readTodayGuidanceData() {
+  const profileDatabase = await openProfileDatabase();
+  const profile = await getSavedProfile(profileDatabase);
+  const todayKey = guidanceDayKey(new Date());
+  const [nutritionResult, workoutResult, cardioResult, stretchResult] =
+    await Promise.allSettled([
+      readGuidanceStore(GUIDANCE_NUTRITION_DB, GUIDANCE_NUTRITION_STORE),
+      readGuidanceStore(GUIDANCE_WORKOUT_DB, GUIDANCE_WORKOUT_STORE),
+      Promise.resolve(readGuidanceDays("elateFitCardioCompletedDays")),
+      Promise.resolve(readGuidanceDays("elateFitStretchCompletedDays")),
+    ]);
+  const nutritionEntries =
+    nutritionResult.status === "fulfilled"
+      ? nutritionResult.value.entries
+      : [];
+  const workouts =
+    workoutResult.status === "fulfilled"
+      ? workoutResult.value.entries
+      : [];
+  const cardioDays =
+    cardioResult.status === "fulfilled" ? cardioResult.value : new Set();
+  const stretchDays =
+    stretchResult.status === "fulfilled" ? stretchResult.value : new Set();
+  const workoutDays = new Set(
+    workouts
+      .filter((entry) => entry.createdAt)
+      .map((entry) => guidanceDayKey(entry.createdAt)),
+  );
+  const recent = {
+    cardio: recentGuidanceDayCount(cardioDays, todayKey),
+    strength: recentGuidanceDayCount(workoutDays, todayKey),
+    stretching: recentGuidanceDayCount(stretchDays, todayKey),
+  };
+  return {
+    profile,
+    nutritionSummary: getPreviousNutritionSummary(nutritionEntries),
+    activity: {
+      cardioAvailable: cardioResult.status === "fulfilled",
+      workoutAvailable: workoutResult.status === "fulfilled",
+      stretchAvailable: stretchResult.status === "fulfilled",
+      nutritionAvailable: nutritionResult.status === "fulfilled",
+      recent,
+      today: {
+        cardio: cardioDays.has(todayKey),
+        strength: workoutDays.has(todayKey),
+        stretching: stretchDays.has(todayKey),
+      },
+    },
+  };
+}
+
+function initializeTodayWidget() {
+  const openButton = document.getElementById("whatsTodayButton");
+  const overlay = document.getElementById("whatsTodayOverlay");
+  const dialog = overlay?.querySelector(".whatsTodayDialog");
+  const cancelButton = document.getElementById("whatsTodayCancel");
+  const content = document.getElementById("whatsTodayContent");
+  const date = document.getElementById("whatsTodayDate");
+  if (!openButton || !overlay || !dialog || !cancelButton || !content) return;
+
+  let previousFocus;
+  const close = () => {
+    overlay.hidden = true;
+    document.body.style.removeProperty("overflow");
+    previousFocus?.focus();
+  };
+  const open = async () => {
+    previousFocus = document.activeElement;
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    date.textContent = new Intl.DateTimeFormat(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    }).format(new Date());
+    content.innerHTML =
+      '<p class="whatsTodayLoading">Loading your daily guidance...</p>';
+    dialog.focus();
+    try {
+      const state = await readTodayGuidanceData();
+      content.innerHTML = renderTodayGuidance(
+        state.profile,
+        state.nutritionSummary,
+        state.activity,
+      );
+    } catch (error) {
+      console.error("Unable to load today's guidance:", error);
+      content.innerHTML =
+        '<p class="whatsTodayError">Today\'s guidance could not be loaded. Please try again after opening your profile and trackers.</p>';
+    }
+  };
+
+  openButton.addEventListener("click", open);
+  cancelButton.addEventListener("click", close);
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) close();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (!overlay.hidden && event.key === "Escape") close();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
+  initializeTodayWidget();
   const profileForm = document.getElementById("profileForm");
   if (!profileForm) {
     await loadProfileState();

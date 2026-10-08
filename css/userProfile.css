@@ -58,6 +58,70 @@
     line-height: 1.55;
 }
 
+.profileHeroActions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    width: max-content;
+    max-width: 100%;
+    margin-top: 18px;
+}
+
+.profileHeroActions a,
+.profileHeroActions button {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    height: 36px;
+    min-height: 36px;
+    margin: 0;
+    padding: 0 12px;
+    border: 1px solid var(--profile-green);
+    border-radius: 3px;
+    font: inherit;
+    font-size: .78rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.profileHeroActions i {
+    font-size: .85rem;
+}
+
+.whatsTodayButton {
+    background: var(--profile-green);
+    color: #fff;
+}
+
+.whatsTodayButton:hover,
+.whatsTodayButton:focus-visible {
+    background: var(--profile-dark);
+}
+
+.howToUseButton {
+    background: transparent;
+    color: var(--profile-dark);
+}
+
+.howToUseButton:hover,
+.howToUseButton:focus-visible {
+    background: #f0f8f1;
+}
+
+.profileHeroActions a:focus-visible,
+.profileHeroActions button:focus-visible,
+.whatsTodayCancel:focus-visible {
+    outline: 3px solid rgba(21, 128, 61, .25);
+    outline-offset: 2px;
+}
+
 .profileLayout {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
@@ -366,6 +430,317 @@
     line-height: 1.55;
 }
 
+.whatsTodayOverlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(24, 44, 33, .52);
+}
+
+.whatsTodayOverlay[hidden] {
+    display: none;
+}
+
+.whatsTodayDialog {
+    width: min(760px, 100%);
+    max-height: min(86vh, 760px);
+    overflow: auto;
+    padding: 24px;
+    border: 1px solid var(--profile-line);
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 24px 60px rgba(24, 44, 33, .24);
+}
+
+.whatsTodayHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--profile-line);
+}
+
+.whatsTodayHeader .profileEyebrow {
+    margin-bottom: 7px;
+}
+
+.whatsTodayHeader h2 {
+    margin: 0;
+    color: var(--profile-ink);
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.whatsTodayHeader p {
+    margin: 5px 0 0;
+    color: var(--profile-muted);
+    font-size: .86rem;
+}
+
+.whatsTodayCancel {
+    min-height: 38px;
+    padding: 0 13px;
+    border: 1px solid var(--profile-line);
+    border-radius: 3px;
+    background: #fff;
+    color: var(--profile-dark);
+    cursor: pointer;
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.whatsTodayCancel:hover {
+    background: #f0f8f1;
+}
+
+.whatsTodayContent {
+    display: grid;
+    gap: 14px;
+    padding-top: 18px;
+}
+
+.whatsTodaySection {
+    padding: 15px;
+    border: 1px solid #e3ebe6;
+    border-radius: 4px;
+    background: #fbfdfb;
+}
+
+.whatsTodaySection h3 {
+    margin: 0 0 9px;
+    color: var(--profile-ink);
+    font-size: .98rem;
+}
+
+.whatsTodayDashboard {
+    padding: 16px;
+    border: 1px solid #d5e7d9;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #f7fcf8, #eef8f0);
+}
+
+.whatsTodayDashboardIntro {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.whatsTodayOverline {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--profile-green);
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.whatsTodayDashboardIntro h3 {
+    margin-bottom: 3px;
+}
+
+.whatsTodayDashboardIntro p {
+    margin: 0;
+    color: var(--profile-muted);
+    font-size: .78rem;
+}
+
+.whatsTodayScore {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 8px 10px;
+    border: 1px solid #cfe4d4;
+    border-radius: 4px;
+    background: #fff;
+    color: var(--profile-dark);
+}
+
+.whatsTodayScore strong {
+    font-size: 1.2rem;
+}
+
+.whatsTodayScore span {
+    color: var(--profile-muted);
+    font-size: .67rem;
+    white-space: nowrap;
+}
+
+.whatsTodayMetricGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.whatsTodayMetric {
+    min-width: 0;
+    padding: 11px;
+    border: 1px solid #e0ece2;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .82);
+}
+
+.whatsTodayMetricLabel {
+    display: block;
+    overflow: hidden;
+    color: var(--profile-muted);
+    font-size: .7rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.whatsTodayMetric > strong {
+    display: block;
+    margin-top: 8px;
+    color: var(--profile-ink);
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.whatsTodayMetric > strong small {
+    margin-left: 4px;
+    color: var(--profile-muted);
+    font-size: .62rem;
+    font-weight: 600;
+}
+
+.whatsTodayMetric p {
+    margin: 7px 0 0;
+    color: var(--profile-muted);
+    font-size: .68rem;
+    line-height: 1.35;
+}
+
+.whatsTodaySection p {
+    margin: 0;
+    color: var(--profile-muted);
+    font-size: .86rem;
+    line-height: 1.55;
+}
+
+.whatsTodayList {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding-left: 19px;
+    color: var(--profile-muted);
+    font-size: .86rem;
+    line-height: 1.5;
+}
+
+.whatsTodayList strong {
+    color: var(--profile-ink);
+}
+
+.whatsTodayConsistency,
+.whatsTodayAdviceItem {
+    display: grid;
+    gap: 7px;
+    padding: 10px 11px;
+    border: 1px solid #e4ece6;
+    border-radius: 4px;
+    background: #fff;
+    list-style: none;
+}
+
+.whatsTodayConsistency + .whatsTodayConsistency,
+.whatsTodayAdviceItem + .whatsTodayAdviceItem {
+    margin-top: 8px;
+}
+
+.whatsTodayConsistencyHeader,
+.whatsTodayAdviceHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--profile-muted);
+    font-size: .8rem;
+}
+
+.whatsTodayConsistencyHeader > strong,
+.whatsTodayAdviceHeader > strong {
+    color: var(--profile-ink);
+    font-size: .76rem;
+    white-space: nowrap;
+}
+
+.whatsTodayConsistency.is-complete {
+    border-color: #cfe4d4;
+    background: #f4fbf5;
+}
+
+.whatsTodayConsistency.is-pending {
+    border-color: #eadfca;
+}
+
+.whatsTodayProgressTrack {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e7efe9;
+}
+
+.whatsTodayProgressFill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #79a982, #166534);
+}
+
+.whatsTodayAdviceItem p,
+.whatsTodayConsistency p {
+    margin: 0;
+    font-size: .75rem;
+}
+
+.whatsTodayAdviceList {
+    padding-left: 0;
+}
+
+.whatsTodayAdviceList > li {
+    padding-left: 11px;
+}
+
+.whatsTodaySection.is-warning {
+    border-color: #ead9b5;
+    background: #fffaf0;
+}
+
+.whatsTodaySection.is-warning h3 {
+    color: #855d1d;
+}
+
+.whatsTodaySection.is-success {
+    border-color: #cfe4d4;
+    background: #f3fbf4;
+}
+
+.whatsTodaySection.is-error {
+    border-color: #eccac3;
+    background: #fff7f5;
+}
+
+.whatsTodayLoading,
+.whatsTodayError {
+    margin: 0;
+    color: var(--profile-muted);
+    line-height: 1.55;
+}
+
+.whatsTodayError {
+    color: #a45e4c;
+}
+
 .profileBadgeLink {
     display: flex;
     align-items: center;
@@ -466,5 +841,33 @@
 
     .micronutrientContext {
         justify-content: flex-start;
+    }
+
+    .whatsTodayOverlay {
+        padding: 12px;
+    }
+
+    .whatsTodayDialog {
+        padding: 18px;
+    }
+
+    .whatsTodayHeader {
+        flex-direction: column;
+    }
+
+    .whatsTodayCancel {
+        align-self: flex-start;
+    }
+
+    .whatsTodayDashboardIntro {
+        flex-direction: column;
+    }
+
+    .whatsTodayScore {
+        align-items: flex-start;
+    }
+
+    .whatsTodayMetricGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
