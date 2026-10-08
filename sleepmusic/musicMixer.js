@@ -3,6 +3,7 @@ const soundCatalog = [
   ["distantThunder.mp3", "Distant Thunder", "Nature", "fa-cloud-bolt"],
   ["LakeWindAmbience.mp3", "Lake Wind", "Nature", "fa-wind"],
   ["windForest.mp3", "Forest Wind", "Nature", "fa-tree"],
+  ["desertHawlingWind.mp3", "Hawling Wind", "Nature", "fa-wind"],
   ["windQuietCreaks.mp3", "Quiet Wind", "Nature", "fa-leaf"],
   ["deepForestBirds.mp3", "Deep Forest Birds", "Nature", "fa-dove"],
   ["forestBirds.mp3", "Forest Birds", "Nature", "fa-dove"],
