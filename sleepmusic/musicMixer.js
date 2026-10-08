@@ -4,6 +4,11 @@ const soundCatalog = [
   ["LakeWindAmbience.mp3", "Lake Wind", "Nature", "fa-wind"],
   ["windForest.mp3", "Forest Wind", "Nature", "fa-tree"],
   ["windQuietCreaks.mp3", "Quiet Wind", "Nature", "fa-leaf"],
+  ["deepForestBirds.mp3", "Deep Forest Birds", "Nature", "fa-dove"],
+  ["forestBirds.mp3", "Forest Birds", "Nature", "fa-dove"],
+  ["mountainBirds.mp3", "Mountain Birds", "Nature", "fa-dove"],
+  ["riverWind.mp3", "River Wind", "Nature", "fa-wind"],
+  ["windChimesOf Shells.mp3", "Shell Wind Chimes", "Nature", "fa-bell"],
   ["IceRain.mp3", "Ice Rain", "Rain & Water", "fa-cloud-rain"],
   [
     "rainOnCarHeavy.mp3",
@@ -14,12 +19,24 @@ const soundCatalog = [
   ["rainOnRoof.mp3", "Rain on Roof", "Rain & Water", "fa-cloud-rain"],
   ["RainOnRooftop.mp3", "Rain on Rooftop", "Rain & Water", "fa-cloud-rain"],
   ["rainWaterDrop.mp3", "Rain Drops", "Rain & Water", "fa-droplet"],
+  ["nightRiver.mp3", "Night River", "Rain & Water", "fa-water"],
+  ["streamWater.mp3", "Stream Water", "Rain & Water", "fa-water"],
   ["carDriveBy.mp3", "Car Drive By", "Travel & City", "fa-car"],
   ["highway1.mp3", "Highway One", "Travel & City", "fa-road"],
   ["highway2.mp3", "Highway Two", "Travel & City", "fa-road"],
   ["FactoryHard.mp3", "Factory Hard", "Travel & City", "fa-city"],
   ["factoryMorning.mp3", "Factory Morning", "Travel & City", "fa-city"],
   ["KidsPlaying.mp3", "Kids Playing", "Life", "fa-people-group"],
+  ["fluteMusic.mp3", "Flute Music", "Meditation & Music", "fa-music"],
+  [
+    "fluteSitarTabla.mp3",
+    "Flute, Sitar and Tabla",
+    "Meditation & Music",
+    "fa-music",
+  ],
+  ["fluteTabla.mp3", "Flute and Tabla", "Meditation & Music", "fa-music"],
+  ["sitarTabla.mp3", "Sitar and Tabla", "Meditation & Music", "fa-music"],
+  ["windMusic.mp3", "Wind Music", "Meditation & Music", "fa-music"],
 ].map(([file, name, category, icon]) => ({ file, name, category, icon }));
 
 const FAVORITES_KEY = "elateFitMusicMixerFavorites";
