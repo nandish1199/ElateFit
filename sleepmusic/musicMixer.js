@@ -20,10 +20,6 @@ const soundCatalog = [
   ["FactoryHard.mp3", "Factory Hard", "Travel & City", "fa-city"],
   ["factoryMorning.mp3", "Factory Morning", "Travel & City", "fa-city"],
   ["KidsPlaying.mp3", "Kids Playing", "Life", "fa-people-group"],
-  ["hero.mp3", "Soft Atmosphere", "Ambient", "fa-wand-magic-sparkles"],
-  ["hit.mp3", "Soft Pulse", "Ambient", "fa-heart-pulse"],
-  ["silver.mp3", "Silver Ambience", "Ambient", "fa-moon"],
-  ["WoodDanHenig.mp3", "Wooden Strings", "Ambient", "fa-music"],
 ].map(([file, name, category, icon]) => ({ file, name, category, icon }));
 
 const FAVORITES_KEY = "elateFitMusicMixerFavorites";
@@ -73,10 +69,7 @@ function saveUserTrack(track) {
     return Promise.reject(new Error("Saved audio storage is unavailable."));
   }
   return new Promise((resolve, reject) => {
-    const transaction = userTrackDb.transaction(
-      USER_TRACK_STORE,
-      "readwrite",
-    );
+    const transaction = userTrackDb.transaction(USER_TRACK_STORE, "readwrite");
     transaction.oncomplete = () => resolve();
     transaction.onerror = () =>
       reject(transaction.error || new Error("Unable to save audio file."));
@@ -91,15 +84,14 @@ function deleteSavedUserTrack(id) {
     return Promise.reject(new Error("Saved audio storage is unavailable."));
   }
   return new Promise((resolve, reject) => {
-    const transaction = userTrackDb.transaction(
-      USER_TRACK_STORE,
-      "readwrite",
-    );
+    const transaction = userTrackDb.transaction(USER_TRACK_STORE, "readwrite");
     transaction.oncomplete = () => resolve();
     transaction.onerror = () =>
       reject(transaction.error || new Error("Unable to delete saved audio."));
     transaction.onabort = () =>
-      reject(transaction.error || new Error("Audio file deletion was cancelled."));
+      reject(
+        transaction.error || new Error("Audio file deletion was cancelled."),
+      );
     transaction.objectStore(USER_TRACK_STORE).delete(id);
   });
 }
@@ -572,7 +564,10 @@ document.addEventListener("DOMContentLoaded", async function () {
           grid.append(card);
           added += 1;
         } catch (error) {
-          console.error(`Unable to add ${file.name} to the music mixer:`, error);
+          console.error(
+            `Unable to add ${file.name} to the music mixer:`,
+            error,
+          );
           if (card) {
             audioMap.delete(card.dataset.file);
             URL.revokeObjectURL(card.dataset.objectUrl);
