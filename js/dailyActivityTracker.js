@@ -102,7 +102,7 @@ async function hasActivityForToday(tracker, today) {
 
 function setTrackerStatus(trackerId, completed, unavailable = false) {
   const item = document.querySelector(
-    `.dailyActivityItem[data-tracker="${trackerId}"]`,
+    `.quickNav a[data-tracker="${trackerId}"]`,
   );
   if (!item) return;
 
@@ -123,7 +123,6 @@ function setTrackerStatus(trackerId, completed, unavailable = false) {
 
 async function refreshDailyActivityTracker() {
   const today = localDayKey(new Date());
-  const status = document.getElementById("dailyActivityStatus");
   const results = await Promise.allSettled(
     DAILY_ACTIVITY_TRACKERS.map((tracker) =>
       hasActivityForToday(tracker, today),
@@ -143,11 +142,9 @@ async function refreshDailyActivityTracker() {
   });
 
   if (failedTrackers.length) {
-    status.classList.add("is-error");
-    status.textContent = `Could not check today's status for ${failedTrackers.join(", ")}.`;
-  } else {
-    status.classList.remove("is-error");
-    status.textContent = "A check marks an activity logged today.";
+    console.error(
+      `Could not check today's status for ${failedTrackers.join(", ")}.`,
+    );
   }
 }
 

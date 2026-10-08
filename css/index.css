@@ -76,37 +76,10 @@ body {
     gap: 12px;
 }
 
-.dailyActivityTracker {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: max-content;
-    margin-top: 14px;
-}
-
-.dailyActivityItem {
-    position: relative;
-    display: flex;
-    flex: 0 0 30px;
-    width: 30px;
-    height: 30px;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: default;
-}
-
-.dailyActivityIcon {
-    color: #858985;
-    font-size: .95rem;
-}
-
 .dailyActivityCheck {
     position: absolute;
     top: -2px;
-    right: -3px;
+    right: 8px;
     display: none;
     width: 11px;
     height: 11px;
@@ -118,34 +91,12 @@ body {
     font-size: .48rem;
 }
 
-.dailyActivityItem.is-complete .dailyActivityCheck {
+.quickNav a.is-complete .dailyActivityCheck {
     display: flex;
 }
 
-.dailyActivityItem.is-unavailable .dailyActivityIcon {
+.quickNav a.is-unavailable > i {
     opacity: .55;
-}
-
-.dailyActivityLegend {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    clip-path: inset(50%);
-}
-
-.dailyActivityLegend.is-error {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 8px 0 0;
-    color: #B42318;
-    font-size: .74rem;
-    line-height: 1.4;
-    clip: auto;
-    clip-path: none;
 }
 
 .heroAction,
@@ -185,6 +136,7 @@ body {
 }
 
 .quickNav a {
+    position: relative;
     align-items: center;
     background: #ffffff;
     border-radius: 10px;
@@ -201,7 +153,7 @@ body {
     letter-spacing: 0.01em;
 }
 
-.quickNav i {
+.quickNav > a > i {
     padding:4px;
     align-items: center;
     border: 1px solid #757575;
@@ -328,24 +280,9 @@ body {
         font-size: 3.1rem;
     }
 
-    .dailyActivityTracker {
-        gap: 8px;
-        margin-top: 12px;
-    }
-
-    .dailyActivityItem {
-        flex-basis: 26px;
-        width: 26px;
-        height: 26px;
-    }
-
-    .dailyActivityIcon {
-        font-size: .8rem;
-    }
-
     .dailyActivityCheck {
         top: -2px;
-        right: -3px;
+        right: 5px;
         width: 9px;
         height: 9px;
         font-size: .4rem;
