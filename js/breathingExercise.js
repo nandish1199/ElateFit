@@ -92,8 +92,10 @@ const addTechniqueButton = document.getElementById("addTechniqueButton");
 const gapInput = document.getElementById("gapMinutes");
 const voiceToggle = document.getElementById("voiceToggle");
 const startButton = document.getElementById("startButton");
+const savePlanButton = document.getElementById("savePlanButton");
 const resetButton = document.getElementById("resetButton");
 const planSummary = document.getElementById("planSummary");
+const savePlanStatus = document.getElementById("savePlanStatus");
 const sessionLabel = document.getElementById("sessionLabel");
 const techniqueName = document.getElementById("techniqueName");
 const phaseText = document.getElementById("phaseText");
@@ -118,6 +120,7 @@ let statusMessage = "Audio guidance is available when you start.";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const isValid = (currentSession) => isRunning && sessionId === currentSession;
+const SAVED_PLAN_KEY = "elateFitBreathingPlan";
 
 function isCountedPhase(name) {
   const lower = name.toLowerCase();
@@ -228,7 +231,7 @@ function techniqueOptions(selectedIndex) {
     .join("");
 }
 
-function addTechniqueRow(selectedIndex = 0) {
+function addTechniqueRow(selectedIndex = 0, repetitions = 3) {
   if (
     isRunning ||
     isComplete ||
@@ -241,7 +244,7 @@ function addTechniqueRow(selectedIndex = 0) {
   row.innerHTML = `<button type="button" class="breathingRemoveButton" aria-label="Remove technique">&times;</button>
         <div class="breathingRowFields">
           <div><label>Technique</label><select class="technique-select">${techniqueOptions(selectedIndex)}</select></div>
-          <div><label>Repetitions</label><input class="repetitions-input" type="number" min="1" max="70" step="1" value="3"></div>
+          <div><label>Repetitions</label><input class="repetitions-input" type="number" min="1" max="70" step="1" value="${Math.min(70, Math.max(1, Number(repetitions) || 1))}"></div>
         </div>`;
 
   row.querySelector(".breathingRemoveButton").addEventListener("click", () => {
@@ -279,6 +282,64 @@ function getGapSeconds() {
   return Math.min(30, Math.max(0, Number(gapInput.value) || 0)) * 60;
 }
 
+function savePlan() {
+  const plan = getPlan();
+  const savedPlan = {
+    techniques: plan.map((item) => ({
+      index: breathingTechniques.findIndex(
+        (technique) => technique.name === item.name,
+      ),
+      repetitions: item.repetitions,
+    })),
+    gapMinutes: Math.min(30, Math.max(0, Number(gapInput.value) || 0)),
+    voice: voiceToggle.value,
+  };
+
+  try {
+    localStorage.setItem(SAVED_PLAN_KEY, JSON.stringify(savedPlan));
+    savePlanStatus.textContent = "Plan saved. It will be restored next time.";
+  } catch (error) {
+    savePlanStatus.textContent = "Unable to save this plan in your browser.";
+    console.error("Unable to save breathing plan.", error);
+  }
+}
+
+function loadSavedPlan() {
+  try {
+    const stored = localStorage.getItem(SAVED_PLAN_KEY);
+    if (!stored) return false;
+
+    const savedPlan = JSON.parse(stored);
+    if (
+      !Array.isArray(savedPlan.techniques) ||
+      savedPlan.techniques.length === 0 ||
+      savedPlan.techniques.some(
+        (item) =>
+          !Number.isInteger(item.index) ||
+          item.index < 0 ||
+          item.index >= breathingTechniques.length,
+      )
+    ) {
+      return false;
+    }
+
+    savedPlan.techniques.forEach((item) => {
+      addTechniqueRow(item.index, item.repetitions);
+    });
+    gapInput.value = Math.min(30, Math.max(0, Number(savedPlan.gapMinutes) || 0));
+    if (["voice-count", "on", "off"].includes(savedPlan.voice)) {
+      voiceToggle.value = savedPlan.voice;
+    }
+    updatePlan();
+    savePlanStatus.textContent = "Saved plan restored.";
+    return true;
+  } catch (error) {
+    savePlanStatus.textContent = "Unable to restore the saved plan.";
+    console.error("Unable to restore breathing plan.", error);
+    return false;
+  }
+}
+
 function calculateTotalPlanSeconds(plan, gapSeconds) {
   const breathingSeconds = plan.reduce(
     (total, item) =>
@@ -304,6 +365,7 @@ function updatePlan() {
 function updateControlsState() {
   const hasSession = isRunning || isComplete;
   startButton.disabled = hasSession;
+  savePlanButton.disabled = hasSession;
   addTechniqueButton.disabled =
     hasSession || techniqueList.children.length >= breathingTechniques.length;
   gapInput.disabled = hasSession;
@@ -590,7 +652,8 @@ addTechniqueButton.addEventListener("click", () => {
 gapInput.addEventListener("input", updatePlan);
 startButton.addEventListener("click", startSession);
 resetButton.addEventListener("click", resetSession);
+savePlanButton.addEventListener("click", savePlan);
 
 // Initial setup
-addTechniqueRow(0);
+if (!loadSavedPlan()) addTechniqueRow(0);
 render();

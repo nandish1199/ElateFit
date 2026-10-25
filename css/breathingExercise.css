@@ -54,6 +54,8 @@
 .breathingOptions label{ font-weight:600; }
 .breathingActions { display: flex; gap: 10px; margin-top: 18px; }
 .breathingActions button { flex: 1; font-weight: 600; font-size: 0.8rem; letter-spacing: .04em; }
+.breathingSaveStatus { min-height: 20px; margin: 10px 0 0; color: var(--breath-teal-dark); font-size: .82rem; font-weight: 700; }
+#savePlanButton{background: white; color:#24352a; border: 1px solid var(--breath-line);}
 #resetBreath{ background: white; color: var(--breath-ink); border: 1px solid var(--breath-line); }
 .breathingHelper { margin: 10px 0 0; font-size: .82rem; }
 .breathingSummary { margin-top: 20px; padding: 16px 0 0; border-top: 1px solid var(--breath-line); color: var(--breath-muted); font-size: .9rem; }
@@ -88,4 +90,5 @@
 @media (max-width: 430px) {
     .breathingPanel { padding: 18px; }
     .breathingRowFields, .breathingOptions { grid-template-columns: 1fr; gap: 10px; }
+    .breathingActions { flex-direction: column; }
 }
