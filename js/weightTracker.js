@@ -83,12 +83,20 @@ function getGoalMapState() {
 
 async function establishGoalMapState() {
   goalMapState = await getGoalMapState();
-  if (
-    goalMapState ||
-    !savedProfile ||
-    !Number.isFinite(Number(savedProfile.targetWeight))
-  )
+  const profileTarget = savedProfile ? Number(savedProfile.targetWeight) : null;
+  if (!Number.isFinite(profileTarget) || profileTarget <= 0) return;
+
+  if (goalMapState) {
+    if (Number(goalMapState.targetWeight) !== profileTarget) {
+      goalMapState = await putRecord(GOAL_MAP_STORE, {
+        ...goalMapState,
+        targetWeight: profileTarget,
+        updatedAt: new Date().toISOString(),
+      });
+    }
     return;
+  }
+
   const firstEntry = weightEntries
     .slice()
     .sort((a, b) => new Date(a.recordedAt) - new Date(b.recordedAt))[0];
@@ -96,7 +104,7 @@ async function establishGoalMapState() {
   goalMapState = await putRecord(GOAL_MAP_STORE, {
     id: "goal",
     startWeight: Number(firstEntry.weight),
-    targetWeight: Number(savedProfile.targetWeight),
+    targetWeight: profileTarget,
     createdAt: new Date().toISOString(),
   });
 }
