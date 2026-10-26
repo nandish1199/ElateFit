@@ -17,6 +17,8 @@ const aiAssistDialog = document.getElementById("aiAssistDialog");
 const aiAssistButton = document.getElementById("aiAssistButton");
 const aiAssistLoading = document.getElementById("aiAssistLoading");
 const aiAssistReport = document.getElementById("aiAssistReport");
+let aiCalendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+let aiCalendarEvents = [];
 
 function openAiDatabase(config) {
   return new Promise((resolve, reject) => {
@@ -118,6 +120,14 @@ function aiList(items, emptyText) {
 
 function aiLocalKey(date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function aiDateKey(value) {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}/.test(value)) {
+    return value.slice(0, 10);
+  }
+  const date = aiDate(value);
+  return date ? aiLocalKey(date) : null;
 }
 
 function aiCurrentStreak(dateSets) {
@@ -337,6 +347,42 @@ function calculateAiInsights(data) {
         bmi < 30 ? "above the usual screening range" : "in the higher screening range";
   const proteinTarget = weight ? `${aiFormatNumber(weight * 1.2)}-${aiFormatNumber(weight * 1.6)} g` : "Set a weight first";
   const streak = aiCurrentStreak([cardioDays, breathingDays, stretchDays]);
+  const calendarEvents = [
+    ...nutrition
+      .map((entry) => ({
+        date: aiDateKey(entry.createdAt),
+        type: "calorie",
+        icon: "fa-bowl-food",
+        label: "Calories logged",
+      }))
+      .filter((event) => event.date),
+    ...workouts
+      .map((entry) => ({
+        date: aiDateKey(entry.createdAt),
+        type: "workout",
+        icon: "fa-dumbbell",
+        label: "Workout logged",
+      }))
+      .filter((event) => event.date),
+    ...[...cardioDays].map((date) => ({
+      date: aiDateKey(date),
+      type: "cardio",
+      icon: "fa-person-running",
+      label: "Cardio completed",
+    })),
+    ...[...breathingDays].map((date) => ({
+      date: aiDateKey(date),
+      type: "breathing",
+      icon: "fa-wind",
+      label: "Breathing completed",
+    })),
+    ...[...stretchDays].map((date) => ({
+      date: aiDateKey(date),
+      type: "stretch",
+      icon: "fa-person-walking",
+      label: "Stretching completed",
+    })),
+  ].filter((event) => event.date);
   const metrics = [
     {
       label: "Profile setup",
@@ -469,6 +515,7 @@ function calculateAiInsights(data) {
     metrics,
     focus: next[0],
     loggedDays: new Set(activityDates.map(aiLocalKey)).size,
+    calendarEvents,
   };
 }
 
@@ -555,7 +602,91 @@ function renderAiAssistReport(insights) {
     <section class="aiAssistSection aiAssistNext">
       <h3><i class="fa-solid fa-forward"></i> What to do next</h3>
       ${aiList(insights.next, "Keep your plan consistent and review it weekly.")}
+    </section>
+    <section class="aiAssistSection aiAssistMegaCalendar">
+      <div class="aiAssistCalendarHeader">
+        <div>
+          <h3><i class="fa-solid fa-calendar-days"></i> Mega activity calendar</h3>
+          <p>See every logged nutrition, workout, cardio, breathing, and stretching activity together.</p>
+        </div>
+        <div class="aiAssistCalendarNavigation" aria-label="Change activity calendar month">
+          <button type="button" id="aiAssistCalendarPrevious" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></button>
+          <span id="aiAssistCalendarMonth"></span>
+          <button type="button" id="aiAssistCalendarNext" aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="aiAssistCalendarWeekdays" aria-hidden="true">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="aiAssistCalendarGrid" id="aiAssistCalendarGrid" role="grid" aria-label="Monthly health activity calendar"></div>
+      <div class="aiAssistCalendarLegend">
+        <span><i class="fa-solid fa-bowl-food aiAssistCalendarIcon-calorie"></i> Calories</span>
+        <span><i class="fa-solid fa-dumbbell aiAssistCalendarIcon-workout"></i> Workout</span>
+        <span><i class="fa-solid fa-person-running aiAssistCalendarIcon-cardio"></i> Cardio</span>
+        <span><i class="fa-solid fa-wind aiAssistCalendarIcon-breathing"></i> Breathing</span>
+        <span><i class="fa-solid fa-person-walking aiAssistCalendarIcon-stretch"></i> Stretching</span>
+      </div>
     </section>`;
+  aiCalendarEvents = insights.calendarEvents;
+  renderAiActivityCalendar();
+}
+
+function renderAiActivityCalendar() {
+  const monthLabel = document.getElementById("aiAssistCalendarMonth");
+  const grid = document.getElementById("aiAssistCalendarGrid");
+  if (!monthLabel || !grid) return;
+
+  const year = aiCalendarMonth.getFullYear();
+  const month = aiCalendarMonth.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const todayKey = aiLocalKey(new Date());
+  const eventsByDate = new Map();
+  aiCalendarEvents.forEach((event) => {
+    if (!eventsByDate.has(event.date)) eventsByDate.set(event.date, []);
+    eventsByDate.get(event.date).push(event);
+  });
+
+  monthLabel.textContent = new Intl.DateTimeFormat(undefined, {
+    month: "long",
+    year: "numeric",
+  }).format(aiCalendarMonth);
+
+  const cells = [];
+  for (let index = 0; index < firstDay; index += 1) {
+    cells.push('<div class="aiAssistCalendarDay aiAssistCalendarEmpty" aria-hidden="true"></div>');
+  }
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(year, month, day);
+    const dateKey = aiLocalKey(date);
+    const events = eventsByDate.get(dateKey) || [];
+    const eventTypes = [...new Set(events.map((event) => event.type))];
+    const labels = events.map((event) => event.label).join(", ");
+    const classes = ["aiAssistCalendarDay"];
+    if (dateKey === todayKey) classes.push("aiAssistCalendarToday");
+    if (events.length) classes.push("aiAssistCalendarActive");
+    cells.push(`
+      <div class="${classes.join(" ")}" title="${aiEscape(labels || "No activity logged")}">
+        <span>${day}</span>
+        <div class="aiAssistCalendarIcons">
+          ${eventTypes
+            .map((type) => {
+              const event = events.find((item) => item.type === type);
+              return `<i class="fa-solid ${event.icon} aiAssistCalendarIcon-${type}" aria-label="${aiEscape(event.label)}"></i>`;
+            })
+            .join("")}
+        </div>
+      </div>`);
+  }
+  grid.innerHTML = cells.join("");
+  document.getElementById("aiAssistCalendarPrevious").onclick = () => {
+    aiCalendarMonth = new Date(year, month - 1, 1);
+    renderAiActivityCalendar();
+  };
+  document.getElementById("aiAssistCalendarNext").onclick = () => {
+    aiCalendarMonth = new Date(year, month + 1, 1);
+    renderAiActivityCalendar();
+  };
 }
 
 async function showAiAssist() {

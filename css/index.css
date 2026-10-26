@@ -285,6 +285,134 @@ body {
     background: #F3FAF4;
 }
 
+.aiAssistMegaCalendar {
+    background: linear-gradient(145deg, #FBFDFC, #F5FAF6);
+}
+
+.aiAssistCalendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.aiAssistCalendarHeader p {
+    margin: -4px 0 0;
+    color: #64756A;
+    font-size: .78rem;
+}
+
+.aiAssistCalendarNavigation {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #166534;
+    font-size: .8rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.aiAssistCalendarNavigation button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #DCE9DF;
+    border-radius: 7px;
+    background: #FFFFFF;
+    color: #166534;
+    cursor: pointer;
+}
+
+.aiAssistCalendarNavigation button:hover {
+    background: #EAF6ED;
+}
+
+.aiAssistCalendarWeekdays,
+.aiAssistCalendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+}
+
+.aiAssistCalendarWeekdays {
+    margin: 16px 0 7px;
+    color: #64756A;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.aiAssistCalendarDay {
+    position: relative;
+    min-height: 54px;
+    padding: 6px;
+    border: 1px solid #DCE9DF;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #24352A;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.aiAssistCalendarDay:hover {
+    z-index: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(22, 101, 52, .12);
+}
+
+.aiAssistCalendarEmpty {
+    border-color: transparent;
+    background: transparent;
+}
+
+.aiAssistCalendarDay > span {
+    display: block;
+    font-size: .75rem;
+    font-weight: 800;
+}
+
+.aiAssistCalendarToday {
+    border-color: #D27B45;
+    box-shadow: inset 0 0 0 1px rgba(210, 123, 69, .2);
+}
+
+.aiAssistCalendarActive {
+    background: #F1FAF2;
+}
+
+.aiAssistCalendarIcons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.aiAssistCalendarIcons i,
+.aiAssistCalendarLegend i {
+    font-size: .72rem;
+}
+
+.aiAssistCalendarIcon-calorie { color: #D97706; }
+.aiAssistCalendarIcon-workout { color: #2563EB; }
+.aiAssistCalendarIcon-cardio { color: #DC2626; }
+.aiAssistCalendarIcon-breathing { color: #7C3AED; }
+.aiAssistCalendarIcon-stretch { color: #15803D; }
+
+.aiAssistCalendarLegend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 14px;
+    margin-top: 14px;
+    color: #64756A;
+    font-size: .72rem;
+}
+
+.aiAssistCalendarLegend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .aiAssistEmpty {
     margin: 0;
     color: #64756A;
@@ -591,6 +719,11 @@ body {
 
     .aiAssistWelcome {
         align-items: flex-start;
+    }
+
+    .aiAssistCalendarHeader {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
 
