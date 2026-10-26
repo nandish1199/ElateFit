@@ -43,6 +43,8 @@
               class="fa-solid fa-dumbbell"></i> WORKOUT TRACKER</a>
           <a href="calculators/calcCategories.html" class="heroAction"><i class="fa-solid fa-chart-line"></i> FITNESS
             TRACKERS</a>
+          <button type="button" class="heroAction aiAssistButton" id="aiAssistButton"><i
+              class="fa-solid fa-wand-magic-sparkles"></i> AI ASSIST</button>
         </div>
       </div>
       <div class="indexfrontHeadRight">
@@ -294,6 +296,23 @@
     crossorigin="anonymous"></script>
   <script src="js/allcommon.js"></script>
   <script src="js/dailyActivityTracker.js"></script>
+  <div class="aiAssistDialog" id="aiAssistDialog" hidden>
+    <div class="aiAssistBackdrop" data-ai-close></div>
+    <section class="aiAssistPanel" role="dialog" aria-modal="true" aria-labelledby="aiAssistHeading">
+      <div class="aiAssistHeader">
+        <div>
+          <p class="eyebrow">Personal health overview</p>
+          <h2 id="aiAssistHeading">AI Assist</h2>
+        </div>
+        <button type="button" class="aiAssistClose" data-ai-close aria-label="Close AI Assist">&times;</button>
+      </div>
+      <div class="aiAssistLoading" id="aiAssistLoading">Reading your saved health data...</div>
+      <div class="aiAssistReport" id="aiAssistReport"></div>
+      <p class="aiAssistDisclaimer">This is an educational summary, not a medical diagnosis. Consult a qualified
+        professional for medical, dietary, or exercise decisions.</p>
+    </section>
+  </div>
+  <script src="js/aiAssist.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
       $("#kamasutra").on("click", function (e) {
