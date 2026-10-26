@@ -59,6 +59,24 @@
 #resetBreath{ background: white; color: var(--breath-ink); border: 1px solid var(--breath-line); }
 .breathingHelper { margin: 10px 0 0; font-size: .82rem; }
 .breathingSummary { margin-top: 20px; padding: 16px 0 0; border-top: 1px solid var(--breath-line); color: var(--breath-muted); font-size: .9rem; }
+.breathingCalendarPanel { margin-top: 24px; }
+.breathingCalendarTools { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+.breathingCalendarTools h2 { margin: 0; color: var(--breath-ink); font-size: 1.05rem; letter-spacing: .04em; }
+.breathingCalendarTools h2 i { margin-right: 7px; color: var(--breath-coral); font-size: .9em; }
+.breathingCalendarMonth { color: var(--breath-teal-dark); font-size: .8rem; font-weight: 600; }
+.breathingCalendarNavigation { display: flex; gap: 6px; }
+.breathingCalendarNavigation button { width: 30px; min-height: 30px; padding: 0; border: 1px solid var(--breath-line); border-radius: 2px; background: #fff; color: var(--breath-teal-dark); cursor: pointer; }
+.breathingCalendarNavigation button:hover { background: var(--breath-mint); }
+.breathingCalendarWeekdays, .breathingCalendarGrid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.breathingCalendarWeekdays { margin-bottom: 8px; color: var(--breath-muted); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+.breathingCalendarDay { position: relative; min-height: 46px; padding: 6px; border: 1px solid var(--breath-line); border-radius: 2px; background: #fff; color: var(--breath-ink); }
+.breathingCalendarDayEmpty { border-color: transparent; background: transparent; }
+.breathingCalendarDate { display: block; font-size: .78rem; font-weight: 700; }
+.breathingCalendarDayToday { border-color: var(--breath-coral); box-shadow: inset 0 0 0 1px rgba(22, 163, 74, .2); }
+.breathingCalendarDayComplete { background: var(--breath-mint); border-color: #A8CFB0; }
+.breathingCalendarIcon { position: absolute; right: 7px; bottom: 7px; color: var(--breath-coral); font-size: .78rem; }
+.breathingCalendarLegend { display: flex; align-items: center; gap: 6px; margin-top: 12px; color: var(--breath-muted); font-size: .78rem; }
+.breathingCalendarLegend i { color: var(--breath-coral); }
 .breathingPractice { min-height: 550px; display: grid; place-items: center; text-align: center; overflow: hidden; background: #FFFFFF; }
 .breathingPracticeInner { width: 100%; }
 .breathingSessionLabel { min-height: 22px; color: var(--breath-teal); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
@@ -91,4 +109,7 @@
     .breathingPanel { padding: 18px; }
     .breathingRowFields, .breathingOptions { grid-template-columns: 1fr; gap: 10px; }
     .breathingActions { flex-direction: column; }
+    .breathingCalendarTools { align-items: flex-start; flex-direction: column; }
+    .breathingCalendarWeekdays, .breathingCalendarGrid { gap: 4px; }
+    .breathingCalendarDay { min-height: 40px; padding: 5px; }
 }

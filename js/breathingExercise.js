@@ -117,10 +117,16 @@ let remaining = 0;
 let elapsed = 0;
 let totalPlanSeconds = 1;
 let statusMessage = "Audio guidance is available when you start.";
+let breathingCalendarMonth = new Date(
+  new Date().getFullYear(),
+  new Date().getMonth(),
+  1,
+);
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const isValid = (currentSession) => isRunning && sessionId === currentSession;
 const SAVED_PLAN_KEY = "elateFitBreathingPlan";
+const COMPLETED_DAYS_KEY = "elateFitBreatheCompletedDays";
 
 function isCountedPhase(name) {
   const lower = name.toLowerCase();
@@ -203,7 +209,7 @@ function saveCompletedSession() {
     const todayStr = `${year}-${month}-${day}`;
 
     let completedList = [];
-    const stored = localStorage.getItem("elateFitBreatheCompletedDays");
+    const stored = localStorage.getItem(COMPLETED_DAYS_KEY);
     if (stored) {
       try {
         completedList = JSON.parse(stored);
@@ -215,11 +221,71 @@ function saveCompletedSession() {
     if (!completedList.includes(todayStr)) {
       completedList.push(todayStr);
       localStorage.setItem(
-        "elateFitBreatheCompletedDays",
+        COMPLETED_DAYS_KEY,
         JSON.stringify(completedList),
       );
     }
-  } catch (_) {}
+    renderBreathingCalendar();
+  } catch (error) {
+    console.error("Unable to save completed breathing session.", error);
+  }
+}
+
+function breathingDayKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function getCompletedBreathingDays() {
+  try {
+    const stored = localStorage.getItem(COMPLETED_DAYS_KEY);
+    const completedDays = stored ? JSON.parse(stored) : [];
+    return new Set(Array.isArray(completedDays) ? completedDays : []);
+  } catch (error) {
+    console.error("Unable to read completed breathing sessions.", error);
+    return new Set();
+  }
+}
+
+function renderBreathingCalendar() {
+  const monthLabel = document.getElementById("breathingCalendarMonth");
+  const grid = document.getElementById("breathingCalendarGrid");
+  if (!monthLabel || !grid) return;
+
+  const year = breathingCalendarMonth.getFullYear();
+  const month = breathingCalendarMonth.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const completedDays = getCompletedBreathingDays();
+  const todayKey = breathingDayKey(new Date());
+
+  monthLabel.textContent = new Intl.DateTimeFormat(undefined, {
+    month: "long",
+    year: "numeric",
+  }).format(breathingCalendarMonth);
+
+  const cells = [];
+  for (let index = 0; index < firstDay; index += 1) {
+    cells.push(
+      '<div class="breathingCalendarDay breathingCalendarDayEmpty" aria-hidden="true"></div>',
+    );
+  }
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(year, month, day);
+    const key = breathingDayKey(date);
+    const complete = completedDays.has(key);
+    const classes = ["breathingCalendarDay"];
+    if (key === todayKey) classes.push("breathingCalendarDayToday");
+    if (complete) classes.push("breathingCalendarDayComplete");
+    cells.push(`
+      <div class="${classes.join(" ")}"${complete ? ' title="Breathing exercise completed"' : ""}>
+        <span class="breathingCalendarDate">${day}</span>
+        ${complete ? '<i class="fa-solid fa-wind breathingCalendarIcon" aria-label="Breathing exercise completed"></i>' : ""}
+      </div>`);
+  }
+  grid.innerHTML = cells.join("");
 }
 
 function techniqueOptions(selectedIndex) {
@@ -653,7 +719,28 @@ gapInput.addEventListener("input", updatePlan);
 startButton.addEventListener("click", startSession);
 resetButton.addEventListener("click", resetSession);
 savePlanButton.addEventListener("click", savePlan);
+document
+  .getElementById("previousBreathingMonth")
+  .addEventListener("click", () => {
+    breathingCalendarMonth = new Date(
+      breathingCalendarMonth.getFullYear(),
+      breathingCalendarMonth.getMonth() - 1,
+      1,
+    );
+    renderBreathingCalendar();
+  });
+document
+  .getElementById("nextBreathingMonth")
+  .addEventListener("click", () => {
+    breathingCalendarMonth = new Date(
+      breathingCalendarMonth.getFullYear(),
+      breathingCalendarMonth.getMonth() + 1,
+      1,
+    );
+    renderBreathingCalendar();
+  });
 
 // Initial setup
 if (!loadSavedPlan()) addTechniqueRow(0);
 render();
+renderBreathingCalendar();

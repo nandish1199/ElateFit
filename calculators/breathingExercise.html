@@ -65,8 +65,8 @@
                         transition.</p>
                     <div class="breathingActions"><button type="button" id="startButton"><i
                                 class="fa-solid fa-play"></i> START SESSION</button><button id="savePlanButton"
-                                type="button" class="breathingSecondary"><i class="fa-solid fa-bookmark"></i> SAVE
-                                PLAN</button><button id="resetButton" type="button" class="breathingSecondary"><i
+                            type="button" class="breathingSecondary"><i class="fa-solid fa-bookmark"></i> SAVE
+                            PLAN</button><button id="resetButton" type="button" class="breathingSecondary"><i
                                 class="fa-solid fa-rotate-left"></i> RESET / <i class="fa-solid fa-stop"></i> END
                         </button></div>
                     <p class="breathingSaveStatus" id="savePlanStatus" role="status" aria-live="polite"></p>
@@ -88,6 +88,29 @@
                     </div>
                 </section>
             </div>
+
+            <section class="breathingPanel breathingCalendarPanel" aria-labelledby="breathingCalendarHeading">
+                <div class="breathingCalendarTools">
+                    <div>
+                        <h2 id="breathingCalendarHeading"><i class="fa-solid fa-calendar-check"></i> BREATHING CALENDAR
+                        </h2>
+                        <span class="breathingCalendarMonth" id="breathingCalendarMonth"></span>
+                    </div>
+                    <div class="breathingCalendarNavigation" aria-label="Change breathing calendar month">
+                        <button type="button" id="previousBreathingMonth" aria-label="Previous month"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" id="nextBreathingMonth" aria-label="Next month"><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="breathingCalendarWeekdays" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="breathingCalendarGrid" id="breathingCalendarGrid" role="grid"
+                    aria-label="Monthly breathing exercise calendar"></div>
+                <div class="breathingCalendarLegend"><i class="fa-solid fa-wind" aria-hidden="true"></i> Breathing
+                    exercise completed</div>
+            </section>
         </div>
     </main>
 
